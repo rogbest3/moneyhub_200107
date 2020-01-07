@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moneyhub.web.faq.FAQMapper">
+<!-- 	<insert id="join" parameterType="Customer">
+	    insert into CUSTOMER ( CEMAIL, CPWD, CNAME, CNTCD, CPHONE, 
+	    						CSTCD, SDATE, WDATE, UDATE ) 
+	    values (
+	    	#{cemail}, #{cpwd}, #{cname}, #{cntcd}, #{cphone}, 
+	    	#{cstcd}, #{sdate}, #{wdate}, #{udate}
+	    )
+	</insert> -->
+	<select id="selectAll" resultType="FAQ" parameterType="PageProxy">
+		select A.* 
+		from (  SELECT * 
+				FROM FAQ
+				ORDER BY 1 DESC ) A
+		LIMIT ${startRow}, ${pageSize}
+	</select>
+	
+	<select id="countFAQ" resultType="String">
+		select count(*)
+		from FAQ
+	</select>
+	
+	<select id="createFAQ" parameterType="map">
+		${CREATE_FAQ}
+	</select>
+	
+	<select id="deleteFAQ" parameterType="map">
+		${DROP_FAQ}
+	</select>
+<!-- 	WHERE ${aid} LIKE #{aid}
+        where aid like 'a'
+        
+	    WHERE ${aid} LIKE #{aid}
+		 싱글쿼터   없고        		 있고 	-->
+</mapper>

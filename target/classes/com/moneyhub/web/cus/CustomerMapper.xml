@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moneyhub.web.cus.CustomerMapper">
+
+<!-- 	<select id="getUser" resultMap="usermap">
+		select * from users
+	</select>
+	<insert id="insert">
+	    insert into users (id, name, funkyNumber, roundingMode) values (
+	    	#{id}, #{name}, #{funkyNumber}, #{roundingMode}
+	    )
+	</insert>
+ -->
+	 <select id="login" resultType="Customer">
+		select *
+		from customer
+		where CEMAIL like #{cemail} and CPWD LIKE #{cpwd}
+	</select>
+	
+ 	<select id="existId" resultType="integer">
+		select count(*) 
+		from customer
+		where CEMAIL like #{cemail}
+	</select>
+	
+<!-- 	CNO, CEMAIL, CPWD, CNAME, CNTCD, CPHONE, CSTCD, SDATE, WDATE, UDATE 
+		cno, cemail, cpwd, cname, cntcd, cphone, cstcd, sdate, wdate, udate    
+		
+		sdate -> 자동으로 날짜 넣을려면 tpye date 로 변경하고 sysdate()하면 OK
+		-->
+
+	<insert id="join" parameterType="Customer">
+	    insert into CUSTOMER ( CEMAIL, CPWD, CNAME, CNTCD, CPHONE, 
+	    						CSTCD, SDATE, WDATE, UDATE ) 
+	    values (
+	    	#{cemail}, #{cpwd}, #{cname}, #{cntcd}, #{cphone}, 
+	    	#{cstcd}, #{sdate}, #{wdate}, #{udate}
+	    )
+	</insert>
+</mapper>
