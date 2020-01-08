@@ -40,4 +40,15 @@
 	    	#{cstcd}, #{sdate}, #{wdate}, #{udate}
 	    )
 	</insert>
+	
+<!-- 	<insert id="GetKey" parameterType="Customer">
+		update customer set cust_key like #{param2}
+		where cemail like #{param1}
+	</insert>
+	
+	<insert id="alter_custKey" parameterType="Customer">
+		update customer set cust_key like 'Y'
+		where cemail like #{param1} and cust_key like #{param2}
+	</insert> -->
+	
 </mapper>

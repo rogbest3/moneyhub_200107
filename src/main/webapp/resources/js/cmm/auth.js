@@ -173,7 +173,7 @@ auth =(()=>{
 		$('#cpwd').blur(function(){
 			if(pwJ.test($('#cpwd').val())){
 				$('#pwd_check').text('사용가능한 비밀번호입니다.')
-				$('#pwd_check').css('color', 'black')
+				$('#pwd_check').css('color', 'blue')
 			}else{
 				$('#pwd_check').text('숫자 or 문자로만 2~12자리 입력')
 				$('#pwd_check').css('color', 'red')
@@ -185,7 +185,7 @@ auth =(()=>{
 				$('#pwd2_check').css('color','red')
 			}else{
 				$('#pwd2_check').text('비밀번호가 일치합니다.')
-				$('#pwd2_check').css('color','black')
+				$('#pwd2_check').css('color','blue')
 			}
 		})
 		$('#fname').blur(function(){
