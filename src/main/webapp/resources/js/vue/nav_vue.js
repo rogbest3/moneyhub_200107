@@ -158,6 +158,7 @@ nav_vue = {
 		'		<a id="auth_mgmt" class="">인증관리</a>'+
 		'		<a id="alarm" class="">알림설정</a>'+
 		'		<a id="ref_mgmt" class="">추천인 관리</a>'+
+		'		<a id="withdrawal" class="">회원 탈퇴</a>'+
 		'		<div class="spacer"></div>'+
 		'		<img src="https://img.themoin.com/public/img/img-man-s.svg">'+
 		'		<p>rogbest@naver.com</p>'+
