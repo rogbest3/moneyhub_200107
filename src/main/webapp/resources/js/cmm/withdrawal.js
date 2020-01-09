@@ -27,6 +27,8 @@ withdrawal =(()=>{
 	
 	let setContentView =()=>{
 		alert('withdrawal.setContentView 들어옴')
+		$('#root div.themoin-main')
+		.html(nav_vue.sidebar_cus())
 		withdrawal_vue.withdrawal()
 	}
 	

@@ -91,6 +91,7 @@ mypage =(()=>{
 		.click(()=>{
 			alert('회원탈퇴 클릭')
 			withdrawal.onCreate()
+			$('html').scrollTop(0);
 		})
 		
 	}
