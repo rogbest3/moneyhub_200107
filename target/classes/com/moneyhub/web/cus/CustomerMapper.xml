@@ -15,15 +15,15 @@
 	</insert>
  -->
 	 <select id="login" resultType="Customer">
-		select *
-		from customer
-		where CEMAIL like #{cemail} and CPWD LIKE #{cpwd}
+		SELECT *
+		FROM CUSTOMER
+		WHERE CEMAIL like #{cemail} AND CPWD LIKE #{cpwd}
 	</select>
 	
  	<select id="existId" resultType="integer">
-		select count(*) 
-		from customer
-		where CEMAIL like #{cemail}
+		SELECT COUNT(*) 
+		FROM CUSTOMER
+		WHERE CEMAIL like #{cemail}
 	</select>
 	
 <!-- 	CNO, CEMAIL, CPWD, CNAME, CNTCD, CPHONE, CSTCD, SDATE, WDATE, UDATE 
@@ -33,22 +33,27 @@
 		-->
 
 	<insert id="join" parameterType="Customer">
-	    insert into CUSTOMER ( CEMAIL, CPWD, CNAME, CNTCD, CPHONE, 
+	    INSERT INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CNTCD, CPHONE, 
 	    						CSTCD, SDATE, WDATE, UDATE ) 
-	    values (
+	    VALUES (
 	    	#{cemail}, #{cpwd}, #{cname}, #{cntcd}, #{cphone}, 
 	    	#{cstcd}, #{sdate}, #{wdate}, #{udate}
 	    )
 	</insert>
 	
-<!-- 	<insert id="GetKey" parameterType="Customer">
-		update customer set cust_key like #{param2}
+ 	<!-- <insert id="GetKey" parameterType="Customer">
+		update customer set custKey like #{param2}
 		where cemail like #{param1}
 	</insert>
 	
-	<insert id="alter_custKey" parameterType="Customer">
-		update customer set cust_key like 'Y'
-		where cemail like #{param1} and cust_key like #{param2}
+	<insert id="alterCustKey" parameterType="Customer">
+		update customer set custKey like 'Y'
+		where cemail like #{param1} and custKey like #{param2}
 	</insert> -->
+	
+	<delete id="withdrawal">
+		DELETE CUSTOMER
+		WHERE CEMAIL LIKE #{cemail} AND CPWD LIKE #{cpwd}
+	</delete>
 	
 </mapper>

@@ -32,6 +32,8 @@ public class CustomerCtrl extends Proxy{
 	@Autowired Customer cus;
 	@Autowired CustomerMapper cusMapper;
 	@Autowired Box<Object> box;
+	//@Autowired CustMailSender mailSender;
+	//private HttpServletRequest  request;
 
 	@PostMapping("/login")
 	public Map<?, ?> login(@RequestBody Customer param){
@@ -44,7 +46,7 @@ public class CustomerCtrl extends Proxy{
 		box.clear();
 		box.put("msg", result);
 		box.put("cus", cus);
-		System.out.println(box.get());
+		System.out.println(box.get()); 
 		
 		return box.get();
 	}
@@ -61,6 +63,7 @@ public class CustomerCtrl extends Proxy{
 		param.setCpwd(encrypwd);
 		System.out.println("두번째 비번: "+param.getCpwd());
 		cusMapper.join(param);
+		//mailSender.mailSendWithUserKey(param.getCemail(), request);
 		box.clear();
 		box.put("msg", "SUCCESS");
 		return box.get();
@@ -77,5 +80,6 @@ public class CustomerCtrl extends Proxy{
 		return box.get();
 	}
 	
+	//@PostMapping("/withdrawal")
 	
 }

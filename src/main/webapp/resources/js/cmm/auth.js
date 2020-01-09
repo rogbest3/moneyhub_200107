@@ -77,7 +77,8 @@ auth =(()=>{
 						mypage.onCreate()
 					}
 					else{
-						alert('로그인 실패')
+						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
+						$('#login_pwd').css('color', 'red')
 					}
 				},
 				error : e=>{
@@ -160,7 +161,7 @@ auth =(()=>{
 		})
 	}
 
-	//아이디 정규식
+	// 아이디 정규식
 	var idJ = /^[a-z0-9]{2,12}$/;
 	// 비밀번호 정규식
 	var pwJ = /^[A-Za-z0-9]{2,12}$/;
@@ -223,7 +224,7 @@ auth =(()=>{
 						cname : $('#lname').val() + $('#fname').val(),
 						cntcd : cntcd,
 						cphone : $('#cphone').val()
-						// cemail, cpwd, cfm_cpwd, fname, lname, 
+						// cemail, cpwd, cfm_cpwd, fname, lname,
 						// phone1(국가코드), cphone
 					}),
 					dataType : 'json',

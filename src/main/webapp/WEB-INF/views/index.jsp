@@ -26,6 +26,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/vue/event_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/faq.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/faq_vue.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/cmm/withdrawal.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/remit/foreignRemit.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
