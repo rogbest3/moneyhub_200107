@@ -51,24 +51,24 @@ nav_vue = {
 		'			</div>'+
 		'		</div>'+
 		'	</div>'+
-		`<script> 
-			$(document).ready(function(){ 
-				  $(window).scroll(function(){ 
-				        var scroll = $(window).scrollTop(); 
-				        if(scroll == 0){
-				        	$(".themoin-header").css("background-color","#313c4a");
-				        	$("#navlogo").attr("src","/web/resources/img/logo/white_logo.png");
-				        	$(".themoin-header ul li a").css("color","#ffffff");
-				        	$(".themoin-language-dropdown a").css("color","#ffffff");
-				        }else  if(scroll>1){
-					        $(".themoin-header").css("background-color","rgba(255, 255, 255, 0.9)","color","#003764");
-					        $("#navlogo").attr("src","/web/resources/img/logo/black_logo.png");
-					        $(".themoin-header ul li a").css("color","#313c4a");
-					        $(".themoin-language-dropdown a").css("color","#003764")
-					    } 
-				  }) 
-			})
-		</script>`
+		'<script>'+
+		'			$(document).ready(function(){ '+
+		'				  $(window).scroll(function(){ '+
+		'				        var scroll = $(window).scrollTop(); '+
+		'				        if(scroll == 0){'+
+		'				        	$(".themoin-header").css("background-color","#313c4a");'+
+		'				        	$("#navlogo").attr("src","/web/resources/img/logo/white_logo.png");'+
+		'				        	$(".themoin-header ul li a").css("color","#ffffff");'+
+		'				        	$(".themoin-language-dropdown a").css("color","#ffffff");'+
+		'				        }else  if(scroll>1){'+
+		'					        $(".themoin-header").css("background-color","rgba(255, 255, 255, 0.9)","color","#003764");'+
+		'					        $("#navlogo").attr("src","/web/resources/img/logo/black_logo.png");'+
+		'					        $(".themoin-header ul li a").css("color","#313c4a");'+
+		'					        $(".themoin-language-dropdown a").css("color","#003764")'+
+		'					    } '+
+		'				  }) '+
+		'			})'+
+		'		</script>'
 		'</nav>'
 	},
 	logined_nav : ()=>{
@@ -85,7 +85,6 @@ nav_vue = {
 		'		<ul class="">'+
 		'			<li><a id="mgmt">내 계정 관리</a></li>'+
 		'			<li><a id="logout">로그아웃</a></li>'+
-		'			<li><a id="withdrawal">회원탈퇴</a></li>'+
 		'			<li class="mobile">'+
 		'				<div class="themoin-language-dropdown" tabindex="0">'+
 		'					<img class="ic-flag" src="https://img.themoin.com/public/img/ic-flag-ko.svg">'+

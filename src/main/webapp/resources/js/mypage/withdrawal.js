@@ -2,20 +2,17 @@
 var withdrawal = withdrawal || {}
 withdrawal =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, img, withdrawal_vue_js
-	
+	let _, js, nav_vue_js, mypage_vue_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
-		img = $.img()
-		withdrawal_vue_js = js + '/vue/withdrawal_vue.js'
+		mypage_vue_js = js + '/vue/mypage_vue.js'
 	}
-	
 	let onCreate =()=>{
-		alert('withdrawal.onCreate 들어옴')
+		alert('withdrawal onCreate 들어옴')
 		init()
 		$.when(
-			$.getScript(withdrawal_vue_js)
+			$.getScript(mypage_vue_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -24,12 +21,9 @@ withdrawal =(()=>{
 			alert(WHEN_ERR)
 		})
 	}
-	
 	let setContentView =()=>{
-		alert('withdrawal.setContentView 들어옴')
-		$('#root div.themoin-main')
-		.html(nav_vue.sidebar_cus())
-		withdrawal_vue.withdrawal()
+		$('#root div.mypage')
+		.html(mypage_vue.withdrawal())
 	}
 	
 	return { onCreate }

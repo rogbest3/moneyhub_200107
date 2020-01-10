@@ -26,7 +26,6 @@
 	<script src="<%=application.getContextPath()%>/resources/js/vue/event_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/faq.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/faq_vue.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/cmm/withdrawal.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/remit/foreignRemit.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
@@ -40,6 +39,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/auth_mgmt.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/alarm.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/ref_mgmt.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>

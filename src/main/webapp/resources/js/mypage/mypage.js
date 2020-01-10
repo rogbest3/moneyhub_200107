@@ -16,7 +16,7 @@ mypage =(()=>{
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
 		main_class = 'themoin-main'
-		withdrawal_js = '/cmm/withdrawal.js'
+		withdrawal_js = '/mypage/withdrawal.js'
 	}
 	
 	let onCreate =()=>{
@@ -29,6 +29,7 @@ mypage =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js)
+	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -84,13 +85,6 @@ mypage =(()=>{
 		$('.themoin-header a.logo')
 		.click(()=>{
 			mypage.onCreate()
-			$('html').scrollTop(0);
-		})
-		
-		$('#withdrawal')
-		.click(()=>{
-			alert('회원탈퇴 클릭')
-			withdrawal.onCreate()
 			$('html').scrollTop(0);
 		})
 		

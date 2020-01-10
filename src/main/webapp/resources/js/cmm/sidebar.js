@@ -35,6 +35,7 @@ sidebar = (()=>{
 		
 		$('#pwd_chg')
 		.click(e=>{
+			alert('?')
 			e.preventdefault
 			pwd_chg.onCreate()
 		})
@@ -59,6 +60,7 @@ sidebar = (()=>{
 		
 		$('#withdrawal')
 		.click(e=>{
+			alert('sidebar.js 회원탈퇴 클릭')
 			e.preventdefault
 			withdrawal.onCreate()
 		})
