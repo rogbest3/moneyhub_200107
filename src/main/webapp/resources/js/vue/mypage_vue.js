@@ -355,7 +355,7 @@ mypage_vue = {
 		'                <div class="form-row">'+
 		'                    <div class="email">'+
 		'                        <div class="moin-input">'+
-		'                            <label style="color: rgb(116, 127, 155);">현재 비밀번호</label>'+
+		'                            <label style="color: rgb(116, 127, 155);">이메일 주소</label>'+
 		'                            <input id="cpwd" class="fs-block" placeholder="현재 비밀번호를 입력해주세요." type="password" tabindex="0" value="">'+
 		'							<div class="check_font" id="pwd_check" ></div>'+
 		'                        </div>'+
