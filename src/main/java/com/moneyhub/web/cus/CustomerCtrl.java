@@ -56,8 +56,7 @@ public class CustomerCtrl extends Proxy{
 	public Map<?, ?> join(@RequestBody Customer param) {
 		System.out.println("join 들어옴");
 		System.out.println(param.toString());
-		Consumer<Customer> c = o -> cusMapper.join(o);
-		c.accept(param);
+		Consumer<Customer> c = o -> cusMapper.join(o); c.accept(param);
 		System.out.println("첫번째 비번: "+param.getCpwd());
 		String encrypwd = CustomerSha256.encrypt(param.getCpwd());
 		param.setCpwd(encrypwd);
@@ -80,6 +79,20 @@ public class CustomerCtrl extends Proxy{
 		return box.get();
 	}
 	
-	//@PostMapping("/withdrawal")
+	@PostMapping("/withdrawal")
+	public Map<?, ?> withdrawal(@RequestBody Customer param){
+		System.out.println(param.toString());
+		Function<Customer, Customer> f = t -> cusMapper.login(t);
+		cus = f.apply(param);
+	//	System.out.println(cus.getCemail());
+
+		String result = ( cus != null ) ? "SUCCESS" : "FAIL";
+		box.clear();
+		box.put("msg", result);
+		box.put("cus", cus);
+		System.out.println(box.get()); 
+		
+		return box.get();
+	}
 	
 }
