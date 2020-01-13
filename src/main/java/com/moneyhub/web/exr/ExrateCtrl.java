@@ -29,7 +29,7 @@ public class ExrateCtrl extends Proxy{
 	@Autowired Box<Object> box;
 	@Autowired Exrate exrate;
 	
-	@RequestMapping("/create/table")
+	@RequestMapping("/create/table")//
 	public Map<?, ?> createTable(){
 		print("테이블 생성 진입");
 		HashMap<String, String> map = new HashMap<>();
