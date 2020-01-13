@@ -345,6 +345,41 @@ mypage_vue = {
 		'            </form>'+
 		'        </div>'+
 		'    </div>'
+	},
+	withdrawal : ()=>{
+		return '<div class="themoin-mypage-password">'+
+		'        <div class="content">'+
+		'            <h1>회원 탈퇴</h1>'+
+		'            <p>더 이상 머니허브 서비스를 이용하지 않으시겠습니까?</p>'+
+		'            <form action="/a/v1/member/update" method="post">'+
+		'                <div class="form-row">'+
+		'                    <div class="password">'+
+		'                        <div class="moin-input">'+
+		'                            <label style="color: rgb(116, 127, 155);">현재 비밀번호</label>'+
+		'                            <input id="cpwd" class="fs-block" placeholder="현재 비밀번호를 입력해주세요." type="password" tabindex="0" value="">'+
+		'							<div class="check_font" id="pwd_check" ></div>'+
+		'                        </div>'+
+		'                        <p class="moin-error"></p>'+
+		'                    </div>'+
+		'                </div>'+
+		'                <div class="form-row">'+
+		'                    <div class="password">'+
+		'                        <div class="moin-input">'+
+		'                            <label style="color: rgb(116, 127, 155);">비밀번호 확인</label>'+
+		'                            <input id="cfm_cpwd" class="fs-block" placeholder="위 비밀번호와 동일하게 입력해주세요." type="password" tabindex="0" value="">'+
+		'							<div class="check_font" id="pwd2_check" ></div>'+
+		'                        </div>'+
+		'                        <p class="moin-error"></p>'+
+		'                    </div>'+
+		'                </div>'+
+		'                <div class="form-row submit-row">'+
+		'                    <div class="submit">'+
+		//'                        <button class="account-send-btn" type="submit" tabindex="0">회원탈퇴</button>'+
+		'                    </div>'+
+		'                </div>'+
+		'            </form>'+
+		'        </div>'+
+		'    </div>'
 	}
 	
 }

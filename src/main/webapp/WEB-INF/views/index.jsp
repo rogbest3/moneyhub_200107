@@ -39,6 +39,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/auth_mgmt.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/alarm.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/ref_mgmt.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>

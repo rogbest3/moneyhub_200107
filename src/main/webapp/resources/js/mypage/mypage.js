@@ -3,7 +3,7 @@ var mypage = mypage || {}
 mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
-		auth_js, compo_js, event_js, faq_js, main_class
+		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js
 		
 	let init =()=>{
 		_ = $.ctx()
@@ -16,6 +16,7 @@ mypage =(()=>{
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
 		main_class = 'themoin-main'
+		withdrawal_js = '/mypage/withdrawal.js'
 	}
 	
 	let onCreate =()=>{
@@ -28,6 +29,7 @@ mypage =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js)
+	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -85,6 +87,7 @@ mypage =(()=>{
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
+		
 	}
 	
 	return { onCreate }

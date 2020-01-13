@@ -77,7 +77,8 @@ auth =(()=>{
 						mypage.onCreate()
 					}
 					else{
-						alert('로그인 실패')
+						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
+						$('#login_pwd').css('color', 'red')
 					}
 				},
 				error : e=>{
@@ -160,10 +161,10 @@ auth =(()=>{
 		})
 	}
 
-	//아이디 정규식
+	// 아이디 정규식
 	var idJ = /^[a-z0-9]{2,12}$/;
 	// 비밀번호 정규식
-	var pwJ = /^[A-Za-z0-9]{2,12}$/; 
+	var pwJ = /^[A-Za-z0-9]{2,12}$/;
 	// 이름 정규식
 	var nameJ = /^[가-힣]{1,10}$/;
 
@@ -173,7 +174,7 @@ auth =(()=>{
 		$('#cpwd').blur(function(){
 			if(pwJ.test($('#cpwd').val())){
 				$('#pwd_check').text('사용가능한 비밀번호입니다.')
-				$('#pwd_check').css('color', 'black')
+				$('#pwd_check').css('color', 'blue')
 			}else{
 				$('#pwd_check').text('숫자 or 문자로만 2~12자리 입력')
 				$('#pwd_check').css('color', 'red')
@@ -185,7 +186,7 @@ auth =(()=>{
 				$('#pwd2_check').css('color','red')
 			}else{
 				$('#pwd2_check').text('비밀번호가 일치합니다.')
-				$('#pwd2_check').css('color','black')
+				$('#pwd2_check').css('color','blue')
 			}
 		})
 		$('#fname').blur(function(){
@@ -223,7 +224,7 @@ auth =(()=>{
 						cname : $('#lname').val() + $('#fname').val(),
 						cntcd : cntcd,
 						cphone : $('#cphone').val()
-						// cemail, cpwd, cfm_cpwd, fname, lname, 
+						// cemail, cpwd, cfm_cpwd, fname, lname,
 						// phone1(국가코드), cphone
 					}),
 					dataType : 'json',

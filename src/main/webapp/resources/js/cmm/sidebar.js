@@ -56,6 +56,12 @@ sidebar = (()=>{
 			e.preventdefault
 			ref_mgmt.onCreate()
 		})
+		
+		$('#withdrawal')
+		.click(e=>{
+			e.preventdefault
+			withdrawal.onCreate()
+		})
 	}
 	return { onCreate }
 })()
