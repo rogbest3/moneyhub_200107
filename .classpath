@@ -40,6 +40,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry exported="true" kind="lib" path="C:/Users/User/Downloads/lombok.jar"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="target/generated-sources/annotations">
@@ -59,5 +60,9 @@
 			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
+=======
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/cjswl/Downloads/lombok.jar"/>
+>>>>>>> f73740af3b83977ca8225b55baf3eed108d9cc18
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
