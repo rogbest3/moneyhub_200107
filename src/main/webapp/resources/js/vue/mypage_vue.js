@@ -351,7 +351,7 @@ mypage_vue = {
 		'        <div class="content">'+
 		'            <h1>회원 탈퇴</h1>'+
 		'            <p>더 이상 머니허브 서비스를 이용하지 않으시겠습니까?</p>'+
-		'            <form action="/a/v1/member/update" method="post">'+
+		'            <form action="/a/v1/member/update" method="delete">'+
 		'                <div class="form-row">'+
 		'                    <div class="email">'+
 		'                        <div class="moin-input">'+

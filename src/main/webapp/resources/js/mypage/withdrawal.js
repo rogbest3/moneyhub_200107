@@ -41,7 +41,7 @@ withdrawal =(()=>{
 			app.onCreate()
 			/*$.ajax({
 				url : _ + '/customers/withdrawal',
-				type : 'POST',
+				type : 'DELETE',
 				data : JSON.stringify({
 					cpwd : $('#cpwd').val()
 				}),
