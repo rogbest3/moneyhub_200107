@@ -35,34 +35,21 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_231">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
-	<classpathentry exported="true" kind="lib" path="C:/Users/User/Downloads/lombok.jar"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
-			<attribute name="ignore_optional_problems" value="true"/>
 			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
 		<attributes>
-			<attribute name="ignore_optional_problems" value="true"/>
 			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="m2e-apt" value="true"/>
 		</attributes>
 	</classpathentry>
-=======
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/cjswl/Downloads/lombok.jar"/>
->>>>>>> f73740af3b83977ca8225b55baf3eed108d9cc18
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

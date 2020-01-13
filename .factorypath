@@ -73,7 +73,4 @@
     <factorypathentry kind="EXTJAR" id="C:\Users\User\Downloads\apache-tomcat-9.0.30\lib\tomcat-util.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\Users\User\Downloads\apache-tomcat-9.0.30\lib\tomcat-websocket.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="EXTJAR" id="C:\Users\User\Downloads\apache-tomcat-9.0.30\lib\websocket-api.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Users\User\Downloads\lombok.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="JUNIT_HOME/junit.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="ECLIPSE_HOME/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>
