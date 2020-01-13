@@ -1,11 +1,12 @@
 "use strict"
 var sidebar = sidebar || {}
 sidebar = (()=>{
-	let _, js, nav_vue_js
+	let _, js, nav_vue_js, exchange_test_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
 		nav_vue_js = js + '/vue/nav_vue.js'
+		exchange_test_js = js + '/vue/nav_vue.js'
 	}
 	let onCreate =()=>{
 		init()
@@ -61,6 +62,12 @@ sidebar = (()=>{
 		.click(e=>{
 			e.preventdefault
 			withdrawal.onCreate()
+		})
+		
+		$('#exchange_test')
+		.click(e=>{
+			e.preventdefault
+			exchange_test.onCreate()
 		})
 	}
 	return { onCreate }

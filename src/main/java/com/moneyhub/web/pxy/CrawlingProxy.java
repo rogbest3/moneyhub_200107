@@ -61,7 +61,7 @@ public class CrawlingProxy extends Proxy{
 				box.put("contents", contents.get(i).html());
 				inventory.add(box);
 				
-				faq.setCategory(category.get(i).text());
+//				faq.setCategory(category.get(i).text());
 				faq.setTitle(titles.get(i).text());
 				faq.setContent(contents.get(i).html());
 				txMapper.insertFAQ(faq);

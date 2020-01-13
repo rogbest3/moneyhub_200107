@@ -17,13 +17,14 @@
 	 <select id="login" resultType="Customer">
 		SELECT *
 		FROM CUSTOMER
-		WHERE CEMAIL LIKE #{cemail} AND CPWD LIKE #{cpwd}
+		WHERE CEMAIL like #{cemail} AND CPWD LIKE #{cpwd}
+
 	</select>
 	
  	<select id="existId" resultType="integer">
 		SELECT COUNT(*) 
 		FROM CUSTOMER
-		WHERE CEMAIL LIKE #{cemail}
+		WHERE CEMAIL like #{cemail}
 	</select>
 	
 <!-- 	CNO, CEMAIL, CPWD, CNAME, CNTCD, CPHONE, CSTCD, SDATE, WDATE, UDATE 
@@ -53,8 +54,7 @@
 	
 	<delete id="withdrawal">
 		DELETE CUSTOMER
-		WHERE CEMAIL LIKE #{cemail}
-		AND CPWD LIKE #{cpwd}
+		WHERE CEMAIL LIKE #{cemail} AND CPWD LIKE #{cpwd}
 	</delete>
 	
 </mapper>

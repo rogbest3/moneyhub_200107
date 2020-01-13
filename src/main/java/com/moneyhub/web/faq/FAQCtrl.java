@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.moneyhub.web.enums.SQL;
 import com.moneyhub.web.pxy.Box;
+import com.moneyhub.web.pxy.Inventory;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
 
@@ -24,30 +25,32 @@ import com.moneyhub.web.pxy.Proxy;
 public class FAQCtrl extends Proxy{
 	@Autowired Box<Object> box;
 	@Autowired FAQMapper faqMapper;
+	@Autowired FAQSevice faqService;
 	@Autowired PageProxy pager;
 	
 	@GetMapping("/create/table")
 	public Map<?, ?> createTable(){
-		HashMap<String, String> map = new HashMap<>();
-		map.put("CREATE_FAQ", SQL.CREATE_FAQ.toString());
-		print("테이블 생성 쿼리 : \n" + map.get("CREATE_FAQ"));
-		Consumer<HashMap<String, String>> c = p -> faqMapper.createFAQ(p);
-		c.accept(map);
-		map.clear();
-		map.put("result", "SUCCESS");
-		return map;
+		faqService.createFAQ();
+		box.clear();
+		box.put("result", "SUCCESS");
+		return box.get();
 	}
 	
 	@GetMapping("/delete/table")
 	public Map<?, ?> deleteTable(){
-		HashMap<String, String> map = new HashMap<>();
-		map.put("DROP_FAQ", SQL.DROP_FAQ.toString());
-		print("테이블 삭제 쿼리 : \n" + map.get("CREATE_FAQ"));
-		Consumer<HashMap<String, String>> c = p -> faqMapper.deleteFAQ(p);
-		c.accept(map);
-		map.clear();
-		map.put("result", "SUCCESS");
-		return map;
+		faqService.deleteFAQ();
+		box.clear();
+		box.put("result", "SUCCESS");
+		return box.get();
+	}
+	
+	@RequestMapping("/truncate/table")
+	public Map<?, ?> truncateTable(){
+		print("테이블 내용 삭제 진입");
+		faqService.truncateFAQ();
+		box.clear();
+		box.put("result", "SUCCESS");
+		return box.get();
 	}
 	
 	@GetMapping("/lists/{nowPage}")
@@ -59,14 +62,6 @@ public class FAQCtrl extends Proxy{
 		pager.setNowPage(integer(nowPage));
 		pager.setBlockSize(blockSize);
 		
-		pager.paging();
-		print(pager.toString());
-		
-		Function<PageProxy, ArrayList<FAQ>> f = t -> faqMapper.selectAll(t);
-	//	System.out.println("목록 : " + f.apply(pager).toString());
-		
-		box.put("pager", pager);
-		box.put("faq", f.apply(pager));
-		return box.get();
+		return faqService.selectAll();
 	}
 }

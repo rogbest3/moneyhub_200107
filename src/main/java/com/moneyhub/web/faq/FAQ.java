@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FAQ {
 
-	private String faqid, category, title, content;
+	private String faqid, title, content;
 }

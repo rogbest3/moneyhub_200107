@@ -10,8 +10,11 @@ import com.moneyhub.web.pxy.PageProxy;
 
 @Repository
 public interface FAQMapper {
-	void createFAQ(HashMap<String, String> map);
-	void deleteFAQ(HashMap<String, String> map);
-	ArrayList<FAQ> selectAll(PageProxy pager);
-	String countFAQ();
+//	public void createFAQ(HashMap<String, String> map);
+	public void createFAQ(HashMap<String, Object> map);
+	public void deleteFAQ(HashMap<String, Object> map);
+	public void truncateFAQ(HashMap<String, Object> map);
+	
+	public ArrayList<FAQ> selectAll(PageProxy pager);
+	public String countFAQ();
 }

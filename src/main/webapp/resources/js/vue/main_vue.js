@@ -283,152 +283,20 @@ main_vue ={
 	logined_main : ()=>{
 		return '<div class="themoin-main">'+
 		'	<div class="themoin-currency-component">'+
-		'		<div>'+
-		'			<div class="graph-lines">'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -83px, 0px) rotateZ(4.391deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -74.9787px, 0px) rotateZ(0.0739949deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -74.8259px, 0px) rotateZ(-0.6882deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -76.0596px, 0px) rotateZ(7.59461deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -62.1449px, 0px) rotateZ(6.45984deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -50.3258px, 0px) rotateZ(1.84079deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -46.958px, 0px) rotateZ(3.88589deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -39.8604px, 0px) rotateZ(11.4038deg);"></div>'+
-		'				</div>'+
-		'				<div class="line-box">'+
-		'					<div class="line color-moin" style="transform: translate3d(0px, -18.8193px, 0px) rotateZ(8.62074deg);"></div>'+
-		'				</div>'+
-		'			</div>'+
-		'			<div class="graph-dots">'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -80px, 0px);"></div>'+
-		'					<div class="date">12</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1322.52</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -71.9787px, 0px);"></div>'+
-		'					<div class="date">13</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1319.37</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -71.8259px, 0px);"></div>'+
-		'					<div class="date">14</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1319.31</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -73.0596px, 0px);"></div>'+
-		'					<div class="date">15</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1319.79</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -59.1449px, 0px);"></div>'+
-		'					<div class="date">16</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1314.31</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -47.3258px, 0px);"></div>'+
-		'					<div class="date">17</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1309.66</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -43.958px, 0px);"></div>'+
-		'					<div class="date">18</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1308.33</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -36.8604px, 0px);"></div>'+
-		'					<div class="date">19</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1305.54</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, -15.8193px, 0px);"></div>'+
-		'					<div class="date">20</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1297.26</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="dot-box">'+
-		'					<div class="dot color-moin" style="transform: translate3d(0px, 0px, 0px);"></div>'+
-		'					<div class="date">21</div>'+
-		'					<div class="currency-tooltip">'+
-		'						<div class="moin">'+
-		'							<div>모인 환율</div>'+
-		'							<div>1291.03</div>'+
-		'						</div>'+
-		'					</div>'+
-		'				</div>'+
-		'			</div>'+
-
-		'			<div class="content">'+
-		'				<div class="title">실시간 모인 환율</div>'+
-		'				<div class="currency">1 EUR = 1291.03 KRW</div>'+
-		'			</div>'+
-		'			<div class="legend">'+
-		'				<div class="moin-avg">'+
-		'					<div></div> '+
-		'					모인 환율'+
-		'				</div>'+
-		'			</div>'+
-		'		</div>'+
+		'      <div class="legend">'+
+		'  	      <div class="moin-avg">'+
+		'   	      <div></div> '+
+		'   	             모인 환율'+
+		' 	       </div>'+
+		' 	   </div>'+
+		' 	   <div class="content">'+
+		'  	          <div id="clock" class="title" style="width:320px">실시간 모인 환율</div>'+
+		'  	          <div id="cntcd_exrate" class="currency"></div>'+
+		'  	  </div>                  '+
+		'  	  <div id="chart">                        '+
+		' 	           <canvas id="canvas" width="900" height="160"></canvas>'+
+		' 	   </div>'+
 		'	</div>'+
-
 		'	<div class="themoin-remit-component">'+
 		'		<div id="moin-event-amount" class="moin-event-amount">'+
 		'			<p class="color-deepgrey"></p>'+

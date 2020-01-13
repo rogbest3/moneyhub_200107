@@ -4,7 +4,7 @@ app =(()=>{
 	const WHEN_ERR = '0 - js파일을 찾지 못했습니다.'
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		adminIndex_js
+		tables_mgmt_js
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -26,8 +26,7 @@ app =(()=>{
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
 		main_class = 'themoin-landing'
-		adminIndex_js = js + '/admin/adminIndex.js'
-		
+		tables_mgmt_js =  js + '/tables/tables_mgmt.js'
 	}
 	
 	let onCreate =()=>{
@@ -40,7 +39,7 @@ app =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js),
-			$.getScript(adminIndex_js)
+			$.getScript(tables_mgmt_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -80,11 +79,15 @@ app =(()=>{
 			auth.onCreate('login')
 		})
 		
+		$('#tables_mgmt_a')
+		.click(()=>{
+			tables_mgmt.onCreate()
+		})
 		$('#admin_login')
 		.click(()=>{
-			adminIndex.onCreate('admin_login')
-		})
 
+		})
+		
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)

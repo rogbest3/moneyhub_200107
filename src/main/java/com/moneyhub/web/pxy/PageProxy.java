@@ -36,7 +36,7 @@ public class PageProxy extends Proxy {
 		// startRow - 0, 5, 10
 		// endRow   - 4, 9, 14, 16
 		startRow = nowPage * pageSize;
-		endRow = ( nowPage != pageCount - 1 ) 
+		endRow = ( nowPage != pageCount - 1 && pageCount - 1 >= 0 ) 
 					? startRow + pageSize - 1 
 					: rowCount - 1;
 		
@@ -45,7 +45,7 @@ public class PageProxy extends Proxy {
 		// endPage   - 4, 9, 14, 16
 		nowBlock = nowPage / blockSize;
 		startPage = nowBlock * blockSize;
-		endPage = ( nowBlock != pageCount - 1 ) 
+		endPage = ( nowBlock != blockCount - 1 && blockCount - 1 >= 0  ) 
 					? startPage + blockSize - 1
 					: pageCount - 1;
 		
@@ -53,7 +53,7 @@ public class PageProxy extends Proxy {
 		nextBlock = startPage + blockSize;
 		
 		existPrev = nowBlock != 0;
-		existNext = nowBlock != (blockCount - 1);
+		existNext = (nowBlock != (blockCount - 1)) && (blockCount - 1 >= 0) ;
 		
 	}
 }
