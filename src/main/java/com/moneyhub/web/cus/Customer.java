@@ -18,7 +18,7 @@ public class Customer {
 					cemail,
 					cpwd,
 					cname,
-					cntcd,		// 고객 국가 코드ㅇㅇㅇㅇdd
+					cntcd,		// 고객 국가 코드ㅇㅇㅇㅇddaa
 					cphone,
 					cstcd,		// 고객상태코드
 					sdate,		// 가입일
