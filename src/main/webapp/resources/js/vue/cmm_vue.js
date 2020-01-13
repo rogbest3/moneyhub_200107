@@ -16,7 +16,7 @@ cmm_vue = {
 		'	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">'+
 		'	<meta name="theme-color" content="#ffffff">'+
 		'	<link rel="canonical" href="https://www.themoin.com">'+
-		'	<link rel="manifest" href="https://www.themoin.com/manifest.json">'+
+//		'	<link rel="manifest" href="https://www.themoin.com/manifest.json">'+
 		'	<link rel="alternate" hreflang="ko" href="https://www.themoin.com/ko">'+
 		'	<link rel="alternate" hreflang="en" href="https://www.themoin.com/en">'+
 		'	<link rel="alternate" hreflang="x-default" href="https://www.themoin.com/">'+
@@ -46,7 +46,7 @@ cmm_vue = {
 		'	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">'+
 		/*'	<link href="https://www.themoin.com/moin.bundle.css" rel="stylesheet">'+*/
 		'	<link href="/web/resources/css/moin.bundle.css" rel="stylesheet" type="text/css">'+
-		'	<script src="https://cdn.onesignal.com/sdks/OneSignalPageSDKES6.js?v=150710" async=""></script>'+
+		'	<script src="/web/resources/js/exchart/Chart.min.js"></script>'+
 		'</head>'
 	},
 	footer : ()=>{

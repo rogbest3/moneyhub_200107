@@ -3,12 +3,14 @@ package com.moneyhub.web.enums;
 public enum SQL {
 	CREATE_DB,
 	CREATE_FAQ, DROP_FAQ, TRUNCATE_FAQ,
-	CREATE_CUSTOMER, DROP_CUSTOMER, TRUNCATE_CUSTOMER
+	CREATE_CUSTOMER, DROP_CUSTOMER, TRUNCATE_CUSTOMER,
+	CREATE_EXRATE, DROP_EXRATE, TRUNCATE_EXRATE
 	;
 	@Override
 	public String toString() {
 		String result = "";
 		switch (this) {
+		
 		case CREATE_DB :
 			result = "CREATE DATABASE MONEYHUB";
 			break;
@@ -16,9 +18,9 @@ public enum SQL {
 		case CREATE_FAQ :
 			result = "CREATE TABLE FAQ (\r\n" + 
 					"	FAQID	INT NOT NULL AUTO_INCREMENT,\r\n" + 
-					"    CATEGORY	VARCHAR(50) NOT NULL,\r\n" + 
+//					"    CATEGORY	VARCHAR(50) NOT NULL,\r\n" + 
 					"    TITLE	VARCHAR(100) NOT NULL,\r\n" + 
-					"    CONTENT VARCHAR(700) NULL,\r\n" + 
+					"    CONTENT VARCHAR(1400) NULL,\r\n" + 
 					"    PRIMARY KEY (FAQID)\r\n" + 
 					")";
 			break;
@@ -55,7 +57,26 @@ public enum SQL {
 		case TRUNCATE_CUSTOMER :
 			result = "TRUNCATE TABLE CUSTOMER";
 			break;
-	
+			
+		case CREATE_EXRATE : 
+			result = "CREATE TABLE EXRATE(\n" + 
+					"	SEQ INT NOT NULL AUTO_INCREMENT, \n" + 
+					"    BDATE VARCHAR(10) NULL,\n" + 
+					"    EXRATE VARCHAR(10) NOT NULL, \n" + 
+					"    CNTCD VARCHAR(10) NOT NULL, \n" + 
+					"    CRTMEM  VARCHAR(10) NULL,\n" + 
+					"    UPMEM  VARCHAR(10) NULL,\n" + 
+					"    UDATE  VARCHAR(10) NULL,\n" + 
+					"    PRIMARY KEY(SEQ)\n" + 
+					")";
+			break;
+		case DROP_EXRATE : 
+			result = "DROP TABLE EXRATE";
+			break;
+
+		case TRUNCATE_EXRATE :
+			result = "TRUNCATE TABLE EXRATE";
+			break;
 		}
 		
 		return result;

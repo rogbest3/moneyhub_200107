@@ -12,6 +12,7 @@ nav_vue = {
 		'			<div class="line2"></div>'+
 		'		</a>'+
 		'		<ul class="aa">'+
+		'			<li><a id="tables_mgmt_a">DB Table 관리</a></li>'+
 		'			<li><a id="admin_login">관리자</a></li>'+
 		'			<li><a id="login">로그인</a></li>'+
 		'			<li><a id="join">회원가입</a></li>'+
@@ -152,12 +153,13 @@ nav_vue = {
 		return '<div class="themoin-mypage">'+
 		'<div class="tab-container">'+
 		'	<div class="tab">'+
-		'		<a id="cus_info" class="active">회원 정보</a>'+
-		'		<a id="pwd_chg" class="">비밀번호 변경</a>'+
-		'		<a id="auth_mgmt" class="">인증관리</a>'+
-		'		<a id="alarm" class="">알림설정</a>'+
-		'		<a id="ref_mgmt" class="">추천인 관리</a>'+
-		'		<a id="withdrawal" class="">회원 탈퇴</a>'+
+		'		<a id="cus_info" class="active" style="margin-right: 50px">회원 정보</a>'+
+		'		<a id="pwd_chg" class="" style="margin-right: 50px">비밀번호 변경</a>'+
+		'		<a id="auth_mgmt" class="" style="margin-right: 50px">인증관리</a>'+
+		'		<a id="alarm" class="" style="margin-right: 50px">알림설정</a>'+
+		'		<a id="ref_mgmt" class="" style="margin-right: 50px">추천인 관리</a>'+
+		'		<a id="exchange_test" class="" style="margin-right: 50px">환전 모의</a>'+
+		'		<a id="withdrawal" class="" style="margin-right: 50px">회원 탈퇴</a>'+
 		'		<div class="spacer"></div>'+
 		'		<img src="https://img.themoin.com/public/img/img-man-s.svg">'+
 		'		<p>rogbest@naver.com</p>'+

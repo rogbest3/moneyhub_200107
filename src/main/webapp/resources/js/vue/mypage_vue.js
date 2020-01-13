@@ -390,6 +390,76 @@ mypage_vue = {
 		'            </form>'+
 		'        </div>'+
 		'    </div>'
+	},
+	exchange_test : ()=>{
+		return `<div class="container">
+				    <h1>Map with a legend for plotted cities and areas</h1>
+				
+				    <div class="mapcontainer">
+				        <div class="map">
+				            <span>Alternative content for the map</span>
+				        </div>
+				        <input type="button" value="Hide/Show all legends" id="button-all"/>
+				        <input type="button" value="Hide/Show areas legend" id="button-areas"/>
+				        <input type="button" value="Hide/Show plots legend" id="button-plots"/>
+				        <div class="areaLegend">
+				            <span>Alternative content for the legend</span>
+				        </div>
+				        <div class="plotLegend">
+				            <span>Alternative content for the legend</span>
+				        </div>
+				    </div>
+				</div>`
+	},
+	exchange_test_head : ()=>{
+		return `<style type="text/css">
+        body {
+            color: #5d5d5d;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Specific mapael css class are below
+         * 'mapael' class is added by plugin
+        */
+
+        .mapael .map {
+            position: relative;
+        }
+
+        .mapael .mapTooltip {
+            position: absolute;
+            background-color: #fff;
+            moz-opacity: 0.70;
+            opacity: 0.70;
+            filter: alpha(opacity=70);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1000;
+            max-width: 200px;
+            display: none;
+            color: #343434;
+        }
+    </style>
+    
+
+	<script src="/web/resources/js/maps/jquery.mapael.js"></script>
+    <script src="/web/resources/js/maps/france_departments.js"></script>
+    <script src="/web/resources/js/maps/world_countries.js"></script>
+    <script src="/web/resources/js/maps/usa_states.js"></script>
+    <script src="/web/resources/js/maps/global_map.js"></script>
+   
+    `
 	}
 	
 }

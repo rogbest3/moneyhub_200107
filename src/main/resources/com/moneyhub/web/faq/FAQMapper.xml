@@ -15,8 +15,7 @@
 	<select id="selectAll" resultType="FAQ" parameterType="PageProxy">
 		select A.* 
 		from (  SELECT * 
-				FROM FAQ
-				ORDER BY 1 DESC ) A
+				FROM FAQ ) A
 		LIMIT ${startRow}, ${pageSize}
 	</select>
 	
@@ -31,6 +30,10 @@
 	
 	<select id="deleteFAQ" parameterType="map">
 		${DROP_FAQ}
+	</select>
+	
+	<select id="truncateFAQ" parameterType="map">
+		${TRUNCATE_FAQ}
 	</select>
 <!-- 	WHERE ${aid} LIKE #{aid}
         where aid like 'a'
