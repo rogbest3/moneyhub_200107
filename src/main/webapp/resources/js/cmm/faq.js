@@ -17,6 +17,19 @@ faq =(()=>{
 		)
 		.done(()=>{
 			setContentView()
+			$('#search_img')
+			.click(e=>{
+				e.preventDefault()
+				alert('>>')
+			})
+			$('#search_input')
+			.keyup(function(e){
+				e.preventDefault()
+				if(e.keyCode == 13){
+					alert('엔터')
+				}
+			})
+			
 			faq_list(0)
 		})
 		.fail(()=>{
