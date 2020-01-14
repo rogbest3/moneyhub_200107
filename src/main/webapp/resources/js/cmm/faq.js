@@ -20,7 +20,7 @@ faq =(()=>{
 			$('#search_img')
 			.click(e=>{
 				e.preventDefault()
-				alert('>>')
+				
 			})
 			$('#search_input')
 			.keyup(function(e){
@@ -44,9 +44,11 @@ faq =(()=>{
 	}
 	
 	let faq_list =(x)=>{
-
+		let keyword = $('#search_input').val()
+		alert(keyword)
+//		$.getJSON( `${_}/faq/lists/page/${nowPage}/search/${keyword}`, d=>{
 		let nowPage = x
-		$.getJSON( _ + '/faqs/lists/' + nowPage, d=>{
+		$.getJSON( `${_}/faq/lists/page/{nowPage}/earch/${keyword}`, d=>{
 			$('.content').empty()
 			$('.bundle_paging').empty()
 			

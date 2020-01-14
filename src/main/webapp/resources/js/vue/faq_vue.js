@@ -4,7 +4,7 @@ faq_vue ={
 		return `<div class="themoin-faq">
 				    <div>
 				        <h1 class="title">안녕하세요, 무엇을 도와드릴까요?</h1>
-				        <form>
+				        <form onsubmit="return false">
 				            <div class="search">
 				                <img id="search_img" src="https://img.themoin.com/public/img/search-new.svg" class="btn-search" type="button">
 				                <div class="moin-input">
