@@ -21,7 +21,7 @@ import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
 
 @RestController
-@RequestMapping("/faqs")
+@RequestMapping("/faq")
 public class FAQCtrl extends Proxy{
 	@Autowired Box<Object> box;
 	@Autowired FAQMapper faqMapper;
@@ -53,9 +53,9 @@ public class FAQCtrl extends Proxy{
 		return box.get();
 	}
 	
-	@GetMapping("/lists/{nowPage}")
-	public Map<?, ?> faqList(@PathVariable String nowPage) {
-		print("리스트 진입 - nowPage : " + nowPage);
+	@GetMapping("/lists/page/{nowPage}/search/{keyword}")
+	public Map<?, ?> faqList(@PathVariable String nowPage, @PathVariable String keyword) {
+		print("리스트 진입 - nowPage : " + nowPage + ", keyword : " + keyword);
 		int pageSize = 5, blockSize = 5;
 		
 		pager.setPageSize(pageSize);

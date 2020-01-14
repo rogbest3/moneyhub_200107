@@ -17,6 +17,19 @@ faq =(()=>{
 		)
 		.done(()=>{
 			setContentView()
+			$('#search_img')
+			.click(e=>{
+				e.preventDefault()
+				
+			})
+			$('#search_input')
+			.keyup(function(e){
+				e.preventDefault()
+				if(e.keyCode == 13){
+					alert('엔터')
+				}
+			})
+			
 			faq_list(0)
 		})
 		.fail(()=>{
@@ -31,9 +44,11 @@ faq =(()=>{
 	}
 	
 	let faq_list =(x)=>{
-
+		let keyword = $('#search_input').val()
+		alert(keyword)
+//		$.getJSON( `${_}/faq/lists/page/${nowPage}/search/${keyword}`, d=>{
 		let nowPage = x
-		$.getJSON( _ + '/faqs/lists/' + nowPage, d=>{
+		$.getJSON( `${_}/faq/lists/page/{nowPage}/earch/${keyword}`, d=>{
 			$('.content').empty()
 			$('.bundle_paging').empty()
 			
