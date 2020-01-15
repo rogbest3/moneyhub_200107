@@ -16,5 +16,5 @@ public interface FAQMapper {
 	public void truncateFAQ(HashMap<String, Object> map);
 	
 	public ArrayList<FAQ> selectAll(PageProxy pager);
-	public String countFAQ();
+	public String countFAQ(PageProxy pager);
 }

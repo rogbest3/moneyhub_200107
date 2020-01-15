@@ -51,7 +51,7 @@ public class FAQCtrl extends Proxy{
 	public Map<?, ?> faqList(@PathVariable String nowPage, @PathVariable String keyword) {
 		print("리스트 진입 - nowPage : " + nowPage + ", keyword : " + keyword);
 		int pageSize = 5, blockSize = 5;
-		
+		pager.setKeyword((keyword.equals("null") ? null : keyword.toUpperCase()));
 		pager.setPageSize(pageSize);
 		pager.setNowPage(integer(nowPage));
 		pager.setBlockSize(blockSize);

@@ -20,17 +20,17 @@ faq =(()=>{
 			$('#search_img')
 			.click(e=>{
 				e.preventDefault()
-				
+				faq_list({ nowPage : 0, keyword : ($('#search_input').val() === '' ) ? null : $('#search_input').val() })
 			})
 			$('#search_input')
 			.keyup(function(e){
 				e.preventDefault()
 				if(e.keyCode == 13){
-					alert('엔터')
+					faq_list({ nowPage : 0, keyword : ($('#search_input').val() === '' ) ? null : $('#search_input').val() })
 				}
 			})
 			
-			faq_list(0)
+			faq_list({ nowPage : 0, keyword : null })
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -44,11 +44,8 @@ faq =(()=>{
 	}
 	
 	let faq_list =(x)=>{
-		let keyword = $('#search_input').val()
-		alert(keyword)
-//		$.getJSON( `${_}/faq/lists/page/${nowPage}/search/${keyword}`, d=>{
-		let nowPage = x
-		$.getJSON( `${_}/faq/lists/page/{nowPage}/earch/${keyword}`, d=>{
+
+		$.getJSON( `${_}/faq/lists/page/${x.nowPage}/search/${x.keyword}`, d=>{
 			$('.content').empty()
 			$('.bundle_paging').empty()
 			
@@ -84,34 +81,30 @@ faq =(()=>{
 		         </a>`)
 		         .appendTo('.bundle_paging')
 		         .click(()=>{
-		        	 faq.faq_list(pxy.prevBlock)
+		        	 faq.faq_list({ nowPage : pxy.prevBlock, keyword : null })
 		         })
 			}
-			
+			$(`<ul class="list_paging"></ul>`)
+			.appendTo('.bundle_paging')
 			for(let i = pxy.startPage; i<= pxy.endPage; i++){
 				if( pxy.nowPage == i ){
-					$(`<ul class="list_paging">
-							<li class="on">
-								<a href="#" class="link_num">
-									<span class="screen_out">선택 됨</span>
-									${i+1}
-								</a>
-							</li>
-						</ul>`)
-					.appendTo('.bundle_paging')		
+					$(`<li class="on">
+							<a href="#" class="link_num">
+								<span class="screen_out">선택 됨</span>
+								${i+1}
+							</a>
+						</li>`)
+					.appendTo('.bundle_paging ul')		
 				}else{
-					$(`<ul class="list_paging">
-							<li class="">
-								<a href="#" class="link_num">
-									${i+1}
-								</a>
-							</li>
-						</ul>`)
-					.appendTo('.bundle_paging')
+					$(`<li class="">
+							<a href="#" class="link_num">
+								${i+1}
+							</a>
+						</li>`)
+					.appendTo('.bundle_paging ul')
 					.click(function(e){
 						e.preventDefault()
-//						alert(i+1)
-						faq.faq_list(i)
+						faq.faq_list({ nowPage : i, keyword : null })
 					})
 				}
 			}
@@ -122,7 +115,7 @@ faq =(()=>{
 		        	</a>`)
 		        .appendTo('.bundle_paging')
 		        .click(()=>{
-		        	faq.faq_list(pxy.nextBlock)
+		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : null })
 		        })
 			}
 		})
