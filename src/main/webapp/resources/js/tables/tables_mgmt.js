@@ -88,7 +88,7 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + `/tx/crawling/kakaofaq`, d=>{
+			$.getJSON( _ + `/tx/crawling/faqlist`, d=>{
 				alert(`테이블 Crawling & Insert 성공여부 : ${d.result}`)
 			})
 		})*/
@@ -97,7 +97,7 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + `/tx/insert/kakaofaq`, d=>{
+			$.getJSON( _ + `/tx/insert/faqlist`, d=>{
 				alert(`테이블 DATA Insert 성공여부 : ${d.result}`)
 			})
 		})
@@ -169,7 +169,7 @@ tables_mgmt =(()=>{
 				})
 				
 				$.ajax({
-					url : _ + `/exrate/insert`,
+					url : _ + `/exrate/insert/api`,
 					type : 'GET',
 					data : { 'list' : arr },
 					dataType : 'json',
@@ -185,6 +185,15 @@ tables_mgmt =(()=>{
 			})
 		})
 		
+		$(`<h3><a>EARATE 테이블  chart test용 data 삽입</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/tx/insert/exratelist`, d=>{
+				alert(`테이블 DATA 삽입 성공여부 : ${d.result}`)
+			})
+			
+		})
 		$(`<h3><a>EARATE 테이블  DATA 삭제</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{

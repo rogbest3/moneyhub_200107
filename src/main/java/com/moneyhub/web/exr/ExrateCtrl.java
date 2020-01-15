@@ -52,7 +52,7 @@ public class ExrateCtrl extends Proxy{
 		return box.get();
 	}
 	
-	@RequestMapping("/insert")
+	@RequestMapping("/insert/api")
 	public Map<?, ?> insertExrate(@RequestParam Map<String, String> paramMap){
 //	public void insertExrate(@RequestBody List<Object> paramMap){
 		print("insert 진입 - list : " + paramMap.size());
@@ -65,7 +65,7 @@ public class ExrateCtrl extends Proxy{
 		
 		map.put("result", "SUCCESS");
 		return map;
-	}
+	}	
 	
 	@RequestMapping("/delete/table")
 	public Map<?, ?> deleteTable(){

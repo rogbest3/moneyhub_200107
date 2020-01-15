@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moneyhub.web.enums.SQL;
 import com.moneyhub.web.pxy.Box;
-import com.moneyhub.web.pxy.Inventory;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
 

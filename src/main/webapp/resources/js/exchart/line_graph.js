@@ -46,7 +46,7 @@ $(function() {
 				$.each(d.exlist.reverse(), (i, j)=>{
 //					lineChartData.datasets[0].data[i] = j.exrate 
 					lineChartData.labels.push(j.bdate.substr(-2))
-					lineChartData.datasets[0].data.push(parseFloat(j.exrate))
+					lineChartData.datasets[0].data.push(parseDouble(j.exrate))
 				})
 				
 				$('#cntcd_exrate')

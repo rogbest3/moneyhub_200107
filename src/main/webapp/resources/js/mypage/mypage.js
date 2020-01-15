@@ -119,7 +119,7 @@ mypage =(()=>{
 			})
 			
 			$.ajax({
-				url : _ + `/exrate/insert`,
+				url : _ + `/exrate/insert/api`,
 				type : 'GET',
 				data : { 'list' : arr },
 				dataType : 'json',

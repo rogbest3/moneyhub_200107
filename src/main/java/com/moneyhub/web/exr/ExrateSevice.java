@@ -27,14 +27,14 @@ public class ExrateSevice {
 			list = new ArrayList<>();
 			exrate.setBdate(paramMap.get("list["+i+"][bdate]"));
 			exrate.setCntcd(paramMap.get("list["+i+"][cntcd]"));
-			exrate.setExrate(Float.parseFloat(paramMap.get("list["+i+"][exrate]")));
+			exrate.setExrate(Double.parseDouble(paramMap.get("list["+i+"][exrate]")));
 			exrate.setCrtmem("kmk");
 			c.accept(exrate);
 		}
 		
 	//	paramMap.forEach((k, v) -> System.out.println(String.format("%s - %s\n ", k, v)));	
 	}
-	
+
 	public ArrayList<Exrate> searchExrate(String s){
 		
 		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.searchExrate(t);
