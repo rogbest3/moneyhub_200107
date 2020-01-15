@@ -1,4 +1,4 @@
-package com.moneyhub.admin;
+package com.moneyhub.web.admin;
 
 import java.util.Map;
 

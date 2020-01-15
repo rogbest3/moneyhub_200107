@@ -1,13 +1,6 @@
 package com.moneyhub.web.faq;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +15,7 @@ import com.moneyhub.web.pxy.Proxy;
 
 @RestController
 @RequestMapping("/faqs")
-public class FAQCtrl extends Proxy{
+public class FAQCtrl extends Proxy{	
 	@Autowired Box<Object> box;
 	@Autowired FAQMapper faqMapper;
 	@Autowired FAQSevice faqService;
