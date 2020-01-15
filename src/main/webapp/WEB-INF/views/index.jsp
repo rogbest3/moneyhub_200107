@@ -51,7 +51,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndex_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin_vue/adminIndexHome_vue.js"></script>
 	
-	
+
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/exchange_test.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/tables/tables_mgmt.js"></script>	
 

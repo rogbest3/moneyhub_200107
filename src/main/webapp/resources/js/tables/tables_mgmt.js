@@ -78,7 +78,8 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + '/faqs/create/table', d=>{
+
+			$.getJSON( _ + '/faq/create/table', d=>{
 				alert(`테이블 성공여부 : ${d.result}`)
 			})
 		})
@@ -105,7 +106,8 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + `/faqs/truncate/table`, d=>{
+
+			$.getJSON( _ + `/faq/truncate/table`, d=>{
 				alert(`테이블 DATA 삭제 성공여부 : ${d.result}`)
 			})
 			
@@ -115,7 +117,8 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + `/faqs/delete/table`, d=>{
+
+			$.getJSON( _ + `/faq/delete/table`, d=>{
 				alert(`테이블 삭제 성공여부 : ${d.result}`)
 			})
 			

@@ -80,14 +80,16 @@ app =(()=>{
 		})
 		
 		$('#tables_mgmt_a')
+
 		.click(()=>{
 			tables_mgmt.onCreate()
 		})
+
 		$('#admin_login')
 		.click(()=>{
-			adminIndex.onCreate('admin_login')
+			
 		})
-		
+
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
