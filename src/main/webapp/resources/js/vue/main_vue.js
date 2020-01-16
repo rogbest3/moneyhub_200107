@@ -294,7 +294,7 @@ main_vue ={
 		'  	          <div id="cntcd_exrate" class="currency"></div>'+
 		'  	  </div>                  '+
 		'  	  <div id="chart" style="width:100%;">                        '+
-		' 	           <canvas id="canvas" style="width:70%; height:130px"></canvas>'+
+		' 	           <canvas id="canvas" style="width:70%; height:120px"></canvas>'+
 		' 	   </div>'+
 		'	</div>'+
 		'	<div class="themoin-remit-component">'+
