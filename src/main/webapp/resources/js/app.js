@@ -52,7 +52,7 @@ app =(()=>{
 	
 	let setContentView =()=>{
 		$('head')
-		.html(cmm_vue.head())
+		.append(cmm_vue.head())
 
 		$('#root')
 		.html(nav_vue.nav(_))

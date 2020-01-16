@@ -4,7 +4,7 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js, line_graph2_js
+		line_graph_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -18,7 +18,6 @@ mypage =(()=>{
 		main_class = 'themoin-main'
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
-		line_graph2_js = js + '/exchart2/line_graph2.js'
 	}
 	
 	let onCreate =()=>{
@@ -30,9 +29,8 @@ mypage =(()=>{
 			$.getScript(mypage_vue_js),
 			$.getScript(compo_js),
 			$.getScript(event_js),
-			$.getScript(faq_js),
-		//	$.getScript(line_graph_js),
-			$.getScript(line_graph2_js)
+			$.getScript(faq_js)
+//			$.getScript(line_graph_js)
 	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
@@ -51,7 +49,7 @@ mypage =(()=>{
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
-		
+		$.getScript(line_graph_js)
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
