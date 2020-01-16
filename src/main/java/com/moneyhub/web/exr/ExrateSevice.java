@@ -21,7 +21,6 @@ public class ExrateSevice {
 	           
 		}*/
 		Consumer<Exrate> c = p -> exrateMapper.insertExrate(p);
-
 		ArrayList<Exrate> list = null;
 		for(int i = 0; i<9; i++) {
 			list = new ArrayList<>();

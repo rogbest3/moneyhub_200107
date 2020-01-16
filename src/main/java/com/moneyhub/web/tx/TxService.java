@@ -44,6 +44,8 @@ public class TxService {
 		for(int i=0; i< exPxy.bdateStore().length;i++) {
 			exrate.setBdate(exPxy.bdateStore()[i]);
 			exrate.setExrate(exPxy.exrateStore()[i]);
+			exrate.setCntcd("EUR");
+			exrate.setCrtmem("KMK");
 			exrateMapper.insertExrate(exrate);
 //		//	txMapper.insertFAQ(exrate);
 		}
