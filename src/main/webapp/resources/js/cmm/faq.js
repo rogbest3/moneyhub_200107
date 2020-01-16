@@ -21,12 +21,14 @@ faq =(()=>{
 			.click(e=>{
 				e.preventDefault()
 				faq_list({ nowPage : 0, keyword : ($('#search_input').val() === '' ) ? null : $('#search_input').val() })
+				$('html').scrollTop(0);
 			})
 			$('#search_input')
 			.keyup(function(e){
 				e.preventDefault()
 				if(e.keyCode == 13){
 					faq_list({ nowPage : 0, keyword : ($('#search_input').val() === '' ) ? null : $('#search_input').val() })
+					$('html').scrollTop(0);
 				}
 			})
 			
@@ -95,6 +97,7 @@ faq =(()=>{
 							</a>
 						</li>`)
 					.appendTo('.bundle_paging ul')		
+					$('html').scrollTop(0);
 				}else{
 					$(`<li class="">
 							<a href="#" class="link_num">
@@ -104,7 +107,7 @@ faq =(()=>{
 					.appendTo('.bundle_paging ul')
 					.click(function(e){
 						e.preventDefault()
-						faq.faq_list({ nowPage : i, keyword : null })
+						faq.faq_list({ nowPage : i, keyword : x.keyword })
 					})
 				}
 			}
@@ -115,7 +118,7 @@ faq =(()=>{
 		        	</a>`)
 		        .appendTo('.bundle_paging')
 		        .click(()=>{
-		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : null })
+		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : x.keyword })
 		        })
 			}
 		})

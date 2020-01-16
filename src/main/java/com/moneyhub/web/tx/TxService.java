@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moneyhub.web.exr.Exrate;
+import com.moneyhub.web.exr.ExrateMapper;
 import com.moneyhub.web.faq.FAQ;
+import com.moneyhub.web.faq.FAQMapper;
 import com.moneyhub.web.pxy.CrawlingProxy;
 import com.moneyhub.web.pxy.ExrateStoreProxy;
 import com.moneyhub.web.pxy.FAQStoreProxy;
@@ -15,11 +17,12 @@ import com.moneyhub.web.pxy.FAQStoreProxy;
 @Service
 public class TxService {
 	@Autowired CrawlingProxy crawler;
-	@Autowired TxMapper txMapper;
 	@Autowired FAQStoreProxy faqPxy;
 	@Autowired ExrateStoreProxy exPxy;
 	@Autowired Exrate exrate;
 	@Autowired FAQ faq;
+	@Autowired FAQMapper faqMapper;
+	@Autowired ExrateMapper exrateMapper;
 	
 	@Transactional
 	public void crawling() {
@@ -31,7 +34,8 @@ public class TxService {
 		for(int i=0; i< faqPxy.title_stores().length;i++) {
 			faq.setTitle(faqPxy.title_stores()[i]);
 			faq.setContent(faqPxy.content_stores()[i]);
-			txMapper.insertFAQ(faq);
+			faqMapper.insertFAQ(faq);
+//			txMapper.insertFAQ(faq);
 		}
 	}
 	
@@ -40,7 +44,8 @@ public class TxService {
 		for(int i=0; i< exPxy.bdateStore().length;i++) {
 			exrate.setBdate(exPxy.bdateStore()[i]);
 			exrate.setExrate(exPxy.exrateStore()[i]);
-		//	txMapper.insertFAQ(exrate);
+			exrateMapper.insertExrate(exrate);
+//		//	txMapper.insertFAQ(exrate);
 		}
 	}
 }

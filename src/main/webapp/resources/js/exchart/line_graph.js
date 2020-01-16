@@ -41,12 +41,12 @@ $(function() {
 	
 	function chart_update(){
 //		alert('chart_update')
-		let cntcd = 'USD'
+		let cntcd = 'EUR'
 			$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
 				$.each(d.exlist.reverse(), (i, j)=>{
 //					lineChartData.datasets[0].data[i] = j.exrate 
 					lineChartData.labels.push(j.bdate.substr(-2))
-					lineChartData.datasets[0].data.push(parseDouble(j.exrate))
+					lineChartData.datasets[0].data.push(parseFloat(j.exrate))
 				})
 				
 				$('#cntcd_exrate')

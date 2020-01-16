@@ -35,8 +35,7 @@ public class ExrateSevice {
 	//	paramMap.forEach((k, v) -> System.out.println(String.format("%s - %s\n ", k, v)));	
 	}
 
-	public ArrayList<Exrate> searchExrate(String s){
-		
+	public ArrayList<Exrate> searchExrate(String s){	
 		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.searchExrate(t);
 		return f.apply(s);
 	}

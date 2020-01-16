@@ -42,6 +42,11 @@
 	<select id="truncateFAQ" parameterType="map">
 		${TRUNCATE_FAQ}
 	</select>
+	
+	<select id="insertFAQ" parameterType="map">
+		INSERT INTO FAQ(TITLE, CONTENT)
+		VALUES(#{title}, #{content})
+	</select>
 <!-- 	WHERE ${aid} LIKE #{aid}
         where aid like 'a'
         
