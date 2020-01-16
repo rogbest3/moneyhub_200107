@@ -36,7 +36,7 @@ public class FAQCtrl extends Proxy{
 		return box.get();
 	}
 	
-	@RequestMapping("/truncate/table")
+	@GetMapping("/truncate/table")
 	public Map<?, ?> truncateTable(){
 		print("테이블 내용 삭제 진입");
 		faqService.truncateFAQ();

@@ -46,7 +46,16 @@ cmm_vue = {
 		'	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">'+
 		/*'	<link href="https://www.themoin.com/moin.bundle.css" rel="stylesheet">'+*/
 		'	<link href="/web/resources/css/moin.bundle.css" rel="stylesheet" type="text/css">'+
-		'	<script src="/web/resources/js/exchart/Chart.min.js"></script>'+
+//		'	<script src="/web/resources/js/exchart/Chart.min.js"></script>'+
+		'	<script src="/web/resources/js/exchart2/Chart.min.js"></script>'+
+		'	<script src="/web/resources/js/exchart2/utils.js"></script>'+
+		`<style>
+		canvas{
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+		</style>`+
 		'</head>'
 	},
 	footer : ()=>{

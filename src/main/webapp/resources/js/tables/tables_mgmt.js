@@ -170,8 +170,8 @@ tables_mgmt =(()=>{
 				
 				$.ajax({
 					url : _ + `/exrate/insert/api`,
-					type : 'GET',
-					data : { 'list' : arr },
+					type : 'POST',
+					data : JSON.stringify({ 'paramList' : arr }),
 					dataType : 'json',
 					contentType : 'application/json',
 					success : d=>{
