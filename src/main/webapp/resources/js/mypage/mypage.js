@@ -49,7 +49,9 @@ mypage =(()=>{
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
+		
 		$.getScript(line_graph_js)
+		
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
