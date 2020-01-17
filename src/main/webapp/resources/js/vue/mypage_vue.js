@@ -451,13 +451,10 @@ mypage_vue = {
             color: #343434;
         }
     </style>
-    
-
-	<script src="/web/resources/js/maps/jquery.mapael.js"></script>
-    <script src="/web/resources/js/maps/france_departments.js"></script>
-    <script src="/web/resources/js/maps/world_countries.js"></script>
-    <script src="/web/resources/js/maps/usa_states.js"></script>
     <script src="/web/resources/js/maps/global_map.js"></script>
+	<script src="/web/resources/js/maps/jquery.mapael.js"></script>
+    <script src="/web/resources/js/maps/world_countries.js"></script>
+
    
     `
 	}
