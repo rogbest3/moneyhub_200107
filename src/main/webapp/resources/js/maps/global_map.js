@@ -23,7 +23,7 @@ $(document).ready(function(){
                         },
                         eventHandlers: {
                             click: function (e, id, mapElem, textElem) {
-//                                alert('동작' + id)
+                                alert('동작 ' + id)
                                 var newData = {
                                     'areas': {}
                                 };
