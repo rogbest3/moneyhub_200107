@@ -5,7 +5,7 @@ $(document).ready(function(){
                     name: "world_countries",
                     defaultArea: {
                         attrs: {
-                            stroke: "#fff",
+                            stroke: "#f4f4e8",	//fff
                             "stroke-width": 1
                         },
                         attrsHover: {
@@ -43,9 +43,34 @@ $(document).ready(function(){
                                 $(".mapcontainer").trigger('update', [{mapOptions: newData}]);
                             }
                         }
+                    },
+                    defaultArea: {
+                    	eventHandlers: {
+                            click: function (e, id, mapElem, textElem) {
+                                alert('plot' + id)
+                                var newData = {
+                                    'areas': {}
+                                };
+                                if (mapElem.originalAttrs.fill == "#5ba4ff") {
+                                    newData.areas[id] = {
+                                        attrs: {
+                                            fill: "#0088db"
+                                        }
+                                    };
+                                } else {
+                                    newData.areas[id] = {
+                                        attrs: {
+                                            fill: "#5ba4ff"
+                                        }
+                                    };
+                                }
+                                $(".mapcontainer").trigger('update', [{mapOptions: newData}]);
+                            }
+                        }
                     }
+            			
                 },
-                areas: {
+             /*   areas: {
                     "KR": {
                         text: {
                             content: "dblclick",
@@ -81,7 +106,7 @@ $(document).ready(function(){
                             }
                         }
                     }
-                },
+                },*/
                 legend: {
                     area: {
                         title: "Countries population",
@@ -164,14 +189,14 @@ $(document).ready(function(){
                     }*/
                 },
                 plots: {
-                    'Korea' : {
+                 /*   'Korea' : {
                         latitude: 37.54,
                         longitude: 126.99,
                         value: 500000000,
                         tooltip: {content: "대한민국 - 1 KRW"},
                 		text: {content: "대한민국 - 1 KRW", attrs: {fill: "#3dccd6" }, 
                 			position : "top", "font-weight" : "bold"}
-                    },
+                    },*/
                     'paris': {
                         latitude: 48.86,
                         longitude: 2.3444,
