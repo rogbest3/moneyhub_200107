@@ -1,4 +1,4 @@
-//		window.onload = function() {
+//		window.onload = function() {//
 $(document).ready(function(){
 	let config = {
 		type: 'line',
