@@ -89,7 +89,7 @@ auth_vue ={
 	},
 	join_2 : ()=>{
 		return '		<div>'+
-		'					<div class="moin-login">'+
+		'					<div id="moneyhub_join" class="moin-login">'+
 		'						<div class="newmoin-text-header">회원가입</div>'+
 		'						<form class="signup" action="/a/v1/member/join" method="post">'+
 		'							<div class="moin-input-group">'+
@@ -115,7 +115,7 @@ auth_vue ={
 		'								</div>'+
 		'								<p class="moin-error"></p>'+
 		'							</div>'+
-		'						<div class="checkboxes">'+
+		'						<div class="checkboxes" id="checkbox_id">'+
 		'								<a id="agree_box_all" class="themoin-checkbox">'+
 		'									<div class="box"></div>'+
 		'									<span><label class="caption">아래 항목에 모두 동의합니다.</label></span>'+
