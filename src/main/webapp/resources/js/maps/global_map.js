@@ -18,13 +18,32 @@ $(document).ready(function(){
                                 fill: "#000"
                             },
                             attrsHover: {
-                                animDuration: 0
+                                animDuration: 1000
                             }
                         },
                         eventHandlers: {
                             click: function (e, id, mapElem, textElem) {
-                                alert('동작 ' + id)
-                                var newData = {
+                            //	alert('동작0 ' + id)
+                            	if(id === 'KR'){
+                            		alert('KR ' + id)
+                            	}
+                            	else if(id === 'US'){
+                            		alert('US ' + id)
+                            	}
+                            	else if(id === 'CN'){
+                            		alert('cn ' + id)
+                            	}
+                            	else if(id === 'JP'){
+                            		alert('JP ' + id)
+                            	}
+                            	else if(id === 'AU'){
+                            		alert('AU ' + id)
+                            	}
+                            	else if(id === 'CN'){
+                            		alert('CN ' + id)
+                            	}
+    
+                               /* var newData = {
                                     'areas': {}
                                 };
                                 if (mapElem.originalAttrs.fill == "#5ba4ff") {
@@ -40,7 +59,32 @@ $(document).ready(function(){
                                         }
                                     };
                                 }
-                                $(".mapcontainer").trigger('update', [{mapOptions: newData}]);
+                                $(".mapcontainer").trigger('update', [{mapOptions: newData}]);*/
+                            }
+                        }
+                    },
+                    defaultPlot : {
+                    	eventHandlers: {
+                            click: function (e, id, mapElem, textElem) {
+                            //	alert('동작0 ' + id)
+                            	if(id === 'KR'){
+                            		alert('KR ' + id)
+                            	}
+                            	else if(id === 'US'){
+                            		alert('US ' + id)
+                            	}
+                            	else if(id === 'CN'){
+                            		alert('cn ' + id)
+                            	}
+                            	else if(id === 'JP'){
+                            		alert('JP ' + id)
+                            	}
+                            	else if(id === 'AU'){
+                            		alert('AU ' + id)
+                            	}
+                            	else if(id === 'CN'){
+                            		alert('CN ' + id)
+                            	}
                             }
                         }
                     }
