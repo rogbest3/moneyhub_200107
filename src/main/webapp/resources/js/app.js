@@ -54,7 +54,7 @@ app =(()=>{
 	
 	let setContentView =()=>{
 		$('head')
-		.html(cmm_vue.head())
+		.append(cmm_vue.head())
 
 		$('#root')
 		.html(nav_vue.nav(_))
@@ -88,14 +88,17 @@ app =(()=>{
 		})
 		
 		$('#tables_mgmt_a')
+
 		.click(()=>{
 			tables_mgmt.onCreate()
 		})
+
 		$('#admin_login')
 		.click(()=>{
 			adminIndex.onCreate('admin_login')
+
 		})
-		
+
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
