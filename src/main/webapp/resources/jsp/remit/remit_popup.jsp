@@ -1,7 +1,13 @@
-var remit_popup = remit_popup || {}
-remit_popup = {
-	nation : ()=>{
-		return `<div id="popup-root">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="popup-root">
 		<div class="moin-popup">
 			<div class="themoin-unit-select-popup" tabindex="-1">
 				<div class="unit-content">
@@ -107,6 +113,6 @@ remit_popup = {
 				</div>
 			</div>
 		</div>
-	</div>`
-	}
-}
+	</div>
+</body>
+</html>
