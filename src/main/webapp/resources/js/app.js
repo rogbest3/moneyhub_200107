@@ -95,7 +95,8 @@ app =(()=>{
 
 		$('#admin_login')
 		.click(()=>{
-			adminIndex.onCreate()
+			adminIndex.onCreate('admin_login')
+
 		})
 
 		$('#compo')
