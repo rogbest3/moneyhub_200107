@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Fee {
 
-	private String faqid, title, content;
+	private String bsdate,mpcn,cno;
 }

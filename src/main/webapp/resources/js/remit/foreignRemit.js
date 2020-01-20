@@ -12,7 +12,7 @@ foreignRemit = (()=>{
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
 	}
-	let onCreate =()=>{
+	let onCreate =x=>{
 		init()
 		$.when(
 			$.getScript(remit_vue_js)
@@ -27,6 +27,9 @@ foreignRemit = (()=>{
 			alert(WHEN_ERR)
 		})
 	}
+	
+	
+	
 	let setContentView = ()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_first())

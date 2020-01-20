@@ -57,9 +57,10 @@ mypage =(()=>{
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
-			foreignRemit.onCreate()
+			foreignRemit.onCreate($('.send-amount').val())
 		})
 	}
+	
 	
 	let page_move =()=>{
 		$('#mgmt')
