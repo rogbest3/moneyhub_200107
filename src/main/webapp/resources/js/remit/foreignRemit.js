@@ -2,17 +2,18 @@
 var foreignRemit = foreignRemit || {}
 foreignRemit = (()=>{
 	const WHEN_ERR = '레미트 js파일을 찾지 못했습니다.'
-	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js
+	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,send
 
-	let init = ()=>{
+	let init = (x)=>{
 		_ = $.ctx()
 		js = $.js()
 		main_vue_js = js + '/vue/main_vue.js'
 		auth_js = js + '/cmm/auth.js'
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
+		send = x
 	}
-	let onCreate =x=>{
+	let onCreate =()=>{
 		init()
 		$.when(
 			$.getScript(remit_vue_js)
@@ -32,7 +33,7 @@ foreignRemit = (()=>{
 	
 	let setContentView = ()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_first())
+		.html(remit_vue.remit_first(send))
 		$('.themoin-footer').empty()
 	}
 	let remit_sec =()=>{

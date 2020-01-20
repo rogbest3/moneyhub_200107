@@ -66,7 +66,7 @@ app =(()=>{
 			$('#root')
 			.append(remit_popup.nation())
 		})
-		
+
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')

@@ -90,7 +90,7 @@ main_vue ={
 		'				<div class="amount-row">'+
 		'					<div class="">'+
 		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" name="send_amount" type="text" tabindex="0" placeholder="0.00">'+
+		'						<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00">'+
 		'					</div>'+
 		'					<div class="unit-select disabled" tabindex="0" >'+
 		'						<p>미 화</p>'+
@@ -368,7 +368,7 @@ main_vue ={
 		'				<div class="amount-row">'+
 		'					<div class="">'+
 		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" type="text" tabindex="0" placeholder="0.00" value="">'+
+		'						<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00"  value="">'+
 		'					</div>'+
 		'					<div class="unit-select disabled" tabindex="0">'+
 		'						<p>미 화</p>'+
