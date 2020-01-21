@@ -45,8 +45,8 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('1')
-		$('#cpwd').val('1')
+//		$('#cemail').val('1')
+//		$('#cpwd').val('1')
 					
 		join_2_page_btn()
 	}
@@ -81,6 +81,11 @@ auth =(()=>{
 						alert(d.cus.cname+'님 환영합니다.')
 						setCookie("CEMAIL", d.cus.cemail)
 						setCookie("CPWD", d.cus.cpwd)
+						setCookie("CNAME", d.cus.cname)
+						setCookie("CNTCD", d.cus.cntcd)
+						setCookie("CPHONE", d.cus.cphone)
+						setCookie("ZIP", d.cus.zip)
+						setCookie("ADDR", d.cus.addr)
 						setCookie("CNO", d.cus.cno)
 						mypage.onCreate()
 					}

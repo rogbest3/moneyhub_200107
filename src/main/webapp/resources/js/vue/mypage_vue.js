@@ -9,34 +9,34 @@ mypage_vue = {
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>ID</p>'+
-		'                    <p class="fs-block">rogbest@naver.com</p>'+
+		'                    <div class="fs-block" id="infoEmail"></div>'+
 		'                </li>'+
 		'            </ol>'+
 		'            <div class="head">회원정보</div>'+
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>이름</p>'+
-		'                    <p class="fs-block">${Customer.cname}</p>'+
+		'                    <p class="fs-block" id="infoName"></p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>국가</p>'+
-		'                    <p class="fs-block">+82 (South Korea)</p>'+
+		'                    <p class="fs-block" id="infoCntcd">+82 (South Korea)</p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>우편번호</p>'+
-		'                    <p class="fs-block"></p>'+
+		'                    <p class="fs-block" id="infoZip"></p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>집주소</p>'+
-		'                    <p class="fs-block"></p>'+
+		'                    <p class="fs-block" id="infoAddr"></p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>상세주소</p>'+
-		'                    <p class="fs-block"></p>'+
+		'                    <p class="fs-block" id="infoAddr2"></p>'+
 		'                </li>'+
 		'                <li>'+
 		'                    <p>휴대전화</p>'+
-		'                    <p class="fs-block">01042234683</p>'+
+		'                    <p class="fs-block" id="infoPhone">01042234683</p>'+
 		'                </li>'+
 		'            </ol>'+
 		'        </div><br>'+

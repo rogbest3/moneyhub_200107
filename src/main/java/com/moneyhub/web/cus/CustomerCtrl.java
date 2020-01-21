@@ -3,6 +3,7 @@ package com.moneyhub.web.cus;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.Proxy;
+
+import jdk.nashorn.internal.objects.annotations.Getter;
 
 @RestController
 @RequestMapping("/customers")
@@ -126,7 +129,6 @@ public class CustomerCtrl extends Proxy {
 		String cpwd2 = param.getCpwd(); //비밀번호 변경 시 입력한 비밀번호
 		System.out.println("cpwd는? " + cpwd + " / cpwd2는? " + cpwd2);
 		System.out.println("cus.getCpwd()는? " + cus.getCpwd() + " / param.getCpwd()는? " + param.getCpwd());
-		
 		box.clear();
 		//box.put("msg", (cpwd != cpwd2) ? "true" : "false");
 		if (cpwd != cpwd2) {
@@ -136,7 +138,21 @@ public class CustomerCtrl extends Proxy {
 			box.put("msg", "false");
 		}
 		System.out.println("박스에 담긴 메시지: " + box.get());
-
+		return box.get();
+	}
+	
+	@GetMapping("/cusInfo/{cemail}")
+	public Map<? ,?> cusInfo(@RequestBody Customer param){
+		System.out.println("=============================cusInfo");
+		Customer cusInfo = cusMapper.cusInfo(param);
+		System.out.println(cusInfo);
+		box.clear();
+		box.put("cusInfo", cusInfo);
+		System.out.println("cusInfo는????" + cusInfo.toString());
+		System.out.println("=-=-=-=-=-=-=-" + cusInfo.getCphone());
+		//box.clear();
+		//box.put("msg", "SUCCESS");
+		System.out.println("box.get() -----------> "+box.get().toString());
 		return box.get();
 	}
 
