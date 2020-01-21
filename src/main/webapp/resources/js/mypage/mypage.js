@@ -64,8 +64,6 @@ mypage =(()=>{
 		})
 		 
 	}
-
-	
 	let page_move =()=>{
 		$('#mgmt')
 		.click(()=>{

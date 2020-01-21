@@ -61,12 +61,33 @@ app =(()=>{
 		.append(main_vue.main())
 		.append(cmm_vue.footer())
 		
-		$('.unit-select receive')
-		.click(()=>{
-			$('#root')
-			.append(remit_popup.nation())
-		})
+/*		function LayerPop(data){
+			document.getElementById("iPophead").innerHTML = data.viewNm;
+			document.getElementById("i_LayPop").src = data.url;
+			layerPop.style.width = data.width;
+			layerPop.style.height = data.height;
 
+			var width = $("#layer-pop").width();
+			var height = $("#layer-pop").height();
+			
+			var iPopCont = document.getElementById("iPopCont");
+			var bodyHt = parseInt(height) - 50;
+			
+			iPopCont.style.height = bodyHt ;
+			
+			ifmMaskPop.style.display = 'block';
+			layerPop.style.left = ($(window).width() - width) / 2;
+			layerPop.style.top = ($(window).height() - height) / 2;
+			
+			layerPop.style.display = 'block';
+
+		};
+		
+		function popClose(){
+			layerPop.style.display = 'none';
+			ifmMaskPop.style.display = 'none';
+		}*/
+		
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
