@@ -83,7 +83,13 @@
 	<script src="<%=application.getContextPath()%>/resources/js/tables/tables_mgmt.js"></script>	
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/Chart.min.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/utils.js"></script>
-
+	<script type="text/javascript">
+		function logout(){
+			alert("!")
+			sessionStorage.setItem('CUS', null);
+			app.onCreate();
+		}
+	</script>
 </head>
 <body id="page-top">
 	<div id="root">
