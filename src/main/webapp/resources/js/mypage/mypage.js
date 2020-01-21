@@ -61,7 +61,9 @@ mypage =(()=>{
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
-			sessionStorage.setItem('amount', document.getElementById('send_amount').value);
+			var deal = new Object();
+			deal.amount = document.getElementById('send_amount').value;
+			sessionStorage.setItem('deal', deal);
 			foreignRemit.onCreate()
 		})
 		 
