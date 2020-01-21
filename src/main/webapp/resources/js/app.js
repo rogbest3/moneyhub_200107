@@ -56,10 +56,15 @@ app =(()=>{
 		$('head')
 		.append(cmm_vue.head())
 
-		$('#root')
-		.html(nav_vue.nav(_))
-		.append(main_vue.main())
-		.append(cmm_vue.footer())
+
+		if(sessionStorage.getItem('CUS') != '' &&sessionStorage.getItem('CUS') != null ){
+			$('#root')	.html(nav_vue.logined_nav(_))
+			$('#root').append(main_vue.logined_main())
+		}else{
+			$('#root')	.html(nav_vue.nav(_))
+			$('#root').append(main_vue.main())
+		}
+		$('#root').append(cmm_vue.footer())
 		
 /*		function LayerPop(data){
 			document.getElementById("iPophead").innerHTML = data.viewNm;
