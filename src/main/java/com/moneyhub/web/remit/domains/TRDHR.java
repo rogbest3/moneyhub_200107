@@ -1,4 +1,4 @@
-package com.moneyhub.web.remit.beans;
+package com.moneyhub.web.remit.domains;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

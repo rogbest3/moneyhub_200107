@@ -5,7 +5,7 @@ function Session(x){	// 자바스크립트
 	sessionStorage.setItem('css', x + '/resources/css');
 	sessionStorage.setItem('img', x + '/resources/img');
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
-
+	
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
 		js : ()=>{ return sessionStorage.getItem('js');},
