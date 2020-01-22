@@ -79,14 +79,17 @@ auth =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
-						setCookie("CEMAIL", d.cus.cemail)
+						/*setCookie("CEMAIL", d.cus.cemail)
 						setCookie("CPWD", d.cus.cpwd)
 						setCookie("CNAME", d.cus.cname)
 						setCookie("CNTCD", d.cus.cntcd)
 						setCookie("CPHONE", d.cus.cphone)
 						setCookie("ZIP", d.cus.zip)
 						setCookie("ADDR", d.cus.addr)
-						setCookie("CNO", d.cus.cno)
+						setCookie("CNO", d.cus.cno)*/
+						
+						sessionStorage.setItem('CUS', d.cus.cemail)
+						alert('로그인 회원정보' + sessionStorage.getItem('CUS', d.cus.cemail))
 						mypage.onCreate()
 					}
 					else{
@@ -236,8 +239,11 @@ auth =(()=>{
 						cemail : $('#cemail').val(),
 						cpwd : $('#cpwd').val(),
 						cname : $('#lname').val() + $('#fname').val(),
-						cntcd : cntcd,
-						cphone : $('#cphone').val()
+						cphone : $('#cphone').val(),
+						zip : $('#zip').val(),
+						addr : $('#addr').val(),
+						daddr : $('#daddr').val(),
+						birth : $('#birth').val()
 						// cemail, cpwd, cfm_cpwd, fname, lname,
 						// phone1(국가코드), cphone
 					}),
@@ -265,20 +271,20 @@ auth =(()=>{
 		$('<input id="cemail" class="fs-block"'+
 				' placeholder="youremail@email.com" type="text" tabindex="0" value="">'+
 				'<div style="height:20px; margin-top:10px"></div>')
-			.appendTo('#moin-input-id')
+			.appendTo('#moneyhub-id')
 			
 		$('#cemail').keyup(()=>{
 			if($('#cemail').val().length >= 1){
 				$.getJSON(_+'/customers' + '/existid/' + $('#cemail').val(), d=>{
 					if(d.msg === 'Y'){
-						$('#moin-input-id div')
+						$('#moneyhub-id div')
 						.text('이미 있는 아이디입니다.')
 						.css({
 							color : 'red'
 						})
 
 					}else{
-						$('#moin-input-id div')
+						$('#moneyhub-id div')
 						.text('사용 가능한 이메일입니다.')
 						.css({
 							color : 'blue'

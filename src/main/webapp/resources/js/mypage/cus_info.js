@@ -28,28 +28,15 @@ cus_info =(()=>{
 	let setContentView =()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.cus_info())
-		
-		//$('#infoEmail').val(getCookie("CEMAIL"))
-		/*$('#infoEmail').text(getCookie("CEMAIL"))
-		$('#infoName').text(getCookie("CNAME"))
-		$('#infoCntcd').text(getCookie("CNTCD"))
-		$('#infoZip').text(getCookie("ZIP"))
-		$('#infoAddr').text(getCookie("ADDR"))
-		$('#infoAddr2').text(getCookie("ADDR"))
-		$('#infoPhone').text(getCookie("CPHONE"))*/
-		
-		$.getJSON(_+'/customers/cusInfo/'+ $('#cemail').val(), d=>{
-			alert('여기 들어옴?')
-			alert(d.cusInfo)
-//			$('#infoEmail').text(getCookie("CEMAIL"))
-//			$('#infoName').text(getCookie("CNAME"))
-//			$('#infoCntcd').text(getCookie("CNTCD"))
-//			$('#infoZip').text(getCookie("ZIP"))
-//			$('#infoAddr').text(getCookie("ADDR"))
-//			$('#infoAddr2').text(getCookie("ADDR"))
-//			$('#infoPhone').text(getCookie("CPHONE"))
+		$.getJSON(_+'/customers/cusInfo/' + $('#cemail').val(), d=>{
+			$('#infoEmail').text(d.cus.cemail)
+			$('#infoName').text(d.cus.cname)
+			$('#infoZip').text(d.cus.zip)
+			$('#infoAddr').text(d.cus.addr)
+			$('#infoAddr2').text(d.cus.daddr)
+			$('#infoBirth').text(d.cus.birth)
 		})
-		
+	
 		$('<button/>')
 			.text('정보수정하기')
 			.addClass('next')

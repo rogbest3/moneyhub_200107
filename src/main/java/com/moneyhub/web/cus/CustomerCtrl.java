@@ -1,5 +1,6 @@
 package com.moneyhub.web.cus;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,20 +19,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.Proxy;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
 
 @RestController
 @RequestMapping("/customers")
 public class CustomerCtrl extends Proxy {
 
-	@Autowired
-	Customer cus;
-	@Autowired
-	CustomerMapper cusMapper;
-	@Autowired
-	Box<Object> box;
-	@Autowired
-	SqlSession sqlsession;
+	@Autowired Customer cus;
+	@Autowired CustomerMapper cusMapper;
+	@Autowired Box<Object> box;
+	@Autowired SqlSession sqlsession;
 	// @Autowired CustMailSender mailSender;
 	// private HttpServletRequest request;
 
@@ -142,16 +137,15 @@ public class CustomerCtrl extends Proxy {
 	}
 	
 	@GetMapping("/cusInfo/{cemail}")
-	public Map<? ,?> cusInfo(@RequestBody Customer param){
+	public Map<? ,?> cusInfo(Customer param){
 		System.out.println("=============================cusInfo");
-		Customer cusInfo = cusMapper.cusInfo(param);
-		System.out.println(cusInfo);
+		System.out.println("param은?????????????"+param);
+		System.out.println("cus는?????????????"+cus);
+		//Function<Customer, Customer> f = t -> cusMapper.cusInfo(t);
+		//cus = f.apply(param);
 		box.clear();
-		box.put("cusInfo", cusInfo);
-		System.out.println("cusInfo는????" + cusInfo.toString());
-		System.out.println("=-=-=-=-=-=-=-" + cusInfo.getCphone());
-		//box.clear();
-		//box.put("msg", "SUCCESS");
+		box.put("cus", cus);
+		System.out.println("============>>>>>>cus는????" + cus);
 		System.out.println("box.get() -----------> "+box.get().toString());
 		return box.get();
 	}

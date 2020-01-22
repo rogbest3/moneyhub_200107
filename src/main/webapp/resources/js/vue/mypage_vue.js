@@ -19,10 +19,6 @@ mypage_vue = {
 		'                    <p class="fs-block" id="infoName"></p>'+
 		'                </li>'+
 		'                <li>'+
-		'                    <p>국가</p>'+
-		'                    <p class="fs-block" id="infoCntcd">+82 (South Korea)</p>'+
-		'                </li>'+
-		'                <li>'+
 		'                    <p>우편번호</p>'+
 		'                    <p class="fs-block" id="infoZip"></p>'+
 		'                </li>'+
@@ -35,8 +31,8 @@ mypage_vue = {
 		'                    <p class="fs-block" id="infoAddr2"></p>'+
 		'                </li>'+
 		'                <li>'+
-		'                    <p>휴대전화</p>'+
-		'                    <p class="fs-block" id="infoPhone">01042234683</p>'+
+		'                    <p>생년월일</p>'+
+		'                    <p class="fs-block" id="infoBirth"></p>'+
 		'                </li>'+
 		'            </ol>'+
 		'        </div><br>'+

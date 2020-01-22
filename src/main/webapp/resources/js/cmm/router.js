@@ -4,7 +4,7 @@ function Session(x){	// 자바스크립트
 	sessionStorage.setItem('js', x + '/resources/js');
 	sessionStorage.setItem('css', x + '/resources/css');
 	sessionStorage.setItem('img', x + '/resources/img');
-
+	
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
 		js : ()=>{ return sessionStorage.getItem('js');},
@@ -12,3 +12,14 @@ function Session(x){	// 자바스크립트
 		img : ()=>{ return sessionStorage.getItem('img');}
 	}
 }
+
+/*function CustInfo(){
+	sessionStorage.setItem('cemail', cemail);
+	sessionStorage.setItem('cpwd', cpwd);
+	
+	return {
+		cemail : ()=>{ return sessionStorage.getItem('cemail');},
+		cpwd : ()=>{ return sessionStorage.getItem('cpwd');}
+	}
+	
+}*/
