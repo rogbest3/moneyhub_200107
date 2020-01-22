@@ -44,6 +44,9 @@ foreignRemit = (()=>{
 		$('#sec_remit_btn').click(()=>{
 				remit_third()
 			})
+		$('#prev_fs_remit_btn').click(()=>{
+			onCreate()
+			})
 	}
 	let remit_third = ()=>{
 		$('.themoin-main')
@@ -51,6 +54,9 @@ foreignRemit = (()=>{
 		$('#third_remit_btn').click(()=>{
 			remit_review()
 		})
+		$('#prev_sec_remit_btn').click(()=>{
+			remit_sec()
+			})
 	}
 	let remit_review = ()=>{
 		$('.themoin-main')

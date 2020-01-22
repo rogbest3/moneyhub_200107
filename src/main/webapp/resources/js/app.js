@@ -44,8 +44,11 @@ app =(()=>{
 			$.getScript(remit_popup_js)
 		)
 		.done(()=>{
-			setContentView()
-			page_move()
+			//=============================================================
+			auth.onCreate('login')
+			//=============================================================
+			/*setContentView()
+			page_move()*/
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -54,8 +57,14 @@ app =(()=>{
 	
 	let setContentView =()=>{
 		$('head')
-		.append(cmm_vue.head())
-		if(sessionStorage.getItem('CUS') != null ){ //세션 정보로 메인 화면 구분
+		.append(cmm_vue.head()) 
+		//================================================================= 로그인전 화면
+		$('#root')
+		.html(nav_vue.nav(_))
+		.append(main_vue.main())
+		.append(cmm_vue.footer())
+		//=================================================================
+		/*if(sessionStorage.getItem('CUS') != null ){ //세션 정보로 메인 화면 구분
 			alert('로그인된 세션 빈거'+sessionStorage.getItem('CUS'))
 			$('#root')
 			.html(nav_vue.logined_nav(_))
@@ -67,14 +76,13 @@ app =(()=>{
 			.append(main_vue.main())
 		}
 		$('#root').append(cmm_vue.footer())
-		
+		*/
 		
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
-			//$('#popup-root').show();
 			auth.onCreate('login')
 		})
 	}
