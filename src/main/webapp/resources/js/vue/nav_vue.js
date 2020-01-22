@@ -76,7 +76,7 @@ nav_vue = {
 		return '<nav class="themoin-header">'+
 		'	<div>'+
 		'		<a class="logo">'+
-'			<img id="navlogo" src="/web/resources/img/logo/white_logo.png">'+
+		'			<img id="navlogo" src="/web/resources/img/logo/white_logo.png">'+
 		'		</a>'+
 		'		<div class="spacer"></div>'+
 		'		<a class="menu">'+
@@ -85,7 +85,7 @@ nav_vue = {
 		'		</a>'+
 		'		<ul class="">'+
 		'			<li><a id="mgmt">내 계정 관리</a></li>'+
-		'			<li><a id="logout" onclick ="logout();">로그아웃</a></li>'+
+		'			<li><a id="logout">로그아웃</a></li>'+
 		'			<li class="mobile">'+
 		'				<div class="themoin-language-dropdown" tabindex="0">'+
 		'					<img class="ic-flag" src="https://img.themoin.com/public/img/ic-flag-ko.svg">'+

@@ -55,14 +55,16 @@ app =(()=>{
 	let setContentView =()=>{
 		$('head')
 		.append(cmm_vue.head())
-
-
-		if(sessionStorage.getItem('CUS') != '' &&sessionStorage.getItem('CUS') != null ){
-			$('#root')	.html(nav_vue.logined_nav(_))
-			$('#root').append(main_vue.logined_main())
+		if(sessionStorage.getItem('CUS') != null ){ //세션 정보로 메인 화면 구분
+			alert('로그인된 세션 빈거'+sessionStorage.getItem('CUS'))
+			$('#root')
+			.html(nav_vue.logined_nav(_))
+			.append(main_vue.logined_main())
 		}else{
-			$('#root')	.html(nav_vue.nav(_))
-			$('#root').append(main_vue.main())
+			alert('로그인 전  세션 빈거'+sessionStorage.getItem('CUS'))
+			$('#root')
+			.html(nav_vue.nav(_))
+			.append(main_vue.main())
 		}
 		$('#root').append(cmm_vue.footer())
 		

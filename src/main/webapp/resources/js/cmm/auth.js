@@ -83,8 +83,8 @@ auth =(()=>{
 						setCookie("CPWD", d.cus.cpwd)
 						setCookie("CNO", d.cus.cno)
 						mypage.onCreate()
-						sessionStorage.setItem('CUS', d.cus);
-						
+						sessionStorage.setItem('CUS', d.cus.cemail);  // 세션에 고객 정보 추가
+						alert('로그인 회원정보'+sessionStorage.getItem('CUS'))
 					}
 					else{
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')

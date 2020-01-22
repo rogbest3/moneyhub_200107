@@ -34,7 +34,7 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_first())
 		$('.themoin-footer').empty()
-		if(deal.amount >= 3000)
+		if(deal >= 3000)
 		{$('#fee_check').text('12$')}
 		else {$('#fee_check').text('6$')}
 	}
