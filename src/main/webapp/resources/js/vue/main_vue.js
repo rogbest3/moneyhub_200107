@@ -1,8 +1,8 @@
 var main_vue = main_vue || {}
 main_vue ={
 	main : ()=>{
-		return '<div class="themoin-landing">'+
-		`<div class="head_product head_wu">
+		return `<div class="themoin-landing">
+		<div class="head_product head_wu">
             <h1 id="headh1">
                 <span>머니허브 해외송금</span> <span class="txt_detail">해외계좌송금과<br>WU빠른해외송금을<br>더 쉽고, 저렴하게</span>
             </h1>
@@ -17,13 +17,13 @@ main_vue ={
                     <span>해외계좌송금</span>
                 </li>
             </ul>
-        </div>`+
-		'	<div class="themoin-remit-component">'+
-		'		<div id="moin-event-amount" class="moin-event-amount">'+
-		'		<h1>지금 바로 WU 송금을 이용해보세요</span>'+
-		'			<p class="color-deepgrey"></p>'+
-		'		</div>'+
-		'		<div class="moin-amount">'+
+        </div>
+			<div class="themoin-remit-component">
+				<div id="moin-event-amount" class="moin-event-amount">
+				<h1>지금 바로 WU 송금을 이용해보세요</span>
+					<p class="color-deepgrey"></p>
+				</div>
+				<div class="moin-amount">`+
 		/*'			<div class="money-graph">'+
 		'				<h3 class="index-money-title">실제로 받는 금액</h3>'+
 		'				<div class="index-money-rank">'+
@@ -90,11 +90,11 @@ main_vue ={
 		'				<div class="amount-row">'+
 		'					<div class="">'+
 		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" type="text" tabindex="0" placeholder="0">'+
+		'						<input class="send-amount" type="text" tabindex="0" placeholder="0" value="1000000">'+
 		'					</div>'+
 		'					<div class="unit-select disabled" tabindex="0" >'+
-		'						<p>미 화</p>'+
-		'						<h3>USD</h3>'+
+		'						<p>대한민국</p>'+
+		'						<h3>KRW</h3>'+
 		'					</div>'+
 		'				</div>'+
 		'				<div class="amount-row">'+
@@ -103,8 +103,8 @@ main_vue ={
 		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0">'+
 		'					</div>'+
 		'					<div class="unit-select receive" tabindex="0">'+
-		'						<p>아일랜드</p>'+
-		'						<h3>EUR</h3>'+
+		'						<p>미국</p>'+
+		'						<h3>USD</h3>'+
 		'					</div>'+
 		'				</div>'+
 //		'				<button type="submit" class="index-send-btn moin-body">송금하기</button>'+
@@ -263,46 +263,46 @@ main_vue ={
                         	※ 거래외국환은행지정 신청 가능시간: 평일 9시 ~ 18시<br>(주말, 공휴일 및 근로자의날 제외)</span></p>
                 </div>
                 <div id="ani02_trigger"></div>
-            </div>` +
-		'	<div class="themoin-landing-applink">'+
-		'		<h1>머니허브  앱을 다운로드 받으세요</h1>'+
-		'		<div class="item-container">'+
-		'			<a class="btn-android">'+
-		'				<img src="https://img.themoin.com/public/img/page-1.svg">'+
-		'				<div class="hd-button">안드로이드 앱 다운로드</div>'+
-		'			</a>'+
-		'			<a class="btn-ios">'+
-		'				<img src="https://img.themoin.com/public/img/img-apple.svg">'+
-		'				<div class="hd-button">iOS 앱 다운로드</div>'+
-		'			</a>'+
-		'		</div>'+
-		'	</div>'+
-		'	<div style="display:none"></div>'+
-		'</div>'
+            </div>
+			<div class="themoin-landing-applink">
+				<h1>머니허브  앱을 다운로드 받으세요</h1>
+				<div class="item-container">
+					<a class="btn-android">
+						<img src="https://img.themoin.com/public/img/page-1.svg">
+						<div class="hd-button">안드로이드 앱 다운로드</div>
+					</a>
+					<a class="btn-ios">
+						<img src="https://img.themoin.com/public/img/img-apple.svg">
+						<div class="hd-button">iOS 앱 다운로드</div>
+					</a>
+				</div>
+			</div>
+			<div style="display:none"></div>
+		</div>`
 	},
 	logined_main : ()=>{
-		return '<div class="themoin-main">'+
-		'	<div class="themoin-currency-component">'+
-		'      <div class="legend">'+
-		'  	      <div class="moin-avg">'+
-		'   	      <div></div> '+
-		'   	             모인 환율'+
-		' 	       </div>'+
-		' 	   </div>'+
-		' 	   <div class="content">'+
-		'  	          <div id="clock" class="title" style="width:320px">실시간 모인 환율</div>'+
-		'  	          <div id="cntcd_exrate" class="currency"></div>'+
-		'  	  </div>                  '+
-		'  	  <div id="chart" style="width:100%;">                        '+
-		' 	           <canvas id="canvas" style="width:70%; height:120px"></canvas>'+
-		' 	   </div>'+
-		'	</div>'+
-		'	<div class="themoin-remit-component">'+
-		'		<div id="moin-event-amount" class="moin-event-amount">'+
-		'		<h1>지금 바로 WU 송금을 이용해보세요</span>'+
-		'			<p class="color-deepgrey"></p>'+
-		'		</div>'+
-		'		<div class="moin-amount">'+
+		return `<div class="themoin-main">
+			<div class="themoin-currency-component">
+		      <div class="legend">
+		  	      <div class="moin-avg">
+		   	      <div></div> 
+		   	             모인 환율
+		 	       </div>
+		 	   </div>
+		 	   <div class="content">
+		  	          <div id="clock" class="title" style="width:320px">실시간 모인 환율</div>
+		  	          <div id="cntcd_exrate" class="currency"></div>
+		  	  </div>                  
+		  	  <div id="chart" style="width:100%;">                        
+		 	           <canvas id="canvas" style="width:70%; height:110px"></canvas>
+		 	   </div>
+			</div>
+			<div class="themoin-remit-component">
+				<div id="moin-event-amount" class="moin-event-amount">
+				<h1>지금 바로 WU 송금을 이용해보세요</span>
+					<p class="color-deepgrey"></p>
+				</div>
+				<div class="moin-amount">`+
 		/*'			<div class="money-graph">'+
 		'				<h3 class="index-money-title">예상 비용</h3>'+
 		'				<div class="index-money-rank">'+
@@ -364,56 +364,78 @@ main_vue ={
 		'					</div>'+
 		'				</div>'+
 		'			</div>'+*/
-		'			<div id="remit_box" class="form-calculator main">'+
-		'				<div class="amount-row">'+
-		'					<div class="">'+
-		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" type="text" tabindex="0" placeholder="0">'+
-		'					</div>'+
-		'					<div class="unit-select disabled" tabindex="0">'+
-		'						<p>미 화</p>'+
-		'						<h3>USD</h3>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="amount-row">'+
-		'					<div class="">'+
-		'						<p>예상 비용 (직접입력 가능)</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0">'+
-		'					</div>'+
-		'					<div class="unit-select receive" tabindex="0">'+
-		'						<p>아일랜드</p>'+
-		'						<h3>EUR</h3>'+
-		'					</div>'+
-		'				</div>'+
-//		'				<button type="submit" class="index-send-btn moin-body">송금하기</button>'+
-		'			</div>'+
-		'		</div>'+
-		'	</div>'+
-
-		'	<div class="user-remit-container">'+
-		'		<div class="user-title">'+
-		'			<h3>내 입금 계좌</h3>'+
-		'		</div>'+
-		'		<div class="user-account">'+
-		'			<p class="warning">'+
-		'				<span class="warning fs-block">반드시 인증받으신 기업은행 23210816702025 계좌에서 내 입금 계좌로 이체 해 주세요.</span><br>내 입금 계좌 : '+
-		'				<span class="fs-block">광주은행 9427010261003 김민국_모인</span>'+
-		'			</p>'+
-		'		</div>'+
-		'		<div class="user-title">'+
-		'			<h3>송금 내역</h3>'+
-		'		</div>'+
-		'		<div class="user-limit">'+
-		'			<p>올해 누적 송금액 :<span> 0</span> 원</p>'+
-		'			<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p>'+
-		'			<p>올해 잔여 한도 :<span class=""> 55,000,000</span> 원</p>'+
-		'		</div>'+
-		'		<div class="remits empty">'+
-		'			<br><h3>아직 송금 내역이 없습니다.</h3>'+
-		'			<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br>'+
-		'			<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>'+
-		'		</div>'+
-		'	</div>'+
-		'</div>'
+				`	<div id="remit_box" class="form-calculator main">
+						<div class="amount-row">
+							<div class="">
+								<p>송금 금액</p>
+								<input class="send-amount" type="text" tabindex="0" placeholder="0" value="1000000">
+							</div>
+							<div class="unit-select disabled" tabindex="0">
+								<p>대한민국</p>
+								<h3>KRW</h3>
+							</div>
+						</div>
+						<div class="amount-row">
+							<div class="">
+								<p>예상 비용 (직접입력 가능)</p>
+								<input class="receive-amount" type="text" tabindex="0" placeholder="0">
+							</div>
+							<div class="unit-select receive" tabindex="0">
+								<p>독일</p>
+								<h3>EUR</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="user-remit-container">
+				<div class="user-title">
+					<h3>내 입금 계좌</h3>
+				</div>
+				<div class="user-account">
+					<p class="warning">
+						<span class="warning fs-block">반드시 인증받으신 기업은행 23210816702025 계좌에서 내 입금 계좌로 이체 해 주세요.</span><br>내 입금 계좌 : 
+						<span class="fs-block">광주은행 9427010261003 김민국_모인</span>
+					</p>
+				</div>
+				<div class="user-title">
+					<h3>송금 내역</h3>
+				</div>
+				<div class="user-limit">
+					<p>올해 누적 송금액 :<span> 0</span> 원</p>
+					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p>
+					<p>올해 잔여 한도 :<span class=""> 55,000,000</span> 원</p>
+				</div>
+				<div class="remits empty">
+					<br><h3>아직 송금 내역이 없습니다.</h3>
+					<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br>
+					<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>
+				</div>
+			</div>
+		</div>`
+	},
+	cntcd_popup : ()=>{
+		return `<div class="moin-popup">
+					<div class="themoin-unit-select-popup" tabindex="-1">
+						<div class="unit-content">
+							<a class="moin-close">
+								<img src="https://img.themoin.com/public/img/btn-close.png" srcset="https://img.themoin.com/public/img/btn-close.png 1x,
+								          https://img.themoin.com/public/img/btn-close@2x.png 2x,
+								          https://img.themoin.com/public/img/btn-close@3x.png 3x">
+			      			</a>
+			      			<h3>송금 국가 선택</h3>
+			      			<div id="popup_box">
+			      				<form>
+			      					<input type="text" placeholder="송금국가를 선택해주세요.">
+			      					<button>입력</button>
+			      				</form>
+			      				<ul>
+			      					
+			      				</ul>
+			      			</div>
+			      		</div>
+			      	</div>
+				</div>`
 	}
 }

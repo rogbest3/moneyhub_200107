@@ -78,10 +78,12 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						alert(d.cus.cname+'님 환영합니다.')
-						setCookie("CEMAIL", d.cus.cemail)
+//						alert(d.cus.cname+'님 환영합니다.')
+						$.extend(new Customer_Info(d.cus))
+/*						setCookie("CEMAIL", d.cus.cemail)
 						setCookie("CPWD", d.cus.cpwd)
-						setCookie("CNO", d.cus.cno)
+						setCookie("CNO", d.cus.cno)*/
+//						alert(`세션 ID : ${$.cemail()}`)
 						mypage.onCreate()
 					}
 					else{

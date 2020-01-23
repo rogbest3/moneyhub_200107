@@ -86,8 +86,8 @@
 
 </head>
 <body id="page-top">
-	<div id="root">
-	</div>
+	<div id="root"></div>
+	<div id="popup-root"></div>
 	<script>
 		app.run('<%=application.getContextPath()%>')
 	</script>
