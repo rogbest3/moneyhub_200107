@@ -99,7 +99,6 @@ auth_vue ={
 		'								<div class="moin-input" id="moneyhub-id">'+
 		'									<label style="color: rgb(116, 127, 155);">이메일 주소 (Email)</label>'+
 		//'										<input id="cemail" class="fs-block" placeholder="youremail@email.com" type="text" tabindex="0" value="">'+
-		'									<div class="check_font" id="mail_check" ></div>'+
 		'								</div>'+
 		'								<p class="moin-error"></p>'+
 		'							</div>'+

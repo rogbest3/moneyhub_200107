@@ -88,8 +88,15 @@ compo_vue ={
 		'	</div>'+
 		'</div>'+
 		'<div class="divider"></div>'+
+		
+		'<div id="map" style="width:100%;height:350px;"></div>'+
+		'<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a12b00f4d7ca8dab74be5cd92f7e359"></script>'
 		'<div class="company-map">'+
-		'	<div>'+
+		'<div style="padding:5px;">머니허브<br>'+
+		'    <a href="https://map.kakao.com/link/map/머니허브,37.5528047,126.9390455" style="color:blue" target="_blank">큰지도보기</a>'+
+		'    <a href="https://map.kakao.com/link/to/머니허브,37.5528047,126.9390455" style="color:blue" target="_blank">길찾기</a>'+
+		'</div>'+
+		/*'	<div>'+
 		'		<div id="company-map" style="position: relative; overflow: hidden; background: url(&quot;https://ssl.pstatic.net/static/maps/mantle/1x/pattern_1.png&quot;) 0px 0px repeat transparent;">'+
 		'			<div style="position: absolute; display: block; margin: 0px; padding: 0px; border: 0px none; top: 0px; left: 0px; overflow: visible; width: 100%; height: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); z-index: 0; cursor: url(&quot;https://ssl.pstatic.net/static/maps/mantle/1x/openhand.cur&quot;), default;">'+
 		'				<div style="position: absolute; display: block; margin: 0px; padding: 0px; border: 0px none; top: 0px; left: 0px; overflow: visible; width: 100%; height: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); z-index: 0;">'+
@@ -265,7 +272,7 @@ compo_vue ={
 		'		</div>'+
 		'	</div>'+
 		'</div>'+
-		'</div>'+
+		'</div>'+*/
 		'</div>'+
 		'<div class="company-info">'+
 		'	<div>'+

@@ -223,39 +223,40 @@ auth =(()=>{
 				$('#lname_check').css('color','red')
 			}
 		})
+		
 		// 생일 유효성 검사
 		var birthJ = false;
 	
 		// 생년월일 birthJ 유효성 검사
-		$('#user_birth').blur(function(){
-		var dateStr = $(this).val();		
-	    var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
-	    var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자
+		$('#birth').blur(function(){
+		var dateStr = $('#birth').val();		
+		var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
+		var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자
 													// (월)
-	    var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일)
-	    var today = new Date(); // 날짜 변수 선언
-	    var yearNow = today.getFullYear(); // 올해 연도 가져옴
+		var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일)
+		var today = new Date(); // 날짜 변수 선언
+		var yearNow = today.getFullYear(); // 올해 연도 가져옴
 		
 	    if (dateStr.length <=8) {
 			// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
 		    if (1900 > year || year > yearNow){
 		    	
-		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+		    	$('#birth_check').text('생년월일을 확인해주세요.');
 				$('#birth_check').css('color', 'red');
 		    	
 		    }else if (month < 1 || month > 12) {
 		    		
-		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+		    	$('#birth_check').text('생년월일을 확인해주세요.');
 				$('#birth_check').css('color', 'red'); 
 		    
 		    }else if (day < 1 || day > 31) {
 		    	
-		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+		    	$('#birth_check').text('생년월일을 확인해주세요.');
 				$('#birth_check').css('color', 'red'); 
 		    	
 		    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
 		    	 
-		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+		    	$('#birth_check').text('생년월일을 확인해주세요.');
 				$('#birth_check').css('color', 'red'); 
 		    	 
 		    }else if (month == 2) {
@@ -264,7 +265,7 @@ auth =(()=>{
 		       	
 		     	if (day>29 || (day==29 && !isleap)) {
 		     		
-		     		$('#birth_check').text('생년월일을 확인해주세요 :)');
+		     		$('#birth_check').text('생년월일을 확인해주세요.');
 					$('#birth_check').css('color', 'red'); 
 		    	
 				}else{
@@ -280,7 +281,7 @@ auth =(()=>{
 			
 			}else{
 				// 1.입력된 생년월일이 8자 초과할때 : auth:false
-				$('#birth_check').text('생년월일을 확인해주세요 :)');
+				$('#birth_check').text('생년월일을 확인해주세요.');
 				$('#birth_check').css('color', 'red');  
 			}
 		})
@@ -333,7 +334,7 @@ auth =(()=>{
 				'<div style="height:20px; margin-top:10px"></div>')
 			.appendTo('#moneyhub-id')
 			
-		$('#cemail').keyup(()=>{
+		/*$('#cemail').keyup(()=>{
 			if($('#cemail').val().length >= 1){
 				$.getJSON(_+'/customers' + '/existid/' + $('#cemail').val(), d=>{
 					if(d.msg === 'Y'){
@@ -354,6 +355,35 @@ auth =(()=>{
 			}
 			else{
 				$('#moin-input-id div').empty()
+			}
+		})*/
+		$('#cemail').keyup(()=>{
+			if($('#cemail').val().length >= 1){
+				$.ajax({
+					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()),
+					type: 'GET',
+					data: JSON.stringify({
+						cemail : $('#cemail').val()
+					}),
+					dataType : 'json',
+					contentType : 'application/json',
+					success: d=>{
+						if(d.msg === 'Y'){
+							$('#moneyhub-id div')
+							.text('이미 있는 아이디입니다.')
+							.css({
+								color : 'red'
+							})
+
+						}else{
+							$('#moneyhub-id div')
+							.text('사용 가능한 이메일입니다.')
+							.css({
+								color : 'blue'
+							})
+						}
+					}
+				})
 			}
 		})
 	}
