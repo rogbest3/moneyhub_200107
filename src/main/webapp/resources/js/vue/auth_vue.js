@@ -99,6 +99,7 @@ auth_vue ={
 		'								<div class="moin-input" id="moneyhub-id">'+
 		'									<label style="color: rgb(116, 127, 155);">이메일 주소 (Email)</label>'+
 		//'										<input id="cemail" class="fs-block" placeholder="youremail@email.com" type="text" tabindex="0" value="">'+
+		'									<div class="check_font" id="mail_check" ></div>'+
 		'								</div>'+
 		'								<p class="moin-error"></p>'+
 		'							</div>'+
@@ -453,6 +454,7 @@ auth_vue ={
 		'                        <div class="moin-input">'+
 		'                            <label style="color: rgb(116, 127, 155);">생년월일(Birth)</label>'+
 		'                            <input id="birth" class="fs-block" placeholder="19900101" type="text" tabindex="0" value="">'+
+		'							<div class="check_font" id="birth_check" ></div>'+
 		'                        </div>'+
 		'                        <p class="moin-error"></p>'+
 		'                    </div>'+

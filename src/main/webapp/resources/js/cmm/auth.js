@@ -45,8 +45,8 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-//		$('#cemail').val('1')
-//		$('#cpwd').val('1')
+// $('#cemail').val('1')
+// $('#cpwd').val('1')
 					
 		join_2_page_btn()
 	}
@@ -79,14 +79,14 @@ auth =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
-						/*setCookie("CEMAIL", d.cus.cemail)
-						setCookie("CPWD", d.cus.cpwd)
-						setCookie("CNAME", d.cus.cname)
-						setCookie("CNTCD", d.cus.cntcd)
-						setCookie("CPHONE", d.cus.cphone)
-						setCookie("ZIP", d.cus.zip)
-						setCookie("ADDR", d.cus.addr)
-						setCookie("CNO", d.cus.cno)*/
+						/*
+						 * setCookie("CEMAIL", d.cus.cemail) setCookie("CPWD",
+						 * d.cus.cpwd) setCookie("CNAME", d.cus.cname)
+						 * setCookie("CNTCD", d.cus.cntcd) setCookie("CPHONE",
+						 * d.cus.cphone) setCookie("ZIP", d.cus.zip)
+						 * setCookie("ADDR", d.cus.addr) setCookie("CNO",
+						 * d.cus.cno)
+						 */
 						
 						sessionStorage.setItem('CUS', d.cus.cemail)
 						alert('로그인 회원정보' + sessionStorage.getItem('CUS', d.cus.cemail))
@@ -177,8 +177,8 @@ auth =(()=>{
 		})
 	}
 
-	// 아이디 정규식
-	var idJ = /^[a-z0-9]{2,12}$/;
+	// 이메일 검사 정규식
+	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	// 비밀번호 정규식
 	var pwJ = /^[A-Za-z0-9]{2,12}$/;
 	// 이름 정규식
@@ -223,6 +223,67 @@ auth =(()=>{
 				$('#lname_check').css('color','red')
 			}
 		})
+		// 생일 유효성 검사
+		var birthJ = false;
+	
+		// 생년월일 birthJ 유효성 검사
+		$('#user_birth').blur(function(){
+		var dateStr = $(this).val();		
+	    var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
+	    var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자
+													// (월)
+	    var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일)
+	    var today = new Date(); // 날짜 변수 선언
+	    var yearNow = today.getFullYear(); // 올해 연도 가져옴
+		
+	    if (dateStr.length <=8) {
+			// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
+		    if (1900 > year || year > yearNow){
+		    	
+		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+				$('#birth_check').css('color', 'red');
+		    	
+		    }else if (month < 1 || month > 12) {
+		    		
+		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+				$('#birth_check').css('color', 'red'); 
+		    
+		    }else if (day < 1 || day > 31) {
+		    	
+		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+				$('#birth_check').css('color', 'red'); 
+		    	
+		    }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+		    	 
+		    	$('#birth_check').text('생년월일을 확인해주세요 :)');
+				$('#birth_check').css('color', 'red'); 
+		    	 
+		    }else if (month == 2) {
+		    	 
+		       	var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+		       	
+		     	if (day>29 || (day==29 && !isleap)) {
+		     		
+		     		$('#birth_check').text('생년월일을 확인해주세요 :)');
+					$('#birth_check').css('color', 'red'); 
+		    	
+				}else{
+					$('#birth_check').text('');
+					birthJ = true;
+				}// end of if (day>29 || (day==29 && !isleap))
+		     	
+		    }else{
+		    	
+		    	$('#birth_check').text(''); 
+				birthJ = true;
+			}// end of if
+			
+			}else{
+				// 1.입력된 생년월일이 8자 초과할때 : auth:false
+				$('#birth_check').text('생년월일을 확인해주세요 :)');
+				$('#birth_check').css('color', 'red');  
+			}
+		})
 
 		$('<button/>')
 		.text('가입완료')
@@ -230,7 +291,6 @@ auth =(()=>{
 		.appendTo('.moin-login form.signup')
 		.click(e=>{
 			e.preventDefault()
-			let cntcd = $('#phone1').text().substr(1, $('#phone1').text().indexOf(' '))
 			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
 				$.ajax({
 					url : _+'/customers/',
