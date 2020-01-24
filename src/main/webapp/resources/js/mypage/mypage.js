@@ -71,7 +71,6 @@ mypage =(()=>{
 		$('#logout')
 		.click(()=>{
 			sessionStorage.setItem('CUS', null);
-			alert('로그아웃 세션'+sessionStorage.getItem('CUS'))
 			app.onCreate()
 		})
 		
