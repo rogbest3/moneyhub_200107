@@ -14,5 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RCPT {
 
-	private String faqid, title, content;
+	private String bsdate,mpcn,cno,rcp,rcpDt,rcpPnm,place,crtmem,crtdt,upmem,updt;
+	private int seq;
 }

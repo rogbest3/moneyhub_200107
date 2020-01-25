@@ -5,7 +5,7 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js
+		line_graph_js,deal
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -19,6 +19,7 @@ mypage =(()=>{
 		main_class = 'themoin-main'
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
+		deal = $.deal()
 	}
 	
 	let onCreate =()=>{
@@ -58,9 +59,8 @@ mypage =(()=>{
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
-			var deal = new Object();
-			deal.amount = document.getElementById('send_amount').value;
-			sessionStorage.setItem('deal', deal.amount);
+			deal.amount = document.getElementById('send_amount').value  //처음 입력한 송금액
+			sessionStorage.setItem('deal', JSON.stringify(deal));
 			foreignRemit.onCreate()
 		})
 		 

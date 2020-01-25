@@ -1,7 +1,7 @@
 var remit_vue = remit_vue || {}
 remit_vue = {
 	remit_first: () => {
-			deal  = sessionStorage.getItem('deal')
+		deal = $.deal()
 		return `<div class="themoin-remit-extended-component"> 
 						<h2 class="title-amount">보내는 금액을 확인해주세요.</h2> 
 						<div id="moin-event-amount" class="moin-event-amount" style="text-align: center;"> 
@@ -11,7 +11,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class=""> 
 									<p>송금 금액</p> 
-									<input class="send-amount"  type="text" tabindex="0" placeholder="0.00" value="${deal}"> 
+									<input class="send-amount" id= "sd_amount"  type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
 									<p>미화</p><h3>USD</h3> 
@@ -19,7 +19,7 @@ remit_vue = {
 							</div> 
 							<div class="description"> 
 								<i class="empty"></i> 
-								<p><span id="fee_check"></span> USD (수수료)</p>
+								<p><span id="fee_check">$</span> USD (수수료)</p>
 								<div class="spacer"></div> 
 								<p>3,000$ 이상은 12$</p>
 							</div> 
@@ -49,7 +49,7 @@ remit_vue = {
 				</div>`
 	},
 		
-	remit_sec: ()=>{
+	remit_cusInfo: ()=>{
 		return `<div class="themoin-remit-step-form">
 							<div class="header-progress">
 								<div class="step-item current">

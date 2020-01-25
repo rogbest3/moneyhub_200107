@@ -14,5 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TRDHR {
 
-	private String faqid, title, content;
+	private String bsdate,mpcn,cno,trdStatCd,chngCausCd,trdAmnt,acctNo,cntcd,crtmem,crtdt,upmem,updt;
+	private int seq;
+	private double exrate;
 }
