@@ -26,7 +26,7 @@ app =(()=>{
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
 		main_class = 'themoin-landing'
-		tables_mgmt_js =  js + '/tables/tables_mgmt.js'
+		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_popup_js = js + '/remit/remit_popup.js'
 	}
 	
@@ -44,7 +44,7 @@ app =(()=>{
 			$.getScript(remit_popup_js)
 		)
 		.done(()=>{
-			//=============================================================
+			//============================================================= 송금 개발용
 			auth.onCreate('login')
 			//=============================================================
 			/*setContentView()
@@ -58,26 +58,31 @@ app =(()=>{
 	let setContentView =()=>{
 		$('head')
 		.append(cmm_vue.head()) 
-		//================================================================= 로그인전 화면
+		//================================================================= 송금 개발용
 		$('#root')
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
 		.append(cmm_vue.footer())
 		//=================================================================
-		/*if(sessionStorage.getItem('CUS') != null ){ //세션 정보로 메인 화면 구분
-			alert('로그인된 세션 빈거'+sessionStorage.getItem('CUS'))
+		/*if($.cusInfo() != null && $.cusInfo() != ''){ //세션 정보로 메인 화면 구분 -> 새로고침 찾아서 적용할 것
+			alert('로그인된 세션'+$.cusInfo())
 			$('#root')
 			.html(nav_vue.logined_nav(_))
 			.append(main_vue.logined_main())
 		}else{
-			alert('로그인 전  세션 빈거'+sessionStorage.getItem('CUS'))
+			alert('로그인 전  세션'+$.cusInfo())
 			$('#root')
 			.html(nav_vue.nav(_))
 			.append(main_vue.main())
 		}
-		$('#root').append(cmm_vue.footer())
-		*/
-		
+		$('#root').append(cmm_vue.footer())*/
+		//========================================================새로고침시 세션비우기
+		/*function Reload(){
+			if(event.keyCode == 116)
+				sessionStorage.clear()
+		}
+		document.onkeydown = Reload;*/
+		//=========================================================
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')

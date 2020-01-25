@@ -83,11 +83,14 @@
 	<script src="<%=application.getContextPath()%>/resources/js/tables/tables_mgmt.js"></script>	
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/Chart.min.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/utils.js"></script>
+
+	
 </head>
 <body id="page-top">
 	<div id="root"></div>
 	<script>
 		app.run('<%=application.getContextPath()%>')
+		
 	</script>
 </body>
 </html>

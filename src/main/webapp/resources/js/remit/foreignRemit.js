@@ -48,6 +48,7 @@ foreignRemit = (()=>{
 		$('#first_remit_btn').click(()=>{
 			deal.amount =  document.getElementById('sd_amount').value //송금액을 바꿨을 때 금액
 			deal.fee = document.getElementById('fee_check').innerHTML
+			deal.bsdate = 
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_cusInfo()
 			})
@@ -77,13 +78,12 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_review())
 		
 		$('#complete_remit_btn')
-		.click( e => {  //ajax 통신, 보낼 정보 송금액, 수수료, 입금액, mpcn,수취자 정보,수취국가, 수취 지점,
+		.click( e => {  //ajax 통신, 보낼 정보 송금액, 수수료, 입금액,수취자 정보,수취국가, 수취 지점
 			e.preventDefault()
-			alert('sd amount'+$('#sd_amount').val())
 			$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',
-				data : JSON.stringify({amount : sessionStorage.getItem('amount')}),
+				data : JSON.stringify(deal),
 				dataType : 'json',
 				contentType :'application/json',
 				success : d => {

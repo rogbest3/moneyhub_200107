@@ -74,8 +74,8 @@ mypage =(()=>{
 		
 		$('#logout')
 		.click(()=>{
-			sessionStorage.setItem('CUS', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다.
-			alert('로그아웃 세션'+sessionStorage.getItem('CUS'))
+			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다.
+			alert('로그아웃 세션'+sessionStorage.getItem('cus'))
 			app.onCreate()
 		})
 		

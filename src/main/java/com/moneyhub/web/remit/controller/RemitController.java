@@ -3,21 +3,27 @@ package com.moneyhub.web.remit.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moneyhub.web.pxy.Box;
+import com.moneyhub.web.pxy.Proxy;
+import com.moneyhub.web.remit.services.RemitService;
+
 @RestController
 @RequestMapping("/remit")
-public class RemitController {
-	
+public class RemitController extends Proxy{
+		@Autowired
+		private Box<Object> box;
+		@Autowired
+		private RemitService remitService; 
+		
 		@PostMapping("/insert")
-		public Map<?,?> insertRemit(@RequestBody String amount ){
-			Map<String, String> map = new HashMap<String, String>();
-			System.out.println("ajax가 보낸 deal"+ amount);
-			map.put("amount", amount);
-			System.out.println(map.get("amount")+"맵에 담긴 deal");
-			return map;
+		public void insertRemit(@RequestBody HashMap<String, Object> deal ){
+			System.out.println("ajax가 보낸 deal"+ deal);
+			remitService.insertRemit(deal);
 		}
 }

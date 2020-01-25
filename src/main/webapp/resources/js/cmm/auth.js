@@ -79,11 +79,11 @@ auth =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
-						setCookie("CEMAIL", d.cus.cemail)
-						setCookie("CPWD", d.cus.cpwd)
-						setCookie("CNO", d.cus.cno)
+						//====================================================== 세션에 저장
+						sessionStorage.setItem('cus', JSON.stringify(d.cus))
+						//======================================================
 						mypage.onCreate()
-						sessionStorage.setItem('CUS', d.cus.cemail);  // 세션에 고객 정보 추가
+					
 					}
 					else{
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')

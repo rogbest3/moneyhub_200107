@@ -50,6 +50,7 @@ remit_vue = {
 	},
 		
 	remit_cusInfo: ()=>{
+		cus = $.cusInfo()
 		return `<div class="themoin-remit-step-form">
 							<div class="header-progress">
 								<div class="step-item current">
@@ -87,15 +88,8 @@ remit_vue = {
 										<div class="form-row col-2">
 											<div class="firstname">
 												<div class="moin-input">
-													<label style="color: rgb(116, 127, 155);">이름 (First name)</label>
-													<input class="fs-block" placeholder="Gildong" type="text" tabindex="0" value="" readonly="">
-												</div>
-												<p class="moin-error"></p>
-											</div>
-											<div class="lastname">
-												<div class="moin-input">
-													<label style="color: rgb(116, 127, 155);">성 (Last name)</label>
-													<input class="fs-block" placeholder="Hong" type="text" tabindex="0" value="" readonly="">
+													<label style="color: rgb(116, 127, 155);">이름 (Name)</label>
+													<input class="fs-block" type="text" tabindex="0" value="${cus.cname}" readonly="">
 												</div>
 												<p class="moin-error"></p>
 											</div>

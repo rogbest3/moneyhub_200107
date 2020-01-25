@@ -3,5 +3,25 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.moneyhub.web.remit.mapper.RemitMapper">
+<mapper namespace="com.moneyhub.web.remit.mappers.RemitMapper">
+<insert id="insertFee" parameterType="Remit">
+	    INSERT INTO FEE ( BSDATE, MPCN, CNO, FEE_STAT_CD,FEE_AMNT,CRTMEM) VALUES (
+	    	#{bsdate}, #{mpcn}, #{cno}, #{feeStatCd},#{feeAmnt}, #{crtmem}
+	    )
+	</insert>
+	<insert id="insertRCPT" parameterType="Remit">
+	    INSERT INTO RCPT ( BSDATE, MPCN, CNO, RCP,RCP_DT,RCP_PNM,PLACE,CRTMEM ) VALUES (
+	    	#{bsdate}, #{mpcn}, #{cno}, #{rcp},#{rcpDt}, #{rcpPnm}, #{place}, #{crtmem}
+	    )
+	</insert>
+	<insert id="insetTRDHR" parameterType="Remit">
+	    INSERT INTO TRDHR (BSDATE, MPCN, CNO, TRD_STAT_CD, CHNG_CAUS_CD, TRD_AMNT,ACCT_NO,CNTCD,EXRATE,CRTMEM ) VALUES (
+	    	#{bsdate}, #{mpcn}, #{cno},#{trdStatCd},#{chngCausCd}, #{trdAmnt}, #{acctNo},#{cntcd},#{exrate},#{crtmem}
+	    )
+	</insert>
+	<insert id="insertTRD" parameterType="Remit">
+	   INSERT INTO TRD (BSDATE, MPCN, CNO, TRD_STAT_CD, CHNG_CAUS_CD, TRD_AMNT,ACCT_NO,CNTCD,EXRATE,CRTMEM ) VALUES (
+	    	#{bsdate}, #{mpcn}, #{cno},#{trdStatCd},#{chngCausCd}, #{trdAmnt}, #{acctNo},#{cntcd},#{exrate},#{crtmem}
+	    )
+	</insert>
 </mapper>
