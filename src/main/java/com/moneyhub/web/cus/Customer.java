@@ -18,7 +18,6 @@ public class Customer {
 					cemail,
 					cpwd,
 					cname,
-					cphone,
 					cstcd,		// 고객상태코드
 					sdate,		// 가입일
 					wdate,		// 탈퇴일

@@ -29,6 +29,10 @@ cus_info =(()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.cus_info())
 		$.getJSON(_+'/customers/cusInfo/' + $('#cemail').val(), d=>{
+			cemail : sessionStorage.getItem('CEMAIL')
+			zip : sessionStorage.setItem('ZIP', d.cus.zip)
+			addr : sessionStorage.setItem('ADDR', d.cus.addr)
+			daddr : sessionStorage.setItem('DADDR', d.cus.daddr)
 			$('#infoEmail').text(d.cus.cemail)
 			$('#infoName').text(d.cus.cname)
 			$('#infoZip').text(d.cus.zip)

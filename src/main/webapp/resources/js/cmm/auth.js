@@ -79,17 +79,12 @@ auth =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
-						/*
-						 * setCookie("CEMAIL", d.cus.cemail) setCookie("CPWD",
-						 * d.cus.cpwd) setCookie("CNAME", d.cus.cname)
-						 * setCookie("CNTCD", d.cus.cntcd) setCookie("CPHONE",
-						 * d.cus.cphone) setCookie("ZIP", d.cus.zip)
-						 * setCookie("ADDR", d.cus.addr) setCookie("CNO",
-						 * d.cus.cno)
-						 */
-						
-						sessionStorage.setItem('CUS', d.cus.cemail)
-						alert('로그인 회원정보' + sessionStorage.getItem('CUS', d.cus.cemail))
+						sessionStorage.setItem('CEMAIL', d.cus.cemail)
+						sessionStorage.setItem('CPWD', d.cus.cpwd)
+						sessionStorage.setItem('ZIP', d.cus.zip)
+						sessionStorage.setItem('ADDR', d.cus.addr)
+						sessionStorage.setItem('DADDR', d.cus.daddr)
+						sessionStorage.setItem('CNO', d.cus.cno)
 						mypage.onCreate()
 					}
 					else{
@@ -285,7 +280,6 @@ auth =(()=>{
 				$('#birth_check').css('color', 'red');  
 			}
 		})
-
 		$('<button/>')
 		.text('가입완료')
 		.addClass('btn-submit')
@@ -314,6 +308,7 @@ auth =(()=>{
 						if(d.msg === 'SUCCESS'){
 							login_page()
 							login()
+							alert('회원가입이 완료되었습니다.')
 						}else{
 							alert('회원가입 실패')
 						}

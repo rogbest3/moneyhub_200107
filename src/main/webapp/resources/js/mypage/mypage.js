@@ -70,7 +70,7 @@ mypage =(()=>{
 		
 		$('#logout')
 		.click(()=>{
-			sessionStorage.setItem('CUS', null);
+			sessionStorage.setItem('CEMAIL', null);
 			app.onCreate()
 		})
 		

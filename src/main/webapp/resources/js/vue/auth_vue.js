@@ -422,7 +422,9 @@ auth_vue ={
 		'				<div class="form-row col-2">'+
 		'							<div class="themoin-composite-input moin-input-group phone2">'+
 		'								<div class="extra-controls">'+
-		'									<button>우편번호 검색</button>'+
+//		'									<input type="button" onclick="fn_setAddr()" value="우편번호 찾기">'+
+//		'									<button">우편번호 검색</button>'+
+		'               					 <button onclick="fn_setAddr()" class="btn-zipcode" type="button" tabindex="0">주소 검색</button>'+
 		'								</div>'+
 		'								<div class="moin-input">'+
 		'									<label style="color: rgb(116, 127, 155);">우편번호(Zip)</label>'+

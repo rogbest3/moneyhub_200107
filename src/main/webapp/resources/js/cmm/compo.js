@@ -29,7 +29,6 @@ compo =(()=>{
 		.html(compo_vue.compo(img))
 		$('html').scrollTop(0)
 		
-		alert('과연?!')
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = { 
 	        center: new kakao.maps.LatLng(37.5523419,126.9377159), // 지도의 중심좌표

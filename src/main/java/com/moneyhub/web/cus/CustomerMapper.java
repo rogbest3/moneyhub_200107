@@ -14,4 +14,5 @@ public interface CustomerMapper {
 	public void withdrawal(Customer param);
 	public void pwdChg(Customer param);
 	public Customer cusInfo(Customer param);
+	public void cusInfoChg(Customer param);
 }

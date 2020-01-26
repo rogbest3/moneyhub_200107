@@ -72,8 +72,7 @@
 	
 	<update id="cusInfoChg" parameterType="Customer">
 		UPDATE CUSTOMER
-		SET CNAME = #{cname},
-		ZIP = #{zip},
+		SET ZIP = #{zip},
 		ADDR = #{addr},
 		DADDR = #{daddr}
 		WHERE CEMAIL = #{cemail}
