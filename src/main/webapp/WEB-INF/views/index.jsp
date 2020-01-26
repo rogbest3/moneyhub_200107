@@ -39,6 +39,9 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
 	
+	<!-- kakao map -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b335250e135b3c4aeca8f2b704648e5c"></script>
+	
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/cmm_vue.js"></script>
