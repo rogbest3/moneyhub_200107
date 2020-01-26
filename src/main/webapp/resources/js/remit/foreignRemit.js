@@ -48,7 +48,6 @@ foreignRemit = (()=>{
 		$('#first_remit_btn').click(()=>{
 			deal.amount =  document.getElementById('sd_amount').value //송금액을 바꿨을 때 금액
 			deal.fee = document.getElementById('fee_check').innerHTML
-			deal.bsdate = 
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_cusInfo()
 			})
@@ -57,20 +56,24 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_cusInfo())
 		$('#sec_remit_btn').click(()=>{
-				remit_third()
+				remit_rcpt()
 			})
 		$('#prev_fs_remit_btn').click(()=>{
 			onCreate()
 			})
 	}
-	let remit_third = ()=>{
+	let remit_rcpt = ()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_third())
+		.html(remit_vue.remit_rcpt())
 		$('#third_remit_btn').click(()=>{
+			deal.rcpsf =  document.getElementById('pass_fnm').value
+			deal.rcpsl =  document.getElementById('pass_lnm').value
+			deal.rcemail =  document.getElementById('rcpt_email').value
+			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_review()
 		})
 		$('#prev_sec_remit_btn').click(()=>{
-			remit_sec()
+			remit_cusInfo()
 			})
 	}
 	let remit_review = ()=>{
@@ -78,7 +81,7 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_review())
 		
 		$('#complete_remit_btn')
-		.click( e => {  //ajax 통신, 보낼 정보 송금액, 수수료, 입금액,수취자 정보,수취국가, 수취 지점
+		.click( e => {  //송금액, 수수료, 입금액,수취자 여권이름(성,이름),수취국가, 수취이메일
 			e.preventDefault()
 			$.ajax({
 				url: _+'/remit/insert',

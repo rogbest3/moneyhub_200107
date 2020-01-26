@@ -4,7 +4,7 @@ app =(()=>{
 	const WHEN_ERR = '0 - js파일을 찾지 못했습니다.'
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,remit_popup_js
+		tables_mgmt_js,remit_popup_js,guide_recieve_js
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -25,6 +25,7 @@ app =(()=>{
 		compo_js = js + '/cmm/compo.js'
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
+		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_popup_js = js + '/remit/remit_popup.js'
@@ -41,7 +42,8 @@ app =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(tables_mgmt_js),
-			$.getScript(remit_popup_js)
+			$.getScript(remit_popup_js),
+			$.getScript(guide_recieve_js)
 		)
 		.done(()=>{
 			//============================================================= 송금 개발용
@@ -104,7 +106,6 @@ app =(()=>{
 		})
 		
 		$('#tables_mgmt_a')
-
 		.click(()=>{
 			tables_mgmt.onCreate()
 		})
@@ -128,6 +129,11 @@ app =(()=>{
 		$('#faq')
 		.click(()=>{
 			faq.onCreate(main_class)
+		})
+		
+		$('#guide')
+		.click(()=>{
+			guide_recieve.onCreate(main_class)
 		})
 		
 		$('.themoin-header a.logo')

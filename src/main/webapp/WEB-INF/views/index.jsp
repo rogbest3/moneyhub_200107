@@ -24,7 +24,6 @@
 	
 	<!--카카오 css-->
 	<link href="/web/resources/css/kabang.css" rel="stylesheet" type="text/css">
-	
 <!-- Add a banner for Appstore link -->
 	<meta name="apple-itunes-app" content="app-id=1228063143">
 	<title>머니허브(MoneyHub) 해외송금</title>
@@ -54,6 +53,8 @@
 	<script src="<%=application.getContextPath()%>/resources/js/vue/event_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/faq.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/faq_vue.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/cmm/guide_recieve.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/vue/guide_vue.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/remit/foreignRemit.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
