@@ -45,6 +45,9 @@
 	<!-- kakao zip -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	
+	<!-- kakao login -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/cmm_vue.js"></script>
@@ -90,7 +93,8 @@
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/Chart.min.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/utils.js"></script>
 	
-	<script src="<%=application.getContextPath()%>/resources/js/zip/postcode.v2.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/kakao/postcode.v2.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/kakao/kakao_login.js"></script>
 
 </head>
 <body id="page-top">
