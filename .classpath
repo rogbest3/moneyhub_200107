@@ -35,11 +35,17 @@
 	</classpathentry>
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 		<attributes>
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 		<attributes>
