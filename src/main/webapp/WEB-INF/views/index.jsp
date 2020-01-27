@@ -38,6 +38,15 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
 	
+	<!-- kakao map -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b335250e135b3c4aeca8f2b704648e5c"></script>
+	
+	<!-- kakao zip -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
+	<!-- kakao login -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/cmm_vue.js"></script>
@@ -60,6 +69,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_dropdown.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_popup.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/mypage/remit_box.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/cus_info.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/sidebar.js"></script>
@@ -84,14 +94,16 @@
 	<script src="<%=application.getContextPath()%>/resources/js/tables/tables_mgmt.js"></script>	
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/Chart.min.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/utils.js"></script>
+	
+	<script src="<%=application.getContextPath()%>/resources/js/kakao/postcode.v2.js"></script>
 
 	
 </head>
 <body id="page-top">
 	<div id="root"></div>
+	<div id="popup-root"></div>
 	<script>
 		app.run('<%=application.getContextPath()%>')
-		
 	</script>
 </body>
 </html>
