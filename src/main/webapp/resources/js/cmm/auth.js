@@ -47,7 +47,7 @@ auth =(()=>{
 		.appendTo('.themoin-login')
 		
 		$('#cemail').val('1')
-		$('#cpwd').val('11')
+		$('#cpwd').val('1')
 		
 		join_2_page_btn()
 	}
