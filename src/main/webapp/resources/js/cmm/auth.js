@@ -80,14 +80,16 @@ auth =(()=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
-						/*sessionStorage.setItem('cus', JSON.stringify(d.cus))*/
+						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						//======================================================
+						//====================================================== MK
 //						alert(d.cus.cname+'님 환영합니다.')
 						$.extend(new Customer_Info(d.cus))
 /*						setCookie("CEMAIL", d.cus.cemail)
 						setCookie("CPWD", d.cus.cpwd)
 						setCookie("CNO", d.cus.cno)*/
 //						alert(`세션 ID : ${$.cemail()}`)
+							//======================================================
 						mypage.onCreate()
 					}
 					else{
