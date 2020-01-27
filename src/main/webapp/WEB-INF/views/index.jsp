@@ -94,7 +94,6 @@
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/utils.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/kakao/postcode.v2.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/kakao/kakao_login.js"></script>
 
 </head>
 <body id="page-top">

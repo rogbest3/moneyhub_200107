@@ -2,7 +2,7 @@
 var auth = auth || {}
 auth =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, img, auth_vue_js, cookie_js
+	let _, js, img, auth_vue_js, cookie_js, kakao_js
 	
 	let init =()=>{
 		_ = $.ctx()
@@ -10,6 +10,7 @@ auth =(()=>{
 		img = $.img()
 		auth_vue_js = js + '/vue/auth_vue.js'
 		cookie_js = js + '/cmm/cookie.js'
+		kakao_js = js + '/kakao/kakao_login.js'
 	}
 	let onCreate =x=>{
 		init()
@@ -97,6 +98,7 @@ auth =(()=>{
 				}
 			})
 		})
+		$.getScript(kakao_js)
 	}
 	
 	let join_1_page =()=>{
@@ -170,6 +172,7 @@ auth =(()=>{
 			
 			join()
 		})
+		$.getScript(kakao_js)
 	}
 
 	// 이메일 검사 정규식
