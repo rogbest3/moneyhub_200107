@@ -8,6 +8,7 @@ function Session(x){
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
 	var deal = new Object() // 송금 객체
 	sessionStorage.setItem('deal',JSON.stringify(deal));
+
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
 		js : ()=>{ return sessionStorage.getItem('js');},
