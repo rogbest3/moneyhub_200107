@@ -14,7 +14,7 @@ exrate =(()=>{
 //		alert($('#remit_box .amount-row .receive h3').text())
 		let cntcd = $('.form-calculator .amount-row .receive h3').text()
 		let exrate_arr = []
-		$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
+		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist.reverse(), (i, j)=>{
 				exrate_arr.push(parseFloat(j.exrate))
 			})

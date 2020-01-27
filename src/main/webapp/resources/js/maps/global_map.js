@@ -1,7 +1,36 @@
 $(document).ready(function(){
 //    $(function () {
-	$.getJSON(`${$.ctx()}/`)
+	let date = new Date();
+	let yyyy = date.getFullYear()
+	let mm = (date.getMonth() + 1).toString()
+	let dd = date.getDate().toString()
 	
+	mm = mm[1] ? mm : "0" + mm[0]
+	dd = dd[1] ? dd : "0" + dd[0]
+	let bdate = `${yyyy}-${mm}-${dd}`
+	let usd, eur, cny, jpy, aud		
+	
+	$.getJSON(`${$.ctx()}/exrate/search/bdate/${bdate}`, d=>{
+		$.each(d.exlist, (i,j)=>{	
+			switch (j.cntcd) {
+			case 'USD':
+				usd = j.exrate
+				break;
+			case 'EUR':
+				eur = j.exrate
+				break;
+			case 'CNY':
+				cny = j.exrate
+				break;
+			case 'JPY':
+				jpy = j.exrate
+				break;
+			case 'AUD':
+				aud = j.exrate
+				break;
+			}	
+		})
+
             $(".mapcontainer").mapael({
                 map: {
                     name: "world_countries",
@@ -30,8 +59,8 @@ $(document).ready(function(){
                             	if(id === 'KR'){
                             		alert('KR ' + id)
                             	}
-                            	else if(id === 'US'){
-                            		alert('US ' + id)
+                            	else if(id === 'US' || id === 'MX'){
+                            		alert('US ')
                             	}
                             	else if(id === 'JP'){
                             		alert('JP ' + id)
@@ -153,7 +182,7 @@ $(document).ready(function(){
                             	min: 500,
                                 max: 5000000,
                                 attrs: {
-                                    fill: "#459bd9"		// 6aafe1
+                                    fill: "#d3e7f5"		// 6aafe1
                                 },
                                 label: "Less than 5 millions inhabitants"
                             },
@@ -161,7 +190,7 @@ $(document).ready(function(){
                                 min: 5000000,
                                 max: 10000000,
                                 attrs: {
-                                    fill: "#459bd9"
+                                    fill: "#b9d9f0"	// 459bd9
                                 },
                                 label: "Between 5 millions and 10 millions inhabitants"
                             },
@@ -169,7 +198,7 @@ $(document).ready(function(){
                                 min: 10000000,
                                 max: 50000000,
                                 attrs: {
-                                    fill: "#2579b5"	//#2579b5
+                                    fill: "#9ccaeb"	//#2579b5
                                 },
                                 label: "Between 10 millions and 50 millions inhabitants",
                                 clicked: true
@@ -177,7 +206,7 @@ $(document).ready(function(){
                             {
                                 min: 50000000,
                                 attrs: {
-                                    fill: "#2579b5" //	1a527b
+                                    fill: "#77b6e3" //	1a527b
                                 },
                                 label: "More than 50 millions inhabitants"
                             }
@@ -275,7 +304,7 @@ $(document).ready(function(){
   					        "content": "<span style=\"font-weight:bold;\">Korea, Republic Of<\/span><br \/>Population : 49779000"
   					      },
   					    //tooltip: {content: "대한민국 - 1 KRW"},
-  					     text: {content: "대한민국 - 1 KRW", attrs: {fill: "#000", "font-size": 18, }, 
+  					     text: {content: `대한민국 - 1 KRW`, attrs: {fill: "#000", "font-size": 18, }, 
   					     position : "top", "font-weight" : "bold"}
   					  },
                 	  "US": {
@@ -284,7 +313,7 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">United States<\/span><br \/>Population : 311591917"
                           },
-                          text: {content: "미국 - 1 USD", attrs: {fill: "#000", "font-size": 18, }, 
+                          text: {content: `미국 - ${usd} USD`, attrs: {fill: "#000", "font-size": 18, }, 
        					  position : "left", "font-weight" : "bold"}
                       },
                       "JP": {
@@ -293,8 +322,8 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Japan<\/span><br \/>Population : 127817277"
                           },
-                          text: {content: "일본 - 1 JPY", attrs: {fill: "#000", "font-size": 18, }, 
-           				  position : "right", "font-weight" : "bold"}
+                          text: {content: `일본 - ${jpy} JPY`, attrs: {fill: "#000", "font-size": 18, }, 
+           				  position : "bottom", "font-weight" : "bold"}
                       },
                       "CN": {
                           "value": "400",
@@ -302,7 +331,7 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">China<\/span><br \/>Population : 1344130000"
                           },
-                          text: {content: "중국 - 1 CNY", attrs: {fill: "#000", "font-size": 18, },
+                          text: {content: `중국 - ${cny} CNY`, attrs: {fill: "#000", "font-size": 18, },
                				  position : "center", "font-weight" : "bold"}
                       },
                       "SG": {
@@ -320,7 +349,7 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Australia<\/span><br \/>Population : 22620600"
                           },
-                          text: {content: "호주 - 1 AUD", attrs: {fill: "#000", "font-size": 18, },
+                          text: {content: `호주 - ${aud} AUD`, attrs: {fill: "#000", "font-size": 18, },
                				  position : "center", "font-weight" : "bold"}
                       },
                       "GB": {
@@ -347,7 +376,7 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Germany<\/span><br \/>Population : 81726000"
                           },
-                          text: {content: "독일 - 1 EUR", attrs: {fill: "#000", "font-size": 18, },
+                          text: {content: `독일 - ${eur} EUR`, attrs: {fill: "#000", "font-size": 18, },
                				  position : "top", "font-weight" : "bold"}
                       },
                       "FR": {
@@ -1155,7 +1184,7 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Mexico<\/span><br \/>Population : 114793341"
                           },
-                          text: {content: "미국 - 1 USD", attrs: {fill: "#000", "font-size": 18, }, 
+                          text: {content: `미국 - ${usd} USD`, attrs: {fill: "#000", "font-size": 18, }, 
            					  position : "top", "font-weight" : "bold"}
                           
                       },
@@ -1658,8 +1687,8 @@ $(document).ready(function(){
                       }
                       
                 }
-            });
-
+            })
+		})
             var all_hidden = 'show',
                 areas_hidden = 'show',
                 plots_hidden = 'show';

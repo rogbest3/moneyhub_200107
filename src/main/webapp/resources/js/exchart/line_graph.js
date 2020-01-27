@@ -71,7 +71,7 @@ $(document).ready(function(){
 	let ctx = document.getElementById('canvas').getContext('2d');
 	
 	let cntcd = $('#remit_box .amount-row .receive h3').text()
-	$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
+	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))

@@ -12,5 +12,6 @@ public interface ExrateMapper {
 	public void truncateExrate(HashMap<String, String> map);	
 	public void insertExrate(Exrate exrate);
 	
-	public ArrayList<Exrate> searchExrate(String s);
+	public ArrayList<Exrate> cntcdSearchExrate(String s);
+	public ArrayList<Exrate> bdateSearchExrate(String s);
 }

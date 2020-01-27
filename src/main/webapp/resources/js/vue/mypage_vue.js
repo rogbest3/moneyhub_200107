@@ -720,17 +720,22 @@ mypage_vue = {
 				        <div class="map">
 				            <span>Alternative content for the map</span>
 				        </div>
-				        <input type="button" value="Hide/Show all legends" id="button-all"/>
-				        <input type="button" value="Hide/Show areas legend" id="button-areas"/>
-				        <input type="button" value="Hide/Show plots legend" id="button-plots"/>
-				        <div class="areaLegend">
-				            <span>Alternative content for the legend</span>
-				        </div>
-				        <div class="plotLegend">
-				            <span>Alternative content for the legend</span>
-				        </div>
+				    </div>
+				    <div id="amount">
+				    	<ul></ul>
+				    	
+				    	
 				    </div>
 				</div>`
+	 /* 	  <input type="button" value="Hide/Show all legends" id="button-all"/>
+	        <input type="button" value="Hide/Show areas legend" id="button-areas"/>
+	        <input type="button" value="Hide/Show plots legend" id="button-plots"/>
+	        <div class="areaLegend">
+	            <span>Alternative content for the legend</span>
+	        </div>
+	        <div class="plotLegend">
+	            <span>Alternative content for the legend</span>
+	        </div>*/
 	},
 	exchange_test_head : ()=>{
 		return `<style type="text/css">
