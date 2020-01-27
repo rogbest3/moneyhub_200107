@@ -70,18 +70,13 @@ $(document).ready(function(){
 //	alert('그래프')
 	let ctx = document.getElementById('canvas').getContext('2d');
 	
-//	alert($('#remit_box .amount-row .receive h3').text())
 	let cntcd = $('#remit_box .amount-row .receive h3').text()
 	$.getJSON( '/web/exrate/search/' + cntcd, d=>{	
 		$.each(d.exlist.reverse(), (i, j)=>{
-//				lineChartData.datasets[0].data[i] = j.exrate 
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
 		})
 		config.options.title.text = `1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
-//		$('#cntcd_exrate')
-//		.text(`1 ${cntcd} = ${config.data.datasets[0].data[9]} KRW`)
-			
 
 		//		수수료 1.5%
 		receive_value_calc()
@@ -104,8 +99,6 @@ $(document).ready(function(){
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	}
 })
-		
-			
 		
 
 /*		document.getElementById('randomizeData').addEventListener('click', function() {

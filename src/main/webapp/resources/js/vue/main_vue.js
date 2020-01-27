@@ -426,7 +426,7 @@ main_vue ={
 			      			</a>
 			      			<h3>송금 국가 선택</h3>
 			      			<div id="popup_box">
-			      				<form>
+			      				<form onsubmit="return false">
 			      					<input type="text" placeholder="송금국가를 선택해주세요.">
 			      					<button>입력</button>
 			      				</form>

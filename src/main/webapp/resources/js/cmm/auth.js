@@ -119,7 +119,6 @@ auth =(()=>{
 			$(auth_vue.join_2(img))
 			.appendTo('.themoin-signup')
 			
-			
 			$('#agree_box_all')
 				.click(function(){
 					if($(this).children('div').hasClass("checked") == true){
