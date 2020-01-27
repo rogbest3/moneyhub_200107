@@ -721,10 +721,9 @@ mypage_vue = {
 				            <span>Alternative content for the map</span>
 				        </div>
 				    </div>
-				    <div id="amount">
-				    	<ul></ul>
-				    	
-				    	
+				    <div id="amount" class="themoin-info-preview">
+				    	<ol></ol>
+
 				    </div>
 				</div>`
 	 /* 	  <input type="button" value="Hide/Show all legends" id="button-all"/>
