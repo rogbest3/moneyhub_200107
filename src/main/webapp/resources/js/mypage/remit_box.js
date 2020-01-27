@@ -1,12 +1,12 @@
 "use strict"
 var remit_box = remit_box || {}
 remit_box =(()=>{
-	let _, js, line_graph_js, exchange_js, flag
+	let _, js, line_graph_js, exrate_js, flag
 	let init =x=>{
 		_ = $.ctx()
 		js = $.js()
 		line_graph_js = js + '/exchart/line_graph.js'
-		exchange_js = js + '/exchart/exchange.js'
+		exrate_js = js + '/exchart/exrate.js'
 		flag = x
 	}
 	
@@ -18,9 +18,9 @@ remit_box =(()=>{
 			remit_send()
 		})
 		popup()
-		$.getScript(exchange_js)
+		$.getScript(exrate_js)
 		.done(()=>{
-			exchange.onCreate()
+			exrate.onCreate()
 		})
 	}
 	
@@ -104,7 +104,7 @@ remit_box =(()=>{
 					$.getScript(line_graph_js)
 				}
 				else{
-					exchange.onCreate()
+					exrate.onCreate()
 				}
 			})
 		})

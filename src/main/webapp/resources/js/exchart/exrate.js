@@ -1,5 +1,5 @@
-var exchange = exchange || {}
-exchange =(()=>{
+var exrate = exrate || {}
+exrate =(()=>{
 	let _, js
 	let init =()=>{
 		_ = $.ctx()
