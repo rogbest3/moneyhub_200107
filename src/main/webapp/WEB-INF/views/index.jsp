@@ -84,14 +84,17 @@
 	<script src="<%=application.getContextPath()%>/resources/js/tables/tables_mgmt.js"></script>	
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/Chart.min.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/exchart/utils.js"></script>
+	
+	<script src="<%=application.getContextPath()%>/resources/js/mypage/remit_box.js"></script>
+	
 
 	
 </head>
 <body id="page-top">
 	<div id="root"></div>
+	<div id="popup-root"></div>
 	<script>
 		app.run('<%=application.getContextPath()%>')
-		
 	</script>
 </body>
 </html>

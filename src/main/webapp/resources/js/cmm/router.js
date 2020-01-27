@@ -1,4 +1,5 @@
 "use strict"
+
 function Session(x){	
 	sessionStorage.setItem('ctx', x);
 	sessionStorage.setItem('js', x + '/resources/js');
@@ -17,4 +18,12 @@ function Session(x){
 		cusInfo : ()=>{return JSON.parse(sessionStorage.getItem('cus'))}
 	}
 }
-
+function Customer_Info(x){
+	sessionStorage.setItem('cemail', x.cemail)
+	sessionStorage.setItem('cname', x.cname)
+	
+	return{
+		cemail : ()=>{ return sessionStorage.getItem('cemail') },
+		cname : ()=>{ return sessionStorage.getItem('cname') }
+	}
+}

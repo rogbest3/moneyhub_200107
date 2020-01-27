@@ -79,11 +79,16 @@ auth =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
-						//====================================================== 세션에 저장
-						sessionStorage.setItem('cus', JSON.stringify(d.cus))
+						//====================================================== 세션에 저장 EJ
+						/*sessionStorage.setItem('cus', JSON.stringify(d.cus))*/
 						//======================================================
+//						alert(d.cus.cname+'님 환영합니다.')
+						$.extend(new Customer_Info(d.cus))
+/*						setCookie("CEMAIL", d.cus.cemail)
+						setCookie("CPWD", d.cus.cpwd)
+						setCookie("CNO", d.cus.cno)*/
+//						alert(`세션 ID : ${$.cemail()}`)
 						mypage.onCreate()
-					
 					}
 					else{
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
@@ -117,7 +122,6 @@ auth =(()=>{
 			
 			$(auth_vue.join_2(img))
 			.appendTo('.themoin-signup')
-			
 			
 			$('#agree_box_all')
 				.click(function(){

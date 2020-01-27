@@ -2,9 +2,10 @@
 var app = app || {}
 app =(()=>{
 	const WHEN_ERR = '0 - js파일을 찾지 못했습니다.'
+	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,remit_popup_js,guide_recieve_js
+		tables_mgmt_js,remit_popup_js,guide_recieve_js, remit_box_js
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -29,6 +30,7 @@ app =(()=>{
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_popup_js = js + '/remit/remit_popup.js'
+		remit_box_js = js + '/mypage/remit_box.js'
 	}
 	
 	let onCreate =()=>{
@@ -43,14 +45,16 @@ app =(()=>{
 			$.getScript(faq_js),
 			$.getScript(tables_mgmt_js),
 			$.getScript(remit_popup_js),
-			$.getScript(guide_recieve_js)
+			$.getScript(guide_recieve_js),
+			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			//============================================================= 송금 개발용
-			auth.onCreate('login')
+			/*auth.onCreate('login')*/
 			//=============================================================
-			/*setContentView()
-			page_move()*/
+			setContentView()
+			page_move()
+			remit_box.onCreate('')
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -60,12 +64,12 @@ app =(()=>{
 	let setContentView =()=>{
 		$('head')
 		.append(cmm_vue.head()) 
-		//================================================================= 송금 개발용
+		//================================================================= 송금 개발용 EJ
 		$('#root')
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
 		.append(cmm_vue.footer())
-		//=================================================================
+		//================================================================= EJ
 		/*if($.cusInfo() != null && $.cusInfo() != ''){ //세션 정보로 메인 화면 구분 -> 새로고침 찾아서 적용할 것
 			alert('로그인된 세션'+$.cusInfo())
 			$('#root')
@@ -78,13 +82,24 @@ app =(()=>{
 			.append(main_vue.main())
 		}
 		$('#root').append(cmm_vue.footer())*/
-		//========================================================새로고침시 세션비우기
+		//========================================================새로고침시 세션비우기 (연구중) EJ
 		/*function Reload(){
 			if(event.keyCode == 116)
 				sessionStorage.clear()
 		}
 		document.onkeydown = Reload;*/
 		//=========================================================
+		
+		$('#popup-root')
+		.html(main_vue.cntcd_popup())
+		.hide()
+	/*	
+		$('.unit-select receive')
+		.click(()=>{
+			$('#root')
+			.append(remit_popup.nation())
+		})*/
+		
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
@@ -98,11 +113,13 @@ app =(()=>{
 		$('#join')
 		.click(()=>{
 			auth.onCreate('join')
+			
 		})
 		
 		$('#login')
 		.click(()=>{
 			auth.onCreate('login')
+			
 		})
 		
 		$('#tables_mgmt_a')
@@ -113,7 +130,6 @@ app =(()=>{
 		$('#admin_login')
 		.click(()=>{
 			adminIndex.onCreate('admin_login')
-
 		})
 
 		$('#compo')
@@ -143,6 +159,6 @@ app =(()=>{
 		})
 		
 	}
-	
+
 	return { run, onCreate }
 })()
