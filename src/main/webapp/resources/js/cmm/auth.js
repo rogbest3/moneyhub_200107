@@ -46,7 +46,7 @@ auth =(()=>{
 		.appendTo('.themoin-login')
 		
 		$('#cemail').val('1')
-		$('#cpwd').val('1')
+		$('#cpwd').val('11')
 					
 		join_2_page_btn()
 	}
@@ -79,10 +79,11 @@ auth =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
-						setCookie("CEMAIL", d.cus.cemail)
-						setCookie("CPWD", d.cus.cpwd)
-						setCookie("CNO", d.cus.cno)
+						//====================================================== 세션에 저장
+						sessionStorage.setItem('cus', JSON.stringify(d.cus))
+						//======================================================
 						mypage.onCreate()
+					
 					}
 					else{
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')

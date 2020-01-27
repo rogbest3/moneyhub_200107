@@ -1,10 +1,11 @@
 "use strict"
 var mypage = mypage || {}
+
 mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js
+		line_graph_js,deal,guide_recieve_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -15,9 +16,11 @@ mypage =(()=>{
 		compo_js = js + '/cmm/compo.js'
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
+		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		main_class = 'themoin-main'
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
+		deal = $.deal()
 	}
 	
 	let onCreate =()=>{
@@ -29,7 +32,8 @@ mypage =(()=>{
 			$.getScript(mypage_vue_js),
 			$.getScript(compo_js),
 			$.getScript(event_js),
-			$.getScript(faq_js)
+			$.getScript(faq_js),
+			$.getScript(guide_recieve_js)
 //			$.getScript(line_graph_js)
 	//		$.getScript(withdrawal_js)
 		)
@@ -57,10 +61,12 @@ mypage =(()=>{
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
+			deal.amount = document.getElementById('send_amount').value  //처음 입력한 송금액
+			sessionStorage.setItem('deal', JSON.stringify(deal));
 			foreignRemit.onCreate()
 		})
+		 
 	}
-	
 	let page_move =()=>{
 		$('#mgmt')
 		.click(()=>{
@@ -70,6 +76,8 @@ mypage =(()=>{
 		
 		$('#logout')
 		.click(()=>{
+			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다.
+			alert('로그아웃 세션'+sessionStorage.getItem('cus'))
 			app.onCreate()
 		})
 		
@@ -86,6 +94,11 @@ mypage =(()=>{
 		$('#faq')
 		.click(()=>{
 			faq.onCreate(main_class)
+		})
+		
+		$('#guide')
+		.click(()=>{
+			guide_recieve.onCreate(main_class)
 		})
 		
 		$('.themoin-header a.logo')

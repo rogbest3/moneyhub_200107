@@ -1,4 +1,4 @@
-package com.moneyhub.web.admin;
+package com.moneyhub.web.remit.domains;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminChart {
-	
-	private String cemail, cpwd, cno, age;
-	
+public class TRDHR {
 
+	private String bsdate,mpcn,cno,trdStatCd,chngCausCd,trdAmnt,acctNo,cntcd,crtmem,crtdt,upmem,updt;
+	private int seq;
+	private double exrate;
 }

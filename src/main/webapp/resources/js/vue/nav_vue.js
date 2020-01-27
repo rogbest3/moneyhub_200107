@@ -76,7 +76,7 @@ nav_vue = {
 		return '<nav class="themoin-header">'+
 		'	<div>'+
 		'		<a class="logo">'+
-'			<img id="navlogo" src="/web/resources/img/logo/white_logo.png">'+
+		'			<img id="navlogo" src="/web/resources/img/logo/white_logo.png">'+
 		'		</a>'+
 		'		<div class="spacer"></div>'+
 		'		<a class="menu">'+

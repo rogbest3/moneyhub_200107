@@ -1,4 +1,4 @@
-package com.moneyhub.web.remit.beans;
+package com.moneyhub.web.remit.domains;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -14,5 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Fee {
 
-	private String faqid, title, content;
+	private String bsdate,mpcn,cno,feeStatCd,crtmem,crtdt,upmem,updt;
+	private int feeAmnt,seq;
 }

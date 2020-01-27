@@ -1,4 +1,4 @@
-package com.moneyhub.web.remit.beans;
+package com.moneyhub.web.remit.domains;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -14,5 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RCPT {
 
-	private String faqid, title, content;
+	private String bsdate,mpcn,cno,rcp,rcpDt,passFnm,passLnm,place,crtmem,crtdt,upmem,updt;
+	private int seq;
 }

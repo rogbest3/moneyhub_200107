@@ -58,9 +58,7 @@ public class ExrateCtrl extends Proxy{
 	public Map<?, ?> insertExrate(@RequestBody HashMap<String, Exrate[]> paramMap){
 		print("insert 진입 - list : " + paramMap.get("paramList").length);
 		print(paramMap.get("paramList").toString());
-
 		exService.insertExrate(paramMap.get("paramList"));
-		
 		box.put("result", "SUCCESS");
 		return box.get();
 	}	
@@ -71,7 +69,6 @@ public class ExrateCtrl extends Proxy{
 		HashMap<String, String> map = new HashMap<>();
 		map.put("DROP_EXRATE", SQL.DROP_EXRATE.toString());
 		exService.deleteExrate(map);
-		
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;

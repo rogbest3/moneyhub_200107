@@ -24,73 +24,11 @@ main_vue ={
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
 		'		<div class="moin-amount">'+
-		/*'			<div class="money-graph">'+
-		'				<h3 class="index-money-title">실제로 받는 금액</h3>'+
-		'				<div class="index-money-rank">'+
-		'					<div id="rank-moin" class="index-money-moin">'+
-		'						<div class="index-money-name">머니허브</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,196.92</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-kb" class="index-money-bank">'+
-		'						<div class="index-money-name">국민은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 50%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,141.75</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-hana" class="index-money-bank">'+
-		'						<div class="index-money-name">하나은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 50%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,141.75</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-woori" class="index-money-bank">'+
-		'						<div class="index-money-name">우리은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 50%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,141.75</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-shinhan" class="index-money-bank">'+
-		'						<div class="index-money-name">신한은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">3,809.81</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-moin-verify" class="index-money-moin-event">'+
-		'						<div class="index-money-name">학생인증</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">0</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-moin-event" class="index-money-moin-event">'+
-		'						<div class="index-money-name">MUB할인</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">0</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'				</div>'+
-		'			</div>'+*/
-
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
 		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" type="text" tabindex="0" placeholder="0">'+
+		'						<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00">'+
 		'					</div>'+
 		'					<div class="unit-select disabled" tabindex="0" >'+
 		'						<p>미 화</p>'+
@@ -99,15 +37,14 @@ main_vue ={
 		'				</div>'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
-		'						<p>예상 비용 (직접입력 가능)</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0">'+
+		'						<p>예상 비용</p>'+
+		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="">'+
 		'					</div>'+
 		'					<div class="unit-select receive" tabindex="0">'+
 		'						<p>아일랜드</p>'+
 		'						<h3>EUR</h3>'+
 		'					</div>'+
 		'				</div>'+
-//		'				<button type="submit" class="index-send-btn moin-body">송금하기</button>'+
 		'			</div>'+
 		'		</div>'+
 		'	</div>'+
@@ -303,72 +240,11 @@ main_vue ={
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
 		'		<div class="moin-amount">'+
-		/*'			<div class="money-graph">'+
-		'				<h3 class="index-money-title">예상 비용</h3>'+
-		'				<div class="index-money-rank">'+
-		'					<div id="rank-moin" class="index-money-moin">'+
-		'						<div class="index-money-name">모&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,256.29</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-kb" class="index-money-bank">'+
-		'						<div class="index-money-name">국민은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 50%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,200.35</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-hana" class="index-money-bank">'+
-		'						<div class="index-money-name">하나은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 50%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,200.35</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-woori" class="index-money-bank">'+
-		'						<div class="index-money-name">우리은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%; width: 50%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">4,200.35</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-shinhan" class="index-money-bank">'+
-		'						<div class="index-money-name">신한은행</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">3,863.71</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-moin-verify" class="index-money-moin-event">'+
-		'						<div class="index-money-name">학생인증</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">0</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'					<div id="rank-moin-event" class="index-money-moin-event">'+
-		'						<div class="index-money-name">모인할인</div>'+
-		'						<div class="index-money-bar">'+
-		'							<div style="height: 100%;"></div>'+
-		'						</div>'+
-		'						<div class="index-money-amount">0</div>'+
-		'						<div class="index-money-unit">EUR</div>'+
-		'					</div>'+
-		'				</div>'+
-		'			</div>'+*/
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
 		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" type="text" tabindex="0" placeholder="0">'+
+		'						<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00"  value="">'+
 		'					</div>'+
 		'					<div class="unit-select disabled" tabindex="0">'+
 		'						<p>미 화</p>'+
@@ -377,15 +253,14 @@ main_vue ={
 		'				</div>'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
-		'						<p>예상 비용 (직접입력 가능)</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0">'+
+		'						<p>예상 비용</p>'+
+		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="">'+
 		'					</div>'+
 		'					<div class="unit-select receive" tabindex="0">'+
 		'						<p>아일랜드</p>'+
 		'						<h3>EUR</h3>'+
 		'					</div>'+
 		'				</div>'+
-//		'				<button type="submit" class="index-send-btn moin-body">송금하기</button>'+
 		'			</div>'+
 		'		</div>'+
 		'	</div>'+
