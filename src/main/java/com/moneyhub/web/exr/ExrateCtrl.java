@@ -33,11 +33,22 @@ public class ExrateCtrl extends Proxy{
 	
 	
 	
-	@GetMapping("/search/{cntcd}")
-	public Map<?, ?> searchExrate(@PathVariable String cntcd){
-		print("search 진입 - cntcd : " + cntcd);
+	@GetMapping("/search/cntcd/{cntcd}")
+	public Map<?, ?> cntcdSearchExrate(@PathVariable String cntcd){
+		print("cntcd search 진입 - cntcd : " + cntcd);
 		ArrayList<Exrate> list = new ArrayList<>();
-		list = exService.searchExrate(cntcd);
+		list = exService.cntcdSearchExrate(cntcd);
+		box.clear();
+		box.put("exlist", list);
+		print(box.get().toString());
+		return box.get();
+	}
+	
+	@GetMapping("/search/bdate/{bdate}")
+	public Map<?, ?> bdateSearchExrate(@PathVariable String bdate){
+		print("bdate search 진입 - bdate : " + bdate);
+		ArrayList<Exrate> list = new ArrayList<>();
+		list = exService.bdateSearchExrate(bdate);
 		box.clear();
 		box.put("exlist", list);
 		print(box.get().toString());
