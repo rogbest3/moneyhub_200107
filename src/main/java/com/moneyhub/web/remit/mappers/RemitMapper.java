@@ -11,5 +11,4 @@ public interface RemitMapper {
 	public void insertRCPT(HashMap<String, Object> deal);
 	public void insetTRDHR(HashMap<String, Object> deal);
 	public void insertTRD(HashMap<String, Object> deal);
-
 }

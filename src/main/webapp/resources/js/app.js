@@ -50,11 +50,11 @@ app =(()=>{
 		)
 		.done(()=>{
 			//============================================================= 송금 개발용
-			/*auth.onCreate('login')*/
+			auth.onCreate('login')
 			//=============================================================
-			setContentView()
+			/*setContentView()
 			page_move()
-			remit_box.onCreate('')
+			remit_box.onCreate('')*/
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)

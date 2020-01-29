@@ -83,7 +83,7 @@ foreignRemit = (()=>{
 	}
 	let remit_review = ()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_review())
+		.html(remit_vue.remit_review()) 
 		
 		$('#complete_remit_btn')
 		.click( e => {  //송금액, 수수료, 입금액,수취자 여권이름(성,이름),수취국가, 수취이메일
@@ -92,15 +92,14 @@ foreignRemit = (()=>{
 				url: _+'/remit/insert',
 				type : 'POST',
 				data : JSON.stringify(deal),
-				dataType : 'json',
 				contentType :'application/json',
-				success : d => {
+				success : () => {
 					alert("ajax성공")
-					/*remit_complete()
-					$('html').scrollTop(0);*/
+					remit_complete()
+					$('html').scrollTop(0);
 				},
-				error : e => {
-					alert('remit ajax 실패')
+				error : (request,status,error) => {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			})
 		})

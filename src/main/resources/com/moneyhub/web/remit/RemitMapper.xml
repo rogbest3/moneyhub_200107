@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.moneyhub.web.remit.mappers.RemitMapper">
-<insert id="insertFee" parameterType="Remit">
+	<insert id="insertFee" parameterType="Remit">
 	    INSERT INTO FEE ( BSDATE, MTCN, CNO, FEE_STAT_CD,FEE_AMNT,CRTMEM) VALUES (
 	    	#{bsdate}, #{mtcn}, #{cno}, #{feeStatCd},#{feeAmnt}, #{crtmem}
 	    )

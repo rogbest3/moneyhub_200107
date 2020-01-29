@@ -16,11 +16,11 @@ public class RemitServiceImpl implements RemitService{
 	
 	@Override
 	public void insertRemit(HashMap<String, Object> deal) {
-	Map<String, Object> map = new HashMap<String, Object>();
-		remitMapper.insertFee(deal);
+		/* remitMapper.insertFee(deal); */
 		remitMapper.insertRCPT(deal);
-		remitMapper.insetTRDHR(deal);
-		remitMapper.insertTRD(deal);
+		/*
+		 * remitMapper.insetTRDHR(deal); remitMapper.insertTRD(deal);
+		 */
 	}
 
 }
