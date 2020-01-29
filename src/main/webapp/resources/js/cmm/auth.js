@@ -87,12 +87,12 @@ auth =(()=>{
 						/*$.extend(new Customer_Info(d.cus))*/
 						//======================================================
 						//====================================================== HM
-						/*sessionStorage.setItem('CEMAIL', d.cus.cemail)
+						sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)
 						sessionStorage.setItem('ZIP', d.cus.zip)
 						sessionStorage.setItem('ADDR', d.cus.addr)
 						sessionStorage.setItem('DADDR', d.cus.daddr)
-						sessionStorage.setItem('CNO', d.cus.cno)*/
+						sessionStorage.setItem('CNO', d.cus.cno)
 						//======================================================
 						mypage.onCreate()
 					}
