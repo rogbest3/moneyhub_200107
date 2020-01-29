@@ -156,7 +156,7 @@ app =(()=>{
 			app.onCreate()
 			$('html').scrollTop(0);
 		})
-		
+	
 	}
 
 	return { run, onCreate }

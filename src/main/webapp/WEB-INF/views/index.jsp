@@ -101,6 +101,7 @@
 <body id="page-top">
 	<div id="root"></div>
 	<div id="popup-root"></div>
+	<div id="popup-exchange"></div>
 	<script>
 		app.run('<%=application.getContextPath()%>')
 	</script>
