@@ -75,7 +75,7 @@ $(document).ready(function(){
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
 		})
-		config.options.title.text = `1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
+		config.options.title.text = `선택한 통화 환율 추이   1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
 
 		//		수수료 1.5%
 		receive_value_calc()
