@@ -1,7 +1,7 @@
 var exchange_test = exchange_test || {}
 exchange_test =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js
+	let _, js, mypage_vue_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -21,7 +21,6 @@ exchange_test =(()=>{
 		
 	}
 	let setContentView =()=>{
-//		alert('모의 test')
 		$('head')
 		.append(mypage_vue.exchange_test_head())
 		$('#root div.mypage')

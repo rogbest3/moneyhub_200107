@@ -6,7 +6,7 @@ sidebar = (()=>{
 		_ = $.ctx()
 		js = $.js()
 		nav_vue_js = js + '/vue/nav_vue.js'
-		exchange_test_js = js + '/vue/nav_vue.js'
+		exchange_test_js = js + '/mypage/exchange_test.js'
 	}
 	let onCreate =()=>{
 		init()

@@ -777,19 +777,19 @@ mypage_vue = {
     <script src="/web/resources/js/maps/world_countries.js"></script>
     `
 	},
-	
 	exchange : ()=>{
-		return '	<div class="themoin-remit-component">'+
+		alert('1')
+		return 	'<div class="themoin-remit-component">'+
 		'		<div id="moin-event-amount" class="moin-event-amount">'+
-		'		<h1>지금 바로 WU 송금을 이용해보세요</span>'+
+		'		<h1>지금 바로 머니허브 환전을 이용해보세요</span>'+
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
 		'		<div class="moin-amount">'+
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
 		'					<div class="">'+
-		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00">'+
+		'						<p>환전 금액</p>'+
+		'						<input class="send-amount" id="exchange_amount"  type="text" tabindex="0" placeholder="0.00">'+
 		'					</div>'+
 		'					<div class="unit-select disabled" tabindex="0" >'+
 		'						<p>대한민국</p>'+
@@ -806,9 +806,12 @@ mypage_vue = {
 		'						<h3>USD</h3>'+
 		'					</div>'+
 		'				</div>'+
+		'				<button id="exchangebutton" class="index-send-btn moin-body">환전하기</button>'+
 		'			</div>'+
 		'		</div>'+
-		'	</div>'
+		'	</div>'+
+		'<div id="divToggle" style="display: none;"><canvas id="canvas2" style="width:200px; height:50px"></canvas></div>'
+		
 	},
 	cntcd_popup : ()=>{
 		return `<div class="moin-popup">
