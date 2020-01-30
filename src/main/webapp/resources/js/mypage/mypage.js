@@ -22,7 +22,7 @@ mypage =(()=>{
 		main_class = 'themoin-main'
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
-		remit_box_js = js + '/mypage/remit_box.js'
+		remit_box_js = js + '/remit/remit_box.js'
 	}
 	
 	let onCreate =()=>{
@@ -41,12 +41,12 @@ mypage =(()=>{
 	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
+			
 			setContentView()
-			page_move()		
+			page_move()	
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate('mypage')
-
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -54,12 +54,17 @@ mypage =(()=>{
 		
 	}
 	let setContentView =()=>{
+		if( deal.cntcd ==undefined){
+			$('.form-calculator .amount-row .receive p').text('미국')
+			$('.form-calculator .amount-row .receive h3').text('USD')
+		}
 		$('#root')
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
 		
 		$.getScript(line_graph_js)
+		/*alert(deal.cntcd)*/
 		
 		$('<button/>')
 		.text('송금하기')

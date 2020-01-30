@@ -8,7 +8,6 @@ function Session(x){
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
 	var deal = new Object() // 송금 객체
 	sessionStorage.setItem('deal',JSON.stringify(deal));
-
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
 		js : ()=>{ return sessionStorage.getItem('js');},
@@ -42,16 +41,3 @@ function Clock(){
 	}
 }
 
-var SetTime = 5;		// 최초 설정 시간(기본 : 초)
-
-function msg_time() {	// 1초씩 카운트
-	
-	m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
-	
-	var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
-	
-	document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 
-			
-	SetTime--;					// 1초씩 감소
-	
-}

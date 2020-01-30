@@ -30,12 +30,16 @@ public class RemitServiceImpl implements RemitService{
 	@Transactional
 	public void insertRemit(HashMap<String, Object> deal) {
 		//bsdate , mtcn 생성,고객정보 받아오기, 나눠 담기
-		//거래 bsdate,mtcn,cno,trdStatCd,chngCausCd,trdAmnt,acctNo,cntcd,crtmem,crtdt,upmem,updt;
+		//거래 mtcn,acctNo
 		trd.setBsdate(sdf.format(date));
 		trd.setMtcn("123");
-		trd.setCno("3");
+		trd.setCno(deal.get("cno").toString());
 		trd.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
+		trd.setChngCausCd(0);
 		trd.setTrdAmnt(deal.get("amount").toString());
+		trd.setCntcd(deal.get("cntcd").toString());
+		trd.setCrtmem("LEJ");
+		trd.setCrtdt(sdf.format(date));
 		/*
 		 * remitMapper.insertFee(deal); remitMapper.insertRCPT(deal);
 		 * remitMapper.insertTRDHR(deal);
