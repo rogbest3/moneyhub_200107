@@ -1,26 +1,46 @@
 package com.moneyhub.web.remit.serviceimpls;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.moneyhub.web.remit.domains.Fee;
+import com.moneyhub.web.remit.domains.RCPT;
+import com.moneyhub.web.remit.domains.TRD;
+import com.moneyhub.web.remit.domains.TRDHR;
 import com.moneyhub.web.remit.mappers.RemitMapper;
 import com.moneyhub.web.remit.services.RemitService;
 
 @Service
 public class RemitServiceImpl implements RemitService{
+	Date date = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	@Autowired TRDHR trdhr;
+	@Autowired TRD trd;
+	@Autowired RCPT rcpt;
+	@Autowired Fee fee;
 	@Autowired
 	private RemitMapper remitMapper;
 	
 	@Override
+	@Transactional
 	public void insertRemit(HashMap<String, Object> deal) {
-		/* remitMapper.insertFee(deal); */
-		remitMapper.insertRCPT(deal);
+		//bsdate , mtcn 생성,고객정보 받아오기, 나눠 담기
+		//거래 bsdate,mtcn,cno,trdStatCd,chngCausCd,trdAmnt,acctNo,cntcd,crtmem,crtdt,upmem,updt;
+		trd.setBsdate(sdf.format(date));
+		trd.setMtcn("123");
+		trd.setCno("3");
+		trd.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
+		trd.setTrdAmnt(deal.get("amount").toString());
 		/*
-		 * remitMapper.insetTRDHR(deal); remitMapper.insertTRD(deal);
+		 * remitMapper.insertFee(deal); remitMapper.insertRCPT(deal);
+		 * remitMapper.insertTRDHR(deal);
 		 */
+		remitMapper.insertTRD(trd);
 	}
 
 }

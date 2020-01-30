@@ -5,7 +5,7 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal,guide_recieve_js, remit_box_js
+		line_graph_js,deal,guide_recieve_js, remit_box_js,clock
 
 	let init =()=>{
 		_ = $.ctx()
@@ -70,7 +70,6 @@ mypage =(()=>{
 			sessionStorage.setItem('deal', JSON.stringify(deal));
 			foreignRemit.onCreate()
 		})
-		 
 	}
 
 	let page_move =()=>{
@@ -101,7 +100,6 @@ mypage =(()=>{
 			//======================================================================================
 			app.onCreate()
 		})
-		
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
@@ -127,20 +125,11 @@ mypage =(()=>{
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
-		
 	}
 	let clock_excute =()=>{
-
-		let date = new Date();
-		let year = date.getFullYear()
-		let month = date.getMonth()
-		let clockDate = date.getDate()
-		let day = date.getDay()
-		let hours = date.getHours()
-		let minutes = date.getMinutes()
-		let seconds = date.getSeconds()
-		$('#clock').text(`실시간 모인 환율 - ${year}년 ${month+1}월 ${clockDate}일` +
-				` ${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes }` : minutes }:${seconds < 10 ? `0${seconds }` : seconds }`)
+		clock = new Clock()
+		$('#clock').text(`실시간 모인 환율 - ${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일` +
+				` ${clock.hours < 10 ? `0${clock.hours}` : clock.hours}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }:${clock.seconds < 10 ? `0${clock.seconds }` : clock.seconds }`)
 	}
 
 	let exchange_API =()=>{

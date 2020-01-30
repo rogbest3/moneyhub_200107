@@ -64,9 +64,11 @@ app =(()=>{
 	let setContentView =()=>{
 		$('head')
 		.append(cmm_vue.head())
+		
+		//================================================================= 송금 개발용
 		$('#root')
-		.html(nav_vue.nav(_))
-		.append(main_vue.main())
+		.html(nav_vue.logined_nav(_))
+		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
 		//================================================================= EJ
 		/*if($.cusInfo() != null && $.cusInfo() != ''){ //세션 정보로 메인 화면 구분 -> 새로고침 찾아서 적용할 것

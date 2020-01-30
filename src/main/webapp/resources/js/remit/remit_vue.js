@@ -360,7 +360,7 @@ remit_vue = {
 			return `<div class="themoin-remit-success">
 						<div>
 							<img src="https://img.themoin.com/public/img/img-success.svg">
-							<h1>입금기한 58:31</h1>
+							<h1 id="deposit_hour">입금기한 58:31</h1>
 							<div class="intro">머니허브 해외송금을 이용해주셔서 감사합니다.<br>
 								<p><span>2019년 12월 30일 오후 3:38까지</span> 계좌로 입금해주세요.</p>
 								<p class="fs-block">반드시, <span>신한은행 110341213905 이은지 계좌</span>에서 출금해주셔야 합니다.</p>

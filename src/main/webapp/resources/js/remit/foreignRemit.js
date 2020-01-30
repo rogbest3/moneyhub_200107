@@ -3,7 +3,7 @@ var foreignRemit = foreignRemit || {}
 foreignRemit = (()=>{
 	
 	const WHEN_ERR = '레미트 js파일을 찾지 못했습니다.'
-	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,amount,deal,remit_box_js
+	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,amount,deal,remit_box_js,clock
 
 	let init = ()=>{
 		_ = $.ctx()
@@ -71,9 +71,9 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_rcpt())
 		$('#third_remit_btn').click(()=>{
-			deal.rcpsf =  document.getElementById('pass_fnm').value
-			deal.rcpsl =  document.getElementById('pass_lnm').value
-			deal.rcemail =  document.getElementById('rcpt_email').value
+			deal.rcpsf =  document.getElementById('pass_fnm').value  //수취인 이름
+			deal.rcpsl =  document.getElementById('pass_lnm').value	//수취인 성
+			deal.rcemail =  document.getElementById('rcpt_email').value //수취인 이메일
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_review()
 		})
@@ -88,7 +88,12 @@ foreignRemit = (()=>{
 		$('#complete_remit_btn')
 		.click( e => {  //송금액, 수수료, 입금액,수취자 여권이름(성,이름),수취국가, 수취이메일
 			e.preventDefault()
-			$.ajax({
+			
+			//======================================화면 작업용 no 에이작스
+			remit_complete()
+			$('html').scrollTop(0);
+			//=============================================
+			/*$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',
 				data : JSON.stringify(deal),
@@ -101,16 +106,22 @@ foreignRemit = (()=>{
 				error : (request,status,error) => {
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
-			})
+			})*/
 		})
 	}
 	let remit_complete =()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_complete())
+
+		let m = Math.floor(3600 / 60) + "분 " + (3600 % 60) + "초";	// 남은 시간 계산
+		
+		$('#deposit_hour').text(m)
+
 		$('#main_user_btn').click(()=>{
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
+
 	}
 	return {onCreate}
 })();
