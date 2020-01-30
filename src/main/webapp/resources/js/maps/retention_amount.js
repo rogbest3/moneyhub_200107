@@ -9,20 +9,21 @@ retention_amount =(()=>{
 	let onCreate =()=>{
 		init()
 		setContentView()
+		
 	}
 	
 	let setContentView =()=>{
-		let data = [ { title : "총 보유금액", money: 100000000, cntcd : 'KRW' },
-//					{ title : "한화", money: 0, cntcd : 'KRW' },
-					{ title : "미국 달러", money: 0, cntcd : 'USD' },
-					{ title : "호주 달러", money: 0, cntcd : 'AUD' },
-					{ title : "유럽 유로", money: 0, cntcd : 'EUR' },
-					{ title : "중국 위안", money: 0, cntcd : 'CNY' },
-					{ title : "일본 엔", money: 0, cntcd : 'JPY' }]
+		let data = [ { id: 'total_money', title : "총 보유금액", money: 100000000, cntcd : 'KRW' },
+					{ id: 'exchange_krw', title : "대한민국 한화", money: 100000000, cntcd : 'KRW' },
+					{ id: 'exchange_usd', title : "미국 달러", money: 0, cntcd : 'USD' },
+					{ id: 'exchange_aud', title : "호주 달러", money: 0, cntcd : 'AUD' },
+					{ id: 'exchange_eur', title : "유럽 유로", money: 0, cntcd : 'EUR' },
+					{ id: 'exchange_cny', title : "중국 위안", money: 0, cntcd : 'CNY' },
+					{ id: 'exchange_jpy', title : "일본 엔", money: 0, cntcd : 'JPY' }]
 		
 		$.each(data, (i,j)=>{
-			$(`<li><p style="font-size : 18px">${j.title}</p>
-					<p style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:35%; text-align: right; ">${numberFormat(j.money)}</p>
+			$(`<li><p style="font-size : 18px width:120px;">${j.title}</p>
+					<p id="${j.id}" style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:35%; text-align: right; ">${numberFormat(j.money)}</p>
 					<p class="fs-block" style="font-size : 18px">${j.cntcd}</p>
 				</li>`)
 			.css({

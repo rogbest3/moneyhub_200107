@@ -18,12 +18,18 @@ $(document).ready(function(){
 		.show()
 		$.getScript($.js() + '/mypage/remit_box.js')
 		.done(()=>{
-			remit_box.onCreate()
+			if(x.cntcd === 'KRW'){
+				remit_box.onCreate('exchange_krw')
+			}
+			else{
+				remit_box.onCreate('exchange')
+			}
+			
 		})
 	}
 	
 	$.getJSON(`${$.ctx()}/exrate/search/bdate/${bdate}`, d=>{
-		$.each(d.exlist, (i,j)=>{	
+		$.each(d.exlist.reverse(), (i,j)=>{	
 			switch (j.cntcd) {
 			case 'USD':
 				usd = j.exrate

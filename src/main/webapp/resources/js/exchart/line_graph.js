@@ -70,7 +70,7 @@ $(document).ready(function(){
 //	alert('그래프')
 	let ctx = document.getElementById('canvas').getContext('2d');
 	
-	let cntcd = $('#remit_box .amount-row .receive h3').text()
+	let cntcd = $('.form-calculator .amount-row .receive h3').text()
 	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))
@@ -80,7 +80,7 @@ $(document).ready(function(){
 
 		//		수수료 1.5%
 		receive_value_calc()
-		$('#remit_box .amount-row input.send-amount').keyup(()=>{
+		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			receive_value_calc()
 		})
 		
@@ -88,10 +88,10 @@ $(document).ready(function(){
 	})
 	
 	let receive_value_calc =()=>{
-		let receive_value = $('#remit_box .amount-row input.send-amount').val().replace(/,/gi, '') 
-							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985 + ""
-		//alert(`${receive_value.substring(0, receive_value.indexOf('.') + 3)}`)
-		$('#remit_box .amount-row input.receive-amount').val(numberFormat(receive_value.substring(0, receive_value.indexOf('.') + 3)))
+		let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
+							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985
+//		alert(`receive_value : ${receive_value.toFixed(2)}`)
+		$('.form-calculator .amount-row input.receive-amount').val(numberFormat(receive_value.toFixed(2)))
 
 	}
 	

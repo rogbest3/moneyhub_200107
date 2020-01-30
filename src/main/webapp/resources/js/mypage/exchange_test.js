@@ -21,7 +21,7 @@ exchange_test =(()=>{
 			setContentView()
 			retention_amount.onCreate()
 			exchange_popup()
-			remit_box.onCreate('')
+		//	remit_box.onCreate('exchange')
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -37,11 +37,9 @@ exchange_test =(()=>{
 		$('#popup-exchange')
 		.html(mypage_vue.exchange_popup())
 		.hide()
-		
 	}
 	
 	let exchange_popup =()=>{
-	
 		$('<button/>')
 		.text('환전하기')
 		.css({
@@ -55,7 +53,27 @@ exchange_test =(()=>{
 		})	
 		.appendTo('#exchange_box')
 		.click(()=>{
-			alert('환전하기')
+			let sub_calc = parseFloat(comma_remove($('#exchange_krw').text())).toFixed(2) 
+							- parseFloat(comma_remove($('#exchange_send_amount').val())).toFixed(2)
+							
+			$('#exchange_' + $('#exchange_box .amount-row .send h3')
+					.text()
+					.toLowerCase())
+			.text(comma_create(sub_calc))
+			
+			let add_calc = parseFloat(comma_remove($('#exchange_' + $('#exchange_box .amount-row .receive h3')
+																	.text()
+																	.toLowerCase())
+													.text()))
+							+ parseFloat(comma_remove($('#exchange_box input.receive-amount').val()))
+				
+			$('#exchange_' + $('#exchange_box .amount-row .receive h3')
+							.text()
+							.toLowerCase())
+			.text(comma_create(add_calc.toFixed(2)))
+			
+			$('#popup-exchange')
+			.hide()
 		})
 	
 		$('#popup-exchange .moin-close')
@@ -65,5 +83,14 @@ exchange_test =(()=>{
 			.hide()
 		})
 	}
+	
+	let comma_remove =x=>{
+		return x.replace(/,/gi, '')
+	}
+	
+	let comma_create =x=>{
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+	}
+	
 	return { onCreate }
 })()

@@ -1,17 +1,19 @@
 var exrate = exrate || {}
 exrate =(()=>{
 	let _, js
-	let init =()=>{
+	let init =x=>{
 		_ = $.ctx()
 		js = $.js()
+		flag = x
 	}
 	
-	let onCreate =()=>{
-		init()
+	let onCreate =x=>{
+		init(x)
+		alert('exrate_flag1 : '+flag)
 		rate_calc()
 	}
 	let rate_calc =()=>{
-//		alert($('#remit_box .amount-row .receive h3').text())
+//		alert($('.form-calculator .amount-row .receive h3').text())
 		let cntcd = $('.form-calculator .amount-row .receive h3').text()
 		let exrate_arr = []
 		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
@@ -27,10 +29,22 @@ exrate =(()=>{
 		
 		//	수수료 1.5%
 		let receive_value_calc =()=>{
-			let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-								/ exrate_arr[exrate_arr.length -1] * 0.985 + ""
+			alert('exrate_flag2 : '+flag)
+			if(flag === 'exchange'){
+				
+				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
+								/ exrate_arr[exrate_arr.length -1]
 			
-			$('.form-calculator .amount-row input.receive-amount').val(numberFormat(receive_value.substring(0, receive_value.indexOf('.') + 3)))
+				$('.form-calculator .amount-row input.receive-amount').val(numberFormat(receive_value.toFixed(2)))
+			}
+			else{
+				alert( $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') +' / '+exrate_arr[exrate_arr.length -1])
+				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
+								/ exrate_arr[exrate_arr.length -1]
+			
+				$('.form-calculator .amount-row input.receive-amount').val(numberFormat(receive_value.toFixed(2)))
+			}
+			// * 0.985
 		}
 		
 		let numberFormat =x=>{

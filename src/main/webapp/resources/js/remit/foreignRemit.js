@@ -36,6 +36,8 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_first())
 		$('.themoin-footer').empty()
+		
+		$('#popup-exchange').empty()
 	}
 	
 	let remit_deal = ()=>{

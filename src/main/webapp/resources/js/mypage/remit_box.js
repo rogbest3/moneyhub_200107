@@ -20,7 +20,7 @@ remit_box =(()=>{
 		popup()
 		$.getScript(exrate_js)
 		.done(()=>{
-			exrate.onCreate()
+			exrate.onCreate('')
 		})
 	}
 	
@@ -35,18 +35,51 @@ remit_box =(()=>{
 	}
 	
 	let popup =()=>{
-		$('.form-calculator .amount-row .receive')
-		.click(e=>{
-			e.preventDefault()
-			$('#popup-root')
-			.show()
+		if(flag === 'exchange'){
+			alert('exchange 일 때')
 			
-			$('#popup_box input').val('')
-			$('#popup_box ul').empty()
-			cntcd_display(data)
-		})
-		
-		let data = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' },
+			$('.form-calculator .amount-row .send')
+			.click(e=>{
+				e.preventDefault()
+				$('#popup-exchange').hide()
+				$('#popup-root')
+				.show()
+				
+				$('#popup_box input').val('')
+				$('#popup_box ul').empty()
+				cntcd_display(send_data)
+			})
+			
+			let send_data = [ { img : 'kr', cntcd : 'KRW', curr : '대한민국 한화', flag : ''}, 
+							{ img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' },
+							{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
+							{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
+							{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '' },
+							{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '' }]
+			
+			$('#popup-root .moin-close')
+			.click(e=>{
+				e.preventDefault()
+				$('#popup-root')
+				.hide()
+				$('#popup-exchange').show()
+			})
+			
+		}else{
+			alert('exchange 아닐 때')
+			
+			$('.form-calculator .amount-row .receive')
+			.click(e=>{
+				e.preventDefault()
+				$('#popup-root')
+				.show()
+				
+				$('#popup_box input').val('')
+				$('#popup_box ul').empty()
+				cntcd_display(receive_data)
+			})
+			
+			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' },
 					{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
 					{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
 					{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '' },
@@ -61,16 +94,16 @@ remit_box =(()=>{
 					{ img : 'pt', cntcd : 'EUR', curr : '포르투갈 유로', flag : '' },
 					{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '' }]
 		
-		$('#popup_box input').keyup(()=>{
-			filter(data)			
-		})
-
-		$('#popup-root .moin-close')
-		.click(e=>{
-			e.preventDefault()
-			$('#popup-root')
-			.hide()
-		})
+			$('#popup_box input').keyup(()=>{
+				filter(receive_data)			
+			})
+			$('#popup-root .moin-close')
+			.click(e=>{
+				e.preventDefault()
+				$('#popup-root')
+				.hide()
+			})
+		}
 	}
 	
 	let filter =x=>{
@@ -103,8 +136,16 @@ remit_box =(()=>{
 					.html(`<canvas id="canvas" style="width:70%; height:110px"></canvas>`)
 					$.getScript(line_graph_js)
 				}
+				else if(( j.flag === 'exchange')){
+					alert('j.flag : '+j.flag)
+					$('.form-calculator .amount-row .send p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
+					$('.form-calculator .amount-row .send h3').text(`${j.cntcd}`)
+					$('#popup-exchange').show()
+					exrate.onCreate(j.flag)
+				}
 				else{
-					exrate.onCreate()
+					alert('j.flag : '+j.flag)
+					exrate.onCreate(j.flag)
 				}
 			})
 		})

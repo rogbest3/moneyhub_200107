@@ -55,6 +55,7 @@ app =(()=>{
 			setContentView()
 			page_move()
 			remit_box.onCreate('')
+			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -106,6 +107,8 @@ app =(()=>{
 		.click(()=>{
 			auth.onCreate('login')
 		})
+		
+		$('#popup-exchange').empty()
 	}
 	
 	let page_move =()=>{
