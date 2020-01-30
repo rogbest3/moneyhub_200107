@@ -79,7 +79,7 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						alert(d.cus.cname+'님 환영합니다.')
+//						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						//======================================================

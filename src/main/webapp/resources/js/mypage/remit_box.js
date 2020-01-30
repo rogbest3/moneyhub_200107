@@ -1,17 +1,19 @@
 "use strict"
 var remit_box = remit_box || {}
 remit_box =(()=>{
-	let _, js, line_graph_js, exrate_js, flag
+	let _, js, line_graph_js, exrate_js, flag, cntcd
 	let init =x=>{
 		_ = $.ctx()
 		js = $.js()
 		line_graph_js = js + '/exchart/line_graph.js'
 		exrate_js = js + '/exchart/exrate.js'
-		flag = x
+		flag = x.flag
+		cntcd = x.cntcd
 	}
 	
 	let onCreate =x=>{
 		init(x)
+		$('#send_amount').val(100000)
 		remit_send()
 		$('.form-calculator .amount-row input.send-amount')
 		.focusout(()=>{
@@ -26,19 +28,24 @@ remit_box =(()=>{
 	
 	let remit_send =()=>{
 		let send = $('.form-calculator .amount-row input.send-amount')
-		let send_value = numberFormat(send.val().replace(/,/gi, ''))	
+		let send_value = comma_create(send.val().replace(/,/gi, ''))	
 		send.val(send_value)
 	}
 	
-	let numberFormat =x=>{
+	let comma_create =x=>{
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	}
 	
 	let popup =()=>{
-		if(flag === 'exchange'){
-			alert('exchange 일 때')
-			
-			$('.form-calculator .amount-row .send')
+		if(flag === 'exchange'){	// 모의 환전 시
+			let send_data = [ { img : 'kr', cntcd : 'KRW', curr : '대한민국 한화', flag : ''}, 
+							{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
+							{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
+							{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '' },			
+							{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '' },
+							{ img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' }]
+		
+			$('.form-calculator .amount-row .send')	// send cntcd 클릭 시
 			.click(e=>{
 				e.preventDefault()
 				$('#popup-exchange').hide()
@@ -47,16 +54,9 @@ remit_box =(()=>{
 				
 				$('#popup_box input').val('')
 				$('#popup_box ul').empty()
-				cntcd_display(send_data)
+				send_cntcd_filter(send_data)
 			})
-			
-			let send_data = [ { img : 'kr', cntcd : 'KRW', curr : '대한민국 한화', flag : ''}, 
-							{ img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' },
-							{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
-							{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
-							{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '' },
-							{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '' }]
-			
+
 			$('#popup-root .moin-close')
 			.click(e=>{
 				e.preventDefault()
@@ -65,20 +65,7 @@ remit_box =(()=>{
 				$('#popup-exchange').show()
 			})
 			
-		}else{
-			alert('exchange 아닐 때')
-			
-			$('.form-calculator .amount-row .receive')
-			.click(e=>{
-				e.preventDefault()
-				$('#popup-root')
-				.show()
-				
-				$('#popup_box input').val('')
-				$('#popup_box ul').empty()
-				cntcd_display(receive_data)
-			})
-			
+		}else{	// 모의 환전 아닐 때
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' },
 					{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
 					{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
@@ -93,10 +80,22 @@ remit_box =(()=>{
 					{ img : 'nl', cntcd : 'EUR', curr : '네덜란드 유로', flag : '' },
 					{ img : 'pt', cntcd : 'EUR', curr : '포르투갈 유로', flag : '' },
 					{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '' }]
-		
-			$('#popup_box input').keyup(()=>{
-				filter(receive_data)			
+			
+			$('.form-calculator .amount-row .receive')	// receive cntcd 클릭 시
+			.click(e=>{
+				e.preventDefault()
+				$('#popup-root')
+				.show()
+				
+				$('#popup_box input').val('')
+				$('#popup_box ul').empty()
+				cntcd_display(receive_data)
 			})
+
+			$('#popup_box input').keyup(()=>{
+				search_filter(receive_data)			
+			})
+			
 			$('#popup-root .moin-close')
 			.click(e=>{
 				e.preventDefault()
@@ -105,8 +104,17 @@ remit_box =(()=>{
 			})
 		}
 	}
+	let send_cntcd_filter =x=>{
+		let filtered_data = []
+		for(let i=0; i< x.length; i++ ){
+			if(x[i].cntcd !== cntcd ){
+				filtered_data.push(x[i])
+			}
+		}
+		cntcd_display(filtered_data)
+	}
 	
-	let filter =x=>{
+	let search_filter =x=>{
 		let filtered_data = []
 		for(let i=0; i< x.length; i++ ){
 			if(x[i].curr.indexOf($('#popup_box input').val()) > -1 ){
@@ -118,7 +126,7 @@ remit_box =(()=>{
 		cntcd_display(filtered_data)
 	}
 	
-	let cntcd_display =x=>{
+	let cntcd_display =x=>{	//	나라 선택
 		$.each(x, (i, j)=>{
 			j.flag = flag
 			$(`<li><img src="https://img.themoin.com/public/img/circle-flag-${j.img}.svg"><a><p>${j.cntcd}</p><p>${j.curr}</p></a></li>`)
@@ -127,25 +135,25 @@ remit_box =(()=>{
 				$('#popup-root')
 				.hide()
 				$('#popup_box input').val('')
-				
-				$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
-				$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-				
+	
 				if( j.flag === 'mypage'){
+					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
+					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
 					$('#chart')
 					.html(`<canvas id="canvas" style="width:70%; height:110px"></canvas>`)
 					$.getScript(line_graph_js)
+					
 				}
 				else if(( j.flag === 'exchange')){
-					alert('j.flag : '+j.flag)
 					$('.form-calculator .amount-row .send p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .send h3').text(`${j.cntcd}`)
 					$('#popup-exchange').show()
-					exrate.onCreate(j.flag)
+					exrate.onCreate()
 				}
 				else{
-					alert('j.flag : '+j.flag)
-					exrate.onCreate(j.flag)
+					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
+					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
+					exrate.onCreate()
 				}
 			})
 		})

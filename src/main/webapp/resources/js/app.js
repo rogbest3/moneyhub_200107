@@ -54,7 +54,7 @@ app =(()=>{
 			//=============================================================
 			setContentView()
 			page_move()
-			remit_box.onCreate('')
+			remit_box.onCreate({ flag : '', cntcd : '' })
 			
 		})
 		.fail(()=>{

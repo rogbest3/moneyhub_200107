@@ -18,13 +18,7 @@ $(document).ready(function(){
 		.show()
 		$.getScript($.js() + '/mypage/remit_box.js')
 		.done(()=>{
-			if(x.cntcd === 'KRW'){
-				remit_box.onCreate('exchange_krw')
-			}
-			else{
-				remit_box.onCreate('exchange')
-			}
-			
+			remit_box.onCreate({ flag : 'exchange', cntcd : x.cntcd })
 		})
 	}
 	
@@ -76,7 +70,13 @@ $(document).ready(function(){
                         },
                         eventHandlers: {
                             click: function (e, id, mapElem, textElem) {
+                            	$('.form-calculator .amount-row .send p').text(`대한민국`)
+                    			$('.form-calculator .amount-row .send h3').text(`KRW`)
+                    			$('#exchange_send_amount').val(1000000)
                         		if(id === 'KR'){
+                        			$('.form-calculator .amount-row .send p').text(`미국`)
+                        			$('.form-calculator .amount-row .send h3').text(`USD`)
+                        			$('#exchange_send_amount').val(1000)
                             		exchange_box({country : '대한민국', cntcd : 'KRW'})
                             	}
                             	else if(id === 'US' || id === 'MX'){
@@ -254,7 +254,7 @@ $(document).ready(function(){
   					      },
   					    //tooltip: {content: "대한민국 - 1 KRW"},
   					     text: {content: `대한민국 - 1 KRW`, attrs: {fill: "#000", "font-size": 20 }, 
-  					    	 	position : "top", "font-weight" : "bold", margin : {x : 20, y: 25}}
+  					    	 	position : "top", "font-weight" : "bold", margin : {x : 80, y: 40}}	// 20 25
   					  },
                 	  "US": {
                           "value": "400",

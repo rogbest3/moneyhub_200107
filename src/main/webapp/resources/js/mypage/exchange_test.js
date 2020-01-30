@@ -53,23 +53,27 @@ exchange_test =(()=>{
 		})	
 		.appendTo('#exchange_box')
 		.click(()=>{
-			let sub_calc = parseFloat(comma_remove($('#exchange_krw').text())).toFixed(2) 
-							- parseFloat(comma_remove($('#exchange_send_amount').val())).toFixed(2)
-							
-			$('#exchange_' + $('#exchange_box .amount-row .send h3')
-					.text()
-					.toLowerCase())
-			.text(comma_create(sub_calc))
+			let receive_currencies = $('#exchange_' + $('#exchange_box .amount-row .receive h3').text()),
+				send_currencies = $('#exchange_' + $('#exchange_box .amount-row .send h3').text())
 			
-			let add_calc = parseFloat(comma_remove($('#exchange_' + $('#exchange_box .amount-row .receive h3')
-																	.text()
-																	.toLowerCase())
-													.text()))
+			
+			let sub_calc = parseFloat(comma_remove(send_currencies.text())).toFixed(2) 
+							- parseFloat(comma_remove($('#exchange_send_amount').val())).toFixed(2)
+		
+	/*		alert(send_currencies.text() + ' - '
+					+ parseFloat(comma_remove($('#exchange_send_amount').val())).toFixed(2))	
+			*/
+			if(sub_calc < 0){
+				alert(`${$('#exchange_box .amount-row .send h3').text()} 보유 금액이 부족합니다.`)
+			}else{
+				send_currencies
+				.text(comma_create(sub_calc))
+			}
+			
+			let add_calc = parseFloat(comma_remove(receive_currencies.text()))
 							+ parseFloat(comma_remove($('#exchange_box input.receive-amount').val()))
 				
-			$('#exchange_' + $('#exchange_box .amount-row .receive h3')
-							.text()
-							.toLowerCase())
+			receive_currencies
 			.text(comma_create(add_calc.toFixed(2)))
 			
 			$('#popup-exchange')

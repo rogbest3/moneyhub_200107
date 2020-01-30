@@ -45,7 +45,7 @@ mypage =(()=>{
 			page_move()		
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
-			remit_box.onCreate('mypage')
+			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			
 		})
 		.fail(()=>{
