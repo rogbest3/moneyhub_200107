@@ -1,6 +1,7 @@
 var exchange_test = exchange_test || {}
 exchange_test =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
+
 	let _, js, mypage_vue_js, retention_amount_js
 	let init =()=>{
 		_ = $.ctx()

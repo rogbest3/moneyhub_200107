@@ -5,7 +5,7 @@ app =(()=>{
 	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,guide_recieve_js, remit_box_js,deal
+		tables_mgmt_js,guide_recieve_js, remit_box_js,deal, adminLogin_js
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -31,6 +31,8 @@ app =(()=>{
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_box_js = js + '/remit/remit_box.js'
+		remit_box_js = js + '/mypage/remit_box.js'
+		adminLogin_js = js + '/admin/adminLogin.js'
 	}
 	
 	let onCreate =()=>{
@@ -45,7 +47,8 @@ app =(()=>{
 			$.getScript(faq_js),
 			$.getScript(tables_mgmt_js),
 			$.getScript(guide_recieve_js),
-			$.getScript(remit_box_js)
+			$.getScript(remit_box_js),
+			$.getScript(adminLogin_js)
 		)
 		.done(()=>{
 			//============================================================= 송금 개발용
@@ -128,7 +131,7 @@ app =(()=>{
 
 		$('#admin_login')
 		.click(()=>{
-			adminIndex.onCreate('admin_login')
+			adminLogin.onCreate('admin_login')
 		})
 
 		$('#compo')
