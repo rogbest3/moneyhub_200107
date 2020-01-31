@@ -48,6 +48,11 @@
 	<!-- kakao login -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
+	<!-- datepicker -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+	<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<!-- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+	
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/cmm_vue.js"></script>

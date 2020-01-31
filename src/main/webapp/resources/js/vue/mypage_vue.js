@@ -724,6 +724,9 @@ mypage_vue = {
 				    <div id="amount" class="themoin-info-preview" style="width:400px">
 				    	<ol style="border-bottom-width: 0px;"></ol>
 				    </div>
+				    <div id="exchange_datepicker">
+				    	년 월 일 : <input type="text" id="datepicker">
+				    </div>
 				</div>`
 	 /* 	  <input type="button" value="Hide/Show all legends" id="button-all"/>
 	        <input type="button" value="Hide/Show areas legend" id="button-areas"/>
