@@ -5,7 +5,7 @@ app =(()=>{
 	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,remit_popup_js,guide_recieve_js, remit_box_js
+		tables_mgmt_js,guide_recieve_js, remit_box_js,deal
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -19,6 +19,7 @@ app =(()=>{
 		_ = $.ctx()
 		js = $.js()
 		img = $.img()
+		deal = $.deal()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -29,8 +30,7 @@ app =(()=>{
 		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
-		remit_popup_js = js + '/remit/remit_popup.js'
-		remit_box_js = js + '/mypage/remit_box.js'
+		remit_box_js = js + '/remit/remit_box.js'
 	}
 	
 	let onCreate =()=>{
@@ -44,7 +44,6 @@ app =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(tables_mgmt_js),
-			$.getScript(remit_popup_js),
 			$.getScript(guide_recieve_js),
 			$.getScript(remit_box_js)
 		)
@@ -55,6 +54,9 @@ app =(()=>{
 			setContentView()
 			page_move()
 			remit_box.onCreate('')
+			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+			sessionStorage.setItem('deal',JSON.stringify(deal))
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -64,6 +66,8 @@ app =(()=>{
 	let setContentView =()=>{
 		$('head')
 		.append(cmm_vue.head())
+		
+		//================================================================= 송금 개발용
 		$('#root')
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
@@ -92,13 +96,7 @@ app =(()=>{
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
-	/*	
-		$('.unit-select receive')
-		.click(()=>{
-			$('#root')
-			.append(remit_popup.nation())
-		})*/
-		
+
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')

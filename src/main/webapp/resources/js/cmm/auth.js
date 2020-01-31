@@ -46,9 +46,8 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('1')
+		$('#cemail').val('11')
 		$('#cpwd').val('11')
-		
 		join_2_page_btn()
 	}
 	
@@ -95,6 +94,7 @@ auth =(()=>{
 						sessionStorage.setItem('CNO', d.cus.cno)*/
 						//======================================================
 						mypage.onCreate()
+					
 					}
 					else{
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')

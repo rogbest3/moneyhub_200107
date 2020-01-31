@@ -1,10 +1,11 @@
 "use strict"
 var remit_box = remit_box || {}
 remit_box =(()=>{
-	let _, js, line_graph_js, exrate_js, flag
+	let _, js, line_graph_js, exrate_js, flag,deal
 	let init =x=>{
 		_ = $.ctx()
 		js = $.js()
+		deal = $.deal()
 		line_graph_js = js + '/exchart/line_graph.js'
 		exrate_js = js + '/exchart/exrate.js'
 		flag = x
@@ -62,7 +63,7 @@ remit_box =(()=>{
 					{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '' }]
 		
 		$('#popup_box input').keyup(()=>{
-			filter(data)			
+			filter(data)
 		})
 
 		$('#popup-root .moin-close')
@@ -83,6 +84,7 @@ remit_box =(()=>{
 			}
 		}
 		cntcd_display(filtered_data)
+		
 	}
 	
 	let cntcd_display =x=>{
@@ -94,10 +96,11 @@ remit_box =(()=>{
 				$('#popup-root')
 				.hide()
 				$('#popup_box input').val('')
-				
-				$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
+				$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`) 
 				$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-				
+				deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+				sessionStorage.setItem('deal',JSON.stringify(deal))
 				if( j.flag === 'mypage'){
 					$('#chart')
 					.html(`<canvas id="canvas" style="width:70%; height:110px"></canvas>`)
@@ -108,6 +111,7 @@ remit_box =(()=>{
 				}
 			})
 		})
+		
 	}
 	return { onCreate }
 })()

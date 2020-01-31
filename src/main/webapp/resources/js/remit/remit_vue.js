@@ -11,7 +11,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class=""> 
 									<p>송금 금액</p> 
-									<input class="send-amount" id= "sd_amount"  type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
 									<p>미화</p><h3>USD</h3> 
@@ -39,7 +39,7 @@ remit_vue = {
 										<input class="receive-amount" type="text" tabindex="0" value="" readonly=""> 
 									</div> 
 									<div class="unit-select receive" tabindex="0"> 
-										<p>일본</p><h3>JPY</h3> 
+										<p>${deal.cntp}</p><h3>${deal.cntcd}</h3> 
 									</div> 
 								</div> 
 						</div> 
@@ -51,6 +51,7 @@ remit_vue = {
 		
 	remit_cusInfo: ()=>{
 		cus = $.cusInfo()
+		deal = $.deal()
 		return `<div class="themoin-remit-step-form">
 							<div class="header-progress">
 								<div class="step-item current">
@@ -98,19 +99,19 @@ remit_vue = {
 											<div class="zip">
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">우편번호</label>
-													<input class="fs-block" placeholder="12345" type="text" tabindex="0" value="">
+													<input class="fs-block" placeholder="12345" type="text" tabindex="0" value="${cus.zip}">
 												</div>
 												<p class="moin-error"></p>
 											</div>
 											<div class="postcode">
-												<button class="btn-zipcode" tabindex="0" type="button">우편번호 검색</button>
+												<button class="btn-zipcode" tabindex="0" type="button">주소 변경</button>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="address">
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">주소</label>
-													<input class="fs-block" placeholder="417, Yeongdong-daero, Gangnam-gu, Seoul, Korea" type="text" tabindex="0" value="">
+													<input class="fs-block" placeholder="417, Yeongdong-daero, Gangnam-gu, Seoul, Korea" type="text" tabindex="0" value="${cus.addr}">
 												</div>
 												<p class="moin-error"></p>
 											</div>
@@ -119,19 +120,24 @@ remit_vue = {
 											<div class="subaddress">
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">상세주소</label>
-													<input class="fs-block" placeholder="B2 Floor" type="text" tabindex="0" value="">
+													<input class="fs-block" placeholder="B2 Floor" type="text" tabindex="0" value="${cus.daddr}">
 												</div>
 												<p class="moin-error"></p>
 											</div>
 										</div>
 										<div class="form-row col-2">
 											<div class="themoin-composite-input  phone2">
+												
+												
 												<div class="extra-controls">
 													<button>이메일 인증</button>
 												</div>
+												
+												
+												
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">이메일 번호 </label>
-													<input class="fs-block" placeholder="현재 이메일 주소를 입력해주세요." type="text" tabindex="0" maxlength="11" value="">
+													<input class="fs-block" placeholder="현재 이메일 주소를 입력해주세요." type="text" tabindex="0" maxlength="11" value="${cus.cemail}">
 												</div>
 												<p class="moin-error"></p>
 											</div>
@@ -155,6 +161,7 @@ remit_vue = {
 					</div>`
 	},
 	remit_rcpt: ()=>{
+		deal = $.deal()
 		return `<div class="themoin-remit-step-form">
 					<div class="header-progress">
 						<div class="step-item active">
@@ -209,7 +216,7 @@ remit_vue = {
 								<div>
 									<div class="moin-input">
 										<label style="color: rgb(116, 127, 155);">수취 국가 (Nation)</label>
-										<input class="fs-block" style="display: block;" type="text" tabindex="0" readonly="" value="미국">
+										<input class="fs-block" style="display: block;" type="text" tabindex="0" readonly="" value="${deal.cntp}">
 									</div>
 									<p class="moin-error"></p>
 								</div>
@@ -235,6 +242,7 @@ remit_vue = {
 			</div>`
 		},
 		remit_review: ()=>{
+			deal = $.deal()
 			return `<div class="themoin-remit-step-form">
 						<div class="header-progress">
 							<div class="step-item active">
@@ -278,7 +286,7 @@ remit_vue = {
 									</div>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png" class="user-sendlist-ic">
 									<div class="amount receive">
-										<p >${deal.amount} <span class="unit">USD</span></p><p>적용 환율 : 1 USD = 1161.81 KRW</p>
+										<p >${deal.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")} <span class="unit">USD</span></p><p>적용 환율 : 1 USD = 1161.81 KRW</p>
 									</div>
 								</div>
 							</div>
@@ -297,11 +305,11 @@ remit_vue = {
 										</tr>
 										<tr>
 											<td style="width: 100px;">수취 국가</td>
-											<td class="color-grey-1">미국 (USA)</td>
+											<td class="color-grey-1">${deal.cntp}</td>
 										</tr>
 										<tr>
 											<td>이 메 일</td>
-											<td class="color-grey-1 fs-block"></td>
+											<td class="color-grey-1 fs-block">${deal.rcemail}</td>
 										</tr>
 									</tbody>
 								</table>
@@ -357,10 +365,11 @@ remit_vue = {
 			</div>`
 		},
 		remit_complete:()=>{
+			deal = $.deal()
 			return `<div class="themoin-remit-success">
 						<div>
 							<img src="https://img.themoin.com/public/img/img-success.svg">
-							<h1>입금기한 58:31</h1>
+							<h1 id="deposit_hour" type="text">입금 기한 60:00</h1>
 							<div class="intro">머니허브 해외송금을 이용해주셔서 감사합니다.<br>
 								<p><span>2019년 12월 30일 오후 3:38까지</span> 계좌로 입금해주세요.</p>
 								<p class="fs-block">반드시, <span>신한은행 110341213905 이은지 계좌</span>에서 출금해주셔야 합니다.</p>

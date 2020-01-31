@@ -5,7 +5,7 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal,guide_recieve_js, remit_box_js
+		line_graph_js,deal,guide_recieve_js, remit_box_js,clock
 
 	let init =()=>{
 		_ = $.ctx()
@@ -22,7 +22,7 @@ mypage =(()=>{
 		main_class = 'themoin-main'
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
-		remit_box_js = js + '/mypage/remit_box.js'
+		remit_box_js = js + '/remit/remit_box.js'
 	}
 	
 	let onCreate =()=>{
@@ -42,11 +42,10 @@ mypage =(()=>{
 		)
 		.done(()=>{
 			setContentView()
-			page_move()		
+			page_move()	
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate('mypage')
-
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -58,7 +57,6 @@ mypage =(()=>{
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
-		
 		$.getScript(line_graph_js)
 		
 		$('<button/>')
@@ -66,11 +64,8 @@ mypage =(()=>{
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
-			deal.amount = document.getElementById('send_amount').value  //처음 입력한 송금액
-			sessionStorage.setItem('deal', JSON.stringify(deal));
 			foreignRemit.onCreate()
 		})
-		 
 	}
 
 	let page_move =()=>{
@@ -82,6 +77,7 @@ mypage =(()=>{
 		
 		$('#logout')
 		.click(()=>{
+
 			//====================================================================================== EJ
 			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
 			//======================================================================================
@@ -100,7 +96,6 @@ mypage =(()=>{
 			//======================================================================================
 			app.onCreate()
 		})
-		
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
@@ -126,20 +121,11 @@ mypage =(()=>{
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
-		
 	}
 	let clock_excute =()=>{
-
-		let date = new Date();
-		let year = date.getFullYear()
-		let month = date.getMonth()
-		let clockDate = date.getDate()
-		let day = date.getDay()
-		let hours = date.getHours()
-		let minutes = date.getMinutes()
-		let seconds = date.getSeconds()
-		$('#clock').text(`실시간 모인 환율 - ${year}년 ${month+1}월 ${clockDate}일` +
-				` ${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes }` : minutes }:${seconds < 10 ? `0${seconds }` : seconds }`)
+		clock = new Clock()
+		$('#clock').text(`실시간 모인 환율 - ${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일` +
+				` ${clock.hours < 10 ? `0${clock.hours}` : clock.hours}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }:${clock.seconds < 10 ? `0${clock.seconds }` : clock.seconds }`)
 	}
 
 	let exchange_API =()=>{
