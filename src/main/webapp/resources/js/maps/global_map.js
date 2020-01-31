@@ -1,7 +1,48 @@
 $(document).ready(function(){
 //    $(function () {
-	$.getJSON(`${$.ctx()}/`)
+	let date = new Date();
+	let yyyy = date.getFullYear()
+	let mm = (date.getMonth() + 1).toString()
+	let dd = date.getDate().toString()
 	
+	mm = mm[1] ? mm : "0" + mm[0]
+	dd = dd[1] ? dd : "0" + dd[0]
+	let bdate = `${yyyy}-${mm}-${dd}`
+	let usd, eur, cny, jpy, aud		
+	
+	let exchange_box =x=>{
+		$('.form-calculator .amount-row .receive p').text(`${x.country}`)
+		$('.form-calculator .amount-row .receive h3').text(`${x.cntcd}`)
+		
+		$('#popup-exchange')
+		.show()
+		$.getScript($.js() + '/remit/remit_box.js')
+		.done(()=>{
+			remit_box.onCreate({ flag : 'exchange', cntcd : x.cntcd })
+		})
+	}
+	
+	$.getJSON(`${$.ctx()}/exrate/search/bdate/${bdate}`, d=>{
+		$.each(d.exlist.reverse(), (i,j)=>{	
+			switch (j.cntcd) {
+			case 'USD':
+				usd = j.exrate
+				break;
+			case 'EUR':
+				eur = j.exrate
+				break;
+			case 'CNY':
+				cny = j.exrate
+				break;
+			case 'JPY':
+				jpy = j.exrate
+				break;
+			case 'AUD':
+				aud = j.exrate
+				break;
+			}	
+		})
+
             $(".mapcontainer").mapael({
                 map: {
                     name: "world_countries",
@@ -18,34 +59,49 @@ $(document).ready(function(){
                             attrs: {
                                 cursor: "pointer",
                                 "font-size": 10,
+                                "font-weight" : "bold",
                                 fill: "#99d9ea"	//000
                             },
                             attrsHover: {
-                                animDuration: 0
+                                animDuration: 0,
+                                fill: "#616161",	//277dbc
+                                "font-weight" : "bold"
                             }
                         },
                         eventHandlers: {
                             click: function (e, id, mapElem, textElem) {
-                            //	alert('동작0 ' + id)
-                            	if(id === 'KR'){
-                            		alert('KR ' + id)
+                            	$('.form-calculator .amount-row .send')
+                            	.css({ cursor : 'text',
+                            		'background-image' : 'none'})
+                            	$('.form-calculator .amount-row .send p').text(`대한민국`)
+                    			$('.form-calculator .amount-row .send h3').text(`KRW`)
+                    			$('#exchange_send_amount').val(1000000)
+                    			
+                        		if(id === 'KR'){
+                        			$('.form-calculator .amount-row .send')
+                        			.css({ cursor : 'pointer',
+                                		'background-image' : 'url(https://img.themoin.com/public/img/ic-currency.svg)'})
+                        			$('.form-calculator .amount-row .send p').text(`미국`)
+                        			$('.form-calculator .amount-row .send h3').text(`USD`)
+                        			$('#exchange_send_amount').val(1000)
+                            		exchange_box({country : '대한민국', cntcd : 'KRW'})
                             	}
-                            	else if(id === 'US'){
-                            		alert('US ' + id)
+                            	else if(id === 'US' || id === 'MX'){
+                            		exchange_box({country : '미국', cntcd : 'USD'})
                             	}
                             	else if(id === 'JP'){
-                            		alert('JP ' + id)
+                            		exchange_box({country : '일본', cntcd : 'JPY'})
                             	}
                             	else if(id === 'CN'){
-                            		alert('cn ' + id)
+                            		exchange_box({country : '중국', cntcd : 'CNY'})
                             	}
                             	else if(id === 'AU'){
-                            		alert('AU ' + id)
+                            		exchange_box({country : '호주', cntcd : 'AUD'})
                             	}
                             	else if(id === 'DE'){
-                            		alert('DE ' + id)
+                            		exchange_box({country : '유럽', cntcd : 'EUR'})
                             	}
-    
+
                                /* var newData = {
                                     'areas': {}
                                 };
@@ -65,79 +121,8 @@ $(document).ready(function(){
                                 $(".mapcontainer").trigger('update', [{mapOptions: newData}]);*/
                             }
                         }
-                    },
-                    defaultPlot : {
-                    	
-                    	eventHandlers: {
-                            click: function (e, id, mapElem, textElem) {
-                            /*	alert('동작0 ' + id)
-                            	if(id === 'KR'){
-                            		alert('KR ' + id)
-                            	}
-                            	else if(id === 'US'){
-                            		alert('US ' + id)
-                            	}
-                            	else if(id === 'JP'){
-                            		alert('JP ' + id)
-                            	}
-                            	else if(id === 'CN'){
-                            		alert('cn ' + id)
-                            	}
-                            	else if(id === 'AU'){
-                            		alert('AU ' + id)
-                            	}
-                            	else if(id === 'DE'){
-                            		alert('DE ' + id)
-                            	}
-                            	else if(id === 'SG'){
-                            		alert('SG ' + id)
-                            	}
-                            	else if(id === 'GB'){
-                            		alert('GB ' + id)
-                            	}
-                            	else if(id === 'NP'){
-                            		alert('NP ' + id)
-                            	}
-                            	else if(id === 'FR'){
-                            		alert('FR ' + id)
-                            	}
-                            	else if(id === 'IT'){
-                            		alert('IT ' + id)
-                            	}
-                            	else if(id === 'NL'){
-                            		alert('NL ' + id)
-                            	}
-                            	else if(id === 'PT'){
-                            		alert('PT ' + id)
-                            	}
-                            	else if(id === 'ES'){
-                            		alert('ES ' + id)
-                            	}
-                            	else if(id === 'BE'){
-                            		alert('BE ' + id)
-                            	}
-                            	else{
-                            		
-                            	}*/
-                            }
-                        }
                     }
                 },
-              /*  areas: {
-                    "KR": {
-                        text: {
-                            content: "dblclick",
-                            position: "top"
-                        },
-                        attrs: {
-                            fill: "#0088db"
-                        },
-                        tooltip: {
-                            content: "Finistère (29)"
-                        },
-                       
-                    }
-                },*/
                 legend: {
                     area: {
                         title: "Countries population",
@@ -153,7 +138,7 @@ $(document).ready(function(){
                             	min: 500,
                                 max: 5000000,
                                 attrs: {
-                                    fill: "#459bd9"		// 6aafe1
+                                    fill: "#d3e7f5"		// d3e7f5
                                 },
                                 label: "Less than 5 millions inhabitants"
                             },
@@ -161,7 +146,7 @@ $(document).ready(function(){
                                 min: 5000000,
                                 max: 10000000,
                                 attrs: {
-                                    fill: "#459bd9"
+                                    fill: "#b9d9f0"	// b9d9f0
                                 },
                                 label: "Between 5 millions and 10 millions inhabitants"
                             },
@@ -169,7 +154,7 @@ $(document).ready(function(){
                                 min: 10000000,
                                 max: 50000000,
                                 attrs: {
-                                    fill: "#2579b5"	//#2579b5
+                                    fill: "#9ccaeb"	//#9ccaeb
                                 },
                                 label: "Between 10 millions and 50 millions inhabitants",
                                 clicked: true
@@ -177,7 +162,7 @@ $(document).ready(function(){
                             {
                                 min: 50000000,
                                 attrs: {
-                                    fill: "#2579b5" //	1a527b
+                                    fill: "#77b6e3" //	77b6e3
                                 },
                                 label: "More than 50 millions inhabitants"
                             }
@@ -271,12 +256,12 @@ $(document).ready(function(){
                 	  "KR": {
   					    "value": "400",
   					    "href": "#",
-  					    "tooltip": {
-  					        "content": "<span style=\"font-weight:bold;\">Korea, Republic Of<\/span><br \/>Population : 49779000"
+  					    tooltip: {
+  					        content : "<span style=\"font-weight:bold;\">Korea, Republic Of<\/span><br \/>Population : 49779000"
   					      },
   					    //tooltip: {content: "대한민국 - 1 KRW"},
-  					     text: {content: "대한민국 - 1 KRW", attrs: {fill: "#000", "font-size": 18, }, 
-  					     position : "top", "font-weight" : "bold"}
+  					     text: {content: `대한민국 - 1 KRW`, attrs: {fill: "#000", "font-size": 20 }, 
+  					    	 	position : "top", "font-weight" : "bold", margin : {x : 80, y: 40}}	// 20 25
   					  },
                 	  "US": {
                           "value": "400",
@@ -284,8 +269,9 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">United States<\/span><br \/>Population : 311591917"
                           },
-                          text: {content: "미국 - 1 USD", attrs: {fill: "#000", "font-size": 18, }, 
-       					  position : "left", "font-weight" : "bold"}
+                          text: {content: `미국 - ${usd} USD`, attrs: {fill: "#000", "font-size": 20, }, 
+       					  position : "left", "font-weight" : "bold", margin : {x : -180, y: 60}}	// {x : -300, y: -30}
+                          
                       },
                       "JP": {
                           "value": "400",
@@ -293,8 +279,8 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Japan<\/span><br \/>Population : 127817277"
                           },
-                          text: {content: "일본 - 1 JPY", attrs: {fill: "#000", "font-size": 18, }, 
-           				  position : "right", "font-weight" : "bold"}
+                          text: {content: `일본 - ${jpy} JPY`, attrs: {fill: "#000", "font-size": 20, }, 
+           				  position : "bottom", "font-weight" : "bold", margin : {x : 60, y: 0}}
                       },
                       "CN": {
                           "value": "400",
@@ -302,8 +288,8 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">China<\/span><br \/>Population : 1344130000"
                           },
-                          text: {content: "중국 - 1 CNY", attrs: {fill: "#000", "font-size": 18, },
-               				  position : "center", "font-weight" : "bold"}
+                          text: {content: `중국 - ${cny} CNY`, attrs: {fill: "#000", "font-size": 20, },
+               				  position : "center", "font-weight" : "bold", margin : {x : 30, y: 70}}
                       },
                       "SG": {
                           "value": "40000",
@@ -320,8 +306,8 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Australia<\/span><br \/>Population : 22620600"
                           },
-                          text: {content: "호주 - 1 AUD", attrs: {fill: "#000", "font-size": 18, },
-               				  position : "center", "font-weight" : "bold"}
+                          text: {content: `호주 - ${aud} AUD`, attrs: {fill: "#000", "font-size": 20, },
+               				  position : "center", "font-weight" : "bold", margin : {x : 0, y: 60}}
                       },
                       "GB": {
                           "value": "40000",
@@ -347,7 +333,7 @@ $(document).ready(function(){
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Germany<\/span><br \/>Population : 81726000"
                           },
-                          text: {content: "독일 - 1 EUR", attrs: {fill: "#000", "font-size": 18, },
+                          text: {content: `유럽(독일) - ${eur} EUR`, attrs: {fill: "#000", "font-size": 20, },
                				  position : "top", "font-weight" : "bold"}
                       },
                       "FR": {
@@ -1154,9 +1140,7 @@ $(document).ready(function(){
                           "href": "#",
                           "tooltip": {
                               "content": "<span style=\"font-weight:bold;\">Mexico<\/span><br \/>Population : 114793341"
-                          },
-                          text: {content: "미국 - 1 USD", attrs: {fill: "#000", "font-size": 18, }, 
-           					  position : "top", "font-weight" : "bold"}
+                          }
                           
                       },
                       "FM": {
@@ -1658,8 +1642,8 @@ $(document).ready(function(){
                       }
                       
                 }
-            });
-
+            })
+		})
             var all_hidden = 'show',
                 areas_hidden = 'show',
                 plots_hidden = 'show';

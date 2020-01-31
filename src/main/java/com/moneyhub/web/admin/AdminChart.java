@@ -15,5 +15,6 @@ import lombok.NoArgsConstructor;
 public class AdminChart {
 	
 	private String cemail, cpwd, cno, age;
+	
 
 }

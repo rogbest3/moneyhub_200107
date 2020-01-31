@@ -6,7 +6,7 @@ sidebar = (()=>{
 		_ = $.ctx()
 		js = $.js()
 		nav_vue_js = js + '/vue/nav_vue.js'
-		exchange_test_js = js + '/vue/nav_vue.js'
+		exchange_test_js = js + '/mypage/exchange_test.js'
 	}
 	let onCreate =()=>{
 		init()
@@ -39,6 +39,7 @@ sidebar = (()=>{
 			$('#ref_mgmt').removeClass('active')
 			$('#withdrawal').removeClass('active')
 			$('#exchange_test').removeClass('active')
+			$('#exchange').removeClass('active')
 			
 			cus_info.onCreate()
 			
@@ -55,6 +56,7 @@ sidebar = (()=>{
 			$('#ref_mgmt').removeClass('active')
 			$('#withdrawal').removeClass('active')
 			$('#exchange_test').removeClass('active')
+			$('#exchange').removeClass('active')
 			
 			pwd_chg.onCreate()
 			
@@ -71,6 +73,7 @@ sidebar = (()=>{
 			$('#ref_mgmt').removeClass('active')
 			$('#withdrawal').removeClass('active')
 			$('#exchange_test').removeClass('active')
+			$('#exchange').removeClass('active')
 			
 			auth_mgmt.onCreate()
 			
@@ -89,6 +92,7 @@ sidebar = (()=>{
 			$('#ref_mgmt').removeClass('active')
 			$('#withdrawal').removeClass('active')
 			$('#exchange_test').removeClass('active')
+			$('#exchange').removeClass('active')
 			
 			alarm.onCreate()
 			
@@ -107,6 +111,7 @@ sidebar = (()=>{
 			$('#alarm').removeClass('active')
 			$('#withdrawal').removeClass('active')
 			$('#exchange_test').removeClass('active')
+			$('#exchange').removeClass('active')
 			
 			ref_mgmt.onCreate()
 			
@@ -125,6 +130,7 @@ sidebar = (()=>{
 			$('#alarm').removeClass('active')
 			$('#ref_mgmt').removeClass('active')
 			$('#exchange_test').removeClass('active')
+			$('#exchange').removeClass('active')
 			
 			withdrawal.onCreate()
 			
@@ -143,8 +149,28 @@ sidebar = (()=>{
 			$('#alarm').removeClass('active')
 			$('#ref_mgmt').removeClass('active')
 			$('#withdrawal').removeClass('active')
+			$('#exchange').removeClass('active')
 			
 			exchange_test.onCreate()
+			
+		})
+		
+		$('#exchange')
+		.click(function(){
+			var tab_id = $(this).attr('data-tab')
+			$('#exchange').removeClass('active')
+			$('themoin-mypage-profile').removeClass('active')
+			$(this).addClass('active')
+			$("#"+tab_id).addClass('active')
+			$('#cus_info').removeClass('active')
+			$('#pwd_chg').removeClass('active')
+			$('#auth_mgmt').removeClass('active')
+			$('#alarm').removeClass('active')
+			$('#ref_mgmt').removeClass('active')
+			$('#withdrawal').removeClass('active')
+			$('#exchange_test').removeClass('active')
+			
+			exchange.onCreate()
 			
 		})
 	}
