@@ -34,7 +34,7 @@ remit_box =(()=>{
 	let numberFormat =x=>{
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	}
-	
+	//
 	let popup =()=>{
 		$('.form-calculator .amount-row .receive')
 		.click(e=>{

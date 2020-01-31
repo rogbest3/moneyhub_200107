@@ -10,7 +10,7 @@ $(document).ready(function(){
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false,	
+				fill: false	
 			}]
 		},
 		options: {

@@ -292,6 +292,9 @@ mypage_vue = {
 				    <div id="amount" class="themoin-info-preview" style="width:400px">
 				    	<ol style="border-bottom-width: 0px;"></ol>
 				    </div>
+				    <div id="exchange_datepicker">
+				    	년 월 일 : <input type="text" id="datepicker">
+				    </div>
 				</div>`
 	},
 	exchange_test_head : ()=>{
