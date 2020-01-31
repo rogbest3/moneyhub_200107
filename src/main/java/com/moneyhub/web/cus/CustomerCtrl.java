@@ -178,6 +178,4 @@ public class CustomerCtrl extends Proxy {
 		return box.get();
 	}
 	
-	
-
 }

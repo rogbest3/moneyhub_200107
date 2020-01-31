@@ -33,22 +33,38 @@
 		-->
 
 	<insert id="join" parameterType="Customer">
-	    INSERT INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
+	   <!--  INSERT INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
 	    			WDATE, UDATE, ZIP, ADDR, DADDR, BIRTH) 
 	    VALUES (
 	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, #{sdate}, 
 	    	#{wdate}, #{udate}, #{zip}, #{addr}, #{daddr}, #{birth}
-	    )
+	    ) -->
+	    INSERT ALL
+	    INTO CUSTOMER ( CEMAIL, CPWD, CNAME, CSTCD, SDATE, 
+	    			WDATE, UDATE, ZIP, ADDR, DADDR, BIRTH) 
+	    VALUES (
+	    	#{cemail}, #{cpwd}, #{cname}, #{cstcd}, #{sdate}, 
+	    	#{wdate}, #{udate}, #{zip}, #{addr}, #{daddr}, #{birth}
+	    	)
+	    INTO ACCOUNT ( CNO, BSDATE, ACCT_NO, ACHCNTCD, CRTMEN, 
+	    			CRTDT, CPMEM, UPDT) 
+	    VALUES (
+	    	#{cno}, #{bsdate}, #{acct_no}, #{achcntcd}, #{crtmen}, 
+	    	#{crtdt}, #{cpmem}, #{updt}
+	    	)
+	    SELECT *
+	    FROM DUAL;
+	    	
 	</insert>
 	
  	<!-- <insert id="GetKey" parameterType="Customer">
-		update customer set custKey like #{param2}
-		where cemail like #{param1}
+		UPDATE CUSTOMER SET CUSTKEY LIKE #{param2}
+		WHERE CEMAIL LIKE #{param1}
 	</insert>
 	
 	<insert id="alterCustKey" parameterType="Customer">
-		update customer set custKey like 'Y'
-		where cemail like #{param1} and custKey like #{param2}
+		UPDATE CUSTOMER SET CUSTKEY LIKE 'Y'
+		WHERE CEMAIL LIKE #{param1} AND CUSTKEY LIKE #{param2}
 	</insert> -->
 	
 	<delete id="withdrawal" parameterType="Customer">
