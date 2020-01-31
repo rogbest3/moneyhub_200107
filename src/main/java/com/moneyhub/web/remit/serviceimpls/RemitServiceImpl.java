@@ -16,12 +16,12 @@ import com.moneyhub.web.remit.domains.TRD;
 import com.moneyhub.web.remit.domains.TRDHR;
 import com.moneyhub.web.remit.mappers.RemitMapper;
 import com.moneyhub.web.remit.services.RemitService;
-import com.moneyhub.web.remit.util.CharUtil;
 
 @Service
 public class RemitServiceImpl implements RemitService{
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 	@Resource
 	private CharUtil charUtil;
 	@Autowired TRDHR trdhr;

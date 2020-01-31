@@ -32,8 +32,8 @@ main_vue ={
 							<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00"> 
 						</div> 
 						<div class="unit-select disabled" tabindex="0" > 
-							<p>대한민국</p> 
-							<h3>KRW</h3> 
+							<p>미국</p> 
+							<h3>USD</h3> 
 						</div> 
 					</div> 
 					<div class="amount-row"> 
@@ -42,8 +42,8 @@ main_vue ={
 							<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly=""> 
 						</div> 
 						<div class="unit-select receive" tabindex="0"> 
-							<p>미국</p> 
-							<h3>USD</h3> 
+							<p>유럽</p> 
+							<h3>EUR</h3> 
 						</div> 
 					</div> 
 				</div> 
