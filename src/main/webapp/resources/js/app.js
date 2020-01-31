@@ -31,7 +31,6 @@ app =(()=>{
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_box_js = js + '/remit/remit_box.js'
-		remit_box_js = js + '/mypage/remit_box.js'
 		adminLogin_js = js + '/admin/adminLogin.js'
 	}
 	

@@ -24,7 +24,6 @@ exrate =(()=>{
 		}
 		
 		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
-
 			$.each(d.exlist.reverse(), (i, j)=>{
 				exrate_arr.push(parseFloat(j.exrate))
 			})
@@ -52,6 +51,8 @@ exrate =(()=>{
 				$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
 			}
 			// * 0.985
+			deal.amount = $('.form-calculator .amount-row input.send-amount').val()
+			sessionStorage.setItem('deal',JSON.stringify(deal))
 		}
 		
 		let comma_create =x=>{
