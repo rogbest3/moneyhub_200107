@@ -59,7 +59,7 @@ remit_box =(()=>{
 					send_cntcd_filter(send_data)
 				})
 			}
-			
+		//	
 			$('#popup-root .moin-close')
 			.click(e=>{
 				e.preventDefault()
