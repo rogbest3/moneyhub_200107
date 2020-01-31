@@ -22,8 +22,6 @@ public class RemitServiceImpl implements RemitService{
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	@Resource
-	private CharUtil charUtil;
 	@Autowired TRDHR trdhr;
 	@Autowired TRD trd;
 	@Autowired RCPT rcpt;
@@ -46,10 +44,8 @@ public class RemitServiceImpl implements RemitService{
 		trd.setExrate((double) deal.get("exrate"));
 		trd.setCrtmem("LEJ");
 		trd.setCrtdt(sdf.format(date));
-		String aa = charUtil.excuteGenerate();
-		String bb = charUtil.toString();
-		int cc = charUtil.getCertCharLength();
-		System.out.println("aa"+aa+"bb"+bb+"cc"+cc);
+
+		
 		/*
 		 * remitMapper.insertFee(deal); remitMapper.insertRCPT(deal);
 		 * remitMapper.insertTRDHR(deal);
