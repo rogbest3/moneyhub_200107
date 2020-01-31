@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +22,8 @@ import com.moneyhub.web.remit.util.CharUtil;
 public class RemitServiceImpl implements RemitService{
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	@Autowired CharUtil charUtil;
+	@Resource
+	private CharUtil charUtil;
 	@Autowired TRDHR trdhr;
 	@Autowired TRD trd;
 	@Autowired RCPT rcpt;
@@ -46,6 +49,7 @@ public class RemitServiceImpl implements RemitService{
 		String aa = charUtil.excuteGenerate();
 		String bb = charUtil.toString();
 		int cc = charUtil.getCertCharLength();
+		System.out.println("aa"+aa+"bb"+bb+"cc"+cc);
 		/*
 		 * remitMapper.insertFee(deal); remitMapper.insertRCPT(deal);
 		 * remitMapper.insertTRDHR(deal);
