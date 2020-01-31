@@ -14,11 +14,13 @@ import com.moneyhub.web.remit.domains.TRD;
 import com.moneyhub.web.remit.domains.TRDHR;
 import com.moneyhub.web.remit.mappers.RemitMapper;
 import com.moneyhub.web.remit.services.RemitService;
+import com.moneyhub.web.remit.util.CharUtil;
 
 @Service
 public class RemitServiceImpl implements RemitService{
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	@Autowired CharUtil charUtil;
 	@Autowired TRDHR trdhr;
 	@Autowired TRD trd;
 	@Autowired RCPT rcpt;
@@ -41,6 +43,9 @@ public class RemitServiceImpl implements RemitService{
 		trd.setExrate((double) deal.get("exrate"));
 		trd.setCrtmem("LEJ");
 		trd.setCrtdt(sdf.format(date));
+		String aa = charUtil.excuteGenerate();
+		String bb = charUtil.toString();
+		int cc = charUtil.getCertCharLength();
 		/*
 		 * remitMapper.insertFee(deal); remitMapper.insertRCPT(deal);
 		 * remitMapper.insertTRDHR(deal);
