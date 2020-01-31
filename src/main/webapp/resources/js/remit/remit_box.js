@@ -96,15 +96,11 @@ remit_box =(()=>{
 				$('#popup-root')
 				.hide()
 				$('#popup_box input').val('')
-				
-				$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`) //숙제 
+				$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`) 
 				$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-				
-				deal.cntp =$('.form-calculator .amount-row .receive p').text()  //숙제 세션에 담고 다다음 화면으로 넘어가야 정보 반영됨 
+				deal.cntp =$('.form-calculator .amount-row .receive p').text() 
 				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 				sessionStorage.setItem('deal',JSON.stringify(deal))
-				/*alert(JSON.stringify(deal))*/
-				
 				if( j.flag === 'mypage'){
 					$('#chart')
 					.html(`<canvas id="canvas" style="width:70%; height:110px"></canvas>`)

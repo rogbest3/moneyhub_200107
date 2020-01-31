@@ -36,7 +36,7 @@ foreignRemit = (()=>{
 	
 	let setContentView = ()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_first(deal))
+		.html(remit_vue.remit_first())
 		$('.themoin-footer').empty()
 	}
 	
@@ -53,7 +53,8 @@ foreignRemit = (()=>{
 		
 		
 		$('#first_remit_btn').click(()=>{
-			deal.amount =  document.getElementById('sd_amount').value //송금액을 바꿨을 때 금액
+			deal.amount = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') //송금액을 바꿨을 때 금액
+			alert(deal.amount)
 			deal.fee = document.getElementById('fee_check').innerHTML
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_cusInfo()
@@ -114,36 +115,19 @@ foreignRemit = (()=>{
 	let remit_complete =()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_complete(deal))
-
-		let m = `입금 기한 ${Math.floor(3600 / 60)} : ${(3600 % 60)}`	// 숙제
-		alert(msg_time())
-		$('#deposit_hour').text(msg_time().msg)
-
+		setInterval(msg_time, 1000);
 		$('#main_user_btn').click(()=>{
+			deal.amount = null
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
 	}
 	
-/*	function msg_time() {	// 1초씩 카운트
-		let SetTime = 3600
-		m = `입금 기한 ${Math.floor(3600 / 60)} : ${(3600 % 60)}`	// 남은 시간 계산
-		SetTime--;					// 1초씩 감소
-	}
-	function time_count(){
-		msg_time()
-		setInterval(msg_time, 1000);
-	}
-	*/
-	var SetTime = 3600;		// 최초 설정 시간(기본 : 초)
-	function msg_time() {	// 1초씩 카운트
-		var msg = `입금 기한 ${Math.floor(3600 / 60)} : ${(3600 % 60)}`	// 남은 시간 계산
-		document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌 
-		SetTime--;					// 1초씩 감소
-	}
-	function time_count(){
-		msg_time()
-		setInterval(msg_time, 1000);
+	var SetTime = 3599;	
+	function msg_time() {
+		var msg = `입금 기한 ${Math.floor(SetTime / 60)} : ${(SetTime % 60)}`
+		SetTime--;	
+		$('#deposit_hour').text(msg)
 	}
 	
 	return {onCreate}

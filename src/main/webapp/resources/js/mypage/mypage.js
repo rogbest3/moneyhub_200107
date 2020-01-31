@@ -41,7 +41,6 @@ mypage =(()=>{
 	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
-			
 			setContentView()
 			page_move()	
 			setInterval(clock_excute, 1000)
@@ -54,25 +53,17 @@ mypage =(()=>{
 		
 	}
 	let setContentView =()=>{
-		if( deal.cntcd ==undefined){
-			$('.form-calculator .amount-row .receive p').text('미국')
-			$('.form-calculator .amount-row .receive h3').text('USD')
-		}
 		$('#root')
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
-		
 		$.getScript(line_graph_js)
-		/*alert(deal.cntcd)*/
 		
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
-			deal.amount = document.getElementById('send_amount').value  //처음 입력한 송금액
-			sessionStorage.setItem('deal', JSON.stringify(deal));
 			foreignRemit.onCreate()
 		})
 	}

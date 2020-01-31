@@ -38,6 +38,7 @@ public class RemitServiceImpl implements RemitService{
 		trd.setChngCausCd(0);
 		trd.setTrdAmnt(deal.get("amount").toString());
 		trd.setCntcd(deal.get("cntcd").toString());
+		trd.setExrate((double) deal.get("exrate"));
 		trd.setCrtmem("LEJ");
 		trd.setCrtdt(sdf.format(date));
 		/*

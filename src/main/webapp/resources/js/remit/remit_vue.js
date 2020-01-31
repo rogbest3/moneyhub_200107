@@ -1,5 +1,4 @@
 var remit_vue = remit_vue || {}
-//숙제 전역 객체 선언하기
 remit_vue = {
 	remit_first: () => {
 		deal = $.deal()
@@ -12,7 +11,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class=""> 
 									<p>송금 금액</p> 
-									<input class="send-amount" id= "sd_amount"  type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
 									<p>미화</p><h3>USD</h3> 
@@ -287,7 +286,7 @@ remit_vue = {
 									</div>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png" class="user-sendlist-ic">
 									<div class="amount receive">
-										<p >${deal.amount} <span class="unit">USD</span></p><p>적용 환율 : 1 USD = 1161.81 KRW</p>
+										<p >${deal.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")} <span class="unit">USD</span></p><p>적용 환율 : 1 USD = 1161.81 KRW</p>
 									</div>
 								</div>
 							</div>
@@ -370,7 +369,7 @@ remit_vue = {
 			return `<div class="themoin-remit-success">
 						<div>
 							<img src="https://img.themoin.com/public/img/img-success.svg">
-							<h1 id="deposit_hour" type="text">입금기한 58:31</h1>
+							<h1 id="deposit_hour" type="text">입금 기한 60:00</h1>
 							<div class="intro">머니허브 해외송금을 이용해주셔서 감사합니다.<br>
 								<p><span>2019년 12월 30일 오후 3:38까지</span> 계좌로 입금해주세요.</p>
 								<p class="fs-block">반드시, <span>신한은행 110341213905 이은지 계좌</span>에서 출금해주셔야 합니다.</p>

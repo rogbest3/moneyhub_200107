@@ -54,6 +54,9 @@ app =(()=>{
 			setContentView()
 			page_move()
 			remit_box.onCreate('')
+			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+			sessionStorage.setItem('deal',JSON.stringify(deal))
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -93,12 +96,6 @@ app =(()=>{
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
-	/*	
-		$('.unit-select receive')
-		.click(()=>{
-			$('#root')
-			.append(remit_popup.nation())
-		})*/
 
 		$('<button/>')
 		.text('송금하기')
