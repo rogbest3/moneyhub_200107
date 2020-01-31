@@ -22,7 +22,7 @@ mypage =(()=>{
 		main_class = 'themoin-main'
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
-		remit_box_js = js + '/mypage/remit_box.js'
+		remit_box_js = js + '/remit/remit_box.js'
 	}
 	
 	let onCreate =()=>{
@@ -37,8 +37,6 @@ mypage =(()=>{
 			$.getScript(faq_js),
 			$.getScript(guide_recieve_js),
 			$.getScript(remit_box_js)
-//			$.getScript(line_graph_js)
-	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
 			setContentView()

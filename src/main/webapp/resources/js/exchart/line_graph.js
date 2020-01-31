@@ -90,12 +90,10 @@ $(document).ready(function(){
 	let receive_value_calc =()=>{
 		let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
 							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985
-//		alert(`receive_value : ${receive_value.toFixed(2)}`)
-		$('.form-calculator .amount-row input.receive-amount').val(numberFormat(receive_value.toFixed(2)))
-
+		$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
 	}
 	
-	let numberFormat =x=>{
+	let comma_create =x=>{
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	}
 })

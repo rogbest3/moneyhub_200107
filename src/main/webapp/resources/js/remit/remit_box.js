@@ -13,7 +13,7 @@ remit_box =(()=>{
 	
 	let onCreate =x=>{
 		init(x)
-		$('#send_amount').val(100000)
+		$('#send_amount').val(1000000)
 		remit_send()
 		$('.form-calculator .amount-row input.send-amount')
 		.focusout(()=>{
@@ -22,7 +22,7 @@ remit_box =(()=>{
 		popup()
 		$.getScript(exrate_js)
 		.done(()=>{
-			exrate.onCreate('')
+			exrate.onCreate()
 		})
 	}
 	
@@ -44,19 +44,21 @@ remit_box =(()=>{
 							{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '' },			
 							{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '' },
 							{ img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' }]
-		
-			$('.form-calculator .amount-row .send')	// send cntcd 클릭 시
-			.click(e=>{
-				e.preventDefault()
-				$('#popup-exchange').hide()
-				$('#popup-root')
-				.show()
-				
-				$('#popup_box input').val('')
-				$('#popup_box ul').empty()
-				send_cntcd_filter(send_data)
-			})
-
+			
+			if( cntcd === 'KRW' ){
+				alert('cntcd : ' + cntcd)
+				$('.form-calculator .amount-row .send')	// send cntcd 클릭 시
+				.click(e=>{
+					e.preventDefault()
+					$('#popup-exchange').hide()
+					$('#popup-root')
+					.show()
+					$('#popup_box input').val('')
+					$('#popup_box ul').empty()
+					send_cntcd_filter(send_data)
+				})
+			}
+			
 			$('#popup-root .moin-close')
 			.click(e=>{
 				e.preventDefault()

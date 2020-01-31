@@ -13,7 +13,7 @@ retention_amount =(()=>{
 	}
 	
 	let setContentView =()=>{
-		let data = [ { id: 'total_money', currencies : "총 보유금액", money: '100000000', cntcd : 'KRW' },
+		let data = [ { id: 'total_money', currencies : "총 보유금액", money: '0', cntcd : 'KRW' },
 					{ id: 'exchange_KRW', currencies : "대한민국 한화", money: '100000000', cntcd : 'KRW' },
 					{ id: 'exchange_USD', currencies : "미국 달러", money: '0', cntcd : 'USD' },
 					{ id: 'exchange_AUD', currencies : "호주 달러", money: '0', cntcd : 'AUD' },
@@ -23,7 +23,7 @@ retention_amount =(()=>{
 		
 		$.each(data, (i,j)=>{
 			$(`<li><p style="font-size : 18px width:120px;">${j.currencies}</p>
-					<p id="${j.id}" style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:35%; text-align: right; ">${numberFormat(j.money)}</p>
+					<p id="${j.id}" style="color : #2dccd3; font-size : 18px; margin-right : 10px; min-width:120px; width:35%; text-align: right; ">${comma_create(j.money)}</p>
 					<p class="fs-block" style="font-size : 18px">${j.cntcd}</p>
 				</li>`)
 			.css({
@@ -33,7 +33,7 @@ retention_amount =(()=>{
 		})
 	}
 	
-	let numberFormat =x=>{
+	let comma_create =x=>{
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	}
 	return { onCreate }

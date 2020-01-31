@@ -39,21 +39,21 @@ exrate =(()=>{
 			if( receive_cntcd === 'KRW'){
 //				alert('receive_cntcd가 KRW 일 때 - ' + exrate_arr[exrate_arr.length -1])
 				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-								* exrate_arr[exrate_arr.length -1]
+									* exrate_arr[exrate_arr.length -1] * 0.985
 			
-				$('.form-calculator .amount-row input.receive-amount').val(numberFormat(receive_value.toFixed(0)))
+				$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
 			}
 			else{
 //				alert( $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') +' / '+exrate_arr[exrate_arr.length -1])
 				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-								/ exrate_arr[exrate_arr.length -1]
+									/ exrate_arr[exrate_arr.length -1] * 0.985
 			
-				$('.form-calculator .amount-row input.receive-amount').val(numberFormat(receive_value.toFixed(2)))
+				$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
 			}
 			// * 0.985
 		}
 		
-		let numberFormat =x=>{
+		let comma_create =x=>{
 			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 		}
 	}

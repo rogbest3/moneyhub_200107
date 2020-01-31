@@ -13,7 +13,7 @@ foreignRemit = (()=>{
 		auth_js = js + '/cmm/auth.js'
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
-//		remit_box_js = js + '/mypage/remit_box.js'
+//		remit_box_js = js + '/remit/remit_box.js'
 	}
 
 	let onCreate =()=>{

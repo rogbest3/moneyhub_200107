@@ -30,7 +30,7 @@ app =(()=>{
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_popup_js = js + '/remit/remit_popup.js'
-		remit_box_js = js + '/mypage/remit_box.js'
+		remit_box_js = js + '/remit/remit_box.js'
 	}
 	
 	let onCreate =()=>{

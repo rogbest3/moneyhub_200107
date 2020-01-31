@@ -16,7 +16,7 @@ $(document).ready(function(){
 		
 		$('#popup-exchange')
 		.show()
-		$.getScript($.js() + '/mypage/remit_box.js')
+		$.getScript($.js() + '/remit/remit_box.js')
 		.done(()=>{
 			remit_box.onCreate({ flag : 'exchange', cntcd : x.cntcd })
 		})
@@ -70,10 +70,17 @@ $(document).ready(function(){
                         },
                         eventHandlers: {
                             click: function (e, id, mapElem, textElem) {
+                            	$('.form-calculator .amount-row .send')
+                            	.css({ cursor : 'text',
+                            		'background-image' : 'none'})
                             	$('.form-calculator .amount-row .send p').text(`대한민국`)
                     			$('.form-calculator .amount-row .send h3').text(`KRW`)
                     			$('#exchange_send_amount').val(1000000)
+                    			
                         		if(id === 'KR'){
+                        			$('.form-calculator .amount-row .send')
+                        			.css({ cursor : 'pointer',
+                                		'background-image' : 'url(https://img.themoin.com/public/img/ic-currency.svg)'})
                         			$('.form-calculator .amount-row .send p').text(`미국`)
                         			$('.form-calculator .amount-row .send h3').text(`USD`)
                         			$('#exchange_send_amount').val(1000)
