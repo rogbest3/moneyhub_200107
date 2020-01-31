@@ -25,7 +25,7 @@
 	
 	<!--카카오 css-->
 	<link href="/web/resources/css/kabang.css" rel="stylesheet" type="text/css">
-<!-- Add a banner for Appstore link -->
+	<!-- Add a banner for Appstore link -->
 	<meta name="apple-itunes-app" content="app-id=1228063143">
 	<title>머니허브(MoneyHub) 해외송금</title>
 	
@@ -48,10 +48,9 @@
 	<!-- kakao login -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
-	<!-- datepicker -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-	<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<!-- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+	<!-- chart -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
@@ -60,6 +59,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/vue/auth_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/cookie.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/mypage.js"></script>
+	<%-- <script src="<%=application.getContextPath()%>/resources/js/mypage/exChart.js"></script> --%>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/vue/mypage_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/compo.js"></script>
@@ -74,7 +74,6 @@
 	<script src="<%=application.getContextPath()%>/resources/js/remit/foreignRemit.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_dropdown.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_popup.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_box.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/cus_info.js"></script>
@@ -85,6 +84,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/alarm.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/ref_mgmt.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/mypage/exchange.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/buttons.js"></script>
@@ -103,6 +103,7 @@
 	
 	<script src="<%=application.getContextPath()%>/resources/js/kakao/postcode.v2.js"></script>
 
+	
 </head>
 <body id="page-top">
 	<div id="root"></div>

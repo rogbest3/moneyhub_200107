@@ -8,7 +8,6 @@ function Session(x){
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
 	var deal = new Object() // 송금 객체
 	sessionStorage.setItem('deal',JSON.stringify(deal));
-
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
 		js : ()=>{ return sessionStorage.getItem('js');},
@@ -28,3 +27,17 @@ function Customer_Info(x){
 		cname : ()=>{ return sessionStorage.getItem('cname') }
 	}
 }
+
+function Clock(){
+	let date = new Date();
+	return{
+		year : date.getFullYear(),
+		month : date.getMonth(),
+		clockDate : date.getDate(),
+		day : date.getDay(),
+		hours : date.getHours(),
+		minutes : date.getMinutes(),
+		seconds : date.getSeconds()
+	}
+}
+

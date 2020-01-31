@@ -1,4 +1,5 @@
 var main_vue = main_vue || {}
+
 main_vue ={
 	main : ()=>{
 		return `<div class="themoin-landing">
@@ -17,117 +18,116 @@ main_vue ={
                     <span>해외계좌송금</span>
                 </li>
             </ul>
-        </div>`+
-		'	<div class="themoin-remit-component">'+
-		'		<div id="moin-event-amount" class="moin-event-amount">'+
-		'		<h1>지금 바로 WU 송금을 이용해보세요</span>'+
-		'			<p class="color-deepgrey"></p>'+
-		'		</div>'+
-		'		<div class="moin-amount">'+
-		'			<div id="remit_box" class="form-calculator main">'+
-		'				<div class="amount-row">'+
-		'					<div class="">'+
-		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00">'+
-		'					</div>'+
-		'					<div class="unit-select disabled" tabindex="0" >'+
-		'						<p>대한민국</p>'+
-		'						<h3>KRW</h3>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="amount-row">'+
-		'					<div class="">'+
-		'						<p>예상 비용</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="">'+
-		'					</div>'+
-		'					<div class="unit-select receive" tabindex="0">'+
-		'						<p>미국</p>'+
-		'						<h3>USD</h3>'+
-		'					</div>'+
-		'				</div>'+
-		'			</div>'+
-		'		</div>'+
-		'	</div>'+
-		
-		'	<div class="themoin-landing-countries">'+
-		'		<div>'+
-		'			<h1>송금 가능 국가</h1>'+
-		'			<ul>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-jp.svg">'+
-		'					<span class="newmoin-text-subtitle">일본</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-cn.svg">'+
-		'					<span class="newmoin-text-subtitle">중국</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-us.svg">'+
-		'					<span class="newmoin-text-subtitle">미국</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-sg.svg">'+
-		'					<span class="newmoin-text-subtitle">싱가포르</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-au.svg">'+
-		'					<span class="newmoin-text-subtitle">호주</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-gb.svg">'+
-		'					<span class="newmoin-text-subtitle">영국</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-np.svg">'+
-		'					<span class="newmoin-text-subtitle">네팔</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li></ul>'+
-		'				<ul><li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-de.svg">'+
-		'					<span class="newmoin-text-subtitle">독일</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-fr.svg">'+
-		'					<span class="newmoin-text-subtitle">프랑스</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-it.svg">'+
-		'					<span class="newmoin-text-subtitle">이탈리아</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-nl.svg">'+
-		'					<span class="newmoin-text-subtitle">네덜란드</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-pt.svg">'+
-		'					<span class="newmoin-text-subtitle">포르투갈</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-es.svg">'+
-		'					<span class="newmoin-text-subtitle">스페인</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'				<li>'+
-		'					<img src="https://img.themoin.com/public/img/circle-flag-be.svg">'+
-		'					<span class="newmoin-text-subtitle">벨기에</span>'+
-		'					<p>계좌송금</p>'+
-		'				</li>'+
-		'			</ul>'+
-		'		</div>'+
-		'	</div>'+
-		
-		`<div class="intro_product wu_send_product_2">
+        </div>
+			<div class="themoin-remit-component"> 
+			<div id="moin-event-amount" class="moin-event-amount"> 
+			<h1>지금 바로 WU 송금을 이용해보세요</span> 
+				<p class="color-deepgrey"></p> 
+			</div> 
+			<div class="moin-amount"> 
+				<div id="remit_box" class="form-calculator main"> 
+					<div class="amount-row"> 
+						<div class=""> 
+							<p>송금 금액</p> 
+							<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00"> 
+						</div> 
+						<div class="unit-select disabled" tabindex="0" > 
+							<p>대한민국</p> 
+							<h3>KRW</h3> 
+						</div> 
+					</div> 
+					<div class="amount-row"> 
+						<div class=""> 
+							<p>예상 비용</p> 
+							<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly=""> 
+						</div> 
+						<div class="unit-select receive" tabindex="0"> 
+							<p>미국</p> 
+							<h3>USD</h3> 
+						</div> 
+					</div> 
+				</div> 
+			</div> 
+		</div> 
+		<div class="themoin-landing-countries"> 
+			<div> 
+				<h1>송금 가능 국가</h1> 
+				<ul> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-jp.svg"> 
+						<span class="newmoin-text-subtitle">일본</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-cn.svg"> 
+						<span class="newmoin-text-subtitle">중국</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-us.svg"> 
+						<span class="newmoin-text-subtitle">미국</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-sg.svg"> 
+						<span class="newmoin-text-subtitle">싱가포르</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-au.svg"> 
+						<span class="newmoin-text-subtitle">호주</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-gb.svg"> 
+						<span class="newmoin-text-subtitle">영국</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-np.svg"> 
+						<span class="newmoin-text-subtitle">네팔</span> 
+						<p>계좌송금</p> 
+					</li></ul> 
+					<ul><li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-de.svg"> 
+						<span class="newmoin-text-subtitle">독일</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-fr.svg"> 
+						<span class="newmoin-text-subtitle">프랑스</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-it.svg"> 
+						<span class="newmoin-text-subtitle">이탈리아</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-nl.svg"> 
+						<span class="newmoin-text-subtitle">네덜란드</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-pt.svg"> 
+						<span class="newmoin-text-subtitle">포르투갈</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-es.svg"> 
+						<span class="newmoin-text-subtitle">스페인</span> 
+						<p>계좌송금</p> 
+					</li> 
+					<li> 
+						<img src="https://img.themoin.com/public/img/circle-flag-be.svg"> 
+						<span class="newmoin-text-subtitle">벨기에</span> 
+						<p>계좌송금</p> 
+					</li> 
+				</ul> 
+			</div> 
+		</div>
+			
+		<div class="intro_product wu_send_product_2">
                 <div class="content_wrapper">
                     <h3>파격적인<br>해외송금 수수료</h3>
                     <p>이제는 해외계좌송금뿐만 아니라<br>웨스턴유니온(WU) 해외송금도<br>저렴한 수수료로 보낼 수 있습니다.</p>
@@ -218,78 +218,78 @@ main_vue ={
 		</div>`
 	},
 	logined_main : ()=>{
-		return '<div class="themoin-main">'+
-		'	<div class="themoin-currency-component">'+
-		'      <div class="legend">'+
-		'  	      <div class="moin-avg">'+
-		'   	      <div></div> '+
-		'   	             모인 환율'+
-		' 	       </div>'+
-		' 	   </div>'+
-		' 	   <div class="content">'+
-		'  	          <div id="clock" class="title" style="width:320px">실시간 모인 환율</div>'+
-		'  	          <div id="cntcd_exrate" class="currency"></div>'+
-		'  	  </div>                  '+
-		'  	  <div id="chart" style="width:100%;">                        '+
-		' 	           <canvas id="canvas" style="width:70%; height:120px"></canvas>'+
-		' 	   </div>'+
-		'	</div>'+
-		'	<div class="themoin-remit-component">'+
-		'		<div id="moin-event-amount" class="moin-event-amount">'+
-		'		<h1>지금 바로 WU 송금을 이용해보세요</span>'+
-		'			<p class="color-deepgrey"></p>'+
-		'		</div>'+
-		'		<div class="moin-amount">'+
-		'			<div id="remit_box" class="form-calculator main">'+
-		'				<div class="amount-row">'+
-		'					<div class="">'+
-		'						<p>송금 금액</p>'+
-		'						<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00"  value="">'+
-		'					</div>'+
-		'					<div class="unit-select disabled" tabindex="0">'+
-		'						<p>미 화</p>'+
-		'						<h3>USD</h3>'+
-		'					</div>'+
-		'				</div>'+
-		'				<div class="amount-row">'+
-		'					<div class="">'+
-		'						<p>예상 비용</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="">'+
-		'					</div>'+
-		'					<div class="unit-select receive" tabindex="0">'+
-		'						<p>아일랜드</p>'+
-		'						<h3>EUR</h3>'+
-		'					</div>'+
-		'				</div>'+
-		'			</div>'+
-		'		</div>'+
-		'	</div>'+
+		deal = $.deal()
+		return `<div class="themoin-main"> 
+			<div class="themoin-currency-component"> 
+		      <div class="legend"> 
+		  	      <div class="moin-avg"> 
+		   	      <div></div>  
+		   	             모인 환율 
+		 	       </div> 
+		 	   </div> 
+		 	   <div class="content"> 
+		  	          <div id="clock" class="title" style="width:320px">실시간 모인 환율</div> 
+		  	          <div id="cntcd_exrate" class="currency"></div> 
+		  	  </div>                   
+		  	  <div id="chart" style="width:100%;">                         
+		 	           <canvas id="canvas" style="width:70%; height:120px"></canvas> 
+		 	   </div> 
+			</div> 
+			<div class="themoin-remit-component"> 
+				<div id="moin-event-amount" class="moin-event-amount"> 
+				<h1>지금 바로 WU 송금을 이용해보세요</span> 
+					<p class="color-deepgrey"></p> 
+				</div> 
+				<div class="moin-amount"> 
+					<div id="remit_box" class="form-calculator main"> 
+						<div class="amount-row"> 
+							<div class=""> 
+								<p>송금 금액</p> 
+								<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.amount}"> 
+							</div> 
+							<div class="unit-select disabled" tabindex="0"> 
+								<p>미 화</p> 
+								<h3>USD</h3> 
+							</div> 
+						</div> 
+						<div class="amount-row"> 
+							<div class=""> 
+								<p>예상 비용</p> 
+								<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly=""> 
+							</div> 
+							<div class="unit-select receive" tabindex="0"> 
+								<p>${deal.cntp}</p><h3>${deal.cntcd}</h3>
+							</div> 
+						</div> 
+					</div> 
+				</div> 
+			</div> 
 
-		'	<div class="user-remit-container">'+
-		'		<div class="user-title">'+
-		'			<h3>내 입금 계좌</h3>'+
-		'		</div>'+
-		'		<div class="user-account">'+
-		'			<p class="warning">'+
-		'				<span class="warning fs-block">반드시 인증받으신 기업은행 23210816702025 계좌에서 내 입금 계좌로 이체 해 주세요.</span><br>내 입금 계좌 : '+
-		'				<span class="fs-block">광주은행 9427010261003 김민국_모인</span>'+
-		'			</p>'+
-		'		</div>'+
-		'		<div class="user-title">'+
-		'			<h3>송금 내역</h3>'+
-		'		</div>'+
-		'		<div class="user-limit">'+
-		'			<p>올해 누적 송금액 :<span> 0</span> 원</p>'+
-		'			<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p>'+
-		'			<p>올해 잔여 한도 :<span class=""> 55,000,000</span> 원</p>'+
-		'		</div>'+
-		'		<div class="remits empty">'+
-		'			<br><h3>아직 송금 내역이 없습니다.</h3>'+
-		'			<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br>'+
-		'			<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>'+
-		'		</div>'+
-		'	</div>'+
-		'</div>'
+	<div class="user-remit-container"> 
+				<div class="user-title"> 
+					<h3>내 입금 계좌</h3> 
+				</div> 
+				<div class="user-account"> 
+					<p class="warning"> 
+						<span class="warning fs-block">반드시 인증받으신 기업은행 23210816702025 계좌에서 내 입금 계좌로 이체 해 주세요.</span><br>내 입금 계좌 :  
+						<span class="fs-block">광주은행 9427010261003 김민국_모인</span> 
+					</p> 
+				</div> 
+				<div class="user-title"> 
+					<h3>송금 내역</h3> 
+				</div> 
+				<div class="user-limit"> 
+					<p>올해 누적 송금액 :<span> 0</span> 원</p> 
+					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
+					<p>올해 잔여 한도 :<span class=""> 55,000,000</span> 원</p> 
+				</div> 
+				<div class="remits empty"> 
+					<br><h3>아직 송금 내역이 없습니다.</h3> 
+					<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br> 
+					<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br> 
+				</div> 
+			</div> 
+		</div>`
 	},
 	cntcd_popup : ()=>{
 		return `<div class="moin-popup">
