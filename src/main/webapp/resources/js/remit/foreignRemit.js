@@ -15,6 +15,7 @@ foreignRemit = (()=>{
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
 		remit_box_js = js + '/remit/remit_box.js'
+
 	}
 
 	let onCreate =()=>{
@@ -38,6 +39,8 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_first())
 		$('.themoin-footer').empty()
+		
+		$('#popup-exchange').empty()
 	}
 	
 	let remit_deal = ()=>{

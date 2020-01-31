@@ -37,15 +37,13 @@ mypage =(()=>{
 			$.getScript(faq_js),
 			$.getScript(guide_recieve_js),
 			$.getScript(remit_box_js)
-//			$.getScript(line_graph_js)
-	//		$.getScript(withdrawal_js)
 		)
 		.done(()=>{
 			setContentView()
 			page_move()	
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
-			remit_box.onCreate('mypage')
+			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -66,6 +64,9 @@ mypage =(()=>{
 		.click(()=>{
 			foreignRemit.onCreate()
 		})
+		
+		$('#popup-exchange').empty()
+
 	}
 
 	let page_move =()=>{

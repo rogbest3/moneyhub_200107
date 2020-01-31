@@ -27,7 +27,7 @@
 		SELECT * FROM EXRATE WHERE CNTCD LIKE #{cntcd}
 	</select> -->
 	
-	<select id="searchExrate" resultType="Exrate">
+	<select id="cntcdSearchExrate" resultType="Exrate">
 		SELECT * 
 		FROM EXRATE 
 		WHERE CNTCD LIKE #{cntcd}
@@ -35,4 +35,9 @@
 		limit 0, 10 
 	</select>
 	
+	<select id="bdateSearchExrate" resultType="Exrate">
+		SELECT * 
+		FROM EXRATE 
+		WHERE BDATE LIKE #{bdate}
+	</select>
 </mapper>

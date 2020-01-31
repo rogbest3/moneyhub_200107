@@ -17,6 +17,7 @@
 	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<link rel="canonical" href="https://www.themoin.com">
+	<link rel="shortcut icon" href="/web/resources/img/logo/ci_logo.png">
 	<link rel="alternate" hreflang="ko" href="https://www.themoin.com/ko">
 	<link rel="alternate" hreflang="en" href="https://www.themoin.com/en">
 	<link rel="alternate" hreflang="x-default" href="https://www.themoin.com/">
@@ -101,6 +102,7 @@
 <body id="page-top">
 	<div id="root"></div>
 	<div id="popup-root"></div>
+	<div id="popup-exchange"></div>
 	<script>
 		app.run('<%=application.getContextPath()%>')
 	</script>

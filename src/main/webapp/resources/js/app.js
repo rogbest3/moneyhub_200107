@@ -53,7 +53,7 @@ app =(()=>{
 			//=============================================================
 			setContentView()
 			page_move()
-			remit_box.onCreate('')
+			remit_box.onCreate({ flag : '', cntcd : '' })
 			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
 			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
@@ -104,6 +104,8 @@ app =(()=>{
 		.click(()=>{
 			auth.onCreate('login')
 		})
+		
+		$('#popup-exchange').empty()
 	}
 	
 	let page_move =()=>{
@@ -154,7 +156,7 @@ app =(()=>{
 			app.onCreate()
 			$('html').scrollTop(0);
 		})
-		
+	
 	}
 
 	return { run, onCreate }
