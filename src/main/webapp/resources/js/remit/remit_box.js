@@ -35,7 +35,7 @@ remit_box =(()=>{
 	let comma_create =x=>{
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	}
-	
+	//
 	let popup =()=>{
 		if(flag === 'exchange'){	// 모의 환전 시
 			let send_data = [ { img : 'kr', cntcd : 'KRW', curr : '대한민국 한화', flag : ''}, 
