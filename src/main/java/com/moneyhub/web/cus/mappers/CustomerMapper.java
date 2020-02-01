@@ -1,6 +1,8 @@
-package com.moneyhub.web.cus;
+package com.moneyhub.web.cus.mappers;
 
 import org.springframework.stereotype.Repository;
+
+import com.moneyhub.web.cus.domains.Customer;
 
 
 @Repository

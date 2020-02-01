@@ -378,11 +378,13 @@ mypage_vue = {
 					</div>`
 	},
 	exchange : ()=>{
+		alert('mypage_vue.exchange 22222')
 		return 	'<div class="themoin-remit-component">'+
 		'		<div id="moin-event-amount" class="moin-event-amount">'+
 		'		<h1>지금 바로 머니허브 환전을 이용해보세요</span>'+
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
+		'<div id="divToggle" style="display: none;">그래프<canvas id="canvas2" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
 		'		<div class="moin-amount">'+
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
@@ -408,8 +410,8 @@ mypage_vue = {
 		'				<button id="exchangebutton" class="index-send-btn moin-body">환전하기</button>'+
 		'			</div>'+
 		'		</div>'+
-		'	</div>'+
-		'<div id="divToggle" style="display: none;"><canvas id="canvas2" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'
+		'	</div>'
+		
 	},
 	cntcd_popup : ()=>{
 		return `<div class="moin-popup">

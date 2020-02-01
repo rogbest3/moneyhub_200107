@@ -1,4 +1,4 @@
-package com.moneyhub.web.cus;
+package com.moneyhub.web.cus.controller;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moneyhub.web.cus.domains.Customer;
+import com.moneyhub.web.cus.mappers.CustomerMapper;
+import com.moneyhub.web.cus.serviceimpls.CustomerServiceImpl;
+import com.moneyhub.web.cus.util.CustomerSha256;
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.Proxy;
 
@@ -22,6 +26,7 @@ import com.moneyhub.web.pxy.Proxy;
 @RequestMapping("/customers")
 public class CustomerCtrl extends Proxy {
 
+	/* @Autowired CustomerServiceImpl customerServiceImpl; */
 	@Autowired Customer cus;
 	@Autowired CustomerMapper cusMapper;
 	@Autowired Box<Object> box;

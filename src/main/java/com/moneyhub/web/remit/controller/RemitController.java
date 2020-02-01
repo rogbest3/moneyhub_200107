@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.moneyhub.web.cus.Customer;
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.Proxy;
 import com.moneyhub.web.remit.serviceimpls.RemitServiceImpl;
