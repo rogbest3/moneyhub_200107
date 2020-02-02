@@ -14,9 +14,6 @@ remit_box =(()=>{
 	}
 	
 	let onCreate =x=>{
-		alert('remit_box.js 1111111111')
-		alert('x.flag는? ' + x.flag)
-		alert('x는? ' + x)
 		init(x)
 		$('#send_amount').val(1000000)
 		remit_send()

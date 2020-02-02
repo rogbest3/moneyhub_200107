@@ -384,7 +384,7 @@ mypage_vue = {
 		'		<h1>지금 바로 머니허브 환전을 이용해보세요</span>'+
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
-		'<div id="divToggle" style="display: none;">그래프<canvas id="canvas2" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
+		'<div id="divToggle" style="display: none;"><canvas id="canvas2" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
 		'		<div class="moin-amount">'+
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
