@@ -17,7 +17,6 @@
 		SELECT *
 		FROM CUSTOMER
 		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
-
 	</select>
 	
  	<select id="existId" resultType="integer">
@@ -100,5 +99,17 @@
 		WHERE CEMAIL = #{cemail}
 		AND CNO = #{cno}
 	</update>
+	
+	<select id="sdate" resultType="Customer">
+		SELECT DATE_FORMAT(SDATE, '%y%m%d')
+		FROM CUSTOMER
+		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
+	</select>
+	
+	<select id="cno" resultType="Customer">
+		SELECT CNO
+		FROM CUSTOMER
+		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
+	</select>
 	
 </mapper>
