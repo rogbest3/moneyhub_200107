@@ -4,4 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.moneyhub.web.remit.mapper.TRDHRMapper">
+	<select id="selectAll" resultType="TRDHR"  parameterType="PageProxy">
+		select T.* 
+		from TRDHR T, CUSTOMER C
+		WHERE T.CNO = C.CNO
+		LIMIT ${startRow}, ${pageSize}
+	</select>
+	<select id="countTRDHR" resultType="String" parameterType="PageProxy">
+		select count(*)
+		from TRDHR
+	</select>
 </mapper>

@@ -44,6 +44,7 @@ mypage =(()=>{
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+			remit_list({ nowPage : 0, keyword : null })
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -155,6 +156,61 @@ mypage =(()=>{
 				
 			})
 		})
-	}	
+	}
+	let remit_list =(x)=>{
+
+		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.keyword}`, d=>{
+			$('.remits').empty()
+			
+			$.each(d.trdhr, (i, j)=>{  //숙제 테이블 두개 정보 받아 넣기
+				$(`<div class="themoin-main-remititem">
+								<div class="simple">
+									<div class="unit-flag">
+										<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
+									</div>
+									<div class="simple-nametime">
+										<h3 class="username">
+											<span class="fs-block" lang="en" title="a aaa a"></span>
+										</h3>
+										<p class="create-time">${j.bsdate}</p>
+									</div>
+									<div class="simple-spacer"></div>
+									<div class="simple-amount">
+										<div class="user-sendlistdetail-amount">
+											<h3 class="user-sendlist-send">
+												<span class="user-sendlist-send">${j.trdSend}</span><span>
+													class="user-sendlist-sendunit">KRW</span>
+											</h3>
+											<img src="https://img.themoin.com/public/img/ic-next-p.png"
+												class="user-sendlist-ic">
+											<h3 class="user-sendlist-receive">
+												<span class="user-sendlist-receive">${j.trdAmnt}</span><span>
+													class="user-sendlist-receiveunit">USD</span>
+											</h3>
+										</div>
+										<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
+										<div class="send-due">
+											<p>가상계좌 입금 이용 시간이 만료되었습니다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>`)
+			    .appendTo('.remits')
+			})
+			
+			/*$('div.box')
+		    .click(function(){
+		    	if($(this).children('.answer').hasClass('show') == false){
+		    		$('div.box').children('.answer').attr('class', 'answer')
+		    		$(this).children('.answer').attr('class', 'answer show')
+		    	}else{
+		    		$('div.box').children('.answer').attr('class', 'answer')
+//		    		$(this).children('.answer').attr('class', 'answer')
+		    	}
+		    })*/
+		})
+	}
+	
 	return { onCreate }
 })()
