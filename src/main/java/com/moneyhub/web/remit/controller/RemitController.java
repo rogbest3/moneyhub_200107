@@ -25,6 +25,6 @@ public class RemitController extends Proxy{
 		@PostMapping("/insert")
 		public void insertRemit(@RequestBody HashMap<String, Object> deal){
 		System.out.println("ajax가 보낸 deal"+ deal);
-		/* remitService.insertRemit(deal); */
+		remitService.insertRemit(deal);
 		}
 }
