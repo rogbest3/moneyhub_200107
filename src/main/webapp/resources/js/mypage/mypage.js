@@ -159,7 +159,7 @@ mypage =(()=>{
 	}
 	let remit_list =(x)=>{
 
-		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.keyword}`, d=>{
+		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search`, d=>{
 			$('.remits').empty()
 			
 			$.each(d.trdhr, (i, j)=>{  //숙제 테이블 두개 정보 받아 넣기
@@ -178,14 +178,14 @@ mypage =(()=>{
 									<div class="simple-amount">
 										<div class="user-sendlistdetail-amount">
 											<h3 class="user-sendlist-send">
-												<span class="user-sendlist-send">${j.trdSend}</span><span>
-													class="user-sendlist-sendunit">KRW</span>
+												<span class="user-sendlist-send">${j.trdSend}</span>
+												<span class="user-sendlist-sendunit">KRW</span>
 											</h3>
 											<img src="https://img.themoin.com/public/img/ic-next-p.png"
 												class="user-sendlist-ic">
 											<h3 class="user-sendlist-receive">
-												<span class="user-sendlist-receive">${j.trdAmnt}</span><span>
-													class="user-sendlist-receiveunit">USD</span>
+												<span class="user-sendlist-receive">${j.trdAmnt}</span>
+												<span class="user-sendlist-receiveunit">USD</span>
 											</h3>
 										</div>
 										<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>

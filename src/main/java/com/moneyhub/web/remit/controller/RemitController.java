@@ -33,11 +33,10 @@ public class RemitController extends Proxy{
 		remitService.insertRemit(deal);
 		}
 		
-		@GetMapping("/lists/page/{nowPage}/search/{keyword}")
-		public Map<?, ?> faqList(@PathVariable String nowPage, @PathVariable String keyword) {
-			print("송금 리스트 진입 - nowPage : " + nowPage + ", keyword : " + keyword);
+		@GetMapping("/lists/page/{nowPage}/search")
+		public Map<?, ?> trdhrList(@PathVariable String nowPage) {
+			print("송금 리스트 진입 - nowPage : " + nowPage);
 			int pageSize = 5, blockSize = 5;
-			pager.setKeyword((keyword.equals("null") ? null : keyword.toUpperCase()));
 			pager.setPageSize(pageSize);
 			pager.setNowPage(integer(nowPage));
 			pager.setBlockSize(blockSize);

@@ -21,7 +21,6 @@ public class RemitServiceImpl implements RemitService{
 	Date date = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	
 	@Autowired TRDHR trdhr;
 	@Autowired TRD trd;
 	@Autowired RCPT rcpt;
@@ -74,7 +73,6 @@ public class RemitServiceImpl implements RemitService{
 		
 		/* 입금 확인시 수수료 테이블 인설트
 		 * remitMapper.insertFee(deal); 
-		 * 
 		 */
 		
 	}
