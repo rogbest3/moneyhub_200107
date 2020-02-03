@@ -9,6 +9,7 @@ exchange_test =(()=>{
 		mypage_vue_js = js + '/vue/mypage_vue.js'
 		retention_amount_js = js + '/maps/retention_amount.js'
 		global_map_js = js + '/maps/global_map.js'
+		getExrate = $.exrate()
 	}
 	let onCreate =()=>{
 		init()
@@ -120,7 +121,7 @@ exchange_test =(()=>{
 	}
 	
 	let total_amount_calc =()=>{
-		let exrate = $.exrate()
+		
 		let total = parseFloat(common.comma_remove($('#exchange_KRW').text()))
 					+ parseFloat(common.comma_remove($('#exchange_USD').text())) * exrate.usd
 					+ parseFloat(common.comma_remove($('#exchange_AUD').text())) * exrate.aud

@@ -16,11 +16,6 @@ remit_box =(()=>{
 		init(x)
 		$('#send_amount').val(1000)
 		
-		/*common.remit_send()
-		$('.form-calculator .amount-row input.send-amount')
-		.focusout(()=>{
-			common.remit_send()
-		})*/
 		common.remit_send_focusout()
 		
 		popup()
@@ -29,12 +24,6 @@ remit_box =(()=>{
 			exrate.onCreate()
 		})
 	}
-	
-/*	let remit_send =()=>{
-		let send = $('.form-calculator .amount-row input.send-amount')
-		let send_value = common.comma_create(common.comma_remove(send.val()))	
-		send.val(send_value)
-	}*/
 	
 	let popup =()=>{
 		if(flag === 'exchange'){	// 모의 환전 시

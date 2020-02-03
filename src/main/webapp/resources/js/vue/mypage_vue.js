@@ -281,10 +281,10 @@ mypage_vue = {
 		'    </div>'
 	},
 	exchange_test : ()=>{
-//		let exrate = $.exrate().bdate	
+//		let exrate = $.exrate().bdate	${$.exrate().bdate}
 		return `<div class="container">
 					<div id="exchange_datepicker">
-						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : ${$.exrate().bdate}</b></div>
+						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
 						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datepicker">
 				    		<button>클릭</button>
 				    	</div>
