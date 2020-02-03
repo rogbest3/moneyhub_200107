@@ -22,6 +22,7 @@ exrate =(()=>{
 		}else{
 			cntcd = receive_cntcd
 		}
+	}
 		
 		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist.reverse(), (i, j)=>{
@@ -63,10 +64,6 @@ exrate =(()=>{
 		*/
 		//	수수료 1.5%
 		let receive_value_calc =()=>{
-			if( receive_cntcd === 'KRW'){
-				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-									* exrate_arr[exrate_arr.length -1] * 0.985
-			
 			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
 		
 			if( receive_cntcd === 'KRW'){
@@ -81,7 +78,5 @@ exrate =(()=>{
 			deal.amount = $('.form-calculator .amount-row input.send-amount').val()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 		}
-		
-	}
 	return { onCreate }
 })()
