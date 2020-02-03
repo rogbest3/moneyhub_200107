@@ -45,6 +45,7 @@ mypage =(()=>{
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0})
+
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -232,7 +233,6 @@ mypage =(()=>{
 					})
 				}
 			}
-			
 			if(pxy.existNext){
 				$(`<a href="#" class="link_paging">
 						<span class="ico_pay ico_next"></span>다음
@@ -243,6 +243,7 @@ mypage =(()=>{
 		        })
 			}
 			//내역 눌렀을 때 상세 또는 수정 삭제
+
 			/*$('div.box')
 		    .click(function(){
 		    	if($(this).children('.answer').hasClass('show') == false){
@@ -252,15 +253,13 @@ mypage =(()=>{
 		    		$('div.box').children('.answer').attr('class', 'answer')
 //		    		$(this).children('.answer').attr('class', 'answer')
 		    	}
-		    })*/
-			
 			/*<div class="themoin-pagination"></div>
 			<button class="control disabled" disabled="">이전</button>
 			<button class="paginator current">1</button>
 			<button class="control disabled" disabled="">다음</button>
 		</div>
 	</div>*/
-			
+
 		})
 	}
 	
