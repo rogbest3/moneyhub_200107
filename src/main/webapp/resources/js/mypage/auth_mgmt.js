@@ -26,10 +26,10 @@ auth_mgmt =(()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
 		
-		$.getJSON(_+'/customers/cusInfo/' + $('#cemail').val(), d=>{
+		$.getJSON(_+'/customers/CreateAcc/' + $('#cemail').val(), d=>{
 			cemail : sessionStorage.getItem('CEMAIL')
-			$('#account').text(d.cus.sdate)
-			//$('#account').text(d.cus.cno)
+			$('#account').text(d.cus.sdate.replace(/-/gi,"").substring(2)+d.cus.cno)
+			
 		})
 		
 		$('#copy_btn').on('click', function(e){

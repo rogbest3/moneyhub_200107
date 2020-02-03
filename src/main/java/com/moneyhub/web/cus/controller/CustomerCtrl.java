@@ -1,5 +1,6 @@
 package com.moneyhub.web.cus.controller;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -18,6 +19,7 @@ import com.moneyhub.web.cus.domains.Customer;
 import com.moneyhub.web.cus.mappers.CustomerMapper;
 import com.moneyhub.web.cus.serviceimpls.CustomerServiceImpl;
 import com.moneyhub.web.cus.util.CustomerSha256;
+import com.moneyhub.web.faq.FAQ;
 import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.Proxy;
 
@@ -182,8 +184,11 @@ public class CustomerCtrl extends Proxy {
 	public Map<? ,?> CreateAcc(Customer param){
 		Consumer<Customer> c = o -> cusMapper.CreateAcc(o);
 		c.accept(param);
+		//Function<Customer, Customer> f = t -> cusMapper.CreateAcc(t);
 		box.clear();
 		box.put("cus", cus);
+		//box.put("cus", f.apply(cus));
+		System.out.println("cus -----------> "+cus);
 		System.out.println("box.get() -----------> "+box.get().toString());
 		return box.get();
 	}
