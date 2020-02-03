@@ -378,7 +378,6 @@ mypage_vue = {
 					</div>`
 	},
 	exchange : ()=>{
-		alert('mypage_vue.exchange 22222')
 		return 	'<div class="themoin-remit-component">'+
 		'		<div id="moin-event-amount" class="moin-event-amount">'+
 		'		<h1>지금 바로 머니허브 환전을 이용해보세요</span>'+

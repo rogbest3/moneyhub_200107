@@ -116,11 +116,6 @@ public class CustomerCtrl extends Proxy {
 		System.out.println("---------------"+param.toString());
 		Consumer<Customer> c = o -> cusMapper.pwdChg(o);
 		c.accept(param);
-		//System.out.println("첫번째 비번111111111 " + param.getCpwd());
-		//String encrypwd = CustomerSha256.encrypt(param.getCpwd());
-		//param.setCpwd(encrypwd);
-		//System.out.println("두번째 비번222222222 " + param.getCpwd());
-		//cusMapper.pwdChg(param);
 		System.out.println("***********"+param.toString());
 		System.out.println("cus는???????????"+cus);
 		String cpwd = cus.getCpwd(); //로그인 시 입력한 비밀번호
@@ -129,7 +124,7 @@ public class CustomerCtrl extends Proxy {
 		System.out.println("cus.getCpwd()는? " + cus.getCpwd() + " / param.getCpwd()는? " + param.getCpwd());
 		box.clear();
 		//box.put("msg", (cpwd != cpwd2) ? "true" : "false");
-		if (cpwd != cpwd2) {
+		if (param.getCemail().equals(cus.getCemail()) && cpwd != cpwd2) {
 			box.put("msg", "true");
 			box.put("cus", cus);
 		} else {
@@ -180,6 +175,16 @@ public class CustomerCtrl extends Proxy {
 		}
 		System.out.println("cus는?" + cus);
 		System.out.println("박스에 담긴 메시지: " + box.get());
+		return box.get();
+	}
+	
+	@GetMapping("/CreateAcc/{cemail}")
+	public Map<? ,?> CreateAcc(Customer param){
+		Consumer<Customer> c = o -> cusMapper.CreateAcc(o);
+		c.accept(param);
+		box.clear();
+		box.put("cus", cus);
+		System.out.println("box.get() -----------> "+box.get().toString());
 		return box.get();
 	}
 	

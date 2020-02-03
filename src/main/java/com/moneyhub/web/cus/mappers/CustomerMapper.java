@@ -17,4 +17,5 @@ public interface CustomerMapper {
 	public void pwdChg(Customer param);
 	public Customer cusInfo(Customer param);
 	public void cusInfoChg(Customer param);
+	public void CreateAcc(Customer param);
 }

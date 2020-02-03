@@ -1,5 +1,8 @@
 package com.moneyhub.web.cus.services;
 
-public class AccountService {
+import com.moneyhub.web.cus.domains.Account;
 
+public interface AccountService {
+	
+	public void CreateAccount(Account param);
 }

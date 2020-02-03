@@ -100,14 +100,8 @@
 		AND CNO = #{cno}
 	</update>
 	
-	<select id="sdate" resultType="Customer">
-		SELECT DATE_FORMAT(SDATE, '%y%m%d')
-		FROM CUSTOMER
-		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
-	</select>
-	
-	<select id="cno" resultType="Customer">
-		SELECT CNO
+	<select id="CreateAcc" resultType="Customer">
+		SELECT DATE_FORMAT(SDATE, '%y%m%d'), CNO
 		FROM CUSTOMER
 		WHERE CEMAIL = #{cemail} AND CPWD = #{cpwd}
 	</select>

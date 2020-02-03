@@ -51,9 +51,9 @@ auth_vue ={
 		'								<img src="https://img.themoin.com/public/img/login-naver-2.svg">'+
 		'								<p class="newmoin-text-text-button">네이버로<br>시작하기</p>'+
 		'							</button>'+*/
-		'							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+/*		'							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
 		'							<a id="kakao-login-btn"></a>'+
-		'							<a href="http://developers.kakao.com/logout"></a>'+	
+		'							<a href="http://developers.kakao.com/logout"></a>'+	*/
 		'						</div><br><br>'+
 		'					</div>'+
 		'			</div>'
@@ -85,9 +85,9 @@ auth_vue ={
 		'								<img src="https://img.themoin.com/public/img/login-naver.svg">'+
 		'								<p class="newmoin-text-text-button">네이버로<br>시작하기</p>'+
 		'							</button>'+*/
-		'							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
+/*		'							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+
 		'							<a id="kakao-login-btn"></a>'+
-		'							<a href="http://developers.kakao.com/logout"></a>'+	
+		'							<a href="http://developers.kakao.com/logout"></a>'+	*/
 		'						</div><br>'+
 		'						<div class="divider"></div>'+
 /*		'						<p style="margin: 33px auto 0px;"><a>이미 회원이신가요?</a></p>'+*/
