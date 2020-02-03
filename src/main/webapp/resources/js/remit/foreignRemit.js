@@ -54,7 +54,6 @@ foreignRemit = (()=>{
 			$.each(d.exlist.reverse(), (i, j)=>{
 				exrate_arr.push(parseFloat(j.exrate))
 			})
-			alert()
 			common.receive_value_calc(exrate_arr[exrate_arr.length -1])
 			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 				common.receive_value_calc(exrate_arr[exrate_arr.length -1])

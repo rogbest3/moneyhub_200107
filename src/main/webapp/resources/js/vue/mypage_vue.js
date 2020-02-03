@@ -285,7 +285,7 @@ mypage_vue = {
 		return `<div class="container">
 					<div id="exchange_datepicker">
 						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
-						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datepicker">
+						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datepicker" class="form-control">
 				    		<button>클릭</button>
 				    	</div>
 					</div>	
@@ -348,21 +348,6 @@ mypage_vue = {
     <script src="/web/resources/js/maps/world_countries.js"></script>
 
 `
-//		<link rel="stylesheet" href="/web/resources/css/jquery-ui.css" />
-//		<script src="/web/resources/js/datepicker/jquery.min.js"></script>
-//		<script src="/web/resources/js/datepicker/jquery-ui.min.js"></script>
-	   
-//		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-//	    <script src="https://code.jquery.com/jquery-1.12.4.js"></script> 
-//	    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>		
-//		<script type="text/javascript>
-//			var new$ = $.noConflict(true);
-//		</script>	
-/*		
-	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-	        <script src="/web/resources/js/datepicker/jquery-1.12.4.js"></script> 
-	    	<script src="/web/resources/js/datepicker/jquery-ui.js"></script>
-*/
 	},
 	exchange_popup : ()=>{	//themoin-remit-component
 		return `<div class="moin-popup">
