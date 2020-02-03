@@ -283,11 +283,8 @@ mypage_vue = {
 	exchange_test : ()=>{
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}
 		return `<div class="container">
-					<div id="exchange_datepicker">
+					<div>
 						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
-						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datepicker" class="form-control">
-				    		<button>클릭</button>
-				    	</div>
 					</div>	
 				    <div class="mapcontainer">
 				        <div class="map">
@@ -297,6 +294,12 @@ mypage_vue = {
 				    <div id="amount" class="themoin-info-preview" style="width:400px">
 				    	<ol style="border-bottom-width: 0px;"></ol>
 				    </div>
+				    <div id="exchange_datepicker">
+						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datepicker" class="form-control">
+				    		<button>클릭</button>
+				    	</div>
+					</div>
+						
 				</div>
 					
 				
@@ -346,7 +349,9 @@ mypage_vue = {
     <script src="/web/resources/js/maps/global_map.js"></script>
 	<script src="/web/resources/js/maps/jquery.mapael.js"></script>
     <script src="/web/resources/js/maps/world_countries.js"></script>
-
+	<script src="/web/resources/js/datepicker/bootstrap-datepicker.js"></script>
+	<script src="/web/resources/js/datepicker/bootstrap-datepicker.ko.js"></script>
+	
 `
 	},
 	exchange_popup : ()=>{	//themoin-remit-component

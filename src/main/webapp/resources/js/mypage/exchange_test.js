@@ -42,26 +42,20 @@ exchange_test =(()=>{
 			})
 			total_amount_calc()
 			
-//			$("#datepicker").datepicker()
-/*			$('#datepicker').datetimepicker({
-			  language : 'ko', // 화면에 출력될 언어를 한국어로 설정한다.
-			  pickTime : false, // 사용자로부터 시간 선택을 허용하려면 true를 설정하거나 pickTime 옵션을 생략한다.
-			  defalutDate : new Date() // 기본값으로 오늘 날짜를 입력한다. 기본값을 해제하려면 defaultDate 옵션을 생략한다.
-			});
-			*/
 			$('#datePicker').datepicker({
-				format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-				startDate: '-10d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
-				anguage : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
-			})
+			    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
+			    
+			    weekStart : 0 ,//달력 시작 요일 선택하는 것 기본값은 0인 일요일 
+			    language : "ko"	//달력의 언어 선택, 그에 맞는 js로 교체해줘야한다.
+			    
+			});//datepicker end
+			alert('<<<>>>')
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
 		})	
 	}
 	let setContentView =()=>{
-//		$('#duplication1').empty()
-		
 		$('head')
 		.append(mypage_vue.exchange_test_head())
 		

@@ -45,6 +45,7 @@ $(document).ready(function(){
 			}	
 			exrate.bdate = j.bdate
 			sessionStorage.setItem('exrate', JSON.stringify(exrate));
+	
 			$('#exchange_datepicker b')
 			.text(`환율 기준일 : ${j.bdate}`)
 		})
