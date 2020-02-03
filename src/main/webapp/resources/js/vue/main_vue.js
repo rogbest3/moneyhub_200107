@@ -21,32 +21,20 @@ main_vue ={
         </div>
 		<div class="themoin-remit-component"> 
 			<div id="moin-event-amount" class="moin-event-amount"> 
-			<h1>지금 바로 WU 송금을 이용해보세요</span> 
+			<h1>머니허브 기능 이용하기</span> 
 				<p class="color-deepgrey"></p> 
-			</div> 
-			<div class="moin-amount"> 
-				<div id="remit_box" class="form-calculator main"> 
-					<div class="amount-row"> 
-						<div class=""> 
-							<p>송금 금액</p> 
-							<input class="send-amount" id="send_amount"  type="text" tabindex="0" placeholder="0.00"> 
-						</div> 
-						<div class="unit-select disabled" tabindex="0" > 
-							<p>미국</p> 
-							<h3>USD</h3> 
-						</div> 
-					</div> 
-					<div class="amount-row"> 
-						<div class=""> 
-							<p>예상 비용</p> 
-							<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly=""> 
-						</div> 
-						<div class="unit-select receive" tabindex="0"> 
-							<p>유럽</p> 
-							<h3>EUR</h3> 
-						</div> 
-					</div> 
-				</div> 
+			</div>
+			<div class="steps" style="max-width: 1365px; text-align: center; "> 
+				<div class="threesteps">
+				<img src="/web/resources/img/main/exchange.png">
+				</div>
+				<div class="threesteps">
+				<img src="/web/resources/img/main/remit.png">
+				</div>
+				<div class="threesteps">
+				<img src="/web/resources/img/main/testexchange.png">
+				</div>
+				</div>
 			</div> 
 		</div> 
 		<div class="themoin-landing-countries"> 

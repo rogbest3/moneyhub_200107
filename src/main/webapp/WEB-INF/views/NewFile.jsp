@@ -176,7 +176,7 @@
 					<span style="font-family: fbneogothic, sans-serif;"><span
 						style="font-size: 26px;"><span style="font-weight: bold;">​머니허브
 								환전</span></span></span>
-				</h2>
+				</h2> 
 			</div>
 			<div data-packed="true" class="txtNew" id="comp-k65bak52"
 				style="left: 384px; width: 245px; position: absolute; pointer-events: none; top: 666px;">

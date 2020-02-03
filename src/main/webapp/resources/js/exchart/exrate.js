@@ -22,7 +22,6 @@ exrate =(()=>{
 		}else{
 			cntcd = receive_cntcd
 		}
-	}
 		
 		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist.reverse(), (i, j)=>{
@@ -78,5 +77,6 @@ exrate =(()=>{
 			deal.amount = $('.form-calculator .amount-row input.send-amount').val()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 		}
+	}
 	return { onCreate }
 })()

@@ -192,38 +192,42 @@ mypage =(()=>{
 		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
 		         })
 			}
-			$(`<ul class="list_paging"></ul>`)
-			.appendTo('.bundle_paging') 
+			$(`<button class="paginator current"></button>`)
+			.appendTo('.themoin-pagination') 
 			for(let i = pxy.startPage; i<= pxy.endPage; i++){
-				if( pxy.nowPage == i ){
-					$(`<li class="on">
-							<a href="#" class="link_num">
-								<span class="screen_out">선택 됨</span>
+					$(`<button>
+							${i+1}
+						</button>`)
+				.appendTo('.paginator current')
+				.click(function(e){
+					e.preventDefault()
+					mypage.remit_list({ nowPage : i})
+				})
+				
+				/*if( pxy.nowPage == i ){
+					$(`<button>
+							<span class="screen_out">선택 됨</span>
 								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')		
+							</button>`)
+					.appendTo('.paginator current')		
 					$('html').scrollTop(0);
 				}else{
-					$(`<li class="">
-							<a href="#" class="link_num">
+					$(`<button>
 								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')
+							</button>`)
+					.appendTo('.paginator current')
 					.click(function(e){
 						e.preventDefault()
-						faq.faq_list({ nowPage : i, keyword : x.keyword })
+						mypage.remit_list({ nowPage : i})
 					})
-				}
+				}*/
 			}
-			if(pxy.existNext){
-				$(`<a href="#" class="link_paging">
-						<span class="ico_pay ico_next"></span>다음
-		        	</a>`)
-		        .appendTo('.bundle_paging')
+			if(pxy.existNext){ //<button class="control disabled" disabled="">다음</button>
+				$(`<button class="control disabled" disabled="">다음
+		        	</button>`)
+		        .appendTo('.themoin-pagination')
 		        .click(()=>{
-		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : x.keyword })
+		        	mypage.remit_list({ nowPage : pxy.nextBlock})
 		        })
 			}
 			//내역 눌렀을 때 상세 또는 수정 삭제
