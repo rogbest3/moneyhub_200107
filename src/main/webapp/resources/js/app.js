@@ -5,7 +5,7 @@ app =(()=>{
 	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,guide_recieve_js, remit_box_js,deal, adminLogin_js
+		tables_mgmt_js,guide_recieve_js, remit_box_js, deal, adminLogin_js
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{

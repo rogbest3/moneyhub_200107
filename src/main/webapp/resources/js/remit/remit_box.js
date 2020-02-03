@@ -8,6 +8,7 @@ remit_box =(()=>{
 		deal = $.deal()
 		line_graph_js = js + '/exchart/line_graph.js'
 		exrate_js = js + '/exchart/exrate.js'
+//		flag = x
 		flag = x.flag
 		cntcd = x.cntcd
 	}
@@ -153,6 +154,8 @@ remit_box =(()=>{
 					$('.form-calculator .amount-row .send h3').text(`${j.cntcd}`)
 					$('#popup-exchange').show()
 					exrate.onCreate()
+					//$('#canvas2').show()
+					//$.getScript(line_graph_js)
 				}
 				else{
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
