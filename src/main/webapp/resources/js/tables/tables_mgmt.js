@@ -170,7 +170,7 @@ tables_mgmt =(()=>{
 				})
 			})
 		})
-		
+
 		$(`<h3><a>EARATE 테이블  chart test용 data 삽입</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{
@@ -178,9 +178,8 @@ tables_mgmt =(()=>{
 			$.getJSON( _ + `/tx/insert/exratelist`, d=>{
 				alert(`테이블 DATA 삽입 성공여부 : ${d.result}`)
 			})
-			
 		})
-		
+    
 		$(`<h3><a>EARATE 테이블  DATA 삭제</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{

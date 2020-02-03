@@ -48,6 +48,7 @@ auth =(()=>{
 		
 		$('#cemail').val('1')
 		$('#cpwd').val('1')
+
 		join_2_page_btn()
 	}
 	

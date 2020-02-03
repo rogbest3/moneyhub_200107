@@ -138,7 +138,7 @@ foreignRemit = (()=>{
 		setInterval(msg_time, 1000);
 		$('#main_user_btn').click(()=>{
 			deal.amount = null
-			mypage.onCreate()
+			mypage.onCreate('remit_complete')
 			$('html').scrollTop(0);
 		})
 	}

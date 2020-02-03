@@ -7,6 +7,7 @@ app =(()=>{
 		auth_js, compo_js, event_js, faq_js, main_class,
 		tables_mgmt_js,guide_recieve_js, remit_box_js,deal,
 		adminLogin_js, common_js
+
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{

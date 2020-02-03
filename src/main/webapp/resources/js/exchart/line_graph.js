@@ -10,7 +10,7 @@ $(document).ready(function(){
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false,	
+				fill: false	
 			}]
 		},
 		options: {
@@ -37,7 +37,7 @@ $(document).ready(function(){
 						return config.data.datasets[0].data[tooltipItem['index']]
 					}
 				},
-				intersect: false,
+				intersect: false
 			},
 			hover: {
 				mode: 'nearest',

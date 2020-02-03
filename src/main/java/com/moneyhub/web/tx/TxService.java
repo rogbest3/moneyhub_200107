@@ -64,22 +64,23 @@ public class TxService {
 	
 	@Transactional
 	public void insertCustomer() {
-		for(int i=0; i<10000; i++) {
+		for(int i=0; i<100; i++) {
 			crudCustomer.setCemail(customerProxy.makeCmail());
 			crudCustomer.setCpwd(customerProxy.makeCpwd());
 			crudCustomer.setAge(customerProxy.makeAge());
+			crudCustomer.setCname(customerProxy.makeCname());
+			crudCustomer.setSdate(customerProxy.makeStartYear());
+			crudCustomer.setCstcd(customerProxy.makeCSTCD());
 			txMapper.insertCustomer(crudCustomer);
-		}
-		
+		}		
 	}
 	
 	@Transactional
 	public void insertFeeDB() {
-		for(int i=0; i<10000; i++) {
+		for(int i=0; i<1000; i++) {
 			crudFeeDB.setAmnt(feeDBProxy.makeAmnt());
 			crudFeeDB.setBdate(feeDBProxy.makebDate());
 			txMapper.insertFeeDB(crudFeeDB);
-		}
-		
+		}		
 	}
 }

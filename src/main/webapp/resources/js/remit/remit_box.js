@@ -17,7 +17,7 @@ remit_box =(()=>{
 		$('#send_amount').val(1000)
 		
 		common.remit_send_focusout()
-		
+
 		popup()
 		$.getScript(exrate_js)
 		.done(()=>{
@@ -88,7 +88,6 @@ remit_box =(()=>{
 			})
 			
 			common.popup_close('root')
-
 		}
 	}
 	
@@ -137,6 +136,7 @@ remit_box =(()=>{
 					$('.form-calculator .amount-row .send h3').text(`${j.cntcd}`)
 					$('#popup-exchange').show()
 					exrate.onCreate()
+
 				}
 				else{
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
