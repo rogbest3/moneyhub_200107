@@ -19,7 +19,7 @@ main_vue ={
                 </li>
             </ul>
         </div>
-			<div class="themoin-remit-component"> 
+		<div class="themoin-remit-component"> 
 			<div id="moin-event-amount" class="moin-event-amount"> 
 			<h1>지금 바로 WU 송금을 이용해보세요</span> 
 				<p class="color-deepgrey"></p> 
@@ -220,20 +220,14 @@ main_vue ={
 	logined_main : ()=>{
 		deal = $.deal()
 		return `<div class="themoin-main"> 
-			<div class="themoin-currency-component"> 
-		      <div class="legend"> 
-		  	      <div class="moin-avg"> 
-		   	      <div></div>  
-		   	             모인 환율 
-		 	       </div> 
-		 	   </div> 
-		 	   <div class="content"> 
-		  	          <div id="clock" class="title" style="width:320px">실시간 모인 환율</div> 
+			<div class="themoin-currency-component" style="height: 230px;"> 
+		   	  	<div class="content"> 
+		  	          <div id="clock" class="title" style="width:320px">실시간 머니허브 환율</div> 
 		  	          <div id="cntcd_exrate" class="currency"></div> 
-		  	  </div>                   
-		  	  <div id="chart" style="width:100%;">                         
-		 	           <canvas id="canvas" style="width:70%; height:120px"></canvas> 
-		 	   </div> 
+		  	  	</div>                   
+		  	  	<div id="chart" style="width:100%;">                         
+		 	      	<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas> 
+				</div> 
 			</div> 
 			<div class="themoin-remit-component"> 
 				<div id="moin-event-amount" class="moin-event-amount"> 

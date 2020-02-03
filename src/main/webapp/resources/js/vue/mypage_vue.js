@@ -281,9 +281,14 @@ mypage_vue = {
 		'    </div>'
 	},
 	exchange_test : ()=>{
+//		let exrate = $.exrate().bdate	${$.exrate().bdate}
 		return `<div class="container">
-				    <h1>Map with a legend for plotted cities and areas</h1>
-				
+					<div id="exchange_datepicker">
+						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
+						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datepicker" class="form-control">
+				    		<button>클릭</button>
+				    	</div>
+					</div>	
 				    <div class="mapcontainer">
 				        <div class="map">
 				            <span>Alternative content for the map</span>
@@ -291,9 +296,6 @@ mypage_vue = {
 				    </div>
 				    <div id="amount" class="themoin-info-preview" style="width:400px">
 				    	<ol style="border-bottom-width: 0px;"></ol>
-				    </div>
-				    <div id="exchange_datepicker">
-				    	년 월 일 : <input type="text" id="datepicker">
 				    </div>
 				</div>`
 	},
@@ -337,9 +339,12 @@ mypage_vue = {
             color: #343434;
         }
     </style>
+
     <script src="/web/resources/js/maps/global_map.js"></script>
 	<script src="/web/resources/js/maps/jquery.mapael.js"></script>
-    <script src="/web/resources/js/maps/world_countries.js"></script>`
+    <script src="/web/resources/js/maps/world_countries.js"></script>
+
+`
 	},
 	exchange_popup : ()=>{	//themoin-remit-component
 		return `<div class="moin-popup">
@@ -371,6 +376,9 @@ mypage_vue = {
 											<p>미국</p>
 											<h3>USD</h3>
 										</div>
+									</div>
+									<div id="exchange_test_exrate">
+										<p>환율 : </p> 
 									</div>
 								</div>
 							</div>
