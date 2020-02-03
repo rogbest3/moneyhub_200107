@@ -37,7 +37,6 @@ exrate =(()=>{
 		
 		//	수수료 1.5%
 		let receive_value_calc =()=>{
-
 			if( receive_cntcd === 'KRW'){
 				let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
 									* exrate_arr[exrate_arr.length -1] * 0.985

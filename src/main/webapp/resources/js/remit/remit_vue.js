@@ -11,7 +11,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class=""> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
+									<input class="send-amount" id="sd_amount" type="text" tabindex="0" placeholder="0.00" value="${deal.amount}"> 
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
 									<p>미화</p><h3>USD</h3> 
