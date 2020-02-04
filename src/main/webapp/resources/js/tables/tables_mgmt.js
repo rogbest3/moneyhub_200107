@@ -258,6 +258,25 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	let admin_mgmt =()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>ADMIN 테이블 생성 및 계정 생성</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/crudtable/create/createAdmin', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		$(`<h3><a>ADMIN 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/drop/dropAdmin`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+		})
+	}
 	
 	let admin_mgmt =()=>{
 		$('#right').empty()
