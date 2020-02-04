@@ -71,14 +71,12 @@ public class RemitServiceImpl implements RemitService{
 		rcpt.setCrtdt(sdf.format(date));
 		remitMapper.insertRCPT(rcpt);
 		
-		
 		/*
 		 * //수수료 fee.setBsdate(sdf.format(date)); fee.setMtcn(mtcn);
 		 * fee.setCno(deal.get("cno").toString()); fee.setCrtmem("LEJ");
 		 * fee.setCrtdt(sdf.format(date)); fee.setFeeAmnt((int) deal.get("fee"));
 		 * remitMapper.insertFee(fee);
 		 */
-		 
 	}
 
 }

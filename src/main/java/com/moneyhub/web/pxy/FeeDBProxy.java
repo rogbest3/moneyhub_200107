@@ -7,15 +7,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.moneyhub.web.crudtable.CRUDFee;
+import com.moneyhub.web.crudtable.CRUDFeeDB;
 import com.moneyhub.web.crudtable.CRUDTableMapper;
 import com.moneyhub.web.tx.TxMapper;
-//FEE <-> FEEDB로 수정 해야함!!!
+
 @Component("feeDBProxy")
 public class FeeDBProxy extends Proxy{
 	@Autowired CRUDTableMapper crudTableMapper;
 	@Autowired TxMapper txMapper;
-	@Autowired CRUDFee crudFeeDB;
+	@Autowired CRUDFeeDB crudFeeDB;
 	
 	public String makeAmnt() {
 		List<String> amnt = Arrays.asList("6", "12");
