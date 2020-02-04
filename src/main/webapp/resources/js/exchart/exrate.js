@@ -22,6 +22,7 @@ exrate =(()=>{
 		}else{
 			cntcd = receive_cntcd
 		}
+
 		
 		$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist.reverse(), (i, j)=>{
