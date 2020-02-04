@@ -40,7 +40,7 @@ cus_info =(()=>{
 			$('#infoAddr2').text(d.cus.daddr)
 			$('#infoBirth').text(d.cus.birth)
 		})
-	
+		
 		$('<button/>')
 			.text('정보수정하기')
 			.addClass('next')

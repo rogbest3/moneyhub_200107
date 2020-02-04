@@ -46,9 +46,10 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('1')
+		$('#cemail').val('11')
 		$('#cpwd').val('11')
-		
+
+
 		join_2_page_btn()
 	}
 	
@@ -79,7 +80,7 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						alert(d.cus.cname+'님 환영합니다.')
+//						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						//======================================================
@@ -87,14 +88,16 @@ auth =(()=>{
 						/*$.extend(new Customer_Info(d.cus))*/
 						//======================================================
 						//====================================================== HM
-						/*sessionStorage.setItem('CEMAIL', d.cus.cemail)
+						sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)
 						sessionStorage.setItem('ZIP', d.cus.zip)
 						sessionStorage.setItem('ADDR', d.cus.addr)
 						sessionStorage.setItem('DADDR', d.cus.daddr)
-						sessionStorage.setItem('CNO', d.cus.cno)*/
+						sessionStorage.setItem('CNO', d.cus.cno)
+						sessionStorage.setItem('ACC', JSON.stringify(d.result))
 						//======================================================
 						mypage.onCreate()
+					
 					}
 					else{
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
@@ -365,7 +368,7 @@ auth =(()=>{
 		$('#cemail').keyup(()=>{
 			if($('#cemail').val().length >= 1){
 				$.ajax({
-					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()),
+					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()) + '/',
 					type: 'GET',
 					data: JSON.stringify({
 						cemail : $('#cemail').val()

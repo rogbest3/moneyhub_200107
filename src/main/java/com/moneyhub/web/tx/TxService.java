@@ -1,18 +1,22 @@
 package com.moneyhub.web.tx;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.moneyhub.web.crudtable.CRUDCustomer;
+import com.moneyhub.web.crudtable.CRUDFee;
 import com.moneyhub.web.exr.Exrate;
 import com.moneyhub.web.exr.ExrateMapper;
 import com.moneyhub.web.faq.FAQ;
 import com.moneyhub.web.faq.FAQMapper;
 import com.moneyhub.web.pxy.CrawlingProxy;
+import com.moneyhub.web.pxy.CustomerProxy;
 import com.moneyhub.web.pxy.ExrateStoreProxy;
 import com.moneyhub.web.pxy.FAQStoreProxy;
+import com.moneyhub.web.pxy.FeeDBProxy;
+
+//FEE <-> FEEDB로 수정 해야함!!!``````````````````````````````````````
 
 @Service
 public class TxService {
@@ -23,11 +27,20 @@ public class TxService {
 	@Autowired FAQ faq;
 	@Autowired FAQMapper faqMapper;
 	@Autowired ExrateMapper exrateMapper;
+	@Autowired TxMapper txMapper;
+		
+	@Autowired CRUDCustomer crudCustomer;
+	@Autowired CRUDFee crudFeeDB;
+	
+	@Autowired CustomerProxy customerProxy;
+	@Autowired FeeDBProxy feeDBProxy;
 	
 	@Transactional
 	public void crawling() {
 		crawler.insertCrawling();
 	}
+	
+	
 	
 	@Transactional
 	public void insertFAQStore() {
@@ -49,5 +62,27 @@ public class TxService {
 			exrateMapper.insertExrate(exrate);
 //		//	txMapper.insertFAQ(exrate);
 		}
+	}
+	
+	@Transactional
+	public void insertCustomer() {
+		for(int i=0; i<100; i++) {
+			crudCustomer.setCemail(customerProxy.makeCmail());
+			crudCustomer.setCpwd(customerProxy.makeCpwd());
+			crudCustomer.setAge(customerProxy.makeAge());
+			crudCustomer.setCname(customerProxy.makeCname());
+			crudCustomer.setSdate(customerProxy.makeStartYear());
+			crudCustomer.setCstcd(customerProxy.makeCSTCD());
+			txMapper.insertCustomer(crudCustomer);
+		}		
+	}
+	
+	@Transactional
+	public void insertFeeDB() {
+		for(int i=0; i<1000; i++) {
+			crudFeeDB.setAmnt(feeDBProxy.makeAmnt());
+			crudFeeDB.setBdate(feeDBProxy.makebDate());
+			txMapper.insertFeeDB(crudFeeDB);
+		}		
 	}
 }

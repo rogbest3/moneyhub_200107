@@ -5,7 +5,9 @@ app =(()=>{
 	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,remit_popup_js,guide_recieve_js, remit_box_js
+		tables_mgmt_js,guide_recieve_js, remit_box_js,deal,
+		adminLogin_js, common_js
+
 	
 	let run =x=>{
 		$.getScript( x + '/resources/js/cmm/router.js', ()=>{
@@ -19,6 +21,7 @@ app =(()=>{
 		_ = $.ctx()
 		js = $.js()
 		img = $.img()
+		deal = $.deal()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -29,13 +32,15 @@ app =(()=>{
 		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
-		remit_popup_js = js + '/remit/remit_popup.js'
-		remit_box_js = js + '/mypage/remit_box.js'
+		remit_box_js = js + '/remit/remit_box.js'
+		adminLogin_js = js + '/admin/adminLogin.js',
+		common_js = js + '/cmm/common.js'
 	}
 	
 	let onCreate =()=>{
 		init()
 		$.when(
+			$.getScript(common_js),
 			$.getScript(cmm_vue_js),
 			$.getScript(nav_vue_js),
 			$.getScript(main_vue_js),
@@ -44,17 +49,20 @@ app =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(tables_mgmt_js),
-			$.getScript(remit_popup_js),
 			$.getScript(guide_recieve_js),
-			$.getScript(remit_box_js)
+			$.getScript(remit_box_js),
+			$.getScript(adminLogin_js)
 		)
 		.done(()=>{
-			//============================================================= 송금 개발용
-			/*auth.onCreate('login')*/
-			//=============================================================
+			
 			setContentView()
 			page_move()
-			remit_box.onCreate('')
+			/*remit_box.onCreate({ flag : '', cntcd : '' })
+			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+			sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert("deal.cntp"+deal.cntp+"deal.cntcd "+deal.cntcd)*/
+			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -64,6 +72,7 @@ app =(()=>{
 	let setContentView =()=>{
 		$('head')
 		.append(cmm_vue.head())
+		
 		$('#root')
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
@@ -81,7 +90,7 @@ app =(()=>{
 			.append(main_vue.main())
 		}
 		$('#root').append(cmm_vue.footer())*/
-		//========================================================새로고침시 세션비우기 (연구중) EJ
+		//========================================================새로고침시 세션비우기 EJ
 		/*function Reload(){
 			if(event.keyCode == 116)
 				sessionStorage.clear()
@@ -92,13 +101,7 @@ app =(()=>{
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
-	/*	
-		$('.unit-select receive')
-		.click(()=>{
-			$('#root')
-			.append(remit_popup.nation())
-		})*/
-		
+
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
@@ -106,19 +109,19 @@ app =(()=>{
 		.click(()=>{
 			auth.onCreate('login')
 		})
+		
+		$('#popup-exchange').empty()
 	}
 	
 	let page_move =()=>{
 		$('#join')
 		.click(()=>{
-			auth.onCreate('join')
-			
+			auth.onCreate('join')	
 		})
 		
 		$('#login')
 		.click(()=>{
 			auth.onCreate('login')
-			
 		})
 		
 		$('#tables_mgmt_a')
@@ -128,7 +131,7 @@ app =(()=>{
 
 		$('#admin_login')
 		.click(()=>{
-			adminIndex.onCreate('admin_login')
+			adminLogin.onCreate('admin_login')
 		})
 
 		$('#compo')
@@ -156,7 +159,7 @@ app =(()=>{
 			app.onCreate()
 			$('html').scrollTop(0);
 		})
-		
+	
 	}
 
 	return { run, onCreate }

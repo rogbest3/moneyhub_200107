@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.moneyhub.web.cus.mappers.AccountMapper">
+
+	<insert id="createAcc" parameterType="Account">
+	    INSERT INTO ACCOUNT (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL, 
+	    					ACHCNTCD, CRTMEM, CRTDT, UPMEM, UPDT) 
+	    VALUES (#{cemail}, #{bsdate}, #{acct_no}, #{balance}, #{deposit}, #{withdrawal},
+	    		#{achcntcd}, #{crtmem}, now(), #{upmem}, #{updt})
+	</insert>
+	
+	<select id="existAcc" resultType="integer">
+		SELECT COUNT(*) 
+		FROM ACCOUNT
+		WHERE ACCT_NO = #{acct_no}
+	</select>
+	
+	<select id="getAcc" resultType="Account">
+		SELECT *
+		FROM ACCOUNT
+		WHERE CEMAIL = #{cemail}
+	</select>
+	
+</mapper>

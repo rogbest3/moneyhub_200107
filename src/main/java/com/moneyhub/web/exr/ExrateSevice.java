@@ -20,10 +20,15 @@ public class ExrateSevice {
 			exrate.setCrtmem("KMK");
 			c.accept(exrate);
 		}
-	}
+	}	
 
-	public ArrayList<Exrate> searchExrate(String s){	
-		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.searchExrate(t);
+	public ArrayList<Exrate> cntcdSearchExrate(String s){	
+		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.cntcdSearchExrate(t);
+		return f.apply(s);
+	}
+	
+	public ArrayList<Exrate> bdateSearchExrate(String s){	
+		Function<String, ArrayList<Exrate>> f = t -> exrateMapper.bdateSearchExrate(t);
 		return f.apply(s);
 	}
 	
@@ -42,3 +47,4 @@ public class ExrateSevice {
 		c.accept(map);
 	}
 }
+	

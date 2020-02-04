@@ -89,7 +89,7 @@ compo_vue ={
 		'</div>'+
 		'<div class="divider"></div>'+
 		'<div id="map" style="width:60%;height:450px;margin:0 auto;"></div>'+
-		'<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b335250e135b3c4aeca8f2b704648e5c"></script>'
+//		'<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b335250e135b3c4aeca8f2b704648e5c"></script>'
 		'<div class="company-map">'+
 		'<div style="padding:5px;">머니허브<br>'+
 		'    <a href="https://map.kakao.com/link/map/MONEYHUB,37.5523419,126.9377159" style="color:blue" target="_blank">큰지도보기</a>'+
