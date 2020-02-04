@@ -13,7 +13,6 @@ public interface TRDHRMapper {
 
 	public ArrayList<TRDHR> selectAll(PageProxy pager);
 	public String countTRDHR(PageProxy pager);
-	public void createTRDHR();
-	public void deleteTRDHR();
-
+	public void createTRDHR(HashMap<String, Object> map);
+	public void deleteTRDHR(HashMap<String, Object> map);
 }

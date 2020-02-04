@@ -19,17 +19,14 @@ import com.moneyhub.web.remit.serviceimpls.TRDServiceImpl;
 @RestController
 @RequestMapping("/remtable")
 public class TableController extends Proxy{
-		@Autowired
-		private Box<Object> box;
+		@Autowired private Box<Object> box;
 		@Autowired PageProxy pager;
-		@Autowired
-		private RemitServiceImpl remitService;
 		@Autowired TRDHRServiceImpl trdhrService;
 		@Autowired TRDServiceImpl trdService;
 		@Autowired RCPTServiceImpl rcptService;
 		@Autowired FeeServiceImpl feeService;
 		
-		@GetMapping("/create/table")
+		@GetMapping("/create/table/trd")
 		public Map<?, ?> createTRDTable(){
 			trdService.createTRD();
 			box.clear();
@@ -37,7 +34,7 @@ public class TableController extends Proxy{
 			return box.get();
 		}
 		
-		@GetMapping("/delete/table")
+		@GetMapping("/delete/table/trd")
 		public Map<?, ?> deleteTRDTable(){
 			trdService.deleteTRD();
 			box.clear();
@@ -45,7 +42,7 @@ public class TableController extends Proxy{
 			return box.get();
 		}
 		
-		@GetMapping("/create/table")
+		@GetMapping("/create/table/trdhr")
 		public Map<?, ?> createTRDHRTable(){
 			trdhrService.createTRDHR();
 			box.clear();
@@ -53,7 +50,7 @@ public class TableController extends Proxy{
 			return box.get();
 		}
 		
-		@GetMapping("/delete/table")
+		@GetMapping("/delete/table/trdhr")
 		public Map<?, ?> deleteTRDHRTable(){
 			trdhrService.deleteTRDHR();
 			box.clear();
@@ -61,7 +58,7 @@ public class TableController extends Proxy{
 			return box.get();
 		}
 		
-		@GetMapping("/create/table")
+		@GetMapping("/create/table/rcpt")
 		public Map<?, ?> createRCPTTable(){
 			rcptService.createRCPT();
 			box.clear();
@@ -69,7 +66,7 @@ public class TableController extends Proxy{
 			return box.get();
 		}
 		
-		@GetMapping("/delete/table")
+		@GetMapping("/delete/table/rcpt")
 		public Map<?, ?> deleteRCPTTable(){
 			rcptService.deleteRCPT();
 			box.clear();

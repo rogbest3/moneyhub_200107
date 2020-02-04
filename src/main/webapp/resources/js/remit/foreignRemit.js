@@ -3,7 +3,8 @@ var foreignRemit = foreignRemit || {}
 foreignRemit = (()=>{
 	
 	const WHEN_ERR = '레미트 js파일을 찾지 못했습니다.'
-	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,amount,deal,remit_box_js,clock,cus
+	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,
+		amount,deal,remit_box_js,clock,cus
 
 	let init = ()=>{
 		_ = $.ctx()
@@ -14,19 +15,19 @@ foreignRemit = (()=>{
 		auth_js = js + '/cmm/auth.js'
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
-	//	remit_box_js = js + '/remit/remit_box.js'
+		remit_box_js = js + '/remit/remit_box.js'
 	}
 
 	let onCreate =()=>{
 		init()
 		$.when(
-			$.getScript(remit_vue_js)
-	//		$.getScript(remit_box_js)
+			$.getScript(remit_vue_js),
+			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			remit_deal()
-		//	remit_box.onCreate('')
+			remit_box.onCreate('')
 			window.Remit_send()
 			
 			
@@ -57,11 +58,13 @@ foreignRemit = (()=>{
 			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 				common.receive_value_calc(exrate_arr[exrate_arr.length -1])
 			})
-		})
+			deal.trdkrw = $('.form-calculator .amount-row input.send-amount').val() //계산된 KRW
+			alert(deal.trdkrw)
+    	})
 	}
 	
 	let remit_deal = ()=>{
-		if(deal.amount >= 3000)
+		if(deal.trdusd >= 3000)
 		{$('#fee_check').text('12')}
 		else {$('#fee_check').text('6')}
 		
@@ -72,8 +75,8 @@ foreignRemit = (()=>{
 		})
 		
 		$('#first_remit_btn').click(()=>{
-			deal.amount = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') //송금액을 바꿨을 때 금액
-			alert(deal.amount)
+			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') //송금액을 바꿨을 때 금액
+			alert(deal.trdusd)
 			deal.fee = document.getElementById('fee_check').innerHTML
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_cusInfo()

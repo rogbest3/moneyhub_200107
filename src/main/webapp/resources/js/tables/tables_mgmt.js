@@ -278,13 +278,14 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	//==========================================================
 	let trade_mgmt=()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>TRD 테이블 생성</a></h3><br><br>`)
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + '/crudtable/create/createCustomer', d=>{
+			$.getJSON( _ + '/remtable/create/table/trd', d=>{
 				alert(`테이블 성공여부 : ${d.result}`)
 			})
 		})
@@ -292,7 +293,7 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + `/crudtable/drop/dropCustomer`, d=>{
+			$.getJSON( _ + `/remtable/delete/table/trd`, d=>{
 				alert(`테이블 삭제 성공여부 : ${d.result}`)
 			})
 		})
@@ -303,7 +304,7 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + '/crudtable/create/createCustomer', d=>{
+			$.getJSON( _ + '/remtable/create/table/trdhr', d=>{
 				alert(`테이블 성공여부 : ${d.result}`)
 			})
 		})
@@ -311,7 +312,7 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + `/crudtable/drop/dropCustomer`, d=>{
+			$.getJSON( _ + `/remtable/delete/table/trdhr`, d=>{
 				alert(`테이블 삭제 성공여부 : ${d.result}`)
 			})
 		})
@@ -322,7 +323,7 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + '/crudtable/create/createCustomer', d=>{
+			$.getJSON( _ + '/remtable/create/table/rcpt', d=>{
 				alert(`테이블 성공여부 : ${d.result}`)
 			})
 		})
@@ -330,7 +331,7 @@ tables_mgmt =(()=>{
 		.appendTo('#right')
 		.click(e=>{
 			e.preventDefault()
-			$.getJSON( _ + `/crudtable/drop/dropCustomer`, d=>{
+			$.getJSON( _ + `/remtable/delete/table/rcpt`, d=>{
 				alert(`테이블 삭제 성공여부 : ${d.result}`)
 			})
 		})

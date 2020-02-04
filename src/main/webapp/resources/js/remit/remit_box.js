@@ -142,7 +142,7 @@ remit_box =(()=>{
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
 					
-					deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+					deal.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명, 국가코드
 					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 					sessionStorage.setItem('deal',JSON.stringify(deal))
 					

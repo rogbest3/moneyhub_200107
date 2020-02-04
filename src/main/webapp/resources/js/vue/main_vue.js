@@ -217,7 +217,7 @@ main_vue ={
 						<div class="amount-row"> 
 							<div class=""> 
 								<p>송금 금액</p> 
-								<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.amount}"> 
+								<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value=""> 
 							</div> 
 							<div class="unit-select disabled" tabindex="0"> 
 								<p>미 화</p> 
@@ -230,7 +230,7 @@ main_vue ={
 								<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly=""> 
 							</div> 
 							<div class="unit-select receive" tabindex="0"> 
-								<p>${deal.cntp}</p><h3>${deal.cntcd}</h3>
+								<p>한 화</p><h3>KRW</h3>
 							</div> 
 						</div> 
 					</div> 

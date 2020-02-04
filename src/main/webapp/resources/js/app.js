@@ -59,7 +59,7 @@ app =(()=>{
 			//=============================================================
 			setContentView()
 			page_move()
-			remit_box.onCreate({ flag : '', cntcd : '' })
+		//	remit_box.onCreate({ flag : '', cntcd : '' })
 			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
 			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 			sessionStorage.setItem('deal',JSON.stringify(deal))
