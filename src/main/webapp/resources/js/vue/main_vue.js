@@ -216,6 +216,14 @@ main_vue ={
 					<div id="remit_box" class="form-calculator main"> 
 						<div class="amount-row"> 
 							<div class=""> 
+								<h3 style="text-align:center;">수취 국가</h3> 
+							</div>
+							<div class="unit-select receive" tabindex="0"> 
+								<p>나라 선택</p><h3>클릭</h3>
+							</div> 
+						</div> 
+						<div class="amount-row"> 
+							<div class=""> 
 								<p>송금 금액</p> 
 								<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value=""> 
 							</div> 
@@ -227,10 +235,10 @@ main_vue ={
 						<div class="amount-row"> 
 							<div class=""> 
 								<p>예상 비용</p> 
-								<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly=""> 
+								<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="" value="0"> 
 							</div> 
-							<div class="unit-select receive" tabindex="0"> 
-								<p>한 화</p><h3>KRW</h3>
+							<div class="unit-select disabled" tabindex="0" > 
+								<p>한 화</p><h3 style="color:#0077c8">KRW</h3>
 							</div> 
 						</div> 
 					</div> 

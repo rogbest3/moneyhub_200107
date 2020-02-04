@@ -10,7 +10,6 @@ mypage =(()=>{
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
-		deal = $.deal()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -36,16 +35,17 @@ mypage =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(guide_recieve_js),
+			$.getScript(line_graph_js),
 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			page_move()	
+			remit_receive()
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0})
-
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -57,13 +57,22 @@ mypage =(()=>{
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
-		$.getScript(line_graph_js)
+		
+		//송금 usd 환율 세션에 저장
+		//	common.receive_value_calc(deal.exrate)
+		
 		
 		$('<button/>')
 		.text('송금하기')
 		.addClass('index-send-btn moin-body')
 		.appendTo('#remit_box')
 		.click(()=>{
+			alert("송금버튼 deal.trdusd"+deal.trdusd)
+			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+			sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert("마이페이지deal.cntp"+deal.cntp+"deal.cntcd "+deal.cntcd)
+			
 			foreignRemit.onCreate()
 		})
 
@@ -142,6 +151,20 @@ mypage =(()=>{
 			})
 		})
 	}
+	
+	let remit_receive = ()=>{
+		deal = $.deal()
+		
+		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			common.receive_value_calc(deal.exrate)
+			alert("마페환율"+deal.exrate)
+		})
+		alert(JSON.stringify(deal))
+		deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+		alert("마페 deal.trdusd"+deal.trdusd)
+		sessionStorage.setItem('deal',JSON.stringify(deal))
+	}
+	
 	let remit_list =(x)=>{
 
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search`, d=>{

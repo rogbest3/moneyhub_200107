@@ -11,7 +11,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class=""> 
 									<p>송금 금액</p> 
-									<input class="send-amount" id="sd_amount" type="text" tabindex="0" placeholder="0.00" value=""> 
+									<input class="send-amount" id="sd_amount" type="text" tabindex="0" placeholder="0.00" value="${deal.trdusd}"> 
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
 									<p>미화</p><h3>USD</h3> 
@@ -38,8 +38,8 @@ remit_vue = {
 										<p>예상 비용</p> 
 										<input class="receive-amount" type="text" tabindex="0" value="" readonly=""> 
 									</div> 
-									<div class="unit-select receive" tabindex="0"> 
-										<p>한 화</p><h3>KRW</h3> 
+									<div class="unit-select disabled" tabindex="0"> 
+										<p>한 화</p><h3 style="color:#0077c8">KRW</h3> 
 									</div> 
 								</div> 
 						</div> 
@@ -282,11 +282,11 @@ remit_vue = {
 									<p>보내는 금액</p>
 								<div>
 									<div class="amount">
-										<p >0.00 <span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} KRW</p>
+										<p >${deal.trdkrw}<span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} KRW</p>
 									</div>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png" class="user-sendlist-ic">
 									<div class="amount receive">
-										<p > <span class="unit">USD</span></p><p>적용 환율 : 1 USD = 1161.81 KRW</p>
+										<p >${deal.trdusd}<span class="unit">USD</span></p><p>적용 환율 : 1 USD = ${deal.exrate} KRW</p>
 									</div>
 								</div>
 							</div>
