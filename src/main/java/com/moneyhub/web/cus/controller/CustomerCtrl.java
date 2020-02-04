@@ -68,9 +68,9 @@ public class CustomerCtrl extends Proxy {
 		return box.get();
 	}
 
-	@GetMapping("/existid/{cemail}")
+	@GetMapping("/existid/{cemail}/")
 	public Map<?, ?> existId(@PathVariable String cemail) {
-		System.out.println("existid 들어옴");
+		System.out.println("existid 들어옴 " + cemail);
 		Function<String, Integer> f = o -> cusMapper.existId(o);
 		box.clear();
 		box.put("msg", (f.apply(cemail) != 0) ? "Y" : "N");

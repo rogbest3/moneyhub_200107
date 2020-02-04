@@ -75,18 +75,10 @@ tables_mgmt =(()=>{
 					case '수수료내역Table' :
 						fee_db_mgmt()
 						break	
-					case '거래Table' :
-						trade_mgmt()
-						break	
 					case '관리자Table' :
 						admin_mgmt()
 						break
-					case '고객계좌정보Table' :
-						account_mgmt()
-						break
-					case '수취내역Table' :
-						receipt_mgmt()
-						break
+
 					}
 			})
 		})
@@ -148,6 +140,7 @@ tables_mgmt =(()=>{
 						'KRW,USD,JPY,CNY,SGD,AUD,GBP,NPR,EUR.json', d=>{
 
 				let arr = []
+				
 				$.each(d, (i, j)=>{
 					arr.push({bdate : j.date.substr(0, 10), 
 						cntcd : j.name.substr(0, 3),
@@ -166,7 +159,6 @@ tables_mgmt =(()=>{
 					error : e=>{
 						alert('전송 실패')
 					}
-					
 				})
 			})
 		})
@@ -273,6 +265,29 @@ tables_mgmt =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			$.getJSON( _ + `/crudtable/drop/dropFeeDB`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+			
+		})
+	}
+	
+	let admin_mgmt =()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>ADMIN 테이블 생성 및 계정 생성</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/crudtable/create/createAdmin', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		
+		
+		$(`<h3><a>ADMIN 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/drop/dropAdmin`, d=>{
 				alert(`테이블 삭제 성공여부 : ${d.result}`)
 			})
 			

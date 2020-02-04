@@ -366,7 +366,7 @@ auth =(()=>{
 		$('#cemail').keyup(()=>{
 			if($('#cemail').val().length >= 1){
 				$.ajax({
-					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()),
+					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val() ) +'/',
 					type: 'GET',
 					data: JSON.stringify({
 						cemail : $('#cemail').val()

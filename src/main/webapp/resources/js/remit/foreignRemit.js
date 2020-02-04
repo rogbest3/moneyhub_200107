@@ -1,7 +1,6 @@
 "use strict"
 var foreignRemit = foreignRemit || {}
 foreignRemit = (()=>{
-	
 	const WHEN_ERR = '레미트 js파일을 찾지 못했습니다.'
 	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,amount,deal,remit_box_js,clock,cus
 
