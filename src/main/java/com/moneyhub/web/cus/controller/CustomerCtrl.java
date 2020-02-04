@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moneyhub.web.cus.domains.Account;
@@ -73,7 +74,7 @@ public class CustomerCtrl extends Proxy {
 
 	@GetMapping("/existid/{cemail}/")
 	public Map<?, ?> existId(@PathVariable String cemail) {
-		System.out.println("existid 들어옴 " + cemail);
+		System.out.println("existid 들어옴");
 		Function<String, Integer> f = o -> cusMapper.existId(o);
 		box.clear();
 		box.put("msg", (f.apply(cemail) != 0) ? "Y" : "N");
