@@ -3,6 +3,8 @@ package com.moneyhub.web.crudtable;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import com.moneyhub.web.crudtable.CRUDCustomer;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +16,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CRUDFee {
 
-	private String  seq,
-					sdate,
+	private String seq,
+					bdate,
+					cusnum,
+					txseq,
 					feetypcd,
-					amnt;		// feetypcd 1은 3천달러미만 2는 3천달러 이상
+					amnt,
+					crtmen,
+					crtdate,
+					umem,
+					udate;
 
 }

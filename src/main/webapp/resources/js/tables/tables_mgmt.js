@@ -11,6 +11,8 @@ tables_mgmt =(()=>{
 		init()
 		setContentView()
 	}
+	
+	//FEE -> FEEDB로 수정 해야함!!!
 	let setContentView =()=>{
 		$('div.themoin-landing').empty()
 		$('<table id="tab"><tr></tr></table>')
@@ -82,10 +84,10 @@ tables_mgmt =(()=>{
 					case '수취내역Table' :
 						receipt_mgmt()
 						break
-					case '수수료내역Table' :
+					case '수수료Table' :
 						fee_db_mgmt()
 						break	
-					case '수수료Table' :
+					case '수수료내역Table' :
 						fee_mgmt()
 			            break
 					}
@@ -227,7 +229,7 @@ tables_mgmt =(()=>{
 		})
 	}
 	
-	let fee_db_mgmt =()=>{
+	let fee_mgmt =()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>수수료 내역 테이블 생성</a></h3><br><br>`)
 		.appendTo('#right')

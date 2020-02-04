@@ -1,13 +1,11 @@
 package com.moneyhub.web.tx;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.moneyhub.web.crudtable.CRUDCustomer;
-import com.moneyhub.web.crudtable.CRUDFeeDB;
+import com.moneyhub.web.crudtable.CRUDFee;
 import com.moneyhub.web.exr.Exrate;
 import com.moneyhub.web.exr.ExrateMapper;
 import com.moneyhub.web.faq.FAQ;
@@ -17,6 +15,8 @@ import com.moneyhub.web.pxy.CustomerProxy;
 import com.moneyhub.web.pxy.ExrateStoreProxy;
 import com.moneyhub.web.pxy.FAQStoreProxy;
 import com.moneyhub.web.pxy.FeeDBProxy;
+
+//FEE <-> FEEDB로 수정 해야함!!!``````````````````````````````````````
 
 @Service
 public class TxService {
@@ -30,7 +30,7 @@ public class TxService {
 	@Autowired TxMapper txMapper;
 		
 	@Autowired CRUDCustomer crudCustomer;
-	@Autowired CRUDFeeDB crudFeeDB;
+	@Autowired CRUDFee crudFeeDB;
 	
 	@Autowired CustomerProxy customerProxy;
 	@Autowired FeeDBProxy feeDBProxy;
@@ -39,6 +39,8 @@ public class TxService {
 	public void crawling() {
 		crawler.insertCrawling();
 	}
+	
+	
 	
 	@Transactional
 	public void insertFAQStore() {
