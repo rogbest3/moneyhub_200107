@@ -42,8 +42,8 @@ tables_mgmt =(()=>{
 			'vertical-align' : 'top'
 		})
 		.appendTo('tr')
-		let arr = ['FAQ 관리', 'EXRATE 관리', 'CUSTOMER 관리',
-			'수수료내역Table', '거래Table', '관리자Table', '고객계좌정보Table', '수취내역Table','거래내역Table']
+		let arr = ['FAQ 관리', 'EXRATE 관리', 'CUSTOMER 관리','수수료내역Table','수수료Table', 
+               '거래Table', '관리자Table', '고객계좌정보Table', '수취내역Table','거래내역Table']
 		$.each(arr, (i, j)=>{
 			$('<div/>')
 			.text(j)		// text(j) - setter
@@ -85,6 +85,9 @@ tables_mgmt =(()=>{
 					case '수수료내역Table' :
 						fee_db_mgmt()
 						break	
+					case '수수료Table' :
+						fee_mgmt()
+			            break
 					}
 			})
 		})
@@ -141,6 +144,7 @@ tables_mgmt =(()=>{
 			$.getJSON('https://api.manana.kr/exchange/rate/KRW/'+
 						'KRW,USD,JPY,CNY,SGD,AUD,GBP,NPR,EUR.json', d=>{
 				let arr = []
+				
 				$.each(d, (i, j)=>{
 					arr.push({bdate : j.date.substr(0, 10),
 						cntcd : j.name.substr(0, 3),
@@ -258,7 +262,39 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
-	
+
+	let fee_mgmt =()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>수수료 테이블 생성 및 인서트</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/crudtable/create/createFee', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		
+		$(`<h3><a>수수료 테이블  DATA 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/truncate/truncateFee`, d=>{
+				alert(`테이블 DATA 삭제 성공여부 : ${d.result}`)
+			})
+			
+		})
+		
+		$(`<h3><a>수수료 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/drop/dropFee`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+			
+		})
+	}
+
 	let admin_mgmt =()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>ADMIN 테이블 생성 및 계정 생성</a></h3><br><br>`)
@@ -278,6 +314,7 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+
 	//==========================================================
 	let trade_mgmt=()=>{
 		$('#right').empty()
@@ -336,6 +373,5 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
-	
 	return { onCreate }
 })()

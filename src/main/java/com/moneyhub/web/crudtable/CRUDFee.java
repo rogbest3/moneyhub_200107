@@ -1,4 +1,4 @@
-package com.moneyhub.web.cus.domains;
+package com.moneyhub.web.crudtable;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -12,17 +12,11 @@ import lombok.NoArgsConstructor;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
-	
-	private String cemail,
-				bsdate,
-				acct_no,
-				balance,
-				deposit,
-				withdrawal,
-				achcntcd,
-				crtmem,
-				crtdt,
-				upmem,
-				updt;
+public class CRUDFee {
+
+	private String  seq,
+					sdate,
+					feetypcd,
+					amnt;		// feetypcd 1은 3천달러미만 2는 3천달러 이상
+
 }

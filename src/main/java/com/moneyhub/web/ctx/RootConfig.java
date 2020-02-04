@@ -9,9 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 @Configuration
 @MapperScan(basePackages = { "com.moneyhub.web" })
 @ComponentScan(basePackages = { "com.moneyhub.web" })
@@ -23,7 +20,7 @@ import com.zaxxer.hikari.HikariDataSource;
 public class RootConfig {
 	@Bean
 	public DataSource dataSource() {
-		
+		//dataSource.setUrl("jdbc:mysql://moneyhub.cfa9kh7porrz.ap-northeast-2.rds.amazonaws.com:3306/moneyhub?serverTimezone=UTC"); 형진 아마존
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/moneyhub?serverTimezone=UTC");
