@@ -159,8 +159,8 @@ public enum SQL {
 					"SEQ INT 					NOT NULL AUTO_INCREMENT  COMMENT'순번' UNIQUE,\r\n"+
 					"TRD_STAT_CD VARCHAR(2) 	NULL 		COMMENT'거래상태코드',\r\n"+
 					"CHNG_CAUS_CD VARCHAR(2) 	NULL 		COMMENT'변경사유코드',\r\n"+
-					"TRD_AMNT VARCHAR(100) 		NULL 		COMMENT'송금액',\r\n"+
-					"TRD_SEND VARCHAR(100) 		NULL 		COMMENT'거래액',\r\n"+
+					"TRD_USD  VARCHAR(100) 		NULL 		COMMENT'송금액',\r\n"+
+					"TRD_KRW VARCHAR(100) 		NULL 		COMMENT'거래액',\r\n"+
 					"ACCT_NO VARCHAR(100) 		NULL 		COMMENT'계좌번호',\r\n"+
 					"CNTCD VARCHAR(3) 			NULL 		COMMENT'국가코드',\r\n"+
 					"EXRATE DOUBLE(12,2) 		NULL 		COMMENT'환율',\r\n"+
@@ -182,8 +182,8 @@ public enum SQL {
 					"CNO VARCHAR(12) NOT NULL COMMENT'고객번호',\r\n"+
 					"TRD_STAT_CD VARCHAR(2) NULL COMMENT'거래상태코드',\r\n"+
 					"CHNG_CAUS_CD VARCHAR(2) NULL COMMENT'변경사유코드',\r\n"+
-					"TRD_AMNT VARCHAR(100) NULL COMMENT'송금액',\r\n"+
-					"TRD_SEND VARCHAR(100) 		NULL 		COMMENT'거래액',\r\n"+
+					"TRD_USD  VARCHAR(100) 		NULL 		COMMENT'송금액',\r\n"+
+					"TRD_KRW VARCHAR(100) 		NULL 		COMMENT'거래액',\r\n"+
 					"ACCT_NO VARCHAR(100) NULL COMMENT'계좌번호',\r\n"+
 					"CNTCD VARCHAR(3) NULL COMMENT'국가코드',\r\n"+
 					"EXRATE DOUBLE(12,2) NULL COMMENT'환율',\r\n"+

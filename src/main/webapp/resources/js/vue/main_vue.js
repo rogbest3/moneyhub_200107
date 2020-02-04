@@ -25,19 +25,19 @@ main_vue ={
 				<p class="color-deepgrey"></p> 
 			</div>
 			<div class="steps" style="max-width: 1365px; text-align: center; "> 
-				<div class="threesteps">
-				<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
-				<h3>환전</h3>
-				</div>
-				<div class="threesteps">
-				<img src="/web/resources/img/main/remit.png" style="width: 300px">
-				<h3>wu 해외송금</h3>
-				</div>
-				<div class="threesteps">
-				<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
-				<h3>모의 환전</h3>
-				</div>
-				</div>
+					<div class="threesteps">
+					<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
+					<h3>환전</h3>
+					</div>
+					<div class="threesteps">
+					<img src="/web/resources/img/main/remit.png" style="width: 300px">
+					<h3>wu 해외송금</h3>
+					</div>
+					<div class="threesteps">
+					<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
+					<h3>모의 환전</h3>
+					</div>
+					</div>
 			</div> 
 		</div> 
 		<div class="themoin-landing-countries"> 
@@ -207,7 +207,27 @@ main_vue ={
 		 	      	<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas> 
 				</div> 
 			</div> 
-			<div class="themoin-remit-component"> 
+				<div class="themoin-remit-component"> 
+						<div id="moin-event-amount" class="moin-event-amount"> 
+						<h1>머니허브 기능 이용하기</span> 
+							<p class="color-deepgrey"></p> 
+						</div>
+						<div class="steps" style="max-width: 1365px; text-align: center; "> 
+									<div class="threesteps">
+										<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
+										<h3>환전</h3>
+									</div>
+									<div class="threesteps" id="remit_click">
+										<img src="/web/resources/img/main/remit.png" style="width: 300px">
+										<h3>wu 해외송금</h3>
+									</div>
+									<div class="threesteps">
+										<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
+										<h3>모의 환전</h3>
+									</div>
+						</div>
+				</div> 
+			<div class="themoin-remit-component" id="remit_slider"> 
 				<div id="moin-event-amount" class="moin-event-amount"> 
 				<h1>지금 바로 WU 송금을 이용해보세요</span> 
 					<p class="color-deepgrey"></p> 
@@ -242,7 +262,8 @@ main_vue ={
 							</div> 
 						</div> 
 					</div> 
-				</div> 
+				</div>
+				 
 			</div> 
 
 	<div class="user-remit-container"> 
@@ -291,6 +312,44 @@ main_vue ={
 			      			</div>
 			      		</div>
 			      	</div>
+				</div>`
+	},
+	remit_slider : ()=>{
+		return `<div class="themoin-remit-component"> 
+				<div id="moin-event-amount" class="moin-event-amount"> 
+				<h1>지금 바로 WU 송금을 이용해보세요</span> 
+					<p class="color-deepgrey"></p> 
+				</div> 
+				<div class="moin-amount"> 
+					<div id="remit_box" class="form-calculator main"> 
+						<div class="amount-row"> 
+							<div class=""> 
+								<h3 style="text-align:center;">수취 국가</h3> 
+							</div>
+							<div class="unit-select receive" tabindex="0"> 
+								<p>나라 선택</p><h3>클릭</h3>
+							</div> 
+						</div> 
+						<div class="amount-row"> 
+							<div class=""> 
+								<p>송금 금액</p> 
+								<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value=""> 
+							</div> 
+							<div class="unit-select disabled" tabindex="0"> 
+								<p>미 화</p> 
+								<h3>USD</h3> 
+							</div> 
+						</div> 
+						<div class="amount-row"> 
+							<div class=""> 
+								<p>예상 비용</p> 
+								<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="" value="0"> 
+							</div> 
+							<div class="unit-select disabled" tabindex="0" > 
+								<p>한 화</p><h3 style="color:#0077c8">KRW</h3>
+							</div> 
+						</div> 
+					</div> 
 				</div>`
 	},
 	remit_history : ()=>{

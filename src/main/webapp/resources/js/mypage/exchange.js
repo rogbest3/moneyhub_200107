@@ -47,8 +47,8 @@ exchange =(()=>{
 					$('#divToggle').hide()
 				}*/
 				$.getScript(exChart_js)
-				deal.amount = document.getElementById('exchange_amount').value
-				sessionStorage.setItem('deal', JSON.stringify(deal));
+				/*deal.amount = document.getElementById('exchange_amount').value
+				sessionStorage.setItem('deal', JSON.stringify(deal));*/
 			})
 		})
 		

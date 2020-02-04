@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,9 @@ import com.moneyhub.web.pxy.Box;
 import com.moneyhub.web.pxy.Inventory;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
+import com.moneyhub.web.remit.domains.RCPT;
 import com.moneyhub.web.remit.domains.TRDHR;
+import com.moneyhub.web.remit.mappers.RCPTMapper;
 import com.moneyhub.web.remit.mappers.TRDHRMapper;
 import com.moneyhub.web.remit.services.TRDHRService;
 
@@ -24,16 +27,21 @@ public class TRDHRServiceImpl implements TRDHRService{
 	@Autowired Box<Object> box;
 	@Autowired Inventory<Object> inventory;
 	@Autowired TRDHRMapper trdhrMapper;
+	@Autowired RCPTMapper rcptMapper;
 	@Autowired PageProxy pager;
+	@Autowired RCPT rcpt;
 	
 	public Map<?, ?> selectAll(){
 		pager.setRowCount(countTRDHR());
 		pager.paging();
 		pxy.print(pager.toString());
-		Function<PageProxy, ArrayList<TRDHR>> f = t -> trdhrMapper.selectAll(t);	
+		Function<PageProxy, ArrayList<TRDHR>> f = t -> trdhrMapper.selectAll(t);
+		Supplier<ArrayList<RCPT>> r = () -> rcptMapper.rcptInfo();
 		box.put("pager", pager);
 		box.put("trdhr", f.apply(pager));
+		box.put("rcpt", r.get());
 		pxy.print(box.get("trdhr").toString());
+		pxy.print(box.get("rcpt").toString());
 		return box.get();
 	}
 	public int countTRDHR() {
