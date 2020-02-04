@@ -7,4 +7,12 @@ import com.moneyhub.web.remit.services.RCPTService;
 @Service
 public class RCPTServiceImpl implements RCPTService{
 
+	public void createRCPT() {
+		
+	}
+
+	public void deleteRCPT() {
+		
+	}
+
 }

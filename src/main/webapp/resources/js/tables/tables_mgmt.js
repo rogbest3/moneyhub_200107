@@ -43,7 +43,7 @@ tables_mgmt =(()=>{
 		})
 		.appendTo('tr')
 		let arr = ['FAQ 관리', 'EXRATE 관리', 'CUSTOMER 관리',
-			'수수료내역Table', '거래Table', '관리자Table', '고객계좌정보Table', '수취내역Table']
+			'수수료내역Table', '거래Table', '관리자Table', '고객계좌정보Table', '수취내역Table','거래내역Table']
 		$.each(arr, (i, j)=>{
 			$('<div/>')
 			.text(j)		// text(j) - setter
@@ -67,21 +67,24 @@ tables_mgmt =(()=>{
 					case 'CUSTOMER 관리' :
 						customer_mgmt()
 						break	
-					case '수수료내역Table' :
-						fee_db_mgmt()
-						break	
-					case '거래Table' :
-						trade_mgmt()
-						break	
 					case '관리자Table' :
 						admin_mgmt()
 						break
 					case '고객계좌정보Table' :
 						account_mgmt()
 						break
+					case '거래Table' :
+						trade_mgmt()  
+						break	
+					case '거래내역Table' :
+						trade_hr_mgmt()
+						break	
 					case '수취내역Table' :
 						receipt_mgmt()
 						break
+					case '수수료내역Table' :
+						fee_db_mgmt()
+						break	
 					}
 			})
 		})
@@ -121,6 +124,7 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	
 	let exrate_mgmt =()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>EARATE 테이블 생성</a></h3><br><br>`)
@@ -182,6 +186,7 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	
 	let customer_mgmt =()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>CUSTOMER 테이블 생성</a></h3><br><br>`)
@@ -217,6 +222,7 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	
 	let fee_db_mgmt =()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>수수료 내역 테이블 생성</a></h3><br><br>`)
@@ -252,6 +258,7 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	
 	let admin_mgmt =()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>ADMIN 테이블 생성 및 계정 생성</a></h3><br><br>`)
@@ -271,5 +278,63 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	let trade_mgmt=()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>TRD 테이블 생성</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/crudtable/create/createCustomer', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		$(`<h3><a>TRD 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/drop/dropCustomer`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+		})
+	}
+	let trade_hr_mgmt=()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>TRDHR 테이블 생성</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/crudtable/create/createCustomer', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		$(`<h3><a>TRDHR 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/drop/dropCustomer`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+		})
+	}
+	let receipt_mgmt=()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>RCPT 테이블 생성</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/crudtable/create/createCustomer', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		$(`<h3><a>RCPT 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/crudtable/drop/dropCustomer`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+		})
+	}
+	
 	return { onCreate }
 })()

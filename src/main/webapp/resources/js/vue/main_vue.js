@@ -26,13 +26,16 @@ main_vue ={
 			</div>
 			<div class="steps" style="max-width: 1365px; text-align: center; "> 
 				<div class="threesteps">
-				<img src="/web/resources/img/main/exchange.png">
+				<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
+				<h3>환전</h3>
 				</div>
 				<div class="threesteps">
-				<img src="/web/resources/img/main/remit.png">
+				<img src="/web/resources/img/main/remit.png" style="width: 300px">
+				<h3>wu 해외송금</h3>
 				</div>
 				<div class="threesteps">
-				<img src="/web/resources/img/main/testexchange.png">
+				<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
+				<h3>모의 환전</h3>
 				</div>
 				</div>
 			</div> 
@@ -189,19 +192,6 @@ main_vue ={
                 </div>
                 <div id="ani02_trigger"></div>
             </div>
-			<div class="themoin-landing-applink">
-				<h1>머니허브  앱을 다운로드 받으세요</h1>
-				<div class="item-container">
-					<a class="btn-android">
-						<img src="https://img.themoin.com/public/img/page-1.svg">
-						<div class="hd-button">안드로이드 앱 다운로드</div>
-					</a>
-					<a class="btn-ios">
-						<img src="https://img.themoin.com/public/img/img-apple.svg">
-						<div class="hd-button">iOS 앱 다운로드</div>
-					</a>
-				</div>
-			</div>
 			<div style="display:none"></div>
 		</div>`
 	},
@@ -269,7 +259,6 @@ main_vue ={
 					<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br>
 					<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>
 				</div>
-				<div class="themoin-pagination"></div>
 			</div>
 		</div>`
 	},

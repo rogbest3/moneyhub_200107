@@ -37,5 +37,11 @@ public class TRDHRServiceImpl implements TRDHRService{
 		Function<PageProxy, String> s = p -> trdhrMapper.countTRDHR(p);
 		return pxy.integer(s.apply(pager));
 	}
+	public void createTRDHR() {
+		trdhrMapper.createTRDHR();
+	}
+	public void deleteTRDHR() {
+		trdhrMapper.deleteTRDHR();
+	}
 
 }

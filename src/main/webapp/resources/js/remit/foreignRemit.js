@@ -15,7 +15,6 @@ foreignRemit = (()=>{
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
 	//	remit_box_js = js + '/remit/remit_box.js'
-
 	}
 
 	let onCreate =()=>{
@@ -138,7 +137,7 @@ foreignRemit = (()=>{
 		setInterval(msg_time, 1000);
 		$('#main_user_btn').click(()=>{
 			deal.amount = null
-			mypage.onCreate('remit_complete')
+			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
 	}

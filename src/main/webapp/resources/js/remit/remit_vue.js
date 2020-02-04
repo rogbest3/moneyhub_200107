@@ -31,7 +31,7 @@ remit_vue = {
 							</div> 
 								<div class="description last"> 
 									<i><img src="https://img.themoin.com/public/img/exchange-rate.svg"></i> 
-									<p><span>100</span>JPY = <span>1060.08</span>KRW (실시간 환율)</p> 
+									<p><span>1</span>USD = <span>${deal.exrate}</span>KRW (실시간 환율)</p> 
 								</div> 
 								<div class="amount-row"> 
 									<div class=""> 
@@ -39,7 +39,7 @@ remit_vue = {
 										<input class="receive-amount" type="text" tabindex="0" value="" readonly=""> 
 									</div> 
 									<div class="unit-select receive" tabindex="0"> 
-										<p>${deal.cntp}</p><h3>${deal.cntcd}</h3> 
+										<p>한 화</p><h3>KRW</h3> 
 									</div> 
 								</div> 
 						</div> 

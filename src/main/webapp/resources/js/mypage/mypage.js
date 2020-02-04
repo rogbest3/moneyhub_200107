@@ -182,6 +182,8 @@ mypage =(()=>{
 					</div>`)
 			    .appendTo('.remits')
 			})
+			$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
+			
 			let pxy = d.pager
 			if(pxy.existPrev){
 				$(`<button class="control disabled" disabled="">
@@ -198,7 +200,7 @@ mypage =(()=>{
 					$(`<button>
 							${i+1}
 						</button>`)
-				.appendTo('.paginator current')
+				.appendTo('.themoin-pagination')
 				.click(function(e){
 					e.preventDefault()
 					mypage.remit_list({ nowPage : i})

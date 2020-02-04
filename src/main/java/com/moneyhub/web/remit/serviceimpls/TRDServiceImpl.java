@@ -7,4 +7,11 @@ import com.moneyhub.web.remit.services.TRDService;
 @Service
 public class TRDServiceImpl implements TRDService{
 
+	public void createTRD() {
+	}
+
+	public void deleteTRD() {
+		
+	}
+
 }
