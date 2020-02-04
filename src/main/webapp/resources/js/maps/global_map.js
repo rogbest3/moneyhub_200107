@@ -17,38 +17,38 @@ $(document).ready(function(){
 			remit_box.onCreate({ flag : 'exchange', cntcd : x.cntcd })
 		})
 	}
-	let getExrate = $.exrate()
-	$.getJSON(`${$.ctx()}/exrate/search/bdate/${getExrate.bdate}`, d=>{
-		sessionStorage.setItem('exrate', '');
+	let bdate = common.clock_format()	
+	alert('bdate : ' + bdate)
+	$.getJSON(`${$.ctx()}/exrate/search/bdate/${bdate}`, d=>{
+		sessionStorage.setItem('exrate', {});
+		exrate_sess.bdate = bdate
 		$.each(d.exlist.reverse(), (i,j)=>{	
 			switch (j.cntcd) {
 			case 'USD':
-				exrate.usd = usd = j.exrate
+				exrate_sess.usd = usd = j.exrate
 				break;
 			case 'EUR':
-				exrate.eur = eur = j.exrate
+				exrate_sess.eur = eur = j.exrate
 				break;
 			case 'CNY':
-				exrate.cny = cny = j.exrate
+				exrate_sess.cny = cny = j.exrate
 				break;
 			case 'JPY':
-				exrate.jpy = jpy = j.exrate
+				exrate_sess.jpy = jpy = j.exrate
 				break;
 			case 'AUD':
-				exrate.aud = aud = j.exrate
+				exrate_sess.aud = aud = j.exrate
 				break;
 			}	
 		})
-		
-		exrate.bdate = getExrate.bdate
-		sessionStorage.setItem('exrate', JSON.stringify(exrate));
+		sessionStorage.setItem('exrate_sess', JSON.stringify(exrate_sess));
 		
 		$('#exchange_bdate b')
-		.text(`환율 기준일 : ${getExrate.bdate}`)
+		.text(`환율 기준일 : ${bdate}`)
 		
 		common.total_amount_calc()
 		
-		alert(`exrate_flag : ${$.exrate().flag}, exrate_bdate : ${$.exrate().bdate}`)	
+		alert(`exrate_flag : ${$.exrate_sess().flag}, exrate_bdate : ${$.exrate_sess().bdate}`)	
 		
             $(".mapcontainer").mapael({
                 map: {

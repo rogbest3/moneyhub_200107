@@ -52,7 +52,7 @@ common = (function(){
 			alert('>>>>'+$('.form-calculator .amount-row input.send-amount').val())
 		},
 		total_amount_calc : function(){
-			exrate = $.exrate()
+			exrate = $.exrate_sess()
 			alert('exrate : ' + exrate.usd )
 			let total = parseFloat(common.comma_remove($('#exchange_KRW').text()))
 						+ parseFloat(common.comma_remove($('#exchange_USD').text())) * exrate.usd

@@ -9,7 +9,7 @@ exchange_test =(()=>{
 		mypage_vue_js = js + '/vue/mypage_vue.js'
 		global_map_js = js + '/maps/global_map.js'
 		arr = []
-		money = {}
+	//	money = {}
 	}
 	let onCreate =()=>{
 		init()
@@ -21,9 +21,9 @@ exchange_test =(()=>{
 			retention_amount()
 			exchange_popup()
 			
-			exrate.flag = 'default'
-			exrate.bdate = common.clock_format()	
-			sessionStorage.setItem('exrate', JSON.stringify(exrate));
+//			exrate.flag = 'default'
+//			exrate.bdate = common.clock_format()	
+//			sessionStorage.setItem('exrate', JSON.stringify(exrate));
 			
 			$('#exchange_datepicker b')
 			.text(`환율 기준일 : ${common.clock_format()}`)
@@ -39,23 +39,23 @@ exchange_test =(()=>{
 			.change(()=>{
 				alert(`>> : ${$('#datepicker').val()}`)
 				$.getScript($.js() + '/maps/global_map.js')
-				exrate.flag = 'select'
+	/*			exrate.flag = 'select'
 				exrate.bdate = $('#datepicker').val()
-				sessionStorage.setItem('exrate', JSON.stringify(exrate));
+				sessionStorage.setItem('exrate', JSON.stringify(exrate));*/
 				common.total_amount_calc()
 				alert($('#datepicker').val())
 				
-				bdate = $('#datepicker').val()
-				total = $('#total_money').text()
-				KRW = $('#exchange_KRW').text()
-				USD = $('#exchange_USD').text() 
-				AUD = $('#exchange_AUD').text() 
-				EUR = $('#exchange_EUR').text()
-				CNY = $('#exchange_CNY').text()
-				JPY = $('#exchange_JPY').text()
+				money.bdate = $('#datepicker').val()
+				money.total = $('#total_money').text()
+				money.KRW = $('#exchange_KRW').text()
+				money.USD = $('#exchange_USD').text() 
+				money.AUD = $('#exchange_AUD').text() 
+				money.EUR = $('#exchange_EUR').text()
+				money.CNY = $('#exchange_CNY').text()
+				money.JPY = $('#exchange_JPY').text()
 				sessionStorage.setItem('money',JSON.stringify(money))
 				
-				arr.push({	bdate : $('#datepicker').val(),
+	/*			arr.push({	bdate : $('#datepicker').val(),
 							total : $('#total_money').text(), 
 							KRW : $('#exchange_KRW').text(), 
 							USD : $('#exchange_USD').text(), 
@@ -63,7 +63,7 @@ exchange_test =(()=>{
 							EUR : $('#exchange_EUR').text(), 
 							CNY : $('#exchange_CNY').text(), 
 							JPY : $('#exchange_JPY').text()	})
-
+*/
 			})
 		})
 		.fail(()=>{

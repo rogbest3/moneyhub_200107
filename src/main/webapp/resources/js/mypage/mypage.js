@@ -157,11 +157,11 @@ mypage =(()=>{
 		
 		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			common.receive_value_calc(deal.exrate)
-			alert("마페환율"+deal.exrate)
+//			alert("마페환율"+deal.exrate)
 		})
 		alert(JSON.stringify(deal))
 		deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
-		alert("마페 deal.trdusd"+deal.trdusd)
+//		alert("마페 deal.trdusd"+deal.trdusd)
 		sessionStorage.setItem('deal',JSON.stringify(deal))
 	}
 	
