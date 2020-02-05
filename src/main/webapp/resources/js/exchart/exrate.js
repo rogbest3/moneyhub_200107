@@ -32,7 +32,7 @@ exrate =(()=>{
 			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 				receive_value_calc()
 			})
-			sessionStorage.setItem('deal',JSON.stringify(deal))
+			/*sessionStorage.setItem('deal',JSON.stringify(deal))*/
 		})
 	//	let exrate = $.exrate()
 

@@ -14,20 +14,20 @@ foreignRemit = (()=>{
 		auth_js = js + '/cmm/auth.js'
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
-// remit_box_js = js + '/remit/remit_box.js'
+// 		remit_box_js = js + '/remit/remit_box.js'
 	}
 
 	let onCreate =()=>{
 		init()
 		$.when(
 			$.getScript(remit_vue_js)
-// $.getScript(remit_box_js)
+// 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			remit_deal()
-// remit_box.onCreate('')
-			window.Remit_send()
+// 			remit_box.onCreate('')
+//			window.remit_send()
 			
 		})
 		.fail(()=>{
@@ -39,38 +39,46 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_first())
 		$('.themoin-footer').empty()
-		
 		$('#popup-exchange').empty()
-		
-		common.receive_value_calc(deal.exrate)
-		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
-			common.receive_value_calc(deal.exrate)
-		})
-		deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
-		alert(deal.trdkrw)
-		sessionStorage.setItem('deal',JSON.stringify(deal))
-
 	}
 	
 	let remit_deal = ()=>{
+		//숙제 송금 첫번째 화면 밸류 콤마 찍기 
+		// 송금 금액 5000으로 제한 alert 띄우기
+		//실시간 환율 연동하기.....
+		//글자들 임팩트 주기
+		
+		/*amount = common.remit_send*/
+		
 		if(deal.trdusd >= 3000)
 		{$('#fee_check').text('12')}
 		else {$('#fee_check').text('6')}
 		
-		$('#sd_amount').keyup(()=>{
+		common.receive_value_calc(deal.exrate)
+		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			common.receive_value_calc(deal.exrate)
+			if($('#sd_amount').val() >= 3000){
+				$('#fee_check').text('12')}
+			else {$('#fee_check').text('6')}
+			/*$('.form-calculator .amount-row input.send-amount').replace(/\B(?=(\d{3})+(?!\d))/g, ",")*/
+		})
+		
+		/*$('#sd_amount').keyup(()=>{
 			if($('#sd_amount').val() >= 3000)
 			{$('#fee_check').text('12')}
 			else {$('#fee_check').text('6')}
-		})
+		})*/
 		
 		$('#first_remit_btn').click(()=>{
-			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') // 송금액을
-																										// 바꿨을
-																										// 때 금액
-			alert(deal.trdusd)
+			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') // 송금액을 바꿨을떄 금액
+			deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			deal.fee = document.getElementById('fee_check').innerHTML
+			
 			sessionStorage.setItem('deal',JSON.stringify(deal))
+			
+			alert(JSON.stringify(deal))
 			remit_cusInfo()
+			
 			})
 	}
 	let remit_cusInfo =()=>{
@@ -133,7 +141,7 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_complete(deal))
 		setInterval(msg_time, 1000);
 		$('#main_user_btn').click(()=>{
-			deal.amount = null
+			deal.trdusd = null
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
