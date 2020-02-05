@@ -82,6 +82,7 @@ mypage =(()=>{
 		$('#logout')
 		.click(()=>{
 			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
+			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
 		})
 		$('#compo')
@@ -146,6 +147,14 @@ mypage =(()=>{
 	
 	let remit_receive = ()=>{
 		deal = $.deal()
+
+		
+		/*$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			common.receive_value_calc(deal.exrate)
+		})
+		deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+		sessionStorage.setItem('deal',JSON.stringify(deal))*/
+    
 			let exrate_arr = []
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 				$.each(d.exlist, (i, j)=>{
