@@ -16,7 +16,7 @@ public class Account {
 	
 	private String cemail,
 				bsdate,
-				acct_no,
+				acctNo,
 				balance,
 				deposit,
 				withdrawal,

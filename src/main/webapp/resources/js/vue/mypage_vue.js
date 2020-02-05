@@ -311,8 +311,11 @@ mypage_vue = {
 	exchange_test : ()=>{
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
 		return `<div class="container">
-					<div id="exchange_bdate" style="margin : 10px auto">
-						<div style="font-size: 18px; text-align : center"><b>환율 기준일 : </b></div>
+					<div id="exchange_datepicker">
+						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
+						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datePicker" class="form-control">
+				    		<button>클릭</button>
+				    	</div>
 					</div>	
 				    <div class="mapcontainer">
 				        <div class="map">
@@ -429,7 +432,7 @@ mypage_vue = {
 		'		<h1>지금 바로 머니허브 환전을 이용해보세요</span>'+
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
-		'<div id="divToggle" style="display: none;"><canvas id="canvas2" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
+		'<div id="chart" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
 		'		<div class="moin-amount">'+
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
@@ -445,13 +448,14 @@ mypage_vue = {
 		'				<div class="amount-row">'+
 		'					<div class="">'+
 		'						<p>예상 비용</p>'+
-		'						<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="">'+
+		'						<input class="receive-amount" id="expect" type="text" tabindex="0" placeholder="0.00" readonly="">'+
 		'					</div>'+
 		'					<div class="unit-select receive" tabindex="0">'+
 		'						<p>미국</p>'+
 		'						<h3>USD</h3>'+
 		'					</div>'+
 		'				</div>'+
+		'				<div class="check_font" id="exchange_check" ></div>'+
 		'				<button id="exchangebutton" class="index-send-btn moin-body">환전하기</button>'+
 		'			</div>'+
 		'		</div>'+

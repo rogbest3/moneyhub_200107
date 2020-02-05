@@ -111,7 +111,7 @@
 	<select id="getInfo" resultType="Customer">
 		SELECT *
 		FROM CUSTOMER
-		WHERE CEMAIL = #{cemail}
+		WHERE CEMAIL = #{cemail} AND CNO = #{cno}
 	</select>
 	
 </mapper>

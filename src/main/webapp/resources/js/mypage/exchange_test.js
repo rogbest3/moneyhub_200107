@@ -59,6 +59,15 @@ exchange_test =(()=>{
 				
 				amount_history()
 				
+				arr.push({	bdate : $('#datepicker').val(),
+							total : $('#total_money').text(), 
+							KRW : $('#exchange_KRW').text(), 
+							USD : $('#exchange_USD').text(), 
+							AUD : $('#exchange_AUD').text(), 
+							EUR : $('#exchange_EUR').text(), 
+							CNY : $('#exchange_CNY').text(), 
+							JPY : $('#exchange_JPY').text()	})
+
 			})
 		})
 		.fail(()=>{
