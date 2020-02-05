@@ -465,5 +465,4 @@ main_vue ={
 		</div>
 	</div>`
 	}
-	
 }

@@ -46,6 +46,7 @@ mypage =(()=>{
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0})
+			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -186,10 +187,9 @@ mypage =(()=>{
 	let remit_list =(x)=>{
 		//숙제 두개의 테이블 정보를 담음-> 정보 뿌리는 방법? ->sql에서 셀렉트 cno, 기준일 비교해서 가져오기
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search`, d=>{
-			/*console.log(`들어온 알씨피티`+stringifyJSON(d.rcpt))*/
 			$('.remits').empty()
 			
-			$.each(d.trdhr, (i, j)=>{ 
+			$.each(d.map, (i, j)=>{ 
 				$(`<div class="themoin-main-remititem">
 						<div class="simple">
 							<div class="unit-flag">
@@ -197,6 +197,7 @@ mypage =(()=>{
 							</div>
 							<div class="simple-nametime">
 								<h3 class="username">
+								<span class="fs-block" lang="en" title="a aaa a">${j.passLnm} ${j.passFnm}</span>
 								</h3>
 								<p class="create-time">${j.bsdate}</p>
 							</div>
@@ -225,9 +226,9 @@ mypage =(()=>{
 			    .appendTo('.remits')
 			})
 			
-			/*$(`<div class="themoin-pagination"></div>`)
+			$(`<div class="themoin-pagination"></div>`)
 			.appendTo('.remits')
-			$(`<button class="control disabled">
+			/*$(`<button class="control disabled">
 		         	이전
 		         </button>`)
 		         .appendTo('.themoin-pagination')
@@ -243,7 +244,7 @@ mypage =(()=>{
 			
 			//숙제 페이지네이션 코드 이해
 			let pxy = d.pager
-			
+			alert(`pxy`+d.pager)
 			if(pxy.existPrev){
 				$(`<button class="control disabled">
 		         	이전
@@ -253,29 +254,30 @@ mypage =(()=>{
 		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
 		         })
 			}
-			$(`<button class="paginator current"></button>`)
+			$(`<button class="paginator"></button>`)
 			.appendTo('.themoin-pagination') 
+			alert('시작페이지'+pxy.startPage)
 			for(let i = pxy.startPage; i<= pxy.endPage; i++){
-					$(`<button>
+					$(`<button class="paginator current>
 							${i+1}
 						</button>`)
-				.appendTo('.paginator')
+				.appendTo('.themoin-pagination')
 				.click(function(e){
 					e.preventDefault()
 					mypage.remit_list({ nowPage : i})
 				})
 				
 				if( pxy.nowPage == i ){
-					$(`<button class="paginator current" >
+					$(`<button " >
 								${i+1}
 							</button>`)
-					.appendTo('.paginator')		
+					.appendTo('.themoin-pagination')		
 					$('html').scrollTop(0);
 				}else{
 					$(`<button>
 								${i+1}
 							</button>`)
-					.appendTo('.paginator')
+					.appendTo('.themoin-pagination')
 					.click(function(e){
 						e.preventDefault()
 						mypage.remit_list({ nowPage : i})
@@ -294,5 +296,5 @@ mypage =(()=>{
 		})
 	}
 	
-	return { onCreate }
+	return { onCreate,remit_list }
 })()
