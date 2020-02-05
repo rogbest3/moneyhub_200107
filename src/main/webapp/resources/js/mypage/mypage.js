@@ -83,6 +83,7 @@ mypage =(()=>{
 		$('#logout')
 		.click(()=>{
 			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
+			sessionStorage.setItem('deal', null);
 			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
 		})
