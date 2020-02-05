@@ -52,24 +52,16 @@ common = (function(){
 			alert('>>>>'+$('.form-calculator .amount-row input.send-amount').val())
 		},
 		total_amount_calc : function(){
-			exrate = $.exrate_sess()
-			alert('exrate : ' + exrate.usd )
+			let exrateSess = $.exrateSess()
 			let total = parseFloat(common.comma_remove($('#exchange_KRW').text()))
-						+ parseFloat(common.comma_remove($('#exchange_USD').text())) * exrate.usd
-						+ parseFloat(common.comma_remove($('#exchange_AUD').text())) * exrate.aud
-						+ parseFloat(common.comma_remove($('#exchange_EUR').text())) * exrate.eur
-						+ parseFloat(common.comma_remove($('#exchange_CNY').text())) * exrate.cny
-						+ parseFloat(common.comma_remove($('#exchange_JPY').text())) * exrate.jpy
-						
+						+ parseFloat(common.comma_remove($('#exchange_USD').text())) * exrateSess.usd
+						+ parseFloat(common.comma_remove($('#exchange_AUD').text())) * exrateSess.aud
+						+ parseFloat(common.comma_remove($('#exchange_EUR').text())) * exrateSess.eur
+						+ parseFloat(common.comma_remove($('#exchange_CNY').text())) * exrateSess.cny
+						+ parseFloat(common.comma_remove($('#exchange_JPY').text())) * exrateSess.jpy
 			$('#total_money').text(common.comma_create(total.toFixed(0)))
-		},
-		amount_init : function(){
-			$('#total_money').text(common.comma_create(100000000))
-			$('#exchange_KRW').text(common.comma_create(100000000))
-			$('#exchange_USD').text(0)
-			$('#exchange_AUD').text(0)
-			$('#exchange_EUR').text(0)
-			$('#exchange_JPY').text(0)
+//			sessionStorage.setItem('exrateSess',JSON.stringify({}))	
 		}
+		
 	}
 }())

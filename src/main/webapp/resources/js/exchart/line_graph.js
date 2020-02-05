@@ -81,7 +81,7 @@ $(document).ready(function(){
 		//송금 세션에 usd 환율 담음
 		deal.exrate = config.data.datasets[0].data[config.data.datasets[0].data.length -1]
 		sessionStorage.setItem('deal',JSON.stringify(deal))	
-		alert('라인그래프 환율'+deal.exrate)
+//		alert('라인그래프 환율'+deal.exrate)
 		
 		
 		//		수수료 1.5%

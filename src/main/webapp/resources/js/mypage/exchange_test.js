@@ -2,14 +2,20 @@ var exchange_test = exchange_test || {}
 exchange_test =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 
-	let _, js, mypage_vue_js, global_map_js
+	let _, js, mypage_vue_js, global_map_js, arr, exrateSess, money, bdate_exist_flag
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
 		mypage_vue_js = js + '/vue/mypage_vue.js'
 		global_map_js = js + '/maps/global_map.js'
 		arr = []
-	//	money = {}
+		exrateSess = {}
+		money = {}
+		bdate_exist_flag = false
+		
+		exrateSess.flag = 'default'
+		exrateSess.bdate = common.clock_format()	
+		sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
 	}
 	let onCreate =()=>{
 		init()
@@ -20,11 +26,7 @@ exchange_test =(()=>{
 			setContentView()
 			retention_amount()
 			exchange_popup()
-			
-//			exrate.flag = 'default'
-//			exrate.bdate = common.clock_format()	
-//			sessionStorage.setItem('exrate', JSON.stringify(exrate));
-			
+	
 			$('#exchange_datepicker b')
 			.text(`환율 기준일 : ${common.clock_format()}`)
 			
@@ -39,13 +41,13 @@ exchange_test =(()=>{
 			.change(()=>{
 				alert(`>> : ${$('#datepicker').val()}`)
 				$.getScript($.js() + '/maps/global_map.js')
-	/*			exrate.flag = 'select'
-				exrate.bdate = $('#datepicker').val()
-				sessionStorage.setItem('exrate', JSON.stringify(exrate));*/
-				common.total_amount_calc()
-				alert($('#datepicker').val())
+				exrateSess.flag = 'select'
+				exrateSess.bdate = $('#datepicker').val()
+				sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
+			//	common.total_amount_calc()
+//				alert($('#datepicker').val())
 				
-				money.bdate = $('#datepicker').val()
+/*				money.bdate = $('#datepicker').val()
 				money.total = $('#total_money').text()
 				money.KRW = $('#exchange_KRW').text()
 				money.USD = $('#exchange_USD').text() 
@@ -53,17 +55,10 @@ exchange_test =(()=>{
 				money.EUR = $('#exchange_EUR').text()
 				money.CNY = $('#exchange_CNY').text()
 				money.JPY = $('#exchange_JPY').text()
-				sessionStorage.setItem('money',JSON.stringify(money))
+				sessionStorage.setItem('money',JSON.stringify(money))*/
 				
-	/*			arr.push({	bdate : $('#datepicker').val(),
-							total : $('#total_money').text(), 
-							KRW : $('#exchange_KRW').text(), 
-							USD : $('#exchange_USD').text(), 
-							AUD : $('#exchange_AUD').text(), 
-							EUR : $('#exchange_EUR').text(), 
-							CNY : $('#exchange_CNY').text(), 
-							JPY : $('#exchange_JPY').text()	})
-*/
+				amount_history()
+				
 			})
 		})
 		.fail(()=>{
@@ -181,7 +176,26 @@ exchange_test =(()=>{
 			.addClass('btn btn-lg btn-primary')
 			.appendTo('#save_btn')
 			.click(()=>{
-				alert('저장')
+				alert('저장' + $('#exchange_bdate b').text())
+				amount_history()
+				$.each(arr, (i,j)=>{
+					$(`<div> total : ${j.bdate} - ${j.total}, KRW : ${j.KRW}, USD : ${j.USD}, AUD : ${j.AUD}, 
+					EUR : ${j.EUR}, CNY : ${j.CNY}, JPY : ${j.JPY} </div>`)
+					.appendTo('#amount')
+				})
+				/*$.ajax({
+					url : `${_}/`,
+					type : 'POST',
+					data : JSON.stringify(arr),
+					dataType : 'JSON',
+					contentType : 'application/SJON',
+					success : d=>{
+						alert('성공')
+					},
+					error : e=>{
+						alert('ajax 실패')
+					}
+				})*/
 			})
 	}
 	
@@ -235,7 +249,44 @@ exchange_test =(()=>{
 			// 주 표시
 //			showWeek: true
 		})
-		
+	}
+	let amount_init =()=>{
+		$('#total_money').text(common.comma_create(100000000))
+		$('#exchange_KRW').text(common.comma_create(100000000))
+		$('#exchange_USD').text(0)
+		$('#exchange_AUD').text(0)
+		$('#exchange_EUR').text(0)
+		$('#exchange_CNY').text(0)
+		$('#exchange_JPY').text(0)
+	}
+	let amount_history =()=>{
+		let bdate_exist
+		$.each(arr, (i, j)=>{
+			if($('#datepicker').val() === j.bdate ){	//	날짜가 같을 시 오버라이딩 시키기
+				bdate_exist_flag = true
+				bdate_exist = i
+			}
+		})
+		if( bdate_exist_flag === true ){
+			arr[bdate_exist] = { bdate : $('#datepicker').val(),
+					total : $('#total_money').text(), 
+					KRW : $('#exchange_KRW').text(), 
+					USD : $('#exchange_USD').text(), 
+					AUD : $('#exchange_AUD').text(), 
+					EUR : $('#exchange_EUR').text(), 
+					CNY : $('#exchange_CNY').text(), 
+					JPY : $('#exchange_JPY').text()	}
+			bdate_exist_flag = false
+		}else{
+			arr.push({	bdate : $('#datepicker').val(),
+					total : $('#total_money').text(), 
+					KRW : $('#exchange_KRW').text(), 
+					USD : $('#exchange_USD').text(), 
+					AUD : $('#exchange_AUD').text(), 
+					EUR : $('#exchange_EUR').text(), 
+					CNY : $('#exchange_CNY').text(), 
+					JPY : $('#exchange_JPY').text()	})
+		}
 	}
 	return { onCreate }
 })()

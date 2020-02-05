@@ -19,10 +19,13 @@ remit_box =(()=>{
 
 		popup()
 		
-		/*$.getScript(exrate_js)
-		.done(()=>{
-			exrate.onCreate()
-		})*/
+		if(flag === 'exchange'){
+			$.getScript(exrate_js)
+			.done(()=>{
+				exrate.onCreate()
+			})
+		}
+			
 	}
 	
 	let popup =()=>{
@@ -140,15 +143,16 @@ remit_box =(()=>{
 				else if(( j.flag === 'exchange')){
 					$('.form-calculator .amount-row .send p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .send h3').text(`${j.cntcd}`)
+				
 					$('#popup-exchange').show()
 					exrate.onCreate()
 
 				}
-				/*else{
-					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
+				else{
+					/*$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-					exrate.onCreate()
-				}*/
+					exrate.onCreate()*/
+				}
 			})
 		})
 		

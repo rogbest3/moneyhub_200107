@@ -90,6 +90,7 @@ mypage =(()=>{
 		$('#logout')
 		.click(()=>{
 			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
+			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
 		})
 		$('#compo')
@@ -159,7 +160,7 @@ mypage =(()=>{
 			common.receive_value_calc(deal.exrate)
 //			alert("마페환율"+deal.exrate)
 		})
-		alert(JSON.stringify(deal))
+//		alert(JSON.stringify(deal))
 		deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
 //		alert("마페 deal.trdusd"+deal.trdusd)
 		sessionStorage.setItem('deal',JSON.stringify(deal))
