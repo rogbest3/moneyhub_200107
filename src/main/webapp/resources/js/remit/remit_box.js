@@ -137,7 +137,7 @@ remit_box =(()=>{
 					deal.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명, 국가코드
 					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 					sessionStorage.setItem('deal',JSON.stringify(deal))
-					alert("레미트박스deal.cntp"+deal.cntp+"deal.cntcd "+deal.cntcd)
+					alert("레미트박스 국가명 >>>"+deal.cntp+"국가코드 >>>"+deal.cntcd)
 					
 				}
 				else if(( j.flag === 'exchange')){
