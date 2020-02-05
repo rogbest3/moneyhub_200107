@@ -46,7 +46,7 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('abc@naver.com')
+		$('#cemail').val('dd@nate.com')
 		$('#cpwd').val('aa')
 
 		join_2_page_btn()
@@ -321,6 +321,7 @@ auth =(()=>{
 							login_page()
 							login()
 							alert('회원가입이 완료되었습니다.')
+							alert('축하드립니다!!! 1억원 입금 이벤트 당첨!!!')
 						}else{
 							alert('회원가입 실패')
 						}

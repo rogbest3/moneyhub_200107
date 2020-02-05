@@ -1,13 +1,14 @@
 "use strict"
 var remit_box = remit_box || {}
 remit_box =(()=>{
-	let _, js, line_graph_js, exrate_js, flag, cntcd, deal
+	let _, js, line_graph_js, exrate_js, flag, cntcd, deal, exChart_js
 	let init =x=>{
 		_ = $.ctx()
 		js = $.js()
 		deal = $.deal()
 		line_graph_js = js + '/exchart/line_graph.js'
 		exrate_js = js + '/exchart/exrate.js'
+		exChart_js = js + '/mypage/exChart.js'
 		flag = x.flag
 		cntcd = x.cntcd
 	}
@@ -25,7 +26,6 @@ remit_box =(()=>{
 				exrate.onCreate()
 			})
 		}
-			
 	}
 	
 	let popup =()=>{
@@ -127,7 +127,6 @@ remit_box =(()=>{
 				$('#popup_box input').val('')
 
 				if( j.flag === 'mypage'){
-					alert('dddddd')
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
 					
@@ -148,6 +147,27 @@ remit_box =(()=>{
 					$('#popup-exchange').show()
 					exrate.onCreate()
 
+				}
+				else if( j.flag === 'exchange2'){
+					$('#exchange_check').text('최근 약 한 달간 해당 환율은 상승세입니다.')
+					$('#exchange_check').css('color', 'blue')
+					$('#exchange_check').css('text-align', 'center')
+					$('#exchange_check').css('font-weight', 'bold')
+					$('#expect').blur(function(){
+						if($('#expect').val() > 0){
+							$('#exchange_check').text('최근 약 한 달간 해당 환율은 상승세입니다.')
+							$('#exchange_check').css('color', 'blue')
+						}else{
+							$('#exchange_check').text('최근 약 한 달간 해당 환율은 하락세입니다.')
+							$('#exchange_check').css('color', 'red')
+						}
+					})
+					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
+					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
+					$('#chart')
+					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
+					$.getScript(exChart_js)
+					
 				}
 				else{
 					/*$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
