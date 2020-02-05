@@ -26,7 +26,7 @@ public class AccountService {
 			System.out.println("exist는????" + exist);
 		}else {
 			acc.setCemail(param.getCemail());
-			acc.setAcct_no(result);
+			acc.setAcctNo(result);
 			System.out.println("acc는????" + acc.toString());
 			accMapper.createAcc(acc);
 		}

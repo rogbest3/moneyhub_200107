@@ -31,7 +31,6 @@
 	
 	<link href="https://www.kakaobank.com/products_static/css/event/list/style.css" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-<%-- 	<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/bootstrap-datepicker.css"> --%>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

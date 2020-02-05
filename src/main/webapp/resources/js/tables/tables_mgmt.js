@@ -281,7 +281,6 @@ tables_mgmt =(()=>{
 			$.getJSON( _ + `/crudtable/truncate/truncateFee`, d=>{
 				alert(`테이블 DATA 삭제 성공여부 : ${d.result}`)
 			})
-			
 		})
 		
 		$(`<h3><a>수수료 테이블 삭제</a></h3><br><br>`)

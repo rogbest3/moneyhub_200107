@@ -99,9 +99,9 @@ auth_vue ={
 		'						<div class="newmoin-text-header">회원가입</div>'+
 		'						<form class="signup" action="/a/v1/member/join" method="post">'+
 		'							<div class="themoin-composite-input moin-input-group phone2">'+
-		'								<div class="extra-controls">'+
-		'									<button>인증번호받기</button>'+
-		'								</div>'+
+//		'								<div class="extra-controls">'+
+//		'									<button>인증번호받기</button>'+
+//		'								</div>'+
 		'								<div class="moin-input" id="moneyhub-id">'+
 		'									<label style="color: rgb(116, 127, 155);">이메일 주소 (Email)</label>'+
 		//'										<input id="cemail" class="fs-block" placeholder="youremail@email.com" type="text" tabindex="0" value="">'+
@@ -109,10 +109,10 @@ auth_vue ={
 		'								<p class="moin-error"></p>'+
 		'							</div>'+
 		'							<div class="themoin-composite-input moin-input-group">'+
-		'								<div class="moin-input">'+
-		'										<label style="color: rgb(116, 127, 155);">인증번호 입력</label>'+
-		'										<input class="fs-block" placeholder="인증번호 입력" type="text" tabindex="0" maxlength="6" value="">'+
-		'								</div>'+
+//		'								<div class="moin-input">'+
+//		'										<label style="color: rgb(116, 127, 155);">인증번호 입력</label>'+
+//		'										<input class="fs-block" placeholder="인증번호 입력" type="text" tabindex="0" maxlength="6" value="">'+
+//		'								</div>'+
 		'								<p class="moin-error"></p>'+
 		'							</div>'+
 		'							<div class="themoin-password-input moin-input-group">'+

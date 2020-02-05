@@ -185,21 +185,25 @@ public class CustomerCtrl extends Proxy {
 		return box.get();
 	}
 	
-	@GetMapping("/getAcc/{cemail}")
-	public Map<? ,?> getAcc(@PathVariable String cemail){
-		System.out.println("=============================계좌번호 조회 들어옴1!!!!!");
-		Function<String, Account> f = t -> accMapper.getAcc(acc);
+
+	@GetMapping("/getAcc/{cemail}/{cno}")
+	public Map<? ,?> getAcc(@PathVariable String cemail, @PathVariable String cno){
+		System.out.println("=============================계좌번호 조회 들어옴1!!!!!" + cemail);
+		Function<String, Account> f = t -> accMapper.getAcc(t);
 		acc = f.apply(cemail);
-		Function<String, Customer> f2 = t -> cusMapper.getInfo(cus);
-		cus = f2.apply(cemail);
+		cus.setCemail(cemail);
+		cus.setCno(cno);
+		Function<Customer, Customer> f2 = t -> cusMapper.getInfo(t);
+		cus = f2.apply(cus);
 		box.clear();
 		box.put("msg", "SUCCESS");
 		box.put("cemail", cus.getCemail());
 		box.put("cname", cus.getCname());
-		box.put("accNo", acc.getAcct_no());
+		box.put("accNo", acc.getAcctNo());
 		System.out.println("param은?" );
-		System.out.println("cus는?" + cus);
-		System.out.println("acc는?" + acc);
+//		System.out.println("cus는?" + cus);
+		System.out.println("acc는?" + acc.getAcctNo());
+
 		System.out.println("box.get() -----------> "+box.get().toString());
 		return box.get();
 	}

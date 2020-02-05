@@ -49,7 +49,6 @@ auth =(()=>{
 		$('#cemail').val('11')
 		$('#cpwd').val('11')
 
-
 		join_2_page_btn()
 	}
 	
@@ -83,18 +82,19 @@ auth =(()=>{
 //						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
+						alert('cus'+JSON.stringify(d.cus))
 						//======================================================
 						//====================================================== MK
 						/*$.extend(new Customer_Info(d.cus))*/
 						//======================================================
 						//====================================================== HM
-						sessionStorage.setItem('CEMAIL', d.cus.cemail)
+						/*sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)
 						sessionStorage.setItem('ZIP', d.cus.zip)
 						sessionStorage.setItem('ADDR', d.cus.addr)
 						sessionStorage.setItem('DADDR', d.cus.daddr)
 						sessionStorage.setItem('CNO', d.cus.cno)
-						sessionStorage.setItem('ACC', JSON.stringify(d.result))
+						sessionStorage.setItem('ACC', JSON.stringify(d.result))*/
 						//======================================================
 						mypage.onCreate()
 					
