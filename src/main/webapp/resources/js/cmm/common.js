@@ -45,8 +45,18 @@ common = (function(){
 			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
 				receive_value = receive_value * x //* 0.985
 			$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
-
+		},
+		total_amount_calc : function(){
+			let exrateSess = $.exrateSess()
+			let total = parseFloat(common.comma_remove($('#exchange_KRW').text()))
+						+ parseFloat(common.comma_remove($('#exchange_USD').text())) * exrateSess.usd
+						+ parseFloat(common.comma_remove($('#exchange_AUD').text())) * exrateSess.aud
+						+ parseFloat(common.comma_remove($('#exchange_EUR').text())) * exrateSess.eur
+						+ parseFloat(common.comma_remove($('#exchange_CNY').text())) * exrateSess.cny
+						+ parseFloat(common.comma_remove($('#exchange_JPY').text())) * exrateSess.jpy
+			$('#total_money').text(common.comma_create(total.toFixed(0)))
+//			sessionStorage.setItem('exrateSess',JSON.stringify({}))	
 		}
-			
+		
 	}
 }())

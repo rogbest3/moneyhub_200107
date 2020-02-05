@@ -67,7 +67,6 @@ $(document).ready(function(){
 			}
 		}
 	};
-	alert('그래프')
 	let ctx = document.getElementById('canvas2').getContext('2d');
 	
 	let cntcd = $('.form-calculator .amount-row .receive h3').text()

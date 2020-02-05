@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import com.moneyhub.web.faq.FAQMapper;
+import com.moneyhub.web.remit.mappers.TRDHRMapper;
 
 import lombok.Data;
 
@@ -22,6 +23,7 @@ public class PageProxy extends Proxy {
 	private String keyword;
 	
 	@Autowired FAQMapper faqMapper;
+	@Autowired TRDHRMapper trdhrMapper;
 	
 	public void paging() {
 		pageCount = ( rowCount % pageSize != 0 ) 

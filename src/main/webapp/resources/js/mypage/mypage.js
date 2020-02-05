@@ -10,7 +10,6 @@ mypage =(()=>{
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
-		deal = $.deal()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -36,16 +35,17 @@ mypage =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(guide_recieve_js),
+			$.getScript(line_graph_js),
 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			page_move()	
+			remit_receive()
 			setInterval(clock_excute, 1000)
 			setInterval(exchange_API, 1000 * 60 * 60 * 12) // 1000 * 60 : 1분, 
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0})
-
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -53,19 +53,20 @@ mypage =(()=>{
 		
 	}
 	let setContentView =()=>{
+		//숙제 제이쿼리 슬라이드 이벤트 js생성 화면 분할 
+		$('#remit_slider').hide()
+		$('#remit_click').click(()=>{
+			$('#remit_slider').slideDown()
+		})
+		
 		$('#root')
 		.html(nav_vue.logined_nav(_))
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
-		$.getScript(line_graph_js)
 		
-		$('<button/>')
-		.text('송금하기')
-		.addClass('index-send-btn moin-body')
-		.appendTo('#remit_box')
-		.click(()=>{
-			foreignRemit.onCreate()
-		})
+		//송금 usd 환율 세션에 저장
+		//	common.receive_value_calc(deal.exrate)
+		
 
 		$('#popup-exchange').empty()
 
@@ -81,6 +82,7 @@ mypage =(()=>{
 		$('#logout')
 		.click(()=>{
 			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
+			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
 		})
 		$('#compo')
@@ -142,12 +144,52 @@ mypage =(()=>{
 			})
 		})
 	}
-	let remit_list =(x)=>{
+	
+	let remit_receive = ()=>{
+		deal = $.deal()
 
+		
+		/*$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			common.receive_value_calc(deal.exrate)
+		})
+		deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+		sessionStorage.setItem('deal',JSON.stringify(deal))*/
+    
+			let exrate_arr = []
+			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
+				$.each(d.exlist, (i, j)=>{
+					exrate_arr.push(parseFloat(j.exrate))
+				})
+				deal.exrate = exrate_arr[0]
+				sessionStorage.setItem('deal',JSON.stringify(deal))
+			})
+				$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+					common.receive_value_calc(deal.exrate)
+				})
+	
+		$('<button/>')
+		.text('송금하기')
+		.addClass('index-send-btn moin-body')
+		.appendTo('#remit_box')
+		.click(()=>{
+			
+			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+			deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+			sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert('송금 버튼 클릭했을때 '+JSON.stringify(deal))
+			foreignRemit.onCreate()
+			
+		})
+	}
+	
+	let remit_list =(x)=>{
+		//숙제 두개의 테이블 정보를 담음-> 정보 뿌리는 방법? ->sql에서 셀렉트 cno, 기준일 비교해서 가져오기
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search`, d=>{
+			/*console.log(`들어온 알씨피티`+stringifyJSON(d.rcpt))*/
 			$('.remits').empty()
 			
-			$.each(d.trdhr, (i, j)=>{  //숙제 테이블 두개 정보 받아 넣기
+			$.each(d.trdhr, (i, j)=>{ 
 				$(`<div class="themoin-main-remititem">
 						<div class="simple">
 							<div class="unit-flag">
@@ -155,7 +197,6 @@ mypage =(()=>{
 							</div>
 							<div class="simple-nametime">
 								<h3 class="username">
-									<span class="fs-block" lang="en" title="a aaa a"></span>
 								</h3>
 								<p class="create-time">${j.bsdate}</p>
 							</div>
@@ -163,13 +204,13 @@ mypage =(()=>{
 							<div class="simple-amount">
 								<div class="user-sendlistdetail-amount">
 									<h3 class="user-sendlist-send">
-										<span class="user-sendlist-send">${j.trdSend}</span> <span
+										<span class="user-sendlist-send">${j.trdKrw}</span> <span
 											class="user-sendlist-sendunit">KRW</span>
 									</h3>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png"
 										class="user-sendlist-ic">
 									<h3 class="user-sendlist-receive">
-										<span class="user-sendlist-receive">${j.trdAmnt}</span> <span
+										<span class="user-sendlist-receive">${j.trdUsd}</span> <span
 											class="user-sendlist-receiveunit">USD</span>
 									</h3>
 								</div>
@@ -179,12 +220,32 @@ mypage =(()=>{
 								</div>
 							</div>
 						</div>
-					</div>`)
+					</div>
+					`)
 			    .appendTo('.remits')
 			})
+			
+			/*$(`<div class="themoin-pagination"></div>`)
+			.appendTo('.remits')
+			$(`<button class="control disabled">
+		         	이전
+		         </button>`)
+		         .appendTo('.themoin-pagination')
+		         $(`<button class="paginator current"></ui>`)
+			.appendTo('.themoin-pagination') 
+			$(`<button class="control disabled" disabled="">다음
+		        	</button>`)
+		        .appendTo('.themoin-pagination')*/
+			/*$.each(d.rcpt, (i, j)=>{
+				$(`<span class="fs-block" lang="en" title="a aaa a">${j.rcpsl}${j.rcpsf}</span>`)
+				 .appendTo('.username')
+			})*/
+			
+			//숙제 페이지네이션 코드 이해
 			let pxy = d.pager
+			
 			if(pxy.existPrev){
-				$(`<button class="control disabled" disabled="">
+				$(`<button class="control disabled">
 		         	이전
 		         </button>`)
 		         .appendTo('.themoin-pagination')
@@ -192,57 +253,43 @@ mypage =(()=>{
 		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
 		         })
 			}
-			$(`<ul class="list_paging"></ul>`)
-			.appendTo('.bundle_paging') 
+			$(`<button class="paginator current"></button>`)
+			.appendTo('.themoin-pagination') 
 			for(let i = pxy.startPage; i<= pxy.endPage; i++){
+					$(`<button>
+							${i+1}
+						</button>`)
+				.appendTo('.paginator')
+				.click(function(e){
+					e.preventDefault()
+					mypage.remit_list({ nowPage : i})
+				})
+				
 				if( pxy.nowPage == i ){
-					$(`<li class="on">
-							<a href="#" class="link_num">
-								<span class="screen_out">선택 됨</span>
+					$(`<button class="paginator current" >
 								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')		
+							</button>`)
+					.appendTo('.paginator')		
 					$('html').scrollTop(0);
 				}else{
-					$(`<li class="">
-							<a href="#" class="link_num">
+					$(`<button>
 								${i+1}
-							</a>
-						</li>`)
-					.appendTo('.bundle_paging ul')
+							</button>`)
+					.appendTo('.paginator')
 					.click(function(e){
 						e.preventDefault()
-						faq.faq_list({ nowPage : i, keyword : x.keyword })
+						mypage.remit_list({ nowPage : i})
 					})
 				}
 			}
-			if(pxy.existNext){
-				$(`<a href="#" class="link_paging">
-						<span class="ico_pay ico_next"></span>다음
-		        	</a>`)
-		        .appendTo('.bundle_paging')
+			if(pxy.existNext){ //<button class="control disabled" disabled="">다음</button>
+				$(`<button class="control disabled" disabled="">다음
+		        	</button>`)
+		        .appendTo('.themoin-pagination')
 		        .click(()=>{
-		        	faq.faq_list({ nowPage : pxy.nextBlock, keyword : x.keyword })
+		        	mypage.remit_list({ nowPage : pxy.nextBlock})
 		        })
 			}
-			//내역 눌렀을 때 상세 또는 수정 삭제
-
-			/*$('div.box')
-		    .click(function(){
-		    	if($(this).children('.answer').hasClass('show') == false){
-		    		$('div.box').children('.answer').attr('class', 'answer')
-		    		$(this).children('.answer').attr('class', 'answer show')
-		    	}else{
-		    		$('div.box').children('.answer').attr('class', 'answer')
-//		    		$(this).children('.answer').attr('class', 'answer')
-		    	}
-			/*<div class="themoin-pagination"></div>
-			<button class="control disabled" disabled="">이전</button>
-			<button class="paginator current">1</button>
-			<button class="control disabled" disabled="">다음</button>
-		</div>
-	</div>*/
 
 		})
 	}

@@ -21,7 +21,6 @@ public class CRUDFeeDB {
 					cusnum,
 					txseq,
 					feetypcd,
-					feedtlcd,
 					amnt,
 					crtmen,
 					crtdate,

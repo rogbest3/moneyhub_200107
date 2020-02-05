@@ -46,8 +46,8 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('1')
-		$('#cpwd').val('1')
+		$('#cemail').val('abc@naver.com')
+		$('#cpwd').val('aa')
 
 		join_2_page_btn()
 	}
@@ -93,6 +93,7 @@ auth =(()=>{
 						sessionStorage.setItem('ADDR', d.cus.addr)
 						sessionStorage.setItem('DADDR', d.cus.daddr)
 						sessionStorage.setItem('CNO', d.cus.cno)
+						sessionStorage.setItem('ACC', JSON.stringify(d.result))
 						//======================================================
 						mypage.onCreate()
 					
@@ -366,7 +367,7 @@ auth =(()=>{
 		$('#cemail').keyup(()=>{
 			if($('#cemail').val().length >= 1){
 				$.ajax({
-					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()),
+					url : _+'/customers' + '/existid/' + encodeURIComponent($('#cemail').val()) + '/',
 					type: 'GET',
 					data: JSON.stringify({
 						cemail : $('#cemail').val()
