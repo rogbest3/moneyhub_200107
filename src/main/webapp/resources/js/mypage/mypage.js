@@ -5,7 +5,7 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal,guide_recieve_js, remit_box_js,clock
+		line_graph_js,deal,guide_recieve_js, remit_box_js, clock, profitsChart
 
 	let init =()=>{
 		_ = $.ctx()
@@ -22,6 +22,10 @@ mypage =(()=>{
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
+		
+		profitsChart = {}
+		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
+		sessionStorage.setItem('chartFlag', '')
 	}
 	
 	let onCreate =()=>{
@@ -35,7 +39,6 @@ mypage =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(guide_recieve_js),
-			$.getScript(line_graph_js),
 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
@@ -66,7 +69,7 @@ mypage =(()=>{
 		
 		//송금 usd 환율 세션에 저장
 		//	common.receive_value_calc(deal.exrate)
-		
+		$.getScript(line_graph_js)
 
 		$('#popup-exchange').empty()
 

@@ -313,9 +313,6 @@ mypage_vue = {
 		return `<div class="container">
 					<div id="exchange_datepicker">
 						<div style="width : 70%; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
-						<div style="width : 30%; float:left">년/월/일 : <input type="text" id="datePicker" class="form-control">
-				    		<button>클릭</button>
-				    	</div>
 					</div>	
 				    <div class="mapcontainer">
 				        <div class="map">
@@ -328,14 +325,15 @@ mypage_vue = {
 				    		<div id="init_btn"></div>
 				    		<div id="save_btn"></div>
 				    	</div>
-				    	
+				    	<div id="test_history"></div>
 				    </div>
 				    <div id="exchange_datepicker" style="width : 30%; float:left">
 						<p style="font-weight: bold; width : 250px;">환율 기준일 변경</p>
 						<p><input type="text" id="datepicker" class="form-control" style="width: 90%; float: left"></p>
-
-			    		
 			    	</div>
+			    	<div id="exchange_test_chart" style="width:100%;">                         
+			 	      	<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas> 
+					</div> 
 				</div>`
 	},
 	exchange_test_head : ()=>{
