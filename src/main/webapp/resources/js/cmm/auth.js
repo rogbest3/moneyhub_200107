@@ -321,17 +321,16 @@ auth =(()=>{
 							login_page()
 							login()
 							alert('회원가입이 완료되었습니다.')
-							alert('축하드립니다!!! 1억원 입금 이벤트 당첨!!!')
 						}else{
 							alert('회원가입 실패')
 						}
 					},
 					error : e=>{
-						alert('join ajax 실패')
+						alert('잘못 입력된 부분이 있습니다.')
 					}
 				})
 			}else{
-				alert('비번 틀림')
+				alert('잘못 입력된 부분이 있습니다.')
 			}
 		})
 	}
