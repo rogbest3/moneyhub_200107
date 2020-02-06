@@ -17,5 +17,6 @@
 		<typeAlias alias="RCPT"  type="com.moneyhub.web.remit.domains.RCPT"/>
 		<typeAlias alias="Fee"  type="com.moneyhub.web.remit.domains.Fee"/>
 		<typeAlias alias="Admin"  type="com.moneyhub.web.admin.Admin"/>
+		<typeAlias alias="Exchange"  type="com.moneyhub.web.exchange.domains.Exchange"/>
     </typeAliases>
 </configuration>

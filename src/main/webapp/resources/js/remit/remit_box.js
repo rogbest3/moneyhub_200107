@@ -149,17 +149,34 @@ remit_box =(()=>{
 
 				}
 				else if( j.flag === 'exchange2'){
-					$('#exchange_check').text('최근 약 한 달간 해당 환율은 상승세입니다.')
-					$('#exchange_check').css('color', 'blue')
-					$('#exchange_check').css('text-align', 'center')
-					$('#exchange_check').css('font-weight', 'bold')
-					$('#expect').blur(function(){
-						if($('#expect').val() > 0){
+					alert('짠')
+//					$('#exchange_check').text('최근 약 한 달간 해당 환율은 상승세입니다.')
+//					$('#exchange_check').css('color', 'blue')
+//					$('#exchange_check').css('text-align', 'center')
+//					$('#exchange_check').css('font-weight', 'bold')
+//					$('#expect').blur(function(){
+//						if($('#expect').val() > 0){
+//							$('#exchange_check').text('최근 약 한 달간 해당 환율은 상승세입니다.')
+//							$('#exchange_check').css('color', 'blue')
+//						}else{
+//							$('#exchange_check').text('최근 약 한 달간 해당 환율은 하락세입니다.')
+//							$('#exchange_check').css('color', 'red')
+//						}
+//					})
+					$.getJSON(_+'/exchange/exTrend' + $('#cntcd').val(), d=>{
+						alert('들어옴')
+						if(d.msg === 'UP'){
+							alert('상승세')
 							$('#exchange_check').text('최근 약 한 달간 해당 환율은 상승세입니다.')
 							$('#exchange_check').css('color', 'blue')
+							$('#exchange_check').css('text-align', 'center')
+							$('#exchange_check').css('font-weight', 'bold')
 						}else{
+							alert('하락세')
 							$('#exchange_check').text('최근 약 한 달간 해당 환율은 하락세입니다.')
 							$('#exchange_check').css('color', 'red')
+							$('#exchange_check').css('text-align', 'center')
+							$('#exchange_check').css('font-weight', 'bold')
 						}
 					})
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
