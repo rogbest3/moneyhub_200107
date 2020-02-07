@@ -37,7 +37,18 @@ exchange =(()=>{
 		.hide()
 		
 		$('#popup-exchange').empty()
-		
+		exch = $.exch()
+		let exch_arr = []
+			$.getJSON( '/exchange/extrend/cntcd/' + cntcd, d=>{	
+				$.each(d.exlist, (i, j)=>{
+					exch_arr.push(parseFloat(j.exrate))
+				})
+				exch.exrate = exch_arr[0]
+				sessionStorage.setItem('deal',JSON.stringify(deal))
+			})
+				$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+					common.receive_value_calc(deal.exrate)
+				})
 		$(function(){
 			$('#exchangebutton').one('click', function(){
 				$('#chart').fadeIn()
