@@ -161,6 +161,7 @@ nav_vue = {
 		'		<a id="withdrawal" class="active_a" data-tab="tab-6" style="margin-right: 50px">회원 탈퇴</a>'+
 		'		<div class="spacer"></div>'+
 		'		<img src="https://img.themoin.com/public/img/img-man-s.svg">'+
+		'		<p id="mypageId"></p>'+
 		'	</div>'+
 		'</div>'+
 		'<div class="mypage"></div>'+
