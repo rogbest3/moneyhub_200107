@@ -40,7 +40,7 @@ exchange_test =(()=>{
 				$.each(d.dpk, (i, j)=>{
 					disableDays[i] = j.ddate
 				})
-				alert('disableDays ' + JSON.stringify(disableDays))
+//				alert('disableDays ' + JSON.stringify(disableDays))
 			})
 			
 			datepicker_option()
