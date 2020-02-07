@@ -72,10 +72,7 @@ foreignRemit = (()=>{
 			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') // 송금액을 바꿨을떄 금액
 			deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			deal.fee = document.getElementById('fee_check').innerHTML
-			
 			sessionStorage.setItem('deal',JSON.stringify(deal))
-			
-			alert(JSON.stringify(deal))
 			remit_cusInfo()
 			
 			})
@@ -144,11 +141,24 @@ foreignRemit = (()=>{
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
-		//숙제 금액 복사하기
+		
 		$('#copy_btn').on('click', function(e){
-			var text = $('#account').html()
-			$('#clip_target').val(text)
+			$('#clip_target').val(common.comma_remove($('#copy_amt').html()))
 			$('#clip_target').select()
+			try { 
+				var successful = document.execCommand('copy');
+				if(successful){
+					alert('복사되었습니다.')
+				}else{
+					alert('복사실패')
+				}
+			} catch (err) { 
+				alert('이 브라우저는 지원하지 않습니다.') 
+			}
+		})
+		$('#copy_acc_btn').on('click', function(e){
+			$('#clip_acc').val(common.comma_remove($('#copy_acc').html()))
+			$('#clip_acc').select()
 			try { 
 				var successful = document.execCommand('copy');
 				if(successful){

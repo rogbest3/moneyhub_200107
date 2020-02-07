@@ -5,7 +5,7 @@ main_vue ={
 		return `<div class="themoin-landing">
 		<div class="head_product head_wu">
             <h1 id="headh1">
-                <span>머니허브 해외송금</span> <span class="txt_detail">해외계좌송금과<br>WU빠른해외송금을<br>더 쉽고, 저렴하게</span>
+                <span>머니허브 외화금융서비스</span> <span class="txt_detail">WU빠른해외송금과<br>머니허브환전을<br>더 쉽고, 저렴하게</span>
             </h1>
             <ul>
                 <li class="item">
@@ -15,7 +15,7 @@ main_vue ={
                 <li class="item divider"></li>
                 <li class="item">
                     <img alt="" height="39px" src="https://www.kakaobank.com/static/images/products/pc/abroad/type_bank.png" width="39px">
-                    <span>해외계좌송금</span>
+                    <span>머니허브환전</span>
                 </li>
             </ul>
         </div>
@@ -25,15 +25,15 @@ main_vue ={
 				<p class="color-deepgrey"></p> 
 			</div>
 			<div class="steps" style="max-width: 1365px; text-align: center; "> 
-					<div class="threesteps">
+					<div id="idx_exchg_btn" class="threesteps">
 					<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
 					<h3>환전</h3>
 					</div>
-					<div class="threesteps">
+					<div id="idx_remit_btn" class="threesteps">
 					<img src="/web/resources/img/main/remit.png" style="width: 300px">
 					<h3>wu 해외송금</h3>
 					</div>
-					<div class="threesteps">
+					<div id="idx_testexchg_btn" class="threesteps">
 					<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
 					<h3>모의 환전</h3>
 					</div>
@@ -213,58 +213,55 @@ main_vue ={
 							<p class="color-deepgrey"></p> 
 						</div>
 						<div class="steps" style="max-width: 1365px; text-align: center; "> 
-									<div class="threesteps">
-										<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
-										<h3>환전</h3>
-									</div>
-									<div class="threesteps" id="remit_click">
-										<img src="/web/resources/img/main/remit.png" style="width: 300px">
-										<h3>wu 해외송금</h3>
-									</div>
-									<div class="threesteps">
-										<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
-										<h3>모의 환전</h3>
-									</div>
+								<div class="threesteps">
+									<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
+									<h3>환전</h3>
+								</div>
+								<div id="remit_btn" class="threesteps">
+									<img src="/web/resources/img/main/remit.png" style="width: 300px">
+									<h3>wu 해외송금</h3>
+								</div>
+								<div class="threesteps">
+									<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
+									<h3>모의 환전</h3>
+								</div>
 						</div>
 				</div> 
-			<div class="themoin-remit-component" id="remit_slider"> 
-				<div id="moin-event-amount" class="moin-event-amount"> 
-				<h1>지금 바로 WU 송금을 이용해보세요</span> 
-					<p class="color-deepgrey"></p> 
-				</div> 
-				<div class="moin-amount"> 
-					<div id="remit_box" class="form-calculator main"> 
-						<div class="amount-row"> 
-							<div class=""> 
-								<h3 style="text-align:center;">수취 국가</h3> 
-							</div>
-							<div class="unit-select receive" tabindex="0"> 
-								<p>나라 선택</p><h3>클릭</h3>
-							</div> 
-						</div> 
-						<div class="amount-row"> 
-							<div class=""> 
-								<p>송금 금액</p> 
-								<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value=""> 
-							</div> 
-							<div class="unit-select disabled" tabindex="0"> 
-								<p>미 화</p> 
-								<h3>USD</h3> 
-							</div> 
-						</div> 
-						<div class="amount-row"> 
-							<div class=""> 
-								<p>예상 비용</p> 
-								<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="" value="0"> 
-							</div> 
-							<div class="unit-select disabled" tabindex="0" > 
-								<p>한 화</p><h3 style="color:#0077c8">KRW</h3>
-							</div> 
-						</div> 
+				<div class="themoin-remit-component" id="remit_slider" style="display:none;"> 
+					<div id="moin-event-amount" class="moin-event-amount"> 
+						<h1>지금 바로 WU 송금을 이용해보세요</span> 
+						<p class="color-deepgrey"></p> 
 					</div> 
-				</div>
-				 
-			</div> 
+					<div class="moin-amount"> 
+						<div id="remit_box" class="form-calculator main"> 
+							<div class="amount-row"> 
+								<div class="unit-select receive" style="display:-webkit-inline-box;border-width:inherit;max-width:none;align-self: center;">
+									<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
+									<p style="font-size: 19px;">미국</p><h3>USD</h3>
+								</div>
+							</div> 
+							<div class="amount-row"> 
+								<div class=""> 
+									<p>송금 금액</p> 
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value=""> 
+								</div> 
+								<div class="unit-select disabled" tabindex="0"> 
+									<p>미 화</p> 
+									<h3>USD</h3> 
+								</div> 
+							</div> 
+							<div class="amount-row"> 
+								<div class=""> 
+									<p>예상 비용</p> 
+									<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="" value="0"> 
+								</div> 
+								<div class="unit-select disabled" tabindex="0" > 
+									<p>한 화</p><h3 style="color:#0077c8">KRW</h3>
+								</div> 
+							</div> 
+						</div> 
+					</div>
+				</div> 
 
 	<div class="user-remit-container"> 
 				<div class="user-title"> 
@@ -283,11 +280,7 @@ main_vue ={
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 잔여 한도 :<span class=""> 55,000,000</span> 원</p> 
 				</div> 
-					<div class="remits empty">
-					<br><h3>아직 송금 내역이 없습니다.</h3>
-					<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br>
-					<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>
-				</div>
+					<div class="remits"></div>
 			</div>
 		</div>`
 	},
@@ -312,44 +305,6 @@ main_vue ={
 			      			</div>
 			      		</div>
 			      	</div>
-				</div>`
-	},
-	remit_slider : ()=>{
-		return `<div class="themoin-remit-component"> 
-				<div id="moin-event-amount" class="moin-event-amount"> 
-				<h1>지금 바로 WU 송금을 이용해보세요</span> 
-					<p class="color-deepgrey"></p> 
-				</div> 
-				<div class="moin-amount"> 
-					<div id="remit_box" class="form-calculator main"> 
-						<div class="amount-row"> 
-							<div class=""> 
-								<h3 style="text-align:center;">수취 국가</h3> 
-							</div>
-							<div class="unit-select receive" tabindex="0"> 
-								<p>나라 선택</p><h3>클릭</h3>
-							</div> 
-						</div> 
-						<div class="amount-row"> 
-							<div class=""> 
-								<p>송금 금액</p> 
-								<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value=""> 
-							</div> 
-							<div class="unit-select disabled" tabindex="0"> 
-								<p>미 화</p> 
-								<h3>USD</h3> 
-							</div> 
-						</div> 
-						<div class="amount-row"> 
-							<div class=""> 
-								<p>예상 비용</p> 
-								<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="" value="0"> 
-							</div> 
-							<div class="unit-select disabled" tabindex="0" > 
-								<p>한 화</p><h3 style="color:#0077c8">KRW</h3>
-							</div> 
-						</div> 
-					</div> 
 				</div>`
 	},
 	remit_history : ()=>{

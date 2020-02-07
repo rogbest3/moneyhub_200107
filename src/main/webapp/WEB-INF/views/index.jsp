@@ -72,12 +72,9 @@
 	<script src="<%=application.getContextPath()%>/resources/js/vue/event_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/faq.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/vue/faq_vue.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/cmm/guide_recieve.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/vue/guide_vue.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/remit/foreignRemit.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_dropdown.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_box.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/cus_info.js"></script>

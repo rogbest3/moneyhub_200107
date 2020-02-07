@@ -103,9 +103,6 @@ remit_vue = {
 												</div>
 												<p class="moin-error"></p>
 											</div>
-											<div class="postcode">
-												<button class="btn-zipcode" tabindex="0" type="button">주소 변경</button>
-											</div>
 										</div>
 										<div class="form-row">
 											<div class="address">
@@ -127,14 +124,6 @@ remit_vue = {
 										</div>
 										<div class="form-row col-2">
 											<div class="themoin-composite-input  phone2">
-												
-												
-												<div class="extra-controls">
-													<button>이메일 인증</button>
-												</div>
-												
-												
-												
 												<div class="moin-input">
 													<label style="color: rgb(116, 127, 155);">이메일 번호 </label>
 													<input class="fs-block" placeholder="현재 이메일 주소를 입력해주세요." type="text" tabindex="0" maxlength="11" value="${cus.cemail}">
@@ -365,6 +354,7 @@ remit_vue = {
 			</div>`
 		},
 		remit_complete:()=>{
+			cus = $.cusInfo()
 			deal = $.deal()
 			return `<div class="themoin-remit-success">
 						<div>
@@ -376,19 +366,25 @@ remit_vue = {
 								진행 상황은 메인화면의 송금 내역에서 확인하실 수 있습니다.<br>
 							</div>
 							<div class="box">
-								<div class="remit_info">
+								<div class="remit_info" >
 									<div>
 										<p class="info_desc">입금할 금액</p>
-										<p class="copy_text">${deal.trdkrw.replace(/\B(?=(\d{3})+(?!\d))/g, ",")} KRW</p>
+										<p class="copy_text" id="copy_amt" style="float:left">${deal.trdkrw.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+										<p class="copy_text"> &nbsp;&nbsp; KRW</p>
 									</div>
-									<button>금액 복사하기</button>
+									<button id="copy_btn">금액 복사하기</button>
+									<input id="clip_target" type="text" value="" style="position:absolute;top:-9999em;"/>
 								</div>
 								<div class="remit_info">
 									<div>
 										<p class="info_desc">입금할 가상 계좌</p>
-										<p class="copy_text">광주은행 9427010256943 이은지_머니허브</p>
+										<p class="copy_text" style="float:left">국민은행&nbsp;&nbsp;</p>
+										<p class="copy_text" id="copy_acc">9427010256943</p>
+										<p class="copy_text">&nbsp;&nbsp;${cus.cname}</p>
+										<p class="copy_text">_머니허브</p>
 									</div>
-									<button>계좌 복사하기</button>
+									<button id="copy_acc_btn">계좌 복사하기</button>
+									<input id="clip_acc" type="text" value="" style="position:absolute;top:-9999em;"/>
 								</div>
 								<p class="warning">반드시 ‘인증받은 계좌’로 한번에 금액을 입금해주세요. 여러번 송금할 시에도 각각 따로 보내주셔야 합니다.</p>
 							</div>

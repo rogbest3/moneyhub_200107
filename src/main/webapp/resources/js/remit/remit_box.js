@@ -127,14 +127,14 @@ remit_box =(()=>{
 				$('#popup_box input').val('')
 
 				if( j.flag === 'mypage'){
-					alert('dddddd')
+					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
 					
 					/*$('#chart')
 					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
 					$.getScript(line_graph_js)*/
-					
+					deal.img = 
 					deal.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명, 국가코드
 					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 					sessionStorage.setItem('deal',JSON.stringify(deal))
