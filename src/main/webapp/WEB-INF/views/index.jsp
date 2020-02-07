@@ -54,6 +54,11 @@
 
 	<!-- dateTimePicker -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	
 
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/router.js"></script>
