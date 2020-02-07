@@ -5,7 +5,7 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal, remit_box_js,clock,cus
+		line_graph_js,deal, remit_box_js, clock, profitsChart,cus
 
 	let init =()=>{
 		_ = $.ctx()
@@ -22,6 +22,10 @@ mypage =(()=>{
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
+		
+		profitsChart = {}
+		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
+		sessionStorage.setItem('chartFlag', '')
 	}
 	
 	let onCreate =()=>{
@@ -60,6 +64,8 @@ mypage =(()=>{
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
 		
+		$.getScript(line_graph_js)
+
 		$('#popup-exchange').empty()
 		
 		$('#remit_btn')
