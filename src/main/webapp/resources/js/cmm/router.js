@@ -23,7 +23,7 @@ function Session(x){
 		exrateSess : ()=>{ return JSON.parse(sessionStorage.getItem('exrateSess'))},
 		profitsChart : ()=>{ return JSON.parse(sessionStorage.getItem('profitsChart'))},
 		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
-		holidays : ()=>{ return JSON.parse(localStorage.getItem('holidays')) }
+		holidays : ()=>{ return JSON.parse(localStorage.getItem('holidays'))},
 		money : ()=>{ return JSON.parse(sessionStorage.getItem('money'))},
 		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
 		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))}

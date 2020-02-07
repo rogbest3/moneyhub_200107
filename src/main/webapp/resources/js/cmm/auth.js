@@ -83,7 +83,6 @@ auth =(()=>{
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						sessionStorage.setItem('ACC', JSON.stringify(d.result))
-						alert('cus'+JSON.stringify(d.cus))
 						//======================================================
 						//====================================================== MK
 						/*$.extend(new Customer_Info(d.cus))*/

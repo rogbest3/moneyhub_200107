@@ -154,7 +154,6 @@ mypage =(()=>{
 				})
 				deal.exrate = exrate_arr[0]
 				sessionStorage.setItem('deal',JSON.stringify(deal))
-				alert(JSON.stringify(deal))
 			})
 				$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 					common.receive_value_calc(deal.exrate)
@@ -170,7 +169,6 @@ mypage =(()=>{
 			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 			deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
 			sessionStorage.setItem('deal',JSON.stringify(deal))
-			alert('송금 버튼 클릭했을때 '+JSON.stringify(deal))
 			foreignRemit.onCreate()
 			
 		})
@@ -181,10 +179,8 @@ mypage =(()=>{
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
 			/* console.log(`들어온 알씨피티`+stringifyJSON(d.rcpt)) */
-			alert(pxy.rowCount)
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
-				alert(d.map.length)
 				$.each(d.map, (i, j)=>{ 
 					$(`<div class="themoin-main-remititem">
 							<div class="simple">
@@ -225,7 +221,6 @@ mypage =(()=>{
 				
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
 				
-				alert('이전페이지'+pxy.existPrev)
 				if(pxy.existPrev){
 					$(`<button class="control disabled">
 			         	이전
