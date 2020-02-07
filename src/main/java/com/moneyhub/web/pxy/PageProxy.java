@@ -1,7 +1,5 @@
 package com.moneyhub.web.pxy;
 
-import java.util.function.Supplier;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -20,7 +18,7 @@ public class PageProxy extends Proxy {
 				blockCount, nowBlock, blockSize, prevBlock, nextBlock;
 	private boolean existPrev, existNext;
 
-	private String keyword;
+	private String keyword,cno;
 	
 	@Autowired FAQMapper faqMapper;
 	@Autowired TRDHRMapper trdhrMapper;

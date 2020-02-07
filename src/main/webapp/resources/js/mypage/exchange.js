@@ -55,6 +55,7 @@ exchange =(()=>{
 		$(function(){
 			$('#exchangebutton')
 			.click(function(){
+
 				$("#chart").fadeIn()
 				$.getScript(line_graph_js)
 
