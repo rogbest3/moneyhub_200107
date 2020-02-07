@@ -32,16 +32,18 @@ public class TRDHRServiceImpl implements TRDHRService{
 	@Autowired RCPT rcpt;
 	
 	public Map<?, ?> selectAll(){
+		box.clear();
 		pager.setRowCount(countTRDHR());
 		pager.paging();
 		pxy.print(pager.toString());
-		Function<PageProxy, ArrayList<TRDHR>> f = t -> trdhrMapper.selectAll(t);
-		Supplier<ArrayList<RCPT>> r = () -> rcptMapper.rcptInfo();
+		Function<PageProxy, ArrayList<Map<String,Object>>> f = t -> trdhrMapper.selectAll(t);
+		
+		box.put("map", f.apply(pager));
 		box.put("pager", pager);
-		box.put("trdhr", f.apply(pager));
-		box.put("rcpt", r.get());
-		pxy.print(box.get("trdhr").toString());
-		pxy.print(box.get("rcpt").toString());
+		
+		pxy.print(box.get("pager").toString());
+		pxy.print(box.get("map").toString());
+		
 		return box.get();
 	}
 	public int countTRDHR() {

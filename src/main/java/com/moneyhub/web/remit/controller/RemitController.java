@@ -39,10 +39,11 @@ public class RemitController extends Proxy{
 		remitService.insertRemit(deal);
 		}
 		
-		@GetMapping("/lists/page/{nowPage}/search")
-		public Map<?, ?> trdhrList(@PathVariable String nowPage) {
-			print("송금 리스트 진입 - nowPage : " + nowPage);
+		@GetMapping("/lists/page/{nowPage}/search/{cno}")
+		public Map<?, ?> trdhrList(@PathVariable String nowPage,@PathVariable String cno) {
+			print("송금 리스트 진입 - nowPage : " + nowPage+"cno"+cno);
 			int pageSize = 5, blockSize = 5;
+			pager.setCno(cno);
 			pager.setPageSize(pageSize);
 			pager.setNowPage(integer(nowPage));
 			pager.setBlockSize(blockSize);

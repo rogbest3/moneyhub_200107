@@ -154,11 +154,11 @@ mypage_vue = {
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>계좌번호</p>'+
-		'                    <p class="fs-block" id="bank" style="color:black">국민은행&nbsp;&nbsp;</p>'+
-		'                    <p class="fs-block" id="account" style="color:black">9427010261003</p>'+
+		'                    <p class="fs-block" id="bank" style="color:black; font-weight:bold;">국민은행&nbsp;&nbsp;</p>'+
+		'                    <p class="fs-block" id="account" style="color:black; font-weight:bold;"></p>'+
 		'                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>'+
-		'                    <p class="fs-block" id="cname" style="color:black"></p>'+
-		'                    <p class="fs-block" style="color:black">_머니허브</p>'+
+		'                    <p class="fs-block" id="cname" style="color:black; font-weight:bold;"></p>'+
+		'                    <p class="fs-block" style="color:black; font-weight:bold;">_머니허브</p>'+
 		'                </li>'+
 		'                <li class="control">'+
 		'                    <button class="text" id="copy_btn">가상계좌복사하기</button>'+
@@ -171,9 +171,9 @@ mypage_vue = {
 		'            <ol>'+
 		'                <li>'+
 		'                    <p>현재잔액</p>'+
-		'                    <p class="fs-block" id="balance" style="color:black">100,000,000</p>'+
+		'                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;"></p>'+
 		'                    <p class="fs-block">&nbsp;</p>'+
-		'                    <p class="fs-block" style="color:black">원</p>'+
+		'                    <p class="fs-block" style="color:black; font-weight:bold;">원</p>'+
 		'                </li>'+
 		'            </ol>'+
 		'        </div>'+
@@ -184,7 +184,7 @@ mypage_vue = {
 		'                    <p>HISTORY</p>'+
 		'                    <p class="fs-block" id="date" style="color:black">2020-02-04</p>'+
 		'                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>'+
-		'                    <p class="fs-block" id="plM" style="color:black">+</p>'+
+		'                    <p class="fs-block" id="pm" style="color:black">+</p>'+
 		'                    <p class="fs-block">&nbsp;</p>'+
 		'                    <p class="fs-block" id="history" style="color:black">100,000,000</p>'+
 		'                    <p class="fs-block">&nbsp;</p>'+
@@ -436,6 +436,7 @@ mypage_vue = {
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
 		'<div id="chart" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+
+		'	<div class="check_font" id="exchange_check" ></div>'+
 		'		<div class="moin-amount">'+
 		'			<div id="remit_box" class="form-calculator main">'+
 		'				<div class="amount-row">'+
@@ -458,7 +459,6 @@ mypage_vue = {
 		'						<h3>USD</h3>'+
 		'					</div>'+
 		'				</div>'+
-		'				<div class="check_font" id="exchange_check" ></div>'+
 		'				<button id="exchangebutton" class="index-send-btn moin-body">환전하기</button>'+
 		'			</div>'+
 		'		</div>'+

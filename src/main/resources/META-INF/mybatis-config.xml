@@ -19,5 +19,7 @@
 		<typeAlias alias="Admin"  type="com.moneyhub.web.admin.Admin"/>
 		<typeAlias alias="Exth" type="com.moneyhub.web.exth.Exth"/>
 		<typeAlias alias="Datepicker" type="com.moneyhub.web.dpk.Datepicker"/>
+		<typeAlias alias="Exchange"  type="com.moneyhub.web.exchange.domains.Exchange"/>
+
     </typeAliases>
 </configuration>

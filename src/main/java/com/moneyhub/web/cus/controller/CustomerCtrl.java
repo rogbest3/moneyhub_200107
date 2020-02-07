@@ -199,11 +199,8 @@ public class CustomerCtrl extends Proxy {
 		box.put("msg", "SUCCESS");
 		box.put("cemail", cus.getCemail());
 		box.put("cname", cus.getCname());
-		box.put("accNo", acc.getAcctNo());
-		System.out.println("param은?" );
-//		System.out.println("cus는?" + cus);
+		box.put("acc", acc);
 		System.out.println("acc는?" + acc.getAcctNo());
-
 		System.out.println("box.get() -----------> "+box.get().toString());
 		return box.get();
 	}

@@ -43,12 +43,11 @@ foreignRemit = (()=>{
 	}
 	
 	let remit_deal = ()=>{
-		//숙제 송금 첫번째 화면 밸류 콤마 찍기 
 		// 송금 금액 5000으로 제한 alert 띄우기
 		//실시간 환율 연동하기.....
 		//글자들 임팩트 주기
 		
-		/*amount = common.remit_send*/
+		common.remit_send_focusout()
 		
 		if(deal.trdusd >= 3000)
 		{$('#fee_check').text('12')}
@@ -57,7 +56,7 @@ foreignRemit = (()=>{
 		common.receive_value_calc(deal.exrate)
 		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			common.receive_value_calc(deal.exrate)
-			if($('#sd_amount').val() >= 3000){
+			if(common.comma_remove($('#sd_amount').val()) >= 3000){
 				$('#fee_check').text('12')}
 			else {$('#fee_check').text('6')}
 			/*$('.form-calculator .amount-row input.send-amount').replace(/\B(?=(\d{3})+(?!\d))/g, ",")*/
@@ -73,10 +72,7 @@ foreignRemit = (()=>{
 			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') // 송금액을 바꿨을떄 금액
 			deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			deal.fee = document.getElementById('fee_check').innerHTML
-			
 			sessionStorage.setItem('deal',JSON.stringify(deal))
-			
-			alert(JSON.stringify(deal))
 			remit_cusInfo()
 			
 			})
@@ -144,6 +140,35 @@ foreignRemit = (()=>{
 			deal.trdusd = null
 			mypage.onCreate()
 			$('html').scrollTop(0);
+		})
+		
+		$('#copy_btn').on('click', function(e){
+			$('#clip_target').val(common.comma_remove($('#copy_amt').html()))
+			$('#clip_target').select()
+			try { 
+				var successful = document.execCommand('copy');
+				if(successful){
+					alert('복사되었습니다.')
+				}else{
+					alert('복사실패')
+				}
+			} catch (err) { 
+				alert('이 브라우저는 지원하지 않습니다.') 
+			}
+		})
+		$('#copy_acc_btn').on('click', function(e){
+			$('#clip_acc').val(common.comma_remove($('#copy_acc').html()))
+			$('#clip_acc').select()
+			try { 
+				var successful = document.execCommand('copy');
+				if(successful){
+					alert('복사되었습니다.')
+				}else{
+					alert('복사실패')
+				}
+			} catch (err) { 
+				alert('이 브라우저는 지원하지 않습니다.') 
+			}
 		})
 	}
 	

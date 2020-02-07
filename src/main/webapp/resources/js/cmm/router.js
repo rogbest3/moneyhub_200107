@@ -9,6 +9,8 @@ function Session(x){
 	sessionStorage.setItem('jsp',x +'/resources/jsp');
 	var deal = {} // 송금 객체
 	sessionStorage.setItem('deal',JSON.stringify(deal));
+	var exch = {} // 환전 객체
+	sessionStorage.setItem('exch',JSON.stringify(exch));
 
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
@@ -22,6 +24,9 @@ function Session(x){
 		profitsChart : ()=>{ return JSON.parse(sessionStorage.getItem('profitsChart'))},
 		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
 		holidays : ()=>{ return JSON.parse(localStorage.getItem('holidays')) }
+		money : ()=>{ return JSON.parse(sessionStorage.getItem('money'))},
+		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
+		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))}
 	}
 }
 function Customer_Info(x){

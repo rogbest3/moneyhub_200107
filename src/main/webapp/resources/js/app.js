@@ -5,7 +5,7 @@ app =(()=>{
 	
 	let _, js, img, cmm_vue_js, nav_vue_js, main_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class,
-		tables_mgmt_js,guide_recieve_js, remit_box_js,deal,
+		tables_mgmt_js, remit_box_js,deal,
 		adminLogin_js, common_js
 
 	
@@ -29,7 +29,6 @@ app =(()=>{
 		compo_js = js + '/cmm/compo.js'
 		event_js = js + '/cmm/event.js'
 		faq_js = js + '/cmm/faq.js'
-		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		main_class = 'themoin-landing'
 		tables_mgmt_js =  js + '/tables/tables_mgmt.js' 
 		remit_box_js = js + '/remit/remit_box.js'
@@ -49,7 +48,6 @@ app =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(tables_mgmt_js),
-			$.getScript(guide_recieve_js),
 			$.getScript(remit_box_js),
 			$.getScript(adminLogin_js)
 		)
@@ -101,14 +99,22 @@ app =(()=>{
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
-
-		$('<button/>')
-		.text('송금하기')
-		.addClass('index-send-btn moin-body')
-		.appendTo('#remit_box')
+		
+		$('#idx_exchg_btn')
 		.click(()=>{
 			auth.onCreate('login')
 		})
+		
+		$('#idx_remit_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
+		$('#idx_testexchg_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
 		
 		$('#popup-exchange').empty()
 	}
@@ -147,11 +153,6 @@ app =(()=>{
 		$('#faq')
 		.click(()=>{
 			faq.onCreate(main_class)
-		})
-		
-		$('#guide')
-		.click(()=>{
-			guide_recieve.onCreate(main_class)
 		})
 		
 		$('.themoin-header a.logo')
