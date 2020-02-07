@@ -30,10 +30,10 @@ public class ExchangeService {
 		System.out.println("insertExchange의 mtcn1 - " + mtcn);
 		ex.setMtcn(mtcn);
 		System.out.println("insertExchange의 mtcn2 - " + ex.getMtcn());
-		//
+
 		ex.setAcctNo(exchange.get("acctNo").toString());
 		System.out.println("insertExchange의 AcctNo - " + exchange.get("acctNo").toString());
-		//
+
 		ex.setCemail(exchange.get("cemail").toString());
 		System.out.println("insertExchange의 Cemail - " + exchange.get("cemail").toString());
 		
@@ -49,19 +49,25 @@ public class ExchangeService {
 		ex.setExFee(1); //수수료율
 		System.out.println("insertExchange의 ExFee - " + ex.getExFee());
 		
-		ex.setFeeExrate(exrate.getExrate() * 0.01); //수수료금액
-		System.out.println("exrate에서 가지고 온 Exrate - " + exrate.getExrate());
-		System.out.println("insertExchange의 Exrate - " + exrate.getExrate() * 0.01);
+		ex.setFeeExrate((double)exchange.get("exrate") * 0.01); //수수료금액
+		System.out.println("exchange에서 가지고 온 Exrate1 - " + exchange.get("exrate"));
+		System.out.println("exchange에서 가지고 온 Exrate2 - " + (double)exchange.get("exrate"));
+		System.out.println("insertExchange의 Exrate - " + (double)exchange.get("exrate") * 0.01);
 		
-		ex.setMhRate(exrate.getExrate()+ (exrate.getExrate() * 0.01)); //수수료 포함된 머니허브 환율 -> 이 환율이 환전 시 사용되는 환율
-		System.out.println("insertExchange의 MhRate - " + exrate.getExrate()+ (exrate.getExrate() * 0.01));
+		ex.setMhRate(((double)exchange.get("exrate") + ((double)exchange.get("exrate") * 0.01))); //수수료 포함된 머니허브 환율 -> 이 환율이 환전 시 사용되는 환율
+		System.out.println("insertExchange의 MhRate - " + ((double)exchange.get("exrate") + ((double)exchange.get("exrate") * 0.01)));
 		
 		ex.setChngCausCd("0");
 		System.out.println("insertExchange의 setChngCausCd - " + ex.getChngCausCd());
 		
 		ex.setTrdStatCd("0");
 		System.out.println("insertExchange의 setTrdStatCd - " + ex.getTrdStatCd());
-		
+
+		//
+		ex.setAcctNo(exchange.get("acctNo").toString());
+		System.out.println("insertExchange의 AcctNo - " + exchange.get("acctNo").toString());
+		//
+
 	}
 	
 	public Map<?, ?> ExTrend(String cntcd){

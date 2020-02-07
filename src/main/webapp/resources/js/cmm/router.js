@@ -21,6 +21,7 @@ function Session(x){
 		deal : ()=>{return JSON.parse(sessionStorage.getItem('deal'))},
 		cusInfo : ()=>{return JSON.parse(sessionStorage.getItem('cus'))},
 		exrateSess : ()=>{ return JSON.parse(sessionStorage.getItem('exrateSess'))},
+
 		profitsChart : ()=>{ return JSON.parse(sessionStorage.getItem('profitsChart'))},
 		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
 		holidays : ()=>{ return JSON.parse(localStorage.getItem('holidays'))},

@@ -92,5 +92,6 @@ nav_vue = {
 		</div> 
 		<div class="mypage"></div> 
 		</div`
+
 	}
 }

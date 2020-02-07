@@ -49,6 +49,7 @@ auth =(()=>{
 		$('#cemail').val('11')
 		$('#cpwd').val('11')
 
+
 		join_2_page_btn()
 	}
 	
@@ -300,6 +301,16 @@ auth =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
+				$.getJSON(_+'/customers/getAcc/' + sessionStorage.getItem('CEMAIL') + '/' + sessionStorage.getItem('CNO'), d=>{
+					if(d.msg === "SUCCESS"){
+						$('#cname').text(d.cname)
+						$('#account').text(d.acc.acctNo)
+						$('#balance').text(common.comma_create(d.acc.balance))
+						sessionStorage.setItem('acctNo',d.acc.acctNo)
+					}else{
+						alert('실패')
+					}
+				})
 				$.ajax({
 					url : _+'/customers/',
 					type : 'POST',

@@ -170,8 +170,10 @@ remit_box =(()=>{
 							$('#exchange_check').css('font-weight', 'bold')
 						}
 					})
-					exch.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명, 국가코드
-					exch.cntcd = $('.form-calculator .amount-row .receive h3').text()
+
+					exch.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명
+					exch.cntcd = $('.form-calculator .amount-row .receive h3').text() //국가코드
+
 					sessionStorage.setItem('exch',JSON.stringify(exch))
 					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
 					$('#chart')
