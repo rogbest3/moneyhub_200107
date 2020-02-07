@@ -5,7 +5,7 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal, remit_box_js,clock,cus
+		line_graph_js,deal, remit_box_js, clock, profitsChart,cus
 
 	let init =()=>{
 		_ = $.ctx()
@@ -22,6 +22,10 @@ mypage =(()=>{
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
+		
+		profitsChart = {}
+		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
+		sessionStorage.setItem('chartFlag', '')
 	}
 	
 	let onCreate =()=>{
@@ -60,6 +64,8 @@ mypage =(()=>{
 		.append(main_vue.logined_main())
 		.append(cmm_vue.footer())
 		
+		$.getScript(line_graph_js)
+
 		$('#popup-exchange').empty()
 		
 		$('#remit_btn')
@@ -164,7 +170,6 @@ mypage =(()=>{
 			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 			deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
 			sessionStorage.setItem('deal',JSON.stringify(deal))
-			alert('송금 버튼 클릭했을때 '+JSON.stringify(deal))
 			foreignRemit.onCreate()
 			
 		})
@@ -175,10 +180,9 @@ mypage =(()=>{
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
 			/* console.log(`들어온 알씨피티`+stringifyJSON(d.rcpt)) */
-			alert(pxy.rowCount)
+
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
-				alert(d.map.length)
 				$.each(d.map, (i, j)=>{ 
 					$(`<div class="themoin-main-remititem">
 							<div class="simple">
@@ -219,7 +223,6 @@ mypage =(()=>{
 				
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
 				
-				alert('이전페이지'+pxy.existPrev)
 				if(pxy.existPrev){
 					$(`<button class="control disabled">
 			         	이전

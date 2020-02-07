@@ -15,7 +15,7 @@
 	<select id="existAcc" resultType="integer">
 		SELECT COUNT(*) 
 		FROM ACCOUNT
-		WHERE ACCT_NO = #{acct_no}
+		WHERE ACCT_NO = #{acctNo}
 	</select>
 	
 	<select id="getAcc" resultType="Account">

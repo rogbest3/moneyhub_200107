@@ -466,7 +466,13 @@ auth_vue ={
 		'                        <p class="moin-error"></p>'+
 		'                    </div>'+
 		'                </div>'+
-		
+		'<!-- Modal HTML embedded directly into document -->'+
+		'<div id="ex1" class="modal">'+
+		'  <p>짝짝짝<br>회원가입 이벤트에 당첨되셨습니다!!<br>1억원을 드립니다.<br>회원가입 완료 후 계좌를 확인해보세요^^</p>'+
+		'  <a href="#" rel="modal:close">Close</a>'+
+		'</div>'+
+		'<!-- Link to open the modal -->'+
+		'<p><a href="#ex1" rel="modal:open">클릭 시 이벤트 당첨!</a></p>'+
 		
 		
 /*핸드폰인증'							<div class="themoin-sms-request">'+

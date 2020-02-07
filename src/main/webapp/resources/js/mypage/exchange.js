@@ -1,7 +1,7 @@
 var exchange = exchange || {}
 exchange =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js
+	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, nav_vue_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -9,16 +9,18 @@ exchange =(()=>{
 		exChart_js = js + '/mypage/exChart.js'
 		remit_box_js = js + '/remit/remit_box.js'
 		line_graph_js = js + '/exchart/line_graph.js'
+		nav_vue_js = js + '/vue/nav_vue.js'
 	}
 	let onCreate =()=>{
 		init()
 		$.when(
 			$.getScript(mypage_vue_js),
-			$.getScript(remit_box_js)
+			$.getScript(remit_box_js),
+			$.getScript(nav_vue_js)
 		)
 		.done(()=>{
 			setContentView()
-			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+			remit_box.onCreate({ flag : 'exchange2', cntcd : '' })
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -28,37 +30,93 @@ exchange =(()=>{
 	let setContentView =()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.exchange())
-		$.getScript(line_graph_js)
+		//$.getScript(exChart_js)
 		
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
 		
 		$('#popup-exchange').empty()
-		
-		//최근 한 달간의 환율 가져올 수 있나?
-		//(오늘 데이터 - 전일 데이터) > 0 => 상승
-		//(오늘 데이터 - 전일 데이터) < 0 => 하락
-		
-		
-		//환율 추이
-		/*$('#expect').blur(function(){
-			if(expect.test($('#expect').val())){
-				$('#exchange_check').text('최근 1주일간 해당 환율은 상승세입니다.')
-				$('#exchange_check').css('color', 'blue')
-			}else{
-				$('#exchange_check').text('최근 1주일간 해당 환율은 하락세입니다.')
-				$('#exchange_check').css('color', 'red')
-			}
-		})*/
-		
+		exch = $.exch()
+		let exch_arr = []
+			$.getJSON( '/exchange/extrend/cntcd/' + cntcd, d=>{	
+				$.each(d.exlist, (i, j)=>{
+					exch_arr.push(parseFloat(j.exrate))
+				})
+				exch.exrate = exch_arr[0]
+				sessionStorage.setItem('deal',JSON.stringify(deal))
+			})
+				$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+					common.receive_value_calc(deal.exrate)
+				})
 		$(function(){
-			$('#exchangebutton')
-			.click(function(){
-
-				$("#chart").fadeIn()
-				$.getScript(line_graph_js)
-
+			$('#exchangebutton').one('click', function(){
+				$('#chart').fadeIn()
+				
+				let cntcd = $('.form-calculator .amount-row .receive h3').text()
+				$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
+					if(d.msg === 'UP'){
+						$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
+						$('#exchange_check').css('color', 'blue')
+						$('#exchange_check').css('text-align', 'center')
+						$('#exchange_check').css('font-weight', 'bold')
+					}else{
+						$('#exchange_check').text('최근 약 2주간 해당 환율은 하락세입니다.')
+						$('#exchange_check').css('color', 'red')
+						$('#exchange_check').css('text-align', 'center')
+						$('#exchange_check').css('font-weight', 'bold')
+					}
+				})
+				$.getScript(exChart_js)
+				$(this).click(function(){
+					if(confirm('환전하시겠습니까? 확인을 누르시면 바로 실행됩니다.')){
+						$('#auth_mgmt').each(function(){
+							$.ajax({
+								url : _+'/exchange/insert',
+								type : 'POST',
+								data: JSON.stringify({
+									cemail : sessionStorage.getItem('CEMAIL'),
+									acctNo : sessionStorage.getItem('acctNo'),
+									exch_krw : $('.form-calculator .amount-row input.send-amount').val(), //환전할 원화 금액
+									exch_cnt : $('.form-calculator .amount-row input.receive-amount').val(), //환전된 외화 금액
+									cntcd : $('.form-calculator .amount-row .receive h3').text()
+									
+								}),
+								dataType : 'json',
+								contentType : 'application/json',
+								success : d=>{
+									if(d.msg === 'SUCCESS'){
+										alert('머니허브 계좌로 이동합니다.')
+										var tab_id = $(this).attr('data-tab')
+										$(this).addClass('active')
+										$("#"+tab_id).addClass('active')
+										$('#cus_info').removeClass('active')
+										$('#pwd_chg').removeClass('active')
+										$('#alarm').removeClass('active')
+										$('#ref_mgmt').removeClass('active')
+										$('#withdrawal').removeClass('active')
+										$('#exchange_test').removeClass('active')
+										$('#exchange').removeClass('active')
+										auth_mgmt.onCreate()
+									}else{
+										alert('고객님 계좌를 확인해주세요.')
+										var tab_id = $(this).attr('data-tab')
+										$(this).addClass('active')
+										$("#"+tab_id).addClass('active')
+										$('#cus_info').removeClass('active')
+										$('#pwd_chg').removeClass('active')
+										$('#alarm').removeClass('active')
+										$('#ref_mgmt').removeClass('active')
+										$('#withdrawal').removeClass('active')
+										$('#exchange_test').removeClass('active')
+										$('#exchange').removeClass('active')
+										auth_mgmt.onCreate()
+									}
+								}
+							})
+						})
+					}
+				})
 			})
 		})
 	}

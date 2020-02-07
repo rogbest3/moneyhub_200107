@@ -79,10 +79,11 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
+
+						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						sessionStorage.setItem('ACC', JSON.stringify(d.result))
-						alert('cus'+JSON.stringify(d.cus))
 						//======================================================
 						//====================================================== MK
 						/*$.extend(new Customer_Info(d.cus))*/
@@ -327,11 +328,11 @@ auth =(()=>{
 						}
 					},
 					error : e=>{
-						alert('join ajax 실패')
+						alert('잘못 입력된 부분이 있습니다.')
 					}
 				})
 			}else{
-				alert('비번 틀림')
+				alert('잘못 입력된 부분이 있습니다.')
 			}
 		})
 	}

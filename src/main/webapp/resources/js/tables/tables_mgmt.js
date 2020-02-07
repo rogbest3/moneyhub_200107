@@ -2,10 +2,13 @@
 var tables_mgmt = tables_mgmt || {}
 tables_mgmt =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js
+	let _, js, disableDays, holidays
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
+		holidays = []
+		disableDays = []
+		
 	}
 	let onCreate =()=>{
 		init()
@@ -42,7 +45,7 @@ tables_mgmt =(()=>{
 			'vertical-align' : 'top'
 		})
 		.appendTo('tr')
-		let arr = ['FAQ 관리', 'EXRATE 관리', 'CUSTOMER 관리','수수료내역Table','수수료Table', 
+		let arr = ['FAQ 관리', 'EXRATE 관리', 'DATEPICKER 관리', 'CUSTOMER 관리','수수료내역Table','수수료Table', 
                '거래Table', '관리자Table', '고객계좌정보Table', '수취내역Table','거래내역Table']
 		$.each(arr, (i, j)=>{
 			$('<div/>')
@@ -54,7 +57,6 @@ tables_mgmt =(()=>{
 			})
 			.appendTo('#left')
 				.click(function(){
-			//		let that = $(this).attr('name')
 					$(this).css({'background-color':'yellow'})
 					$(this).siblings().css({'background-color':'white'})
 					switch($(this).text()){
@@ -63,6 +65,9 @@ tables_mgmt =(()=>{
 						break
 					case 'EXRATE 관리' :
 						exrate_mgmt()
+						break
+					case 'DATEPICKER 관리' :
+						datepicker_mgmt()
 						break
 					case 'CUSTOMER 관리' :
 						customer_mgmt()
@@ -92,6 +97,56 @@ tables_mgmt =(()=>{
 			})
 		})
 	}
+	
+	let datepicker_mgmt =()=>{
+		$('#right').empty()
+		$(`<br><br><h3><a>DATEPICKER 테이블 생성</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + '/datepicker/create/table', d=>{
+				alert(`테이블 성공여부 : ${d.result}`)
+			})
+		})
+		$(`<h3><a>DATEPICKER 휴일 Insert</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+				
+//			alert(JSON.stringify(disableDays))
+			/*$.ajax({
+				url : _ + `/datepicker/insert/holiday`,
+				type : 'POST',
+				data : JSON.stringify(disableDays),
+				dataType : 'json',
+				contentType : 'application/json',
+				success : d=>{
+					alert('성공')
+				},
+				error : e=>{
+					alert('전송 실패')
+				}
+			})*/
+			
+		})
+		$(`<h3><a>DATEPICKER 테이블  DATA 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/datepicker/truncate/table`, d=>{
+				alert(`테이블 DATA 삭제 성공여부 : ${d.result}`)
+			})
+		})
+		$(`<h3><a>DATEPICKER 테이블 삭제</a></h3><br><br>`)
+		.appendTo('#right')
+		.click(e=>{
+			e.preventDefault()
+			$.getJSON( _ + `/datepicker/delete/table`, d=>{
+				alert(`테이블 삭제 성공여부 : ${d.result}`)
+			})
+		})
+	}
+	
 	let faq_mgmt =()=>{
 		$('#right').empty()
 		$(`<br><br><h3><a>FAQ 테이블 생성</a></h3><br><br>`)

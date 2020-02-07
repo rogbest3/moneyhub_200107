@@ -75,10 +75,10 @@ main_vue ={
 						<p>계좌송금</p> 
 					</li> 
 					<li> 
-						<img src="https://img.themoin.com/public/img/circle-flag-np.svg"> 
-						<span class="newmoin-text-subtitle">네팔</span> 
+						<img src="https://img.themoin.com/public/img/circle-flag-vn.svg"> 
+						<span class="newmoin-text-subtitle">베트남</span> 
 						<p>계좌송금</p> 
-					</li></ul> 
+					</li>
 					<ul><li> 
 						<img src="https://img.themoin.com/public/img/circle-flag-de.svg"> 
 						<span class="newmoin-text-subtitle">독일</span> 

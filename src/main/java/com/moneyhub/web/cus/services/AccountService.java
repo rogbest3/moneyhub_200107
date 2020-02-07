@@ -22,11 +22,13 @@ public class AccountService {
 				+ param.getBirth().replace("-", "").substring(2) + param.getZip(); //계좌번호 생성
 		System.out.println("result는?????" + result);
 		int exist = accMapper.existAcc(result);
+		String balance = Integer.toString(100000000);
 		if(exist != 0) {
 			System.out.println("exist는????" + exist);
 		}else {
 			acc.setCemail(param.getCemail());
 			acc.setAcctNo(result);
+			acc.setBalance(balance);
 			System.out.println("acc는????" + acc.toString());
 			accMapper.createAcc(acc);
 		}

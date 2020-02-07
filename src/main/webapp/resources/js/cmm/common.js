@@ -56,7 +56,14 @@ common = (function(){
 						+ parseFloat(common.comma_remove($('#exchange_JPY').text())) * exrateSess.jpy
 			$('#total_money').text(common.comma_create(total.toFixed(0)))
 //			sessionStorage.setItem('exrateSess',JSON.stringify({}))	
+		},
+		object_sort : function(arr){
+			
+			arr = arr.sort(function(a, b){
+				return a.bdate < b.bdate ? -1 : a.bdate > b.bdate ? 1 : 0;
+			})
+			
+			return arr
 		}
-		
 	}
 }())
