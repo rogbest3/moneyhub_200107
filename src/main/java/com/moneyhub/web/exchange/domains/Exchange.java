@@ -13,20 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Exchange {
-	private String cemail,
-					bsdate,
-					mtcn,
-					trdStatCd,
-					chngCausCd,
-					mhRate,
-					exchKrw,
-					exchCnt,
-					exFee,
-					acctNo,
-					cntcd,
-					exrate,
-					crtmem,
-					crtdt,
-					upmem,
-					updt;
+	private String cemail, bsdate, acctNo, cntcd, mtcn, trdStatCd, chngCausCd, exchKrw, exchCnt;
+	private double feeExrate, mhRate, exFee;
 }

@@ -70,7 +70,7 @@ $(document).ready(function(){
 	
 	let cntcd = $('.form-calculator .amount-row .receive h3').text()
 	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	
-		$.each(d.exlist, (i, j)=>{
+		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
 		})
@@ -88,7 +88,7 @@ $(document).ready(function(){
 	let receive_value_calc =()=>{
 		let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
 							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985
-		$('.form-calculator .amount-row input.receive-amount').val(comma_create(receive_value.toFixed(2)))
+		$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 	}
 	
 	let comma_create =x=>{

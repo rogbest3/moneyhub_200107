@@ -41,7 +41,8 @@
 								FROM EXRATE
 								WHERE CNTCD = #{cntcd}) B
 								GROUP BY bdate)
-		LIMIT 0,20
+		ORDER BY BDATE DESC
+		LIMIT 0,10
 	</select>
 	
 	<select id="bdateSearchExrate" resultType="Exrate">

@@ -31,6 +31,7 @@ auth_mgmt =(()=>{
 				$('#cname').text(d.cname)
 				$('#account').text(d.acc.acctNo)
 				$('#balance').text(common.comma_create(d.acc.balance))
+				sessionStorage.setItem('acctNo',d.acc.acctNo)
 			}else{
 				alert('실패')
 			}

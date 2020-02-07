@@ -6,11 +6,11 @@
 <mapper namespace="com.moneyhub.web.exchange.mappers.ExchangeMapper">
 
 	<insert id="insertEx" parameterType="Exchange">
-	    INSERT INTO EXCHANGE (CEMAIL, BSDATE, MTCN, TRD_STAT_CD, CHNG_CAUS_CD, MH_RATE, EXCH_KRW, EXCH_CNT,
-					EX_FEE, ACCT_NO, CNTCD, EXRATE, CRTMEM, CRTDT, UPMEM, UPDT)
+	    INSERT INTO EXCHANGE (CEMAIL, BSDATE, MH_RATE, EXCH_KRW, EXCH_CNT,
+					EX_FEE, ACCT_NO, CNTCD, FEE_EXRATE, MTCN, TRD_STAT_CD, CHNG_CAUS_CD)
 		VALUES (
-	    	#{cemail}, #{bsdate}, #{mtcn}, #{trdStatCd}, #{chngCausCd}, #{mhRate}, #{exchKrw}, #{exchCnt},
-	    	#{exFee}, #{acctNo}, #{cntcd}, #{exrate}, #{crtmem}, #{crtdt}, #{upmem}, #{updt}
+	    	#{cemail}, now(), #{mhRate}, #{exchKrw}, #{exchCnt},
+	    	#{exFee}, #{acctNo}, #{cntcd}, #{feeExrate}, #{mtcn}, #{trdStatCd}, #{chngCausCd}
 	    )
 	</insert>
 	
@@ -23,7 +23,7 @@
 								WHERE CNTCD = #{cntcd}) B
 								GROUP BY BDATE)
 		ORDER BY BDATE DESC
-		LIMIT 0,20
+		LIMIT 0,10
 	</select>
 	
 	<!-- <select id="exTrend1" resultType="Exrate">

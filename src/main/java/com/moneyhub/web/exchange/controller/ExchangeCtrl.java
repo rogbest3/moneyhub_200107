@@ -1,5 +1,6 @@
 package com.moneyhub.web.exchange.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -28,19 +29,21 @@ public class ExchangeCtrl extends Proxy {
 	@Autowired ExchangeService exService;
 
 	@PostMapping("/insert")
-	public Map<?, ?> insertExchange(@RequestBody Exchange exc){
-		System.out.println("exchange들어옴???????????"+ exc);
-		Consumer<Exchange> c = o -> exMapper.insertEx(o);
-		c.accept(exc);
-		box.clear();
-		box.put("msg", "SUCCESS");
-		return box.get();
+	public void insertExchange(@RequestBody HashMap<String, Object> exchange){
+		System.out.println("exchange들어옴???????????"+ exchange);
+		exService.insertExchange(exchange);
+//		Consumer<Exchange> c = o -> exMapper.insertEx(o);
+//		c.accept(exc);
+//		box.clear();
+//		box.put("msg", "SUCCESS");
+//		return box.get();
 	}
 	
-	@GetMapping("/exTrend/{cntcd}")
+	@GetMapping("/extrend/cntcd/{cntcd}")
 	public Map<?, ?> exTrend(@PathVariable String cntcd) {
-		System.out.println("exTrend 들어옴!!!!!!" + cntcd);
 		return exService.ExTrend(cntcd);
 	}
+	
+	
 	
 }
