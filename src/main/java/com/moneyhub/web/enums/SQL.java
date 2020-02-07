@@ -9,7 +9,8 @@ public enum SQL {
 	CREATE_ADMIN, DROP_ADMIN, INSERT_ADMIN,
 	CREATE_FEE, DROP_FEE, INSERT_FEE_ONE, INSERT_FEE_TWO,
 	CREATE_TRDHR,DROP_TRDHR,CREATE_TRD,DROP_TRD,
-	CREATE_RCPT,DROP_RCPT 
+	CREATE_RCPT, DROP_RCPT,
+	CREATE_DATEPICKER, DROP_DATEPICKER, TRUNCATE_DATEPICKER
 	;
 	@Override
 	public String toString() {
@@ -196,6 +197,7 @@ public enum SQL {
 			break;
 		case DROP_TRD : 
 			result = "DROP TABLE TRD";
+			break;
 		case CREATE_RCPT : 
 			result = "CREATE TABLE IF NOT EXISTS RCPT\r\n"+
 					"(\r\n"+
@@ -218,7 +220,24 @@ public enum SQL {
 			break;
 		case DROP_RCPT :
 			result = "DROP TABLE DROP_RCPT";
-
+			break;
+		case CREATE_DATEPICKER :
+			result = "CREATE TABLE IF NOT EXISTS DATEPICKER (\r\n" + 
+					"SEQ INT AUTO_INCREMENT NOT NULL COMMENT'일련번호',\r\n" + 
+					"DDATE VARCHAR(12) NULL COMMENT'휴일일자' ,\r\n" + 
+					"DNAME VARCHAR(12) NULL COMMENT'휴일명',\r\n" + 
+					"PRIMARY KEY(SEQ)\r\n" + 
+					")DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
+			break;
+			
+		case DROP_DATEPICKER :
+			result = "DROP TABLE DATEPICKER";
+			break;
+			
+		case TRUNCATE_DATEPICKER :
+			result = "TRUNCATE TABLE DATEPICKER";
+			break;
+				
 		}
 		return result;
 	}

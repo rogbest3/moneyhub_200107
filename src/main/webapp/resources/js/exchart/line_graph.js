@@ -69,24 +69,33 @@ $(document).ready(function(){
 	};
 //	alert('그래프')
 	let ctx = document.getElementById('canvas').getContext('2d');
-	
-	
 	let getProfitsChart = $.profitsChart()
-	if( $.chartFlag() === 'profisChart'){
+
+	if( $.chartFlag() === 'profitsChart'){
+//		let ctx2 = document.getElementById('pofitsCanvas').getContext('2d');
+		
+		alert('profisChart length - ' + getProfitsChart.length)
 		config.data.labels = []
 		config.data.datasets[0].data = []
-		config.options.title.text = `날짜별 수익률 차트`
-			
+		
+		$.each(getProfitsChart, (i, j)=>{
+			config.data.labels[i] = j.bdate.substr(-5).replace('-', '/')
+			config.data.datasets[0].data[i] = parseFloat(j.profits)
+		})
+		console.log(config.data.labels)
+		console.log(config.data.datasets[0].data)
+		config.options.title.text = `날짜별 수익금 차트`
+		
 		window.myLine = new Chart(ctx, config);
+		
 	}else{
 		let cntcd = $('.form-calculator .amount-row .receive h3').text()
 		$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 			$.each(d.exlist.reverse(), (i, j)=>{
-				config.data.labels.push(j.bdate.substr(-2))
-				config.data.datasets[0].data.push(parseFloat(j.exrate))
+				config.data.labels[i] = j.bdate.substr(-5).replace('-', ' / ')
+				config.data.datasets[0].data[i] = parseFloat(j.exrate)
 			})
 			config.options.title.text = `1 USD = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
-			
 			window.myLine = new Chart(ctx, config);
 		})
 	}

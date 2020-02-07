@@ -20,7 +20,8 @@ function Session(x){
 		cusInfo : ()=>{return JSON.parse(sessionStorage.getItem('cus'))},
 		exrateSess : ()=>{ return JSON.parse(sessionStorage.getItem('exrateSess'))},
 		profitsChart : ()=>{ return JSON.parse(sessionStorage.getItem('profitsChart'))},
-		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') }
+		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
+		holidays : ()=>{ return JSON.parse(localStorage.getItem('holidays')) }
 	}
 }
 function Customer_Info(x){

@@ -3,7 +3,7 @@ exchange_test =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 
 	let _, js, mypage_vue_js, global_map_js, exth, exrateSess, profitsChart, 
-		bdate_exist_flag, deposit, exchangeCount, getCno, line_graph_js
+		bdate_exist_flag, deposit, exchangeCount, getCno, line_graph_js, disableDays
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -21,7 +21,7 @@ exchange_test =(()=>{
 		exrateSess.flag = 'default'
 		exrateSess.bdate = common.clock_format()	
 		sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess))
-		
+		disableDays = []
 	}
 	let onCreate =()=>{
 		init()
@@ -36,9 +36,14 @@ exchange_test =(()=>{
 			$('#exchange_datepicker b')
 			.text(`환율 기준일 : ${common.clock_format()}`)
 			
+			$.getJSON(`${_}/datepicker/selectall`, d=>{
+				$.each(d.dpk, (i, j)=>{
+					disableDays[i] = j.ddate
+				})
+				alert('disableDays ' + JSON.stringify(disableDays))
+			})
+			
 			datepicker_option()
-		//	$('#datepicker').datepicker('setDate', 'today')
-//			$('#datepicker').attr('placeholder', exrateSess.bdate)
 			$('#exchange_datepicker img')
 			.click(()=>{
 				$('#ui-datepicker-div').css({display:'block', 'vertical-align': 'middle'})
@@ -52,8 +57,15 @@ exchange_test =(()=>{
 				exrateSess.bdate = $('#datepicker').val()
 				sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
 				
+				$('#world_map')
+				.html(`<div class="mapcontainer">
+					        <div class="map">
+					            <span>Alternative content for the map</span>
+					        </div>
+					    </div>`)
+				  
 				$.getScript($.js() + '/maps/global_map.js')
-
+				
 			})
 		})
 		.fail(()=>{
@@ -73,10 +85,9 @@ exchange_test =(()=>{
 		
 		$('#exchange_datepicker')
 		.css({
-			height : '35px',
+			height : '60px',
 			margin : '10px auto',
-			'text-align' : 'center',
-			'vertical-align' : 'middle'
+			'text-align' : 'center'
 		})	
 	}
 	
@@ -167,7 +178,7 @@ exchange_test =(()=>{
 					success : d=>{
 						amount_init()
 						exth = []
-						$('#test_history').empty()
+						$('#exchange_test_chart').empty()
 					},
 					error : e=>{
 						alert('ajax 실패')
@@ -186,10 +197,11 @@ exchange_test =(()=>{
 			.addClass('btn btn-lg btn-primary')
 			.appendTo('#save_btn')
 			.click(()=>{
-				amount_history()
-				common.object_sort(exth)
 //				alert('저장 시 exth - ' + JSON.stringify(exth))
 				if( exth.length > 0 ){
+					amount_history()
+					common.object_sort(exth)
+					
 					$.ajax({
 						url : `${_}/exth/insert/${deposit}`,
 						type : 'POST',
@@ -204,16 +216,16 @@ exchange_test =(()=>{
 							sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
 							sessionStorage.setItem('chartFlag', 'profitsChart')
 							
-							alert('profitsChart : ' + JSON.stringify($.profitsChart()))
-							alert('chartFlag : ' + $.chartFlag())
+//							alert('profitsChart : ' + JSON.stringify($.profitsChart()))
+//							alert('chartFlag : ' + $.chartFlag())
 							$.getScript(line_graph_js)
 							
-							$('#test_history').empty()
+						/*	$('#test_history').empty()
 							$.each(d.exth, (i, j)=>{
 								$(`<div> bdate :${j.bdate} - profits : ${j.profits}, total : ${j.total}, rerate : ${j.rerate}, krw : ${j.krw}, usd : ${j.usd}, aud : ${j.aud}, 
 								eur : ${j.eur}, cny : ${j.cny}, jpy : ${j.jpy} </div>`)
 								.appendTo('#test_history')
-							})
+							})*/
 						},
 						error : e=>{
 							alert('ajax 실패')
@@ -232,6 +244,7 @@ exchange_test =(()=>{
 							.ui-datepicker-week-end .ui-state-default { color:red; }
 						</style>`)
 						
+
 		$.datepicker.setDefaults({
 	        dateFormat: 'yymmdd',
 	        prevText: '이전 달',
@@ -243,7 +256,7 @@ exchange_test =(()=>{
 	        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 	        showMonthAfterYear: true,
 	        yearSuffix: '년',
-	        yearRange: "2005:2025"
+	        yearRange: "2019:2020"
 	    })
 	    
 		$('#datepicker').datepicker({
@@ -257,8 +270,8 @@ exchange_test =(()=>{
 			// 달력 밑에 오늘과 닫기 버튼이 보인다.
 			showButtonPanel: false,
 			// 년 월이 셀렉트 박스로 표현 되어서 선택할 수 있다.
-			changeMonth: true,
-			changeYear: true,
+			changeMonth: false,
+			changeYear: false,
 			// 한번에 보이는 개월 수
 			numberOfMonths: 1,
 			// 데이터 포멧
@@ -280,14 +293,31 @@ exchange_test =(()=>{
 			// 주 표시
 //			showWeek: true
 			beforeShowDay: function(date){
+			    let day = date.getDay();
+				let thismonth = date.getMonth()+1;
+				let thisday = date.getDate();
 
-				var day = date.getDay();
+				if(thismonth < 10){
+					thismonth = "0"+thismonth;
+				}
+				if(thisday < 10){
+					thisday = "0"+thisday;
+				}
+				
+			    ymd = date.getFullYear() + "-" + thismonth + "-" + thisday;
+			    
+			    for(let i=0; i<disableDays.length; i++){
+			    	if ( $.inArray(ymd, disableDays) != -1 ) {		
+//			    		alert(ymd + ' === ' + disableDays[i] )
+				        return [false]	// ,'' , disableDaysName[i]
+				    }
+			    }
 
-				return [(day != 0 && day != 6)];
-
+			    return [(day != 0 && day != 6)]
 			}		
 		})
 	}
+
 	let amount_init =()=>{
 		$('#total_money').text(common.comma_create(100000000))
 		$('#exchange_KRW').text(common.comma_create(100000000))
