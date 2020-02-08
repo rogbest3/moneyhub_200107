@@ -151,16 +151,23 @@ mypage =(()=>{
 	
 	let remit_receive = ()=>{
 		deal = $.deal()
-			let exrate_arr = []
-			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	//합친뒤 리버스 걸기
-				$.each(d.exlist, (i, j)=>{
+		
+		let send_amount = $('.form-calculator .amount-row input.send-amount')
+		let exrate_arr = []
+			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
+				$.each(d.exlist.reverse(), (i, j)=>{
 					exrate_arr.push(parseFloat(j.exrate))
 				})
 				deal.exrate = exrate_arr[0]
 				sessionStorage.setItem('deal',JSON.stringify(deal))
-				alert(JSON.stringify(deal))
 			})
-				$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+				$('.form-calculator .amount-row input:text[numberOnly].send-amount').keyup(function(){
+					$(this).val($(this).val().replace(/[^0-9]/g,""))
+					if($(this).val() >5000) {
+						send_amount.val(5000)
+						$('#max_amount').text('송금 가능 금액은 5,000$입니다.')
+						}
+					
 					common.receive_value_calc(deal.exrate)
 				})
 	
@@ -172,24 +179,44 @@ mypage =(()=>{
 			
 			deal.cntp =$('.form-calculator .amount-row .receive p').text() 
 			deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
-			deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+			deal.trdusd = common.comma_remove(send_amount.val())
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			foreignRemit.onCreate()
-			
+			$('html').scrollTop(top);
 		})
 	}
 	
 	let remit_list =(x)=>{
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
-
+			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본'},
+				{ img : 'cn', cntcd : 'CNY', curr : '중국'},
+				{ img : 'us', cntcd : 'USD', curr : '미국'},
+				{ img : 'sg', cntcd : 'SGD', curr : '싱가포르'},
+				{ img : 'au', cntcd : 'AUD', curr : '호주'},
+				{ img : 'gb', cntcd : 'GBP', curr : '영국'},
+				{ img : 'vn', cntcd : 'VND', curr : '베트남'},
+				{ img : 'be', cntcd : 'EUR', curr : '벨기에'},
+				{ img : 'fr', cntcd : 'EUR', curr : '프랑스'},
+				{ img : 'de', cntcd : 'EUR', curr : '독일'},
+				{ img : 'it', cntcd : 'EUR', curr : '이탈리아'},
+				{ img : 'nl', cntcd : 'EUR', curr : '네덜란드'},
+				{ img : 'pt', cntcd : 'EUR', curr : '포르투갈'},
+				{ img : 'es', cntcd : 'EUR', curr : '스페인'}]
+			
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
 				$.each(d.map, (i, j)=>{ 
+					$.each(receive_data, (i, k)=>{
+						if(j.cntCd == k.cntcd && j.cntp == k.curr){
+							j.img = k.img
+						}
+					})
+					
 					$(`<div class="themoin-main-remititem">
 							<div class="simple">
 								<div class="unit-flag">
-									<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
+									<img src="https://img.themoin.com/public/img/circle-flag-${j.img}.svg">
 								</div>
 								<div class="simple-nametime">
 									<h3 class="username">
@@ -201,13 +228,13 @@ mypage =(()=>{
 								<div class="simple-amount">
 									<div class="user-sendlistdetail-amount">
 										<h3 class="user-sendlist-send">
-											<span class="user-sendlist-send">${j.trdKrw}</span> <span
+											<span class="user-sendlist-send">${common.comma_create(j.trdKrw)}</span> <span
 												class="user-sendlist-sendunit">KRW</span>
 										</h3>
 										<img src="https://img.themoin.com/public/img/ic-next-p.png"
 											class="user-sendlist-ic">
 										<h3 class="user-sendlist-receive">
-											<span class="user-sendlist-receive">${j.trdUsd}</span> <span
+											<span class="user-sendlist-receive">${common.comma_create(j.trdUsd)}</span> <span
 												class="user-sendlist-receiveunit">USD</span>
 										</h3>
 									</div>

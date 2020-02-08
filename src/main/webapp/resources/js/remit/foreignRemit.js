@@ -38,7 +38,7 @@ foreignRemit = (()=>{
 	let setContentView = ()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_first())
-		$('.themoin-footer').empty()
+		$('.themoin-footer').remove()
 		$('#popup-exchange').empty()
 	}
 	
@@ -48,17 +48,25 @@ foreignRemit = (()=>{
 		//글자들 임팩트 주기
 		
 		common.remit_send_focusout()
+		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		
 		if(deal.trdusd >= 3000)
 		{$('#fee_check').text('12')}
 		else {$('#fee_check').text('6')}
 		
 		common.receive_value_calc(deal.exrate)
-		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
-			common.receive_value_calc(deal.exrate)
-			if(common.comma_remove($('#sd_amount').val()) >= 3000){
+		
+		$('.form-calculator .amount-row input:text[numberOnly].send-amount').keyup(function(){
+			$(this).val($(this).val().replace(/[^0-9]/g,""))
+			if($(this).val() >5000) {
+				send_amount.val(5000)
+				$('#max_amount').text('송금 가능 금액은 5,000$입니다.')
+				}
+			if(common.comma_remove($(this).val()) >= 3000){
 				$('#fee_check').text('12')}
 			else {$('#fee_check').text('6')}
+			common.receive_value_calc(deal.exrate)
+			
 			/*$('.form-calculator .amount-row input.send-amount').replace(/\B(?=(\d{3})+(?!\d))/g, ",")*/
 		})
 		
@@ -69,12 +77,15 @@ foreignRemit = (()=>{
 		})*/
 		
 		$('#first_remit_btn').click(()=>{
-			deal.trdusd = $('.form-calculator .amount-row input.send-amount').val().replace(/\,/g, '') // 송금액을 바꿨을떄 금액
+			if(send_amount.val()==''){
+				alert('송금하실 금액을 입력해 주십시오.')
+			}else{
+			deal.trdusd = common.comma_remove(send_amount.val())// 송금액을 바꿨을떄 금액
 			deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			deal.fee = document.getElementById('fee_check').innerHTML
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_cusInfo()
-			
+			}
 			})
 	}
 	let remit_cusInfo =()=>{
@@ -91,14 +102,19 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_rcpt(deal))
 		$('#third_remit_btn').click(()=>{
-			deal.rcpsf =  document.getElementById('pass_fnm').value  // 수취인
-																		// 이름
-			deal.rcpsl =  document.getElementById('pass_lnm').value	// 수취인 성
-			deal.rcemail =  document.getElementById('rcpt_email').value // 수취인
-																		// 이메일
+			let rcpsf = document.getElementById('pass_fnm').value
+			let rcpsl = document.getElementById('pass_lnm').value
+			let rcemail = document.getElementById('rcpt_email').value
+			if(rcpsf =='' ||rcpsl ==''||rcemail ==''){
+				alert('정보를 모두 입력해 주십시오.')
+			}else{
+			deal.rcpsf =  rcpsf  			
+			deal.rcpsl =  rcpsl
+			deal.rcemail =  rcemail 
 			deal.cno = cus.cno
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_review()
+			}
 		})
 		$('#prev_sec_remit_btn').click(()=>{
 			remit_cusInfo()
@@ -133,9 +149,12 @@ foreignRemit = (()=>{
 		})
 	}
 	let remit_complete =()=>{
+		clock = new Clock()
 		$('.themoin-main')
 		.html(remit_vue.remit_complete(deal))
 		setInterval(msg_time, 1000);
+		$('#remit_clock').text(`${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일 ${clock.hours < 10 ? `0${clock.hours+1}` : clock.hours+1}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }까지`)
+		
 		$('#main_user_btn').click(()=>{
 			deal.trdusd = null
 			mypage.onCreate()
