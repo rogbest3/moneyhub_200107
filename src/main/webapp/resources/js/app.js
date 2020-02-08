@@ -76,7 +76,7 @@ app =(()=>{
 		.append(main_vue.main())
 		.append(cmm_vue.footer())
 		//================================================================= EJ
-		/*if($.cusInfo() != null && $.cusInfo() != ''){ //세션 정보로 메인 화면 구분 -> 새로고침 찾아서 적용할 것
+		if($.cusInfo() != null && $.cusInfo() != ''){ //세션 정보로 메인 화면 구분 -> 새로고침 찾아서 적용할 것
 			alert('로그인된 세션'+$.cusInfo())
 			$('#root')
 			.html(nav_vue.logined_nav(_))
@@ -87,7 +87,7 @@ app =(()=>{
 			.html(nav_vue.nav(_))
 			.append(main_vue.main())
 		}
-		$('#root').append(cmm_vue.footer())*/
+		$('#root').append(cmm_vue.footer())
 		//========================================================새로고침시 세션비우기 EJ
 		/*function Reload(){
 			if(event.keyCode == 116)

@@ -70,7 +70,10 @@ mypage =(()=>{
 		
 		$('#remit_btn')
 		.click(function(){
-		$("#remit_slider").toggle()
+		$("#remit_slider").toggle();
+			var top = $('#remit_slider').offset().top - 75;
+			$('html').scrollTop(top);
+			
 		})
 
 	}
@@ -84,7 +87,8 @@ mypage =(()=>{
 		
 		$('#logout')
 		.click(()=>{
-			sessionStorage.setItem('cus', JSON.stringify({})); // 로그아웃 클릭하면 세션에 담긴 고객정보를
+			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를
+			/*alert(sessionStorage.getItem('cus'))*/
 			sessionStorage.setItem('deal', JSON.stringify({}));
 			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
@@ -176,10 +180,8 @@ mypage =(()=>{
 	}
 	
 	let remit_list =(x)=>{
-		// 송금내역이 있으면 get 없으면 빈화면/카운트가 0이면 빈화면 0이상이면 GET
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
-			/* console.log(`들어온 알씨피티`+stringifyJSON(d.rcpt)) */
 
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
@@ -211,7 +213,7 @@ mypage =(()=>{
 									</div>
 									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
 									<div class="send-due">
-										<p>가상계좌 입금 이용 시간이 만료되었습니다.</p>
+										<p>정상 입금 확인되었습니다.</p>
 									</div>
 								</div>
 							</div>
@@ -220,11 +222,16 @@ mypage =(()=>{
 				    .appendTo('.remits')
 				})
 				
-				
+			
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
+					
+				$(`<button class="control disabled">
+			         	이전
+			         </button>`)
+			         .appendTo('.themoin-pagination')
 				
 				if(pxy.existPrev){
-					$(`<button class="control disabled">
+					$(`<button class="control">
 			         	이전
 			         </button>`)
 			         .appendTo('.themoin-pagination')
@@ -232,10 +239,8 @@ mypage =(()=>{
 			        	 mypage.remit_list({ nowPage : pxy.prevBlock, cno : cus.cno})
 			         })
 				}
-				$(`<button class="paginator"></button>`)
-				.appendTo('.themoin-pagination') 
 				for(let i = pxy.startPage; i<= pxy.endPage; i++){
-						$(`<button class="paginator current>
+						$(`<button class="paginator>
 								${i+1}
 							</button>`)
 					.appendTo('.paginator')
@@ -245,14 +250,13 @@ mypage =(()=>{
 					})
 					
 					if( pxy.nowPage == i ){
-
-						$(`<button>
+						$(`<button class="paginator  current">
 									${i+1}
 								</button>`)
 						.appendTo('.themoin-pagination')		
 						$('html').scrollTop(0);
 					}else{
-						$(`<button>
+						$(`<button  class="paginator">
 									${i+1}
 								</button>`)
 						.appendTo('.themoin-pagination')
@@ -263,8 +267,12 @@ mypage =(()=>{
 						})
 					}
 				}
-				if(pxy.existNext){
-					$(`<button class="control disabled">다음
+				$(`<button class="control disabled">다음
+	        	</button>`)
+	        	.appendTo('.themoin-pagination')
+				
+	        	if(pxy.existNext){
+					$(`<button class="control">다음
 			        	</button>`)
 			        .appendTo('.themoin-pagination')
 			        .click(()=>{
@@ -278,8 +286,6 @@ mypage =(()=>{
 					<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>
 				</div>`).appendTo('.user-limit')
 			}
-			
-
 		})
 	}
 	
