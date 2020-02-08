@@ -27,7 +27,10 @@ event =(()=>{
 	let setContentView =()=>{
 		$('.' + main_class)
 		.html(event_vue.event(img))
-		$('html').scrollTop(0);
+		$('html').scrollTop(0)
+		$('.themoin-landing-countries').remove()
+		$('.wu_send_product_2').remove()
+		$('.wu_send_product_3').remove()
 	}
 	
 	return { onCreate }

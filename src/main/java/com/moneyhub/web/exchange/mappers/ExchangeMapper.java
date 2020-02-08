@@ -5,11 +5,12 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
 
+import com.moneyhub.web.exchange.domains.Exchange;
 import com.moneyhub.web.exr.Exrate;
 
 @Repository
 public interface ExchangeMapper {
 
-	public ArrayList<Exrate> insertEx(HashMap<String, Object> exchange);
+	public void insertEx(Exchange ex);
 	public ArrayList<Exrate> exTrend(String cntcd);
 }

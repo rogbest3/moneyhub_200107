@@ -2,15 +2,18 @@
 var auth = auth || {}
 auth =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, img, auth_vue_js, cookie_js, kakao_js
+	let _, js, img, auth_vue_js, cookie_js, kakao_js, exch, cus
 	
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
 		img = $.img()
+		exch = $.exch()
+		cus = $.cusInfo()
 		auth_vue_js = js + '/vue/auth_vue.js'
 		cookie_js = js + '/cmm/cookie.js'
 		kakao_js = js + '/kakao/kakao_login.js'
+		
 	}
 	let onCreate =x=>{
 		init()
@@ -87,13 +90,13 @@ auth =(()=>{
 						/*$.extend(new Customer_Info(d.cus))*/
 						//======================================================
 						//====================================================== HM
+						
 						sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)
 						sessionStorage.setItem('ZIP', d.cus.zip)
 						sessionStorage.setItem('ADDR', d.cus.addr)
 						sessionStorage.setItem('DADDR', d.cus.daddr)
 						sessionStorage.setItem('CNO', d.cus.cno)
-						sessionStorage.setItem('ACC', JSON.stringify(d.result))
 						//======================================================
 						mypage.onCreate()
 					
@@ -304,7 +307,10 @@ auth =(()=>{
 						$('#cname').text(d.cname)
 						$('#account').text(d.acc.acctNo)
 						$('#balance').text(common.comma_create(d.acc.balance))
-						sessionStorage.setItem('acctNo',d.acc.acctNo)
+						cus.acctNo = d.acc.acctNo
+						sessionStorage.setItem('cus',JSON.stringify(cus))
+//						sessionStorage.setItem('ACCTNO',d.acc.acctNo)
+//						alert('acctNo는?????'+sessionStorage.getItem('ACCTNO'))
 					}else{
 						alert('실패')
 					}

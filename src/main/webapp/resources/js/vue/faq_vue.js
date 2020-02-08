@@ -13,18 +13,12 @@ faq_vue ={
 				                <p class="moin-error"></p>
 				            </div>
 				        </form>
-				        
 				        <div class="content">
-			               
 				        </div>
-				        
 				        <div class="wrap_paging">
 	                        <div class="bundle_paging">
-	                           
-	                            
 	                        </div>
 	                    </div>
-	                    
 				    </div>
 				</div>`
 	}

@@ -102,10 +102,17 @@ app =(()=>{
 		.html(main_vue.cntcd_popup())
 		.hide()
 
-		$('<button/>')
-		.text('송금하기')
-		.addClass('index-send-btn moin-body')
-		.appendTo('#remit_box')
+		$('#idx_exchg_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
+		$('#idx_remit_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
+		$('#idx_testexchg_btn')
 		.click(()=>{
 			auth.onCreate('login')
 		})

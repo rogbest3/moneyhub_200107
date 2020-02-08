@@ -29,14 +29,12 @@ public class ExchangeCtrl extends Proxy {
 	@Autowired ExchangeService exService;
 
 	@PostMapping("/insert")
-	public void insertExchange(@RequestBody HashMap<String, Object> exchange){
+	public Map<?, ?> insertExchange(@RequestBody HashMap<String, Object> exchange){
 		System.out.println("exchange들어옴???????????"+ exchange);
 		exService.insertExchange(exchange);
-//		Consumer<Exchange> c = o -> exMapper.insertEx(o);
-//		c.accept(exc);
-//		box.clear();
-//		box.put("msg", "SUCCESS");
-//		return box.get();
+		box.clear();
+		box.put("msg", "SUCCESS");
+		return box.get();
 	}
 	
 	@GetMapping("/extrend/cntcd/{cntcd}")

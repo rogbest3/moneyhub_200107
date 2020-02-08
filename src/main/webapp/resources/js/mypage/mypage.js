@@ -5,11 +5,12 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal,guide_recieve_js, remit_box_js,clock
+		line_graph_js,deal,guide_recieve_js, remit_box_js,clock, exch
 
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
+		exch = $.exch()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -84,6 +85,7 @@ mypage =(()=>{
 			sessionStorage.setItem('cus', null); // 로그아웃 클릭하면 세션에 담긴 고객정보를 비운다. 
 			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
+			$('html').scrollTop(0)
 		})
 		$('#compo')
 		.click(()=>{
@@ -147,14 +149,6 @@ mypage =(()=>{
 	
 	let remit_receive = ()=>{
 		deal = $.deal()
-
-		
-		/*$('.form-calculator .amount-row input.send-amount').keyup(()=>{
-			common.receive_value_calc(deal.exrate)
-		})
-		deal.trdusd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
-		sessionStorage.setItem('deal',JSON.stringify(deal))*/
-    
 			let exrate_arr = []
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 				$.each(d.exlist, (i, j)=>{
@@ -243,16 +237,17 @@ mypage =(()=>{
 			
 			//숙제 페이지네이션 코드 이해
 			let pxy = d.pager
-			
-			if(pxy.existPrev){
-				$(`<button class="control disabled">
-		         	이전
-		         </button>`)
-		         .appendTo('.themoin-pagination')
-		         .click(()=>{
-		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
-		         })
-			}
+			/*****************************************/
+//			if(pxy.existPrev){
+//				$(`<button class="control disabled">
+//		         	이전
+//		         </button>`)
+//		         .appendTo('.themoin-pagination')
+//		         .click(()=>{
+//		        	 mypage.remit_list({ nowPage : pxy.prevBlock})
+//		         })
+//			}
+			/*****************************************/
 			$(`<button class="paginator current"></button>`)
 			.appendTo('.themoin-pagination') 
 			for(let i = pxy.startPage; i<= pxy.endPage; i++){

@@ -26,45 +26,22 @@ public class ExchangeService {
 	@Autowired Account acc;
 	
 	public void insertExchange(HashMap<String, Object> exchange) {
+		System.out.println("exchangeService 들어옴???? -----------" + exchange);
 		String mtcn = CharUtil.excuteGenerate();
-		System.out.println("insertExchange의 mtcn1 - " + mtcn);
 		ex.setMtcn(mtcn);
-		System.out.println("insertExchange의 mtcn2 - " + ex.getMtcn());
-		
 		ex.setCemail(exchange.get("cemail").toString());
-		System.out.println("insertExchange의 Cemail - " + exchange.get("cemail").toString());
-		
 		ex.setCntcd(exchange.get("cntcd").toString());
-		System.out.println("insertExchange의 Cntcd - " + exchange.get("cntcd").toString());
-		
-		ex.setExchKrw(exchange.get("exch_krw").toString());
-		System.out.println("insertExchange의 exch_krw - " + exchange.get("exch_krw").toString());
-		
-		ex.setExchCnt(exchange.get("exch_cnt").toString());
-		System.out.println("insertExchange의 exch_cnt - " + exchange.get("exch_cnt").toString());
-		
+		ex.setExchKrw(exchange.get("exchKrw").toString());
+		ex.setExchCnt(exchange.get("exchCnt").toString());
 		ex.setExFee(1); //수수료율
-		System.out.println("insertExchange의 ExFee - " + ex.getExFee());
-		
-		ex.setFeeExrate((double)exchange.get("exrate") * 0.01); //수수료금액
-		System.out.println("exchange에서 가지고 온 Exrate1 - " + exchange.get("exrate"));
-		System.out.println("exchange에서 가지고 온 Exrate2 - " + (double)exchange.get("exrate"));
-		System.out.println("insertExchange의 Exrate - " + (double)exchange.get("exrate") * 0.01);
-		
-		ex.setMhRate(((double)exchange.get("exrate") + ((double)exchange.get("exrate") * 0.01))); //수수료 포함된 머니허브 환율 -> 이 환율이 환전 시 사용되는 환율
-		System.out.println("insertExchange의 MhRate - " + ((double)exchange.get("exrate") + ((double)exchange.get("exrate") * 0.01)));
-		
-		ex.setChngCausCd("0");
-		System.out.println("insertExchange의 setChngCausCd - " + ex.getChngCausCd());
-		
-		ex.setTrdStatCd("0");
-		System.out.println("insertExchange의 setTrdStatCd - " + ex.getTrdStatCd());
-		
-		//
-		ex.setAcctNo(exchange.get("acctNo").toString());
-		System.out.println("insertExchange의 AcctNo - " + exchange.get("acctNo").toString());
-		//
-		
+		Double exrate1 = (Double) exchange.get("exrate");
+		ex.setFeeExrate(exrate1 * (ex.getExFee()/100)); //수수료금액
+		ex.setMhRate(exrate1 + ex.getFeeExrate()); //수수료 포함된 머니허브 환율 -> 이 환율이 환전 시 사용되는 환율
+		String code = "0";
+		ex.setChngCausCd(code);
+		ex.setTrdStatCd(code);
+		System.out.println("최종 ex - " + ex);
+		exMapper.insertEx(ex);
 	}
 	
 	public Map<?, ?> ExTrend(String cntcd){

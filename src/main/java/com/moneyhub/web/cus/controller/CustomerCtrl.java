@@ -176,11 +176,11 @@ public class CustomerCtrl extends Proxy {
 		box.clear();
 		if (zip != null) {
 			box.put("msg", "true");
-			box.put("cus", cus);
+			box.put("cus", param);
 		} else {
 			box.put("msg", "false");
 		}
-		System.out.println("cus는?" + cus);
+		System.out.println("param은?" + param);
 		System.out.println("박스에 담긴 메시지: " + box.get());
 		return box.get();
 	}

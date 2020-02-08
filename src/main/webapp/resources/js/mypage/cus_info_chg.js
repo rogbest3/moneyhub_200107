@@ -2,10 +2,11 @@
 var cus_info_chg = cus_info_chg || {}
 cus_info_chg =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, main_vue_js
+	let _, js, main_vue_js, cus
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
+		cus = $.cusInfo()
 		main_vue_js = js + '/vue/main_vue.js'
 	}
 	
@@ -54,9 +55,10 @@ cus_info_chg =(()=>{
 					contentType : 'application/json',
 					success : d=>{
 						if(d.msg === 'true'){
-							sessionStorage.setItem('ZIP',d.cus.zip)
-							sessionStorage.setItem('ADDR',d.cus.addr)
-							sessionStorage.setItem('DADDR',d.cus.daddr)
+							cus.zip = d.cus.zip
+							cus.addr = d.cus.addr
+							cus.daddr = d.cus.daddr
+							sessionStorage.setItem('cus',JSON.stringify(cus))
 							alert('회원 정보가 수정되었습니다.')
 							cus_info.onCreate()
 						}else{
