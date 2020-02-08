@@ -14,19 +14,19 @@ foreignRemit = (()=>{
 		auth_js = js + '/cmm/auth.js'
 		cookie_js = js + '/cmm/cookie.js'
 		remit_vue_js = js + '/remit/remit_vue.js'
-// 		remit_box_js = js + '/remit/remit_box.js'
+ 		remit_box_js = js + '/remit/remit_box.js'
 	}
 
 	let onCreate =()=>{
 		init()
 		$.when(
-			$.getScript(remit_vue_js)
-// 			$.getScript(remit_box_js)
+			$.getScript(remit_vue_js),
+ 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
 			setContentView()
 			remit_deal()
-// 			remit_box.onCreate('')
+ 			remit_box.onCreate({ flag : 'remit', cntcd : '' })
 //			window.remit_send()
 			
 		})
@@ -43,9 +43,7 @@ foreignRemit = (()=>{
 	}
 	
 	let remit_deal = ()=>{
-		// 송금 금액 5000으로 제한 alert 띄우기
 		//실시간 환율 연동하기.....
-		//글자들 임팩트 주기
 		
 		common.remit_send_focusout()
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
@@ -67,14 +65,7 @@ foreignRemit = (()=>{
 			else {$('#fee_check').text('6')}
 			common.receive_value_calc(deal.exrate)
 			
-			/*$('.form-calculator .amount-row input.send-amount').replace(/\B(?=(\d{3})+(?!\d))/g, ",")*/
 		})
-		
-		/*$('#sd_amount').keyup(()=>{
-			if($('#sd_amount').val() >= 3000)
-			{$('#fee_check').text('12')}
-			else {$('#fee_check').text('6')}
-		})*/
 		
 		$('#first_remit_btn').click(()=>{
 			if(send_amount.val()==''){
@@ -127,11 +118,6 @@ foreignRemit = (()=>{
 		$('#complete_remit_btn')
 		.click( e => {  // 송금액, 수수료, 입금액,수취자 여권이름(성,이름),수취국가, 수취이메일
 			e.preventDefault()
-			// ======================================화면 작업용 no 에이작스
-			/*
-			 * remit_complete() $('html').scrollTop(0);
-			 */
-			// =============================================
 			$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',

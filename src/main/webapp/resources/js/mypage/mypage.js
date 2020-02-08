@@ -243,6 +243,14 @@ mypage =(()=>{
 										<p>정상 입금 확인되었습니다.</p>
 									</div>
 								</div>
+									<div class="simple-spacer"></div>
+										<div class="user-sendlist-status">
+											<div class="user-sendlist-state">
+												<div class="user-sendlist-state-text moin-body">입금 확인중</div>
+											</div>
+											<button type="button desktop" class="user-sendlist-btn">수정</button>
+											<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
+									</div>
 							</div>
 						</div>
 						`)
@@ -309,9 +317,14 @@ mypage =(()=>{
 			}else if(pxy.rowCount == 0){
 				$(`<div class="remits empty">
 					<br><h3>아직 송금 내역이 없습니다.</h3>
-					<button class="start">여기를 눌러 송금을 시작하세요.</button><br><br>
+					<button class="start" id="start">여기를 눌러 송금을 시작하세요.</button><br><br>
 					<img src="https://img.themoin.com/public/img/icon-null-illust.svg"><br><br>
 				</div>`).appendTo('.user-limit')
+				$('#start').click(()=>{
+					$("#remit_slider").toggle();
+					var top = $('#remit_slider').offset().top - 75;
+					$('html').scrollTop(top);
+				})
 			}
 		})
 	}

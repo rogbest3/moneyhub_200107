@@ -2,12 +2,19 @@ var remit_vue = remit_vue || {}
 remit_vue = {
 	remit_first: () => {
 		deal = $.deal()
+		cntimg = sessionStorage.getItem('cntimg')
 		return `<div class="themoin-remit-extended-component" style="margin-top: 50px;min-height:unset;"> 
 						<h2 class="title-amount">보내는 금액을 확인해주세요.</h2> 
 						<div id="moin-event-amount" class="moin-event-amount" style="text-align: center;"> 
 							<p class="color-deepgrey"></p> 
 						</div> 
-						<div class="form-calculator"> 
+						<div id="remit_box" class="form-calculator"> 
+							<div class="amount-row"> 
+								<div class="unit-select receive" style="display:-webkit-inline-box;border-width:inherit;max-width:none;align-self: center;">
+									<img src="${cntimg}">
+									<p style="font-size: 19px;margin: 8px 10px 0px 20px;">${deal.cntp}</p><h3 style="margin: 8px 0px 0px 0px;">${deal.cntcd}</h3>
+								</div>
+							</div> 
 							<div class="amount-row"> 
 								<div class=""> 
 									<p>송금 금액</p> 
