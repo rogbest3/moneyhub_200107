@@ -40,6 +40,11 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_first())
 		$('.themoin-footer').remove()
 		$('#popup-exchange').empty()
+		
+		let cntimg = sessionStorage.getItem('cntimg')
+		if(cntimg== null){
+			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
+		}
 	}
 	
 	let remit_deal = ()=>{

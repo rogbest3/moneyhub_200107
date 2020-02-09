@@ -115,6 +115,7 @@ mypage =(()=>{
 			$('html').scrollTop(0);
 		})
 	}
+	
 	let clock_excute =()=>{
 		clock = new Clock()
 		$('#clock').text(`실시간 모인 환율 - ${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일` +
