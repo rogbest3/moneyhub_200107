@@ -8,7 +8,7 @@ auth_mgmt =(()=>{
 		js = $.js()
 		exch = $.exch()
 		cus = $.cusInfo()
-		acc = $.account()
+		acc = $.acc()
 		main_vue_js = js + '/vue/main_vue.js'
 	}
 	
@@ -32,16 +32,12 @@ auth_mgmt =(()=>{
 		let cus = $.cusInfo()
         let cemail = cus.cemail
         let cno = cus.cno
-        alert(cus.cemail +"세션"+cus.cno)
         $.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, d=>{
-            alert("getJSon 성공"+ JSON.stringify(d))
             if(d.msg === "SUCCESS"){
                 $('#cname').text(cus.cname)
                 $('#account').text(d.acc.acctNo)
                 $('#balance').text(common.comma_create(d.acc.balance))
-                alert("JSON.stringify(d.acc)는?? 뭘까??? -> "+ JSON.stringify(d.acc))
                 sessionStorage.setItem('acc',JSON.stringify(d.acc))
-                alert('-----------> 이거 확인할거임 지금' + sessionStorage.getItem('acc'))
                 /*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
             }else{
                 alert('실패')

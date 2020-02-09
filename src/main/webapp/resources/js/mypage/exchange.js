@@ -7,7 +7,7 @@ exchange =(()=>{
 		js = $.js()
 		exch = $.exch()
 		cus = $.cusInfo()
-		acc = $.account()
+		acc = $.acc()
 		mypage_vue_js = js + '/vue/mypage_vue.js'
 		exChart_js = js + '/mypage/exChart.js'
 		remit_box_js = js + '/remit/remit_box.js'
@@ -80,9 +80,6 @@ exchange =(()=>{
 						exch.cemail = cus.cemail
 						exch.exrate = exch.exrate
 						sessionStorage.setItem('exch',JSON.stringify(exch))
-						alert('exch는? -----' + sessionStorage.getItem('exch'))
-						alert('cus? -----' + sessionStorage.getItem('cus'))
-						alert('acc? -----' + sessionStorage.getItem('acc'))
 						$('#auth_mgmt').each(function(){
 							$.ajax({
 								url : _+'/exchange/insert',
@@ -93,29 +90,21 @@ exchange =(()=>{
 								success : d=>{
 									if(d.msg === 'SUCCESS'){
 										alert('머니허브 계좌로 이동합니다.')
-										alert('insert 시킬 때 JSON.stringify(exch)는?????'+JSON.stringify(exch))
-										alert("그냥 acc는? 환전 하는 곳에서!  JSON.stringify(acc)는?? 뭘까??? -> "+ JSON.stringify(acc))
-										alert("환전 하는 곳에서!  JSON.stringify(d.acc)는?? 뭘까??? -> "+ JSON.stringify(d.acc))
 										$.ajax({
 											url : _ + '/exchange/balanceChg',
 											type : 'POST',
 											data : JSON.stringify({
 												cemail : cus.cemail,
 												exch : JSON.stringify(exch),
-												acc : JSON.stringify(d.acc)
+												acc : JSON.stringify(acc)
 											}),
 											dataType : 'json',
 											contentType : 'application/json',
 											success : d=>{
-												alert('d는????? -> '+d)
 												if(d.msg === 'SUCCESS'){
-													acc.withdrawal = ex.exchKrw
-													sessionStorage.setItem('acc',JSON.stringify(acc))
 													alert('회원 정보가 수정되었습니다.')
-													alert('세션에 담긴 acc는? ' + JSON.stringify(acc))
-													cus_info.onCreate()
-												}else{
-													alert('변경된 정보가 없습니다.')
+												}else if(d.msg === 'FAIL'){
+													alert('잔액이 부족합니다. 잔액를 확인해주세요.')
 												}
 												
 											},

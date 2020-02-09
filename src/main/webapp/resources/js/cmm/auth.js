@@ -72,7 +72,7 @@ auth =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			$.ajax({
-				url : _ + '/customers/login',
+				url : _ + '/customers/login/'+ $('#cemail').val() + '/',
 				type : 'POST',
 				data : JSON.stringify({
 					cemail : $('#cemail').val(),
@@ -82,7 +82,6 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						alert(JSON.stringify(d)+':<=d는??')
 						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
@@ -91,7 +90,7 @@ auth =(()=>{
 						/*$.extend(new Customer_Info(d.cus))*/
 						//======================================================
 						//====================================================== HM
-						
+						sessionStorage.setItem('acc', JSON.stringify(d.acc))
 						sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)
 						sessionStorage.setItem('ZIP', d.cus.zip)

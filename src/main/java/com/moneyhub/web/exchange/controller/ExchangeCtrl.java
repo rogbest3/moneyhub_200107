@@ -46,8 +46,17 @@ public class ExchangeCtrl extends Proxy {
 	
 	@PostMapping("/balanceChg")
 	public Map<?, ?> balanceChg(@RequestBody HashMap<String, Object> exchange){
-		System.out.println("계좌 현재 잔액 변경 들어옴 여기서 acc는? - " + exchange);
-		return exService.balanceChg(exchange);
+		System.out.println("계좌 현재 잔액 변경 들어옴 여기서 exchange는? - " + exchange);
+		exService.balanceChg(exchange);
+		box.clear();
+		box.put("acc", acc);
+		if(acc.getBalance() > 0) {
+			box.put("msg", "SUCCESS");
+		}else {
+			box.put("msg", "FAIL");
+		}
+		System.out.println("잔액 변경하는 자바 부분에서 box.get() -> " + box.get());
+		return box.get();
 	}
 	
 	

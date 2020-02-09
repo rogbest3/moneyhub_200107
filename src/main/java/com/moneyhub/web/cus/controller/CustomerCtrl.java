@@ -38,24 +38,25 @@ public class CustomerCtrl extends Proxy {
 	@Autowired AccountService accountService;
 	@Autowired AccountMapper accMapper;
 	@Autowired Account acc;
-	// @Autowired CustMailSender mailSender;
-	// private HttpServletRequest request;
 
-	@PostMapping("/login")
-	public Map<?, ?> login(@RequestBody Customer param) {
+	@PostMapping("/login/{cemail}/")
+	public Map<?, ?> login(@RequestBody Customer param, @PathVariable String cemail) {
 		System.out.println(param.toString());
 		Function<Customer, Customer> f = t -> cusMapper.login(t);
 		cus = f.apply(param);
 		// System.out.println(cus.getCemail());
+		Function<String, Account> f2 = t -> accMapper.getAcc(t);
+		acc = f2.apply(cemail);
 		String result = (cus != null) ? "SUCCESS" : "FAIL";
 		box.clear();
 		box.put("msg", result);
 		box.put("cus", cus);
+		box.put("acc", acc);
 		System.out.println(box.get());
 
 		return box.get();
 	}
-
+	
 	@PostMapping("/")
 	public Map<?, ?> join(@RequestBody Customer param) {
 		System.out.println("join 들어옴");

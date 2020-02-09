@@ -1,7 +1,6 @@
 package com.moneyhub.web.exchange.mappers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +13,5 @@ public interface ExchangeMapper {
 
 	public void insertEx(Exchange ex);
 	public ArrayList<Exrate> exTrend(String cntcd);
-	public ArrayList<Account> balanceChg(HashMap<String, Object> exchange);
+	public void balanceChg(Account acc);
 }

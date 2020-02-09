@@ -11,8 +11,8 @@ function Session(x){
 	sessionStorage.setItem('deal',JSON.stringify(deal));
 	var exch = {} // 환전 객체
 	sessionStorage.setItem('exch',JSON.stringify(exch));
-	var account = {}
-	sessionStorage.setItem('acc',JSON.stringify(account));
+	var acc = {}
+	sessionStorage.setItem('acc',JSON.stringify(acc));
 
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
@@ -24,7 +24,7 @@ function Session(x){
 		cusInfo : ()=>{return JSON.parse(sessionStorage.getItem('cus'))},
 		exrateSess : ()=>{ return JSON.parse(sessionStorage.getItem('exrateSess'))},
 		money : ()=>{ return JSON.parse(sessionStorage.getItem('money'))},
-		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
+		acc : ()=>{ return JSON.parse(sessionStorage.getItem('acc'))},
 		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))}
 	}
 }
