@@ -46,8 +46,8 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('55')
-		$('#cpwd').val('55')
+		$('#cemail').val('dmswl@dmswl.com')
+		$('#cpwd').val('12345678')
 
 		join_2_page_btn()
 	}
