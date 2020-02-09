@@ -69,34 +69,15 @@ public class ExchangeService {
 
 	public void balanceChg(HashMap<String, Object> exchange) {
 		System.out.println("Exchange.service balanceChg 들어옴 여기서 exchange는? - " + exchange);
-		
 		acc.setCemail(exchange.get("cemail").toString());
-		System.out.println("balanceChg의 cemail은? " + acc.getCemail());
-		
 		String stwithdrawal = exch.getExchKrw();
-		System.out.println("balanceChg의 stwithdrawl은? " + stwithdrawal);
-		
 		int withdrawal = Integer.parseInt(stwithdrawal.replaceAll(",", ""));
-		System.out.println("balanceChg의 withdrawl은? " + withdrawal);
-		
 		acc.setWithdrawal(withdrawal);
-		System.out.println("acc에 담긴 withdrawl은? " + acc.getWithdrawal()); //여기까지
-		
-		System.out.println("exchange에 담긴 balance 오브젝트 타입: "+exchange.get("acc").toString());
 		String stexchange = exchange.get("acc").toString();
-		
 		JSONObject json = new JSONObject(stexchange);
-		System.out.println("json의 balance"+json.getInt("balance"));
-	
 		int intbalance = json.getInt("balance");
-		System.out.println("balanceChg의 intbalance는?" + intbalance);
-		
 		int balance = intbalance - withdrawal;
-		System.out.println("balanceChg의 balance는?" + balance);
-		
 		acc.setBalance(balance);
-		System.out.println("acc에 담긴 balance는?" + acc.getBalance());
-		
 		if(acc.getBalance() > 0) {
 			Consumer<Account> c = o -> exMapper.balanceChg(acc);
 			c.accept(acc);
