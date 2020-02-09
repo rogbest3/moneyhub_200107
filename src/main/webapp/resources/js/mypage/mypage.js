@@ -260,10 +260,7 @@ mypage =(()=>{
 			
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
 					
-				$(`<button class="control disabled">
-			         	이전
-			         </button>`)
-			         .appendTo('.themoin-pagination')
+				
 				
 				if(pxy.existPrev){
 					$(`<button class="control">
@@ -273,7 +270,11 @@ mypage =(()=>{
 			         .click(()=>{
 			        	 mypage.remit_list({ nowPage : pxy.prevBlock, cno : cus.cno})
 			         })
-				}
+				}else{
+					$(`<button class="control disabled">
+			         	이전
+		         </button>`)
+		         .appendTo('.themoin-pagination')}
 				for(let i = pxy.startPage; i<= pxy.endPage; i++){
 						$(`<button class="paginator>
 								${i+1}
@@ -302,9 +303,7 @@ mypage =(()=>{
 						})
 					}
 				}
-				$(`<button class="control disabled">다음
-	        	</button>`)
-	        	.appendTo('.themoin-pagination')
+				
 				
 	        	if(pxy.existNext){
 					$(`<button class="control">다음
@@ -313,6 +312,10 @@ mypage =(()=>{
 			        .click(()=>{
 			        	mypage.remit_list({ nowPage : pxy.nextBlock, cno : cus.cno})
 			        })
+				}else{
+					$(`<button class="control disabled">다음
+		        	</button>`)
+		        	.appendTo('.themoin-pagination')
 				}
 			}else if(pxy.rowCount == 0){
 				$(`<div class="remits empty">
