@@ -78,7 +78,7 @@ auth_vue ={
 								<div class="themoin-password-input moin-input-group">
 									<div class="moin-input">
 										<label style="color: rgb(116, 127, 155);">비밀번호 (Password)</label>
-										<input id="cpwd" class="fs-block" placeholder="영문 숫자 조합 8~20" type="password" tabindex="0" value="">
+										<input id="cpwd" class="fs-block" placeholder="비밀번호를 입력해주세요." type="password" tabindex="0" value="">
 										<div class="check_font" id="pwd_check" ></div>
 									</div>
 									<p class="moin-error"></p>

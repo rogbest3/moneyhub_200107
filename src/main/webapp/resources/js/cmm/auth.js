@@ -102,6 +102,7 @@ auth =(()=>{
 					
 					}
 					else{
+						alert('이메일 및 비밀번호를 확인해주세요.')
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
 						$('#login_pwd').css('color', 'red')
 					}					
@@ -277,7 +278,6 @@ auth =(()=>{
 		     		
 		     		$('#birth_check').text('생년월일을 확인해주세요.');
 					$('#birth_check').css('color', 'red'); 
-		    	
 				}else{
 					$('#birth_check').text('');
 					birthJ = true;
@@ -292,15 +292,24 @@ auth =(()=>{
 			}else{
 				// 1.입력된 생년월일이 8자 초과할때 : auth:false
 				$('#birth_check').text('생년월일을 확인해주세요.');
-				$('#birth_check').css('color', 'red');  
+				$('#birth_check').css('color', 'red');
 			}
 		})
+		
+		
 		$('<button/>')
 		.text('가입완료')
 		.addClass('btn-submit')
 		.appendTo('.moin-login form.signup')
 		.click(e=>{
 			e.preventDefault()
+//			if(!$('#agree_box_1').is(":checked")){
+//				alert('이용약관 동의항목 체크가 필요합니다.')
+//				return false
+//			}else if(!$('#agree_box_1').is(":checked")){
+//				alert('개인정보 수집 이용 동의항목 체크가 필요합니다.')
+//				return false
+//			}
 			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
 				$.getJSON(_+'/customers/getAcc/' + sessionStorage.getItem('CEMAIL') + '/' + sessionStorage.getItem('CNO'), d=>{
 					if(d.msg === "SUCCESS"){
@@ -315,40 +324,50 @@ auth =(()=>{
 //						alert('acctNo는?????'+sessionStorage.getItem('ACCTNO'))
 					}else{
 						alert('실패')
+						return false
 					}
 				})
-				$.ajax({
-					url : _+'/customers/',
-					type : 'POST',
-					data : JSON.stringify({
-						cemail : $('#cemail').val(),
-						cpwd : $('#cpwd').val(),
-						cname : $('#lname').val() + $('#fname').val(),
-						cphone : $('#cphone').val(),
-						zip : $('#zip').val(),
-						addr : $('#addr').val(),
-						daddr : $('#daddr').val(),
-						birth : $('#birth').val()
-						// cemail, cpwd, cfm_cpwd, fname, lname,
-						// phone1(국가코드), cphone
-					}),
-					dataType : 'json',
-					contentType : 'application/json',
-					success : d=>{
-						if(d.msg === 'SUCCESS'){
-							login_page()
-							login()
-							alert('회원가입이 완료되었습니다.')
-						}else{
-							alert('회원가입 실패')
+				
+				if($('#lname').val().length > 0 && $('#fname').val().length > 0
+						&& $('#zip').val().length > 0 && $('#addr').val().length > 0 
+						&& $('#daddr').val().length > 0 && $('#birth').val().length > 0){
+					$.ajax({
+						url : _+'/customers/',
+						type : 'POST',
+						data : JSON.stringify({
+							cemail : $('#cemail').val(),
+							cpwd : $('#cpwd').val(),
+							cname : $('#lname').val() + $('#fname').val(),
+							zip : $('#zip').val(),
+							addr : $('#addr').val(),
+							daddr : $('#daddr').val(),
+							birth : $('#birth').val()
+							// cemail, cpwd, cfm_cpwd, fname, lname,
+							// phone1(국가코드), cphone
+						}),
+						dataType : 'json',
+						contentType : 'application/json',
+						success : d=>{
+							if(d.msg === 'SUCCESS'){
+								login_page()
+								login()
+								alert('회원가입이 완료되었습니다.')
+							}else{
+								alert('회원가입 실패')
+								return false
+							}
+						},
+						error : e=>{
+							alert('잘못 입력된 부분이 있습니다.')
+							return false
 						}
-					},
-					error : e=>{
-						alert('잘못 입력된 부분이 있습니다.')
-					}
-				})
+					})
+				}else{
+					alert('잘못 입력된 부분이 있습니다.')
+				}
 			}else{
 				alert('잘못 입력된 부분이 있습니다.')
+				return false
 			}
 		})
 	}

@@ -182,11 +182,11 @@ mypage_vue = {
 			            <ol>
 			                <li>
 			                    <p>HISTORY</p>
-			                    <p class="fs-block" id="date" style="color:black">2020-02-04</p>
+			                    <p class="fs-block" id="hisdate" style="color:black">2020-02-04</p>
 			                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="pm" style="color:black">+</p>
+			                    <p class="fs-block" id="hispm" style="color:black">+</p>
 			                    <p class="fs-block">&nbsp;</p>
-			                    <p class="fs-block" id="history" style="color:black">100,000,000</p>
+			                    <p class="fs-block" id="exhistory" style="color:black">100,000,000</p>
 			                    <p class="fs-block">&nbsp;</p>
 			                    <p class="fs-block" style="color:black">원</p>
 			                </li>

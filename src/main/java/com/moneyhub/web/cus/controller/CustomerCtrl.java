@@ -71,6 +71,7 @@ public class CustomerCtrl extends Proxy {
 		accountService.createAcc(param);
 		box.clear();
 		box.put("msg", "SUCCESS");
+		System.out.println("회원가입 box.get() : " + box.get().toString());
 		return box.get();
 	}
 
