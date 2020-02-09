@@ -48,7 +48,7 @@ foreignRemit = (()=>{
 	}
 	
 	let remit_deal = ()=>{
-		//실시간 환율 연동하기.....
+		//숙제 실시간 환율 연동하기.....
 		
 		common.remit_send_focusout()
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
@@ -76,7 +76,7 @@ foreignRemit = (()=>{
 			if(send_amount.val()==''){
 				alert('송금하실 금액을 입력해 주십시오.')
 			}else{
-			deal.trdusd = common.comma_remove(send_amount.val())// 송금액을 바꿨을떄 금액
+			deal.trdusd = common.comma_remove(send_amount.val())
 			deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			deal.fee = document.getElementById('fee_check').innerHTML
 			sessionStorage.setItem('deal',JSON.stringify(deal))
@@ -121,7 +121,7 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_review(deal)) 
 		
 		$('#complete_remit_btn')
-		.click( e => {  // 송금액, 수수료, 입금액,수취자 여권이름(성,이름),수취국가, 수취이메일
+		.click( e => {
 			e.preventDefault()
 			$.ajax({
 				url: _+'/remit/insert',
@@ -145,12 +145,29 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_complete(deal))
 		setInterval(msg_time, 1000);
 		$('#remit_clock').text(`${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일 ${clock.hours < 10 ? `0${clock.hours+1}` : clock.hours+1}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }까지`)
-		
-		$('#main_user_btn').click(()=>{
-			deal.trdusd = null
-			mypage.onCreate()
-			$('html').scrollTop(0);
-		})
+		deal.remitstart =`${clock.year}${clock.month+1}${clock.clockDate}${clock.hours < 10 ? `0${clock.hours}` : clock.hours}${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }`
+		deal.remitend = `${clock.year}${clock.month+1}${clock.clockDate}${clock.hours < 10 ? `0${clock.hours+1}` : clock.hours+1}${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }`
+		sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert(deal.remitend)
+			$('#main_user_btn').click( e => {
+				e.preventDefault()
+				$.ajax({
+					url: _+'/customers/acc/update',
+					type : 'POST',
+					data : JSON.stringify(deal),
+					contentType :'application/json',
+					success : () => {
+						alert("ajax성공")
+					},
+					error : (request,status,error) => {
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				})
+				/*deal.trdusd = null
+				mypage.onCreate()
+				mypage.remit_list(deal)
+				$('html').scrollTop(0);*/
+			})
 		
 		$('#copy_btn').on('click', function(e){
 			$('#clip_target').val(common.comma_remove($('#copy_amt').html()))

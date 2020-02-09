@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moneyhub.web.cus.domains.Account;
+import com.moneyhub.web.cus.domains.AccountHistory;
 import com.moneyhub.web.cus.domains.Customer;
 import com.moneyhub.web.cus.mappers.AccountMapper;
 import com.moneyhub.web.pxy.Box;
@@ -12,6 +13,7 @@ import com.moneyhub.web.pxy.Box;
 public class AccountService {
 	
 	@Autowired Account acc;
+	@Autowired AccountHistory accHistory;
 	@Autowired AccountMapper accMapper;
 	@Autowired Box<Object> box;
 	@Autowired Customer cus;
@@ -30,7 +32,11 @@ public class AccountService {
 			acc.setAcctNo(result);
 			acc.setBalance(balance);
 			System.out.println("acc는????" + acc.toString());
-			accMapper.createAcc(acc);
+			//EJ 계좌 히스토리
+			/*
+			 * accMapper.createAcc(acc); accHistory.setBalance(balance);
+			 * accHistory.setAcctNo(result); accHistory.setCemail(param.getCemail());
+			 */
 		}
 	}
 	

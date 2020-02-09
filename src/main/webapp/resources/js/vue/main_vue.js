@@ -20,24 +20,20 @@ main_vue ={
             </ul>
         </div>
 		<div class="themoin-remit-component"> 
-			<div id="moin-event-amount" class="moin-event-amount"> 
-			<h1>머니허브 기능 이용하기</span> 
-				<p class="color-deepgrey"></p> 
-			</div>
-			<div class="steps" style="max-width: 1365px; text-align: center; "> 
-					<div id="idx_exchg_btn" class="threesteps">
-					<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
-					<h3>환전</h3>
-					</div>
-					<div id="idx_remit_btn" class="threesteps">
-					<img src="/web/resources/img/main/remit.png" style="width: 300px">
-					<h3>wu 해외송금</h3>
-					</div>
-					<div id="idx_testexchg_btn" class="threesteps">
-					<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
-					<h3>모의 환전</h3>
-					</div>
-					</div>
+			<div class="steps" style="max-width: 1365px; text-align: center;">
+							<div class="threesteps">
+									<img src="/web/resources/img/main/exchange.png" style="width: 250px;">
+									<h3>환전</h3>
+								</div>
+								<div id="remit_btn" class="threesteps">
+									<img src="/web/resources/img/main/remit.png" style="width: 300px">
+									<h3>wu 해외송금</h3>
+								</div>
+								<div class="threesteps">
+									<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
+									<h3>모의 환전</h3>
+								</div>
+				</div>
 			</div> 
 		</div> 
 		<div class="themoin-landing-countries"> 
@@ -78,7 +74,7 @@ main_vue ={
 						<img src="https://img.themoin.com/public/img/circle-flag-vn.svg"> 
 						<span class="newmoin-text-subtitle">베트남</span> 
 						<p>계좌송금</p> 
-					</li>
+					</li></ul>
 					<ul><li> 
 						<img src="https://img.themoin.com/public/img/circle-flag-de.svg"> 
 						<span class="newmoin-text-subtitle">독일</span> 
@@ -270,13 +266,15 @@ main_vue ={
 				</div> 
 				<div class="user-account"> 
 					<p class="warning"> 
-						내 입금 계좌 :  <span class="fs-block">국민은행 9427010261003 이은지</span> 
+						내 입금 계좌 :  <span class="fs-block" id="cus_account">국민은행 9427010261003 이은지</span> 
 					</p> 
 				</div> 
 				<div class="user-title"> 
 					<h3>송금 내역</h3> 
 				</div> 
 				<div class="user-limit"> 
+					<p>계좌 잔액 :<span id="acc_bal"> 0</span> 원</p> 
+					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 누적 송금액 :<span> 0</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 잔여 한도 :<span class=""> 55,000,000</span> 원</p> 

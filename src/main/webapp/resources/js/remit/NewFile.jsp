@@ -7,6 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="steps" style="max-width: 1365px; text-align: center;">
+		<div id="idx_exchg_btn" class="threesteps">
+			<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
+			<h3>환전</h3>
+		</div>
+		<div id="idx_remit_btn" class="threesteps">
+			<img src="/web/resources/img/main/remit.png" style="width: 300px">
+			<h3>wu 해외송금</h3>
+		</div>
+		<div id="idx_testexchg_btn" class="threesteps">
+			<img src="/web/resources/img/main/testexchange.png"
+				style="width: 300px">
+			<h3>모의 환전</h3>
+		</div>
+	</div>
 	<div class="themoin-main-remititem">
 		<div class="simple">
 			<div class="unit-flag">
