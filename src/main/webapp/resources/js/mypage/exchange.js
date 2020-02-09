@@ -1,12 +1,13 @@
 var exchange = exchange || {}
 exchange =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, nav_vue_js, exch, cus
+	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, nav_vue_js, exch, cus, acc
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
 		exch = $.exch()
 		cus = $.cusInfo()
+		acc = $.account()
 		mypage_vue_js = js + '/vue/mypage_vue.js'
 		exChart_js = js + '/mypage/exChart.js'
 		remit_box_js = js + '/remit/remit_box.js'
@@ -50,12 +51,11 @@ exchange =(()=>{
 		})
 		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 					common.receive_value_calc(exch.exrate)
-				})
+		})
+				
 		$(function(){
 			$('#exchangebutton').one('click', function(){
 				$('#chart').fadeIn()
-				
-				
 				$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
 					if(d.msg === 'UP'){
 						$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
@@ -73,6 +73,7 @@ exchange =(()=>{
 				$(this).click(function(){
 					if(confirm('환전하시겠습니까? 확인을 누르시면 바로 실행됩니다.')){
 						sessionStorage.getItem('cus')
+						sessionStorage.getItem('acc')
 						exch.exchKrw = $('.form-calculator .amount-row input.send-amount').val() //환전할 원화 금액
 						exch.exchCnt = $('.form-calculator .amount-row input.receive-amount').val() //환전된 외화 금액
 						exch.cntcd = $('.form-calculator .amount-row .receive h3').text()
@@ -80,6 +81,8 @@ exchange =(()=>{
 						exch.exrate = exch.exrate
 						sessionStorage.setItem('exch',JSON.stringify(exch))
 						alert('exch는? -----' + sessionStorage.getItem('exch'))
+						alert('cus? -----' + sessionStorage.getItem('cus'))
+						alert('acc? -----' + sessionStorage.getItem('acc'))
 						$('#auth_mgmt').each(function(){
 							$.ajax({
 								url : _+'/exchange/insert',
@@ -88,9 +91,40 @@ exchange =(()=>{
 								dataType : 'json',
 								contentType : 'application/json',
 								success : d=>{
-									alert(JSON.stringify(exch))
 									if(d.msg === 'SUCCESS'){
 										alert('머니허브 계좌로 이동합니다.')
+										alert('insert 시킬 때 JSON.stringify(exch)는?????'+JSON.stringify(exch))
+										alert("그냥 acc는? 환전 하는 곳에서!  JSON.stringify(acc)는?? 뭘까??? -> "+ JSON.stringify(acc))
+										alert("환전 하는 곳에서!  JSON.stringify(d.acc)는?? 뭘까??? -> "+ JSON.stringify(d.acc))
+										$.ajax({
+											url : _ + '/exchange/balanceChg',
+											type : 'POST',
+											data : JSON.stringify({
+												cemail : cus.cemail,
+												exch : JSON.stringify(exch),
+												acc : JSON.stringify(d.acc)
+											}),
+											dataType : 'json',
+											contentType : 'application/json',
+											success : d=>{
+												alert('d는????? -> '+d)
+												if(d.msg === 'SUCCESS'){
+													acc.withdrawal = ex.exchKrw
+													sessionStorage.setItem('acc',JSON.stringify(acc))
+													alert('회원 정보가 수정되었습니다.')
+													alert('세션에 담긴 acc는? ' + JSON.stringify(acc))
+													cus_info.onCreate()
+												}else{
+													alert('변경된 정보가 없습니다.')
+												}
+												
+											},
+											error : e=>{
+												alert('cus_info_chg ajax 실패')  
+											}
+										})
+										
+										
 										var tab_id = $(this).attr('data-tab')
 										$(this).addClass('active')
 										$("#"+tab_id).addClass('active')

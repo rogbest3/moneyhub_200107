@@ -24,7 +24,7 @@
 		LIMIT 0,10
 	</select>
 	
-	<update id="balanceChg" parameterType="Account">
+	<update id="balanceChg" parameterType="Exchange">
 		UPDATE ACCOUNT
 		SET BALANCE = #{balance}
 		WHERE CEMAIL = #{cemail}

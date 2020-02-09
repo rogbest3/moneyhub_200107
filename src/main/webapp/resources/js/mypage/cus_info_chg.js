@@ -47,7 +47,7 @@ cus_info_chg =(()=>{
 					type : 'POST',
 					data : JSON.stringify({
 						cemail : sessionStorage.getItem('CEMAIL'),
-						zip : $('#zip').val(),
+						zip : $('#zip').val	(),
 						addr : $('#addr').val(),
 						daddr : $('#daddr').val()
 					}),

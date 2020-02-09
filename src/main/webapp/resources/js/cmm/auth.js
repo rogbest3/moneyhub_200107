@@ -82,6 +82,7 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
+						alert(JSON.stringify(d)+':<=d는??')
 						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
@@ -307,8 +308,10 @@ auth =(()=>{
 						$('#cname').text(d.cname)
 						$('#account').text(d.acc.acctNo)
 						$('#balance').text(common.comma_create(d.acc.balance))
-						cus.acctNo = d.acc.acctNo
-						sessionStorage.setItem('cus',JSON.stringify(cus))
+						acc.acctNo = d.acc.acctNo
+						acc.balance = d.acc.balance
+						sessionStorage.setItem('acc',JSON.stringify(acc))
+						alert('회원가입 시 세션에 저장된 acc는???' + JSON.stringify(acc))
 //						sessionStorage.setItem('ACCTNO',d.acc.acctNo)
 //						alert('acctNo는?????'+sessionStorage.getItem('ACCTNO'))
 					}else{

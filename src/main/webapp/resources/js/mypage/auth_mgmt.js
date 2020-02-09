@@ -2,10 +2,13 @@
 var auth_mgmt = auth_mgmt || {}
 auth_mgmt =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, main_vue_js
+	let _, js, main_vue_js, exch, cus, acc
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
+		exch = $.exch()
+		cus = $.cusInfo()
+		acc = $.account()
 		main_vue_js = js + '/vue/main_vue.js'
 	}
 	
@@ -26,16 +29,25 @@ auth_mgmt =(()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
     
-		$.getJSON(_+'/customers/getAcc/' + sessionStorage.getItem('CEMAIL') + '/' + sessionStorage.getItem('CNO'), d=>{
-			if(d.msg === "SUCCESS"){
-				$('#cname').text(d.cname)
-				$('#account').text(d.acc.acctNo)
-				$('#balance').text(common.comma_create(d.acc.balance))
-				sessionStorage.setItem('acctNo',d.acc.acctNo)
-			}else{
-				alert('실패')
-			}
-		})
+		let cus = $.cusInfo()
+        let cemail = cus.cemail
+        let cno = cus.cno
+        alert(cus.cemail +"세션"+cus.cno)
+        $.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, d=>{
+            alert("getJSon 성공"+ JSON.stringify(d))
+            if(d.msg === "SUCCESS"){
+                $('#cname').text(cus.cname)
+                $('#account').text(d.acc.acctNo)
+                $('#balance').text(common.comma_create(d.acc.balance))
+                alert("JSON.stringify(d.acc)는?? 뭘까??? -> "+ JSON.stringify(d.acc))
+                sessionStorage.setItem('acc',JSON.stringify(d.acc))
+                alert('-----------> 이거 확인할거임 지금' + sessionStorage.getItem('acc'))
+                /*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
+            }else{
+                alert('실패')
+            }
+        })	
+        
 		
 		$('#copy_btn').on('click', function(e){
 			var text = $('#account').html()

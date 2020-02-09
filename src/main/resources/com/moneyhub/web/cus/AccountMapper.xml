@@ -18,10 +18,10 @@
 		WHERE ACCT_NO = #{acct_no}
 	</select>
 	
-	<select id="getAcc" resultType="Account">
-		SELECT *
-		FROM ACCOUNT
-		WHERE CEMAIL = #{cemail}
-	</select>
+	 <select id="getAcc" resultType="Account">
+        SELECT CEMAIL cemail, ACCT_NO acctNo, BALANCE balance,  CRTDT crtdt
+        FROM ACCOUNT
+        WHERE CEMAIL = #{cemail}
+   	 </select>
 	
 </mapper>

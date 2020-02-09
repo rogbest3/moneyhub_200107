@@ -1,5 +1,6 @@
 package com.moneyhub.web.cus.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -184,25 +185,16 @@ public class CustomerCtrl extends Proxy {
 		System.out.println("박스에 담긴 메시지: " + box.get());
 		return box.get();
 	}
-	
 
 	@GetMapping("/getAcc/{cemail}/{cno}")
-	public Map<? ,?> getAcc(@PathVariable String cemail, @PathVariable String cno){
-		System.out.println("=============================계좌번호 조회 들어옴1!!!!!" + cemail);
-		Function<String, Account> f = t -> accMapper.getAcc(t);
-		acc = f.apply(cemail);
-		cus.setCemail(cemail);
-		cus.setCno(cno);
-		Function<Customer, Customer> f2 = t -> cusMapper.getInfo(t);
-		cus = f2.apply(cus);
-		box.clear();
-		box.put("msg", "SUCCESS");
-		box.put("cemail", cus.getCemail());
-		box.put("cname", cus.getCname());
-		box.put("acc", acc);
-		System.out.println("acc는?" + acc.getAcctNo());
-		System.out.println("box.get() -----------> "+box.get().toString());
-		return box.get();
-	}
+    public Map<? ,?> getAcc(@PathVariable HashMap<String,Object> map){
+	    box.clear();
+	    System.out.println("=============================계좌번호  조회 들어옴1!!!!!" +map);
+	    Function<String, Account> f = t -> accMapper.getAcc(t);
+	    box.put("msg","SUCCESS");
+	    box.put("acc", f.apply(map.get("cemail").toString()));
+	    System.out.println("box.get() -----------> "+box.get().toString());
+	    return box.get();
+    }
 	
 }

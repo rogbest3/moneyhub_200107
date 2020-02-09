@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.moneyhub.web.cus.domains.Account;
 import com.moneyhub.web.exchange.domains.Exchange;
 import com.moneyhub.web.exchange.mappers.ExchangeMapper;
 import com.moneyhub.web.exchange.services.ExchangeService;
@@ -23,10 +24,11 @@ import com.moneyhub.web.pxy.Proxy;
 @RequestMapping("/exchange")
 public class ExchangeCtrl extends Proxy {
 
-	@Autowired Exchange exc;
+	@Autowired Exchange ex;
 	@Autowired ExchangeMapper exMapper;
 	@Autowired Box<Object> box;
 	@Autowired ExchangeService exService;
+	@Autowired Account acc;
 
 	@PostMapping("/insert")
 	public Map<?, ?> insertExchange(@RequestBody HashMap<String, Object> exchange){
@@ -41,6 +43,13 @@ public class ExchangeCtrl extends Proxy {
 	public Map<?, ?> exTrend(@PathVariable String cntcd) {
 		return exService.ExTrend(cntcd);
 	}
+	
+	@PostMapping("/balanceChg")
+	public Map<?, ?> balanceChg(@RequestBody HashMap<String, Object> exchange){
+		System.out.println("계좌 현재 잔액 변경 들어옴 여기서 acc는? - " + exchange);
+		return exService.balanceChg(exchange);
+	}
+	
 	
 	
 	

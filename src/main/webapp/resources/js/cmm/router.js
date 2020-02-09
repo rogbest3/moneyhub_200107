@@ -11,6 +11,8 @@ function Session(x){
 	sessionStorage.setItem('deal',JSON.stringify(deal));
 	var exch = {} // 환전 객체
 	sessionStorage.setItem('exch',JSON.stringify(exch));
+	var account = {}
+	sessionStorage.setItem('acc',JSON.stringify(account));
 
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
