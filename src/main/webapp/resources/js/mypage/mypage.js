@@ -151,20 +151,7 @@ mypage =(()=>{
 	
 	let remit_receive = ()=>{
 		deal = $.deal()
-		cus = $.cusInfo()
-	    let cemail = cus.cemail
-		let cno = cus.cno
-		//숙제 안전하게 실행되지 않음 
-		$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, d=>{
-			if(d.msg === "SUCCESS"){
-				alert("getJSon 성공"+ JSON.stringify(d))
-				$('#cus_account').text(`국민은행 ${d.acc.acctNo} ${cus.cname}`)
-				$('#acc_bal').text(common.comma_create(d.acc.balance))
-				/*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
-			}else{
-				alert('실패')
-			}
-		})
+		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	

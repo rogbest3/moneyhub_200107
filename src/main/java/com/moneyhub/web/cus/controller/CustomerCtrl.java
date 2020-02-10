@@ -74,11 +74,9 @@ public class CustomerCtrl extends Proxy {
 
 	@GetMapping("/existid/{cemail}/")
 	public Map<?, ?> existId(@PathVariable String cemail) {
-		System.out.println("existid 들어옴");
 		Function<String, Integer> f = o -> cusMapper.existId(o);
 		box.clear();
 		box.put("msg", (f.apply(cemail) != 0) ? "Y" : "N");
-		System.out.println(box.get());
 		return box.get();
 	}
 	
@@ -193,10 +191,11 @@ public class CustomerCtrl extends Proxy {
 		  Function<String, Account> f = t -> accMapper.getAcc(t);
 		  box.put("msg","SUCCESS"); 
 		  box.put("acc", f.apply(map.get("cemail").toString())); 
-		  System.out.println("box.get() -----------> "+box.get().toString());
+		  System.out.println("box.get() -----------> "+box.get());
 		 
 		return box.get();
 	}
+	
 	@PostMapping("/acc/update")
 	public void updateAcc(@RequestBody HashMap<String, Object> deal) {
 		//EJ 계좌 히스토리

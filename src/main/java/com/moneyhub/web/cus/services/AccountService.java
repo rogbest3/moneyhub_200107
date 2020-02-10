@@ -32,9 +32,10 @@ public class AccountService {
 			acc.setAcctNo(result);
 			acc.setBalance(balance);
 			System.out.println("acc는????" + acc.toString());
+			accMapper.createAcc(acc);
 			//EJ 계좌 히스토리
 			/*
-			 * accMapper.createAcc(acc); accHistory.setBalance(balance);
+			 * accHistory.setBalance(balance);
 			 * accHistory.setAcctNo(result); accHistory.setCemail(param.getCemail());
 			 */
 		}

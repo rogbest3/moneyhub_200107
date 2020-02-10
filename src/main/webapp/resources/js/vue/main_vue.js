@@ -193,6 +193,7 @@ main_vue ={
 	},
 	logined_main : ()=>{
 		deal = $.deal()
+		cus = $.cusInfo()
 		return `<div class="themoin-main"> 
 			<div class="themoin-currency-component" style="height: 230px;"> 
 		   	  	<div class="content"> 
@@ -266,14 +267,14 @@ main_vue ={
 				</div> 
 				<div class="user-account"> 
 					<p class="warning"> 
-						내 입금 계좌 :  <span class="fs-block" id="cus_account">국민은행 9427010261003 이은지</span> 
+						내 입금 계좌 :  <span class="fs-block" id="cus_account">국민은행 ${cus.acctNo} ${cus.cname}</span> 
 					</p> 
 				</div> 
 				<div class="user-title"> 
 					<h3>송금 내역</h3> 
 				</div> 
 				<div class="user-limit"> 
-					<p>계좌 잔액 :<span id="acc_bal"> 0</span> 원</p> 
+					<p>계좌 잔액 :<span id="acc_bal"> ${cus.balance}</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 누적 송금액 :<span> 0</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 

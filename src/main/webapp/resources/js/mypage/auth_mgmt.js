@@ -26,22 +26,6 @@ auth_mgmt =(()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
 		
-		let cus = $.cusInfo()
-	    let cemail = cus.cemail
-		let cno = cus.cno
-		alert(cus.cemail +"세션"+cus.cno)
-		$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, d=>{
-			alert("getJSon 성공"+ JSON.stringify(d))
-			if(d.msg === "SUCCESS"){
-				$('#cname').text(cus.cname)
-				$('#account').text(d.acc.acctNo)
-				$('#balance').text(common.comma_create(d.acc.balance))
-				/*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
-			}else{
-				alert('실패')
-			}
-		})
-		
 		$('#copy_btn').on('click', function(e){
 			var text = $('#account').html()
 			$('#clip_target').val(text)
