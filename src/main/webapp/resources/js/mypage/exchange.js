@@ -38,7 +38,7 @@ exchange =(()=>{
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
-//		$('#popup-exchange').empty()
+		$('#popup-exchange').empty()
 		
 		let cntcd = $('.form-calculator .amount-row .receive h3').text()
 		let exch_arr = []
@@ -112,7 +112,6 @@ exchange =(()=>{
 												alert('cus_info_chg ajax 실패')  
 											}
 										})
-										
 										
 										var tab_id = $(this).attr('data-tab')
 										$(this).addClass('active')

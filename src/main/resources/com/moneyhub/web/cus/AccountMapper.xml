@@ -8,7 +8,7 @@
 	<insert id="createAcc" parameterType="Account">
 	    INSERT INTO ACCOUNT (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL, 
 	    					ACHCNTCD, CRTMEM, CRTDT, UPMEM, UPDT) 
-	    VALUES (#{cemail}, #{bsdate}, #{acctNo}, #{balance}, #{deposit}, #{withdrawal},
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{withdrawal},
 	    		#{achcntcd}, #{crtmem}, now(), #{upmem}, #{updt})
 	</insert>
 	

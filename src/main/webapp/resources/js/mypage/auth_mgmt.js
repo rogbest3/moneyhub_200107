@@ -36,22 +36,21 @@ auth_mgmt =(()=>{
         let exchKrw = exch.exchKrw
         let bsdate = exch.bsdate
         $.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, d=>{
-        	alert('d는? 뭘까요? ' + JSON.stringify(d))
         	
-        	$(function(){
-        		let accInfo = new Array(cus.cname,d.acc.acctNo,common.comma_create(d.acc.balance))
-        		$('p').html(accInfo.join('  '))
-        	})
+//        	$(function(){
+//        		let accInfo = new Array(cus.cname,d.acc.acctNo,common.comma_create(d.acc.balance))
+//        		$('p').html(accInfo.join('  '))
+//        	})
         	
-//            if(d.msg === "SUCCESS"){
-//                $('#cname').text(cus.cname)
-//                $('#account').text(d.acc.acctNo)
-//                $('#balance').text(common.comma_create(d.acc.balance))
-//                sessionStorage.setItem('acc',JSON.stringify(d.acc))
-//                /*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
-//            }else{
-//                alert('실패')
-//            }
+            if(d.msg === "SUCCESS"){
+                $('#cname').text(cus.cname)
+                $('#account').text(d.acc.acctNo)
+                $('#balance').text(common.comma_create(d.acc.balance))
+                sessionStorage.setItem('acc',JSON.stringify(d.acc))
+                /*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
+            }else{
+                alert('실패')
+            }
         })	
         
 		
