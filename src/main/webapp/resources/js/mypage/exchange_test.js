@@ -3,7 +3,7 @@ exchange_test =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 
 	let _, js, mypage_vue_js, global_map_js, exth, exrateSess, profitsChart, 
-		bdate_exist_flag, deposit, exchangeCount, getCno, line_graph_js, disableDays,
+		bdate_exist_flag, deposit, getCno, line_graph_js, disableDays,
 		getMapFlag, saveFlag
 		
 	let init =()=>{
@@ -17,7 +17,6 @@ exchange_test =(()=>{
 		profitsChart = {}
 		bdate_exist_flag = false
 		deposit = 100000000
-		exchangeCount = 0
 		getCno = $.cusInfo().cno
 		getMapFlag = false
 		saveFlag = false
@@ -45,7 +44,7 @@ exchange_test =(()=>{
 	let onCreate2 =()=>{
 		setContentView2()
 		retention_amount()
-		exchange_popup()
+//		exchange_popup()
 		
 	//	getHoliday()
 		datepicker_show()
@@ -73,7 +72,11 @@ exchange_test =(()=>{
 		.addClass('btn btn-lg btn-info')
 		.appendTo('#test_mode_1')
 		.click(()=>{
-			
+			if($.exrateSess().flag === 'select'){
+				alert('준비중입니다.... 모드2를 선택해 주세요.')
+			}else{
+				alert('시작일을 선택해 주세요.')
+			}
 		})
 		
 		$('<button/>')
@@ -82,7 +85,12 @@ exchange_test =(()=>{
 		.appendTo('#test_mode_2')
 		.click(()=>{
 			getMapFlag = true
-			onCreate2()
+			if($.exrateSess().flag === 'select'){
+				onCreate2()
+			}else{
+				alert('시작일을 선택해 주세요.')
+			}
+			
 		})
 	}
 	
@@ -109,6 +117,7 @@ exchange_test =(()=>{
 	}
 	
 	let exchange_popup =()=>{
+		
 		$('<button/>')
 		.text('환전하기')
 		.css({
@@ -122,7 +131,8 @@ exchange_test =(()=>{
 		})	
 		.appendTo('#exchange_box')
 		.click(()=>{
-			exchangeCount++
+			sessionStorage.setItem('exchangeCount', 1)
+			
 			let receive_currencies = $('#exchange_' + $('#exchange_box .amount-row .receive h3').text()),
 				send_currencies = $('#exchange_' + $('#exchange_box .amount-row .send h3').text()),
 				sub_calc = parseFloat(common.comma_remove(send_currencies.text()))
@@ -145,16 +155,15 @@ exchange_test =(()=>{
 			if( exchange_KRW.text().indexOf('.') > -1 ){
 				exchange_KRW.text(exchange_KRW.text().substring(0, exchange_KRW.text().indexOf('.')))
 			}
-			
 			common.total_amount_calc()
 			
-			exrateSess.cntcd = ''
-			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
+//			exrateSess.cntcd = ''
+//			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
+		
 			$('#popup-exchange')
 			.hide()
 		})
 	
-	//	common.popup_close('exchange')
 		$('#popup-exchange .moin-close')
 		.click(e=>{
 			e.preventDefault()
@@ -199,25 +208,11 @@ exchange_test =(()=>{
 			.addClass('btn btn-lg btn-primary')
 			.appendTo('#init_btn')
 			.click(()=>{
-				exchangeCount = 0
+				sessionStorage.setItem('exchangeCount', 0)
 				exth = []
 				amount_init()
 				$('#exchange_test_chart1').empty()
 				init_Exth()
-				/*$.ajax({
-					url : `${_}/exth/delete/${getCno}`,
-					type : 'DELETE',
-					contentType : 'application/json',
-					success : d=>{
-						exchangeCount = 0
-						amount_init()
-						exth = []
-						$('#exchange_test_chart1').empty()
-					},
-					error : e=>{
-						alert('ajax 실패')
-					}
-				})*/
 			})
 			
 			$('#save_btn').css({
@@ -231,16 +226,15 @@ exchange_test =(()=>{
 			.addClass('btn btn-lg btn-primary')
 			.appendTo('#save_btn')
 			.click(()=>{
-				alert('exth 길이 : ' + exth.length)
 				init_Exth()
 				saveFlag = true
 				amount_history()
-				
+//				alert('exth 길이 : ' + exth.length)
+//				alert('저장 후 exchangeCount : ' + $.exchangeCount())
 				if( exth.length > 0 ){
 					alert('정렬 전 ' + JSON.stringify(exth))
 					common.object_sort(exth)
-					exchangeCount = 0
-					
+					sessionStorage.setItem('exchangeCount', 0)
 					$.ajax({
 						url : `${_}/exth/insert/${deposit}`,
 						type : 'POST',
@@ -258,13 +252,7 @@ exchange_test =(()=>{
 							$('#exchange_test_chart1')
 							.html(`<canvas id="canvas" style="width:100%; height: 150px; max-height: 250px; margin-top: 60px"></canvas>`)
 							$.getScript(line_graph_js)
-							
-						/*	$('#test_history').empty()
-							$.each(d.exth, (i, j)=>{
-								$(`<div> bdate :${j.bdate} - profits : ${j.profits}, total : ${j.total}, rerate : ${j.rerate}, krw : ${j.krw}, usd : ${j.usd}, aud : ${j.aud}, 
-								eur : ${j.eur}, cny : ${j.cny}, jpy : ${j.jpy} </div>`)
-								.appendTo('#test_history')
-							})*/
+						
 						},
 						error : e=>{
 							alert('ajax 실패')
@@ -309,7 +297,8 @@ exchange_test =(()=>{
 		$('#datepicker').datepicker()
 		.change(()=>{
 			amount_history()
-			exchangeCount = 0
+//			alert('날짜 변경 후 exchangeCount : ' + $.exchangeCount())
+//			alert('날짜 변경 후 exth : ' + JSON.stringify(exth))
 			
 			exrateSess.flag = 'select'
 			exrateSess.bdate = $('#datepicker').val()
@@ -427,7 +416,8 @@ exchange_test =(()=>{
 	}
 	let amount_history =()=>{
 		let bdate_exist
-		if(exchangeCount > 0 || saveFlag === true){	// 환전버튼 클릭 시 ++
+//		alert('amount_history - exchangeCount : ' + $.exchangeCount() + ', saveFlag : ' + saveFlag)
+		if($.exchangeCount() > 0 || saveFlag === true){	// 환전버튼 클릭 시 ++
 			$.each(exth, (i, j)=>{
 				if(exrateSess.bdate === j.bdate ){	//	날짜가 같을 시 오버라이딩 시키기
 //					alert('날짜 같음')
@@ -458,8 +448,7 @@ exchange_test =(()=>{
 						jpy : common.comma_remove($('#exchange_JPY').text()),
 						cno : getCno	})
 			}
-//			exchangeCount = 0
-//			saveFlag = false
+//			alert('exth 저장 : ' + JSON.stringify(exth))
 		}
 		
 	}

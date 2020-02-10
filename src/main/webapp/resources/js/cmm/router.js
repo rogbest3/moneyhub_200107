@@ -23,7 +23,8 @@ function Session(x){
 		profitsChart : ()=>{ return JSON.parse(sessionStorage.getItem('profitsChart'))},
 		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
 		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
-		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))}
+		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))},
+		exchangeCount : ()=>{ return sessionStorage.getItem('exchangeCount') }
 	}
 }
 

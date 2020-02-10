@@ -45,7 +45,7 @@ public class ExrateProxy {
 				}
 			}else {
 				resultList.add(paramList.get(i));
-				System.out.println(paramList.get(i));
+//				System.out.println(paramList.get(i));
 				if(paramList.get(i).getBdate().equals(paramList.get(i+1).getBdate())) {
 					initNum = i;
 					flag = true;

@@ -2,7 +2,7 @@
 var remit_box = remit_box || {}
 remit_box =(()=>{
 	let _, js, line_graph_js, exrate_js, flag, cntcd, deal, exChart_js, 
-		exchange_test_js, mypage_vue_js, exrateSess
+		exrateSess
 	let init =x=>{
 		_ = $.ctx()
 		js = $.js()
@@ -10,8 +10,6 @@ remit_box =(()=>{
 		line_graph_js = js + '/exchart/line_graph.js'
 		exrate_js = js + '/exchart/exrate.js'
 		exChart_js = js + '/mypage/exChart.js'
-		mypage_vue_js = js + '/vue/mypage_vue.js'
-		exchange_test_js = js + '/mypage/exchange_test.js'
 		flag = x.flag
 		cntcd = x.cntcd
 		exrateSess = {}
@@ -20,9 +18,7 @@ remit_box =(()=>{
 	let onCreate =x=>{
 		init(x)
 		$.when(
-			$.getScript(exrate_js),
-			$.getScript(mypage_vue_js),
-			$.getScript(exchange_test_js)
+			$.getScript(exrate_js)
 		)
 		.done(()=>{
 			common.remit_send_focusout()
@@ -35,12 +31,6 @@ remit_box =(()=>{
 	
 	let popup =()=>{
 		if(flag === 'exchange'){	// 모의 환전 시
-			$('#popup-exchange')
-//			.html(mypage_vue.exchange_popup())
-			.show()
-//			exchange_test.exchange_popup()
-			
-			alert('모의 환전 exchange - ' + flag)
 			let send_data = [ //{ img : 'kr', cntcd : 'KRW', curr : '대한민국 한화', flag : ''}, 
 							{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
 							{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
@@ -49,28 +39,22 @@ remit_box =(()=>{
 							{ img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' }]
 			
 			$('#cntcd_slide ul').empty()
-		//	send_cntcd_filter(send_data)
 			cntcd_display(send_data)
 			
 			$('.form-calculator .amount-row .send')	// send cntcd 클릭 시 팝업
 			.click(e=>{
 				e.preventDefault()
-				alert('한국 클릭 후 나라 선택 cntcd - ' + $.exrateSess().cntcd)
-				if( $.exrateSess().cntcd === 'KRW' ){
-					//위에 알람 띄운 후 alert('실행 마지막 - 동작됨 -> exrate.onCreate() 실행됨
-					alert(cntcd_slide.style.display)
+				if( cntcd === 'KRW' ){
 					if( cntcd_slide.style.display === 'none'){
 						$('#cntcd_slide').css({ display : 'block'})
 					}else{
 						$('#cntcd_slide').css({ display : 'none'})
-					} 
+					}
 				}
 			})
-			
 			exrate.onCreate()
 			
 		}else{	// 모의 환전 아닐 때
-//			alert('모의 환전 아닐 때 - ' + flag)
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' },
 					{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
 					{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
@@ -161,12 +145,8 @@ remit_box =(()=>{
 					
 				}
 				else if(( j.flag === 'exchange')){
-//					$('#cntcd_slide').toggle()
 					if( cntcd_slide.style.display === 'none'){
-						alert( '나라 선택 후 display none : ' + cntcd_slide.style.display )
 						$('#cntcd_slide').css({ display : 'block'})
-//						$('#cntcd_slide ul').empty()
-//						send_cntcd_filter(send_data)
 					}else{
 						alert( '나라 선택 후  display 없을 때: ' + cntcd_slide.style.display )
 						$('#cntcd_slide').css({ display : 'none'})

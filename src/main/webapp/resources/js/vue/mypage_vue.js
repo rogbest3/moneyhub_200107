@@ -356,7 +356,7 @@ mypage_vue = {
 					<div id="world_map">
 					    <div class="mapcontainer">
 					        <div class="map">
-					            <span>Alternative content for the map</span>
+					            <span></span>
 					        </div>
 					    </div>
 					</div>
@@ -520,8 +520,8 @@ mypage_vue = {
 											<h3>USD</h3>
 										</div>
 									</div>
-									<div id="exchange_test_exrate">
-										<p>환율 : </p> 
+									<div id="exchange_test_exrate" style="width : 100%; height: 35px">
+										<p></p> 
 									</div>
 								</div>
 							</div>

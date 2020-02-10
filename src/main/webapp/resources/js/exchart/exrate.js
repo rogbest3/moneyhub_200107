@@ -16,10 +16,18 @@ exrate =(()=>{
 	let rate_calc =()=>{
 		if( receive_cntcd !== 'KRW'){	// 외화로 환전
 			exrate_select(receive_cntcd)
+			$('#exchange_test_exrate p')
+			.text(`${receive_cntcd} 환율 : ${exrate}`)
+			.css({ 'text-align': 'left', margin : '5px', width : '100%', height: '25px' })
 		}else{							// 한화로 환전
 			exrate_select(send_cntcd)
+			$('#exchange_test_exrate p')
+			.text(`${send_cntcd} 환율 : ${exrate}`)
+			.css({ 'text-align': 'left', margin : '5px', width : '100%', height: '25px' })
 		}
+		
 		receive_value_calc()
+		
 		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			receive_value_calc()
 		})
