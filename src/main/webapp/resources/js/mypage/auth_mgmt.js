@@ -2,10 +2,13 @@
 var auth_mgmt = auth_mgmt || {}
 auth_mgmt =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, main_vue_js
+	let _, js, main_vue_js, exch, cus, acc
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
+		exch = $.exch()
+		cus = $.cusInfo()
+		acc = $.acc()
 		main_vue_js = js + '/vue/main_vue.js'
 	}
 	
@@ -25,6 +28,30 @@ auth_mgmt =(()=>{
 	let setContentView =()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
+
+		let cus = $.cusInfo()
+        let cemail = cus.cemail
+        let cno = cus.cno
+        let exch = $.exch()
+        let exchKrw = exch.exchKrw
+        let bsdate = exch.bsdate
+        $.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, d=>{
+        	
+//        	$(function(){
+//        		let accInfo = new Array(cus.cname,d.acc.acctNo,common.comma_create(d.acc.balance))
+//        		$('p').html(accInfo.join('  '))
+//        	})
+        	
+            if(d.msg === "SUCCESS"){
+                $('#cname').text(cus.cname)
+                $('#account').text(d.acc.acctNo)
+                $('#balance').text(common.comma_create(d.acc.balance))
+                sessionStorage.setItem('acc',JSON.stringify(d.acc))
+                /*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
+            }else{
+                alert('실패')
+            }
+        })	
 		
 		$('#copy_btn').on('click', function(e){
 			var text = $('#account').html()

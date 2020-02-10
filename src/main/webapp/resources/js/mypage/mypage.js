@@ -5,12 +5,13 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal, remit_box_js, clock, profitsChart,cus
+		line_graph_js,deal, remit_box_js, clock, profitsChart,cus, exch
 
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
 		cus = $.cusInfo()
+		exch = $.exch()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -91,7 +92,7 @@ mypage =(()=>{
 			sessionStorage.setItem('deal', JSON.stringify({}));
 			sessionStorage.setItem('exrateSess',JSON.stringify({}))
 			app.onCreate()
-			$('html').scrollTop(0);
+			$('html').scrollTop(0)
 		})
 		$('#compo')
 		.click(()=>{
@@ -154,6 +155,7 @@ mypage =(()=>{
 		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
+
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 				$.each(d.exlist.reverse(), (i, j)=>{
 						exrate_arr.push(parseFloat(j.exrate))
@@ -253,8 +255,7 @@ mypage =(()=>{
 											<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
 										</div>
 							</div>
-						</div>
-						`)
+						</div>`)
 				    .appendTo('.remits')
 				   //숙제 송금 거래 시간이 +1한 시간보다 작으면 입금 확인중 , 입금하기 뜨게 하기
 				    if( Number(j.bsdate.replace(/[^0-9]/g,"")) >= deal.remitstart && Number(j.bsdate.replace(/[^0-9]/g,"")) < deal.remitend){
@@ -283,11 +284,9 @@ mypage =(()=>{
 							}
 						})
 					})
-					
 				})
 				
-				
-				
+	
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
 				if(pxy.existPrev){
 					$(`<button class="control">
@@ -302,6 +301,7 @@ mypage =(()=>{
 			         	이전
 		         </button>`)
 		         .appendTo('.themoin-pagination')}
+		         
 				for(let i = pxy.startPage; i<= pxy.endPage; i++){
 						$(`<button class="paginator>
 								${i+1}

@@ -155,6 +155,7 @@ remit_box =(()=>{
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
 					sessionStorage.setItem('exch',JSON.stringify(exch))
 					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
+
 					
 					let cntcd = $('.form-calculator .amount-row .receive h3').text()
 					$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
@@ -173,9 +174,9 @@ remit_box =(()=>{
 
 					exch.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명
 					exch.cntcd = $('.form-calculator .amount-row .receive h3').text() //국가코드
-
 					sessionStorage.setItem('exch',JSON.stringify(exch))
 					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
+
 					$('#chart')
 					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
 					$.getScript(exChart_js)

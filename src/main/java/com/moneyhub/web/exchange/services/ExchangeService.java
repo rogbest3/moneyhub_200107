@@ -3,12 +3,13 @@ package com.moneyhub.web.exchange.services;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.function.Consumer;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.moneyhub.web.cus.domains.Account;
 import com.moneyhub.web.cus.domains.Customer;
+import com.moneyhub.web.cus.mappers.AccountMapper;
 import com.moneyhub.web.exchange.domains.Exchange;
 import com.moneyhub.web.exchange.mappers.ExchangeMapper;
 import com.moneyhub.web.exr.Exrate;
@@ -19,55 +20,30 @@ import com.moneyhub.web.remit.util.CharUtil;
 public class ExchangeService {
 	
 	@Autowired ExchangeMapper exMapper;
+	@Autowired AccountMapper accMapper;
 	@Autowired Box<Object> box;
 	@Autowired Exrate exrate;
-	@Autowired Exchange ex;
+	@Autowired Exchange exch;
 	@Autowired Customer cus;
 	@Autowired Account acc;
 	
 	public void insertExchange(HashMap<String, Object> exchange) {
+		System.out.println("exchangeService 들어옴???? -----------" + exchange);
 		String mtcn = CharUtil.excuteGenerate();
-		System.out.println("insertExchange의 mtcn1 - " + mtcn);
-		ex.setMtcn(mtcn);
-		System.out.println("insertExchange의 mtcn2 - " + ex.getMtcn());
-
-		ex.setAcctNo(exchange.get("acctNo").toString());
-		System.out.println("insertExchange의 AcctNo - " + exchange.get("acctNo").toString());
-
-		ex.setCemail(exchange.get("cemail").toString());
-		System.out.println("insertExchange의 Cemail - " + exchange.get("cemail").toString());
-		
-		ex.setCntcd(exchange.get("cntcd").toString());
-		System.out.println("insertExchange의 Cntcd - " + exchange.get("cntcd").toString());
-		
-		ex.setExchKrw(exchange.get("exch_krw").toString());
-		System.out.println("insertExchange의 exch_krw - " + exchange.get("exch_krw").toString());
-		
-		ex.setExchCnt(exchange.get("exch_cnt").toString());
-		System.out.println("insertExchange의 exch_cnt - " + exchange.get("exch_cnt").toString());
-		
-		ex.setExFee(1); //수수료율
-		System.out.println("insertExchange의 ExFee - " + ex.getExFee());
-		
-		ex.setFeeExrate((double)exchange.get("exrate") * 0.01); //수수료금액
-		System.out.println("exchange에서 가지고 온 Exrate1 - " + exchange.get("exrate"));
-		System.out.println("exchange에서 가지고 온 Exrate2 - " + (double)exchange.get("exrate"));
-		System.out.println("insertExchange의 Exrate - " + (double)exchange.get("exrate") * 0.01);
-		
-		ex.setMhRate(((double)exchange.get("exrate") + ((double)exchange.get("exrate") * 0.01))); //수수료 포함된 머니허브 환율 -> 이 환율이 환전 시 사용되는 환율
-		System.out.println("insertExchange의 MhRate - " + ((double)exchange.get("exrate") + ((double)exchange.get("exrate") * 0.01)));
-		
-		ex.setChngCausCd("0");
-		System.out.println("insertExchange의 setChngCausCd - " + ex.getChngCausCd());
-		
-		ex.setTrdStatCd("0");
-		System.out.println("insertExchange의 setTrdStatCd - " + ex.getTrdStatCd());
-
-		//
-		ex.setAcctNo(exchange.get("acctNo").toString());
-		System.out.println("insertExchange의 AcctNo - " + exchange.get("acctNo").toString());
-		//
-
+		exch.setMtcn(mtcn);
+		exch.setCemail(exchange.get("cemail").toString());
+		exch.setCntcd(exchange.get("cntcd").toString());
+		exch.setExchKrw(exchange.get("exchKrw").toString());
+		exch.setExchCnt(exchange.get("exchCnt").toString());
+		exch.setExFee(1); //수수료율
+		Double exrate1 = (Double) exchange.get("exrate");
+		exch.setFeeExrate(exrate1 * (exch.getExFee()/100)); //수수료금액
+		exch.setMhRate(exrate1 + exch.getFeeExrate()); //수수료 포함된 머니허브 환율 -> 이 환율이 환전 시 사용되는 환율
+		String code = "0";
+		exch.setChngCausCd(code);
+		exch.setTrdStatCd(code);
+		System.out.println("최종 ex - " + exch);
+		exMapper.insertEx(exch);
 	}
 	
 	public Map<?, ?> ExTrend(String cntcd){
@@ -88,6 +64,24 @@ public class ExchangeService {
 		}
 		return box.get();
 	}
-	
+
+	public void balanceChg(HashMap<String, Object> exchange) {
+		System.out.println("Exchange.service balanceChg 들어옴 여기서 exchange는? - " + exchange);
+		acc.setCemail(exchange.get("cemail").toString());
+		String stwithdrawal = exch.getExchKrw();
+		int withdrawal = Integer.parseInt(stwithdrawal.replaceAll(",", ""));
+		acc.setWithdrawal(withdrawal);
+		String stexchange = exchange.get("acc").toString();
+		JSONObject json = new JSONObject(stexchange);
+		int intbalance = json.getInt("balance");
+		int balance = intbalance - withdrawal;
+		acc.setBalance(balance);
+		if(acc.getBalance() > 0) {
+			Consumer<Account> c = o -> exMapper.balanceChg(acc);
+			c.accept(acc);
+		}else {
+			System.out.println("잔액 부족으로 인해 실패!");
+		}
+	}
 	
 }

@@ -8,10 +8,8 @@
 	<insert id="insertEx" parameterType="Exchange">
 	    INSERT INTO EXCHANGE (CEMAIL, BSDATE, MH_RATE, EXCH_KRW, EXCH_CNT,
 					EX_FEE, ACCT_NO, CNTCD, FEE_EXRATE, MTCN, TRD_STAT_CD, CHNG_CAUS_CD)
-		VALUES (
-	    	#{cemail}, now(), #{mhRate}, #{exchKrw}, #{exchCnt},
-	    	#{exFee}, #{acctNo}, #{cntcd}, #{feeExrate}, #{mtcn}, #{trdStatCd}, #{chngCausCd}
-	    )
+		VALUES (#{cemail}, now(), #{mhRate}, #{exchKrw}, #{exchCnt},
+	    	#{exFee}, #{acctNo}, #{cntcd}, #{feeExrate}, #{mtcn}, #{trdStatCd}, #{chngCausCd})
 	</insert>
 	
 	<select id="exTrend" parameterType="string" resultType="Exrate">
@@ -25,6 +23,14 @@
 		ORDER BY BDATE DESC
 		LIMIT 0,10
 	</select>
+	
+	<update id="balanceChg" parameterType="Account">
+		UPDATE ACCOUNT
+		SET BALANCE = #{balance},
+		WITHDRAWAL = #{withdrawal},
+		BSDATE = now()
+		WHERE CEMAIL = #{cemail}
+	</update>
 	
 	<!-- <select id="exTrend1" resultType="Exrate">
 		SELECT *

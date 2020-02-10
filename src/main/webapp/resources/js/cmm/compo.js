@@ -28,6 +28,9 @@ compo =(()=>{
 		$('.' + main_class)
 		.html(compo_vue.compo(img))
 		$('html').scrollTop(0)
+		$('.themoin-landing-countries').remove()
+		$('.wu_send_product_2').remove()
+		$('.wu_send_product_3').remove()
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	    mapOption = { 

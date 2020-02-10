@@ -42,7 +42,10 @@ faq =(()=>{
 	let setContentView =()=>{
 		$('.'+ main_class)
 		.html(faq_vue.faq())
-		$('html').scrollTop(0);
+		$('html').scrollTop(0)
+		$('.themoin-landing-countries').remove()
+		$('.wu_send_product_2').remove()
+		$('.wu_send_product_3').remove()
 	}
 	
 	let faq_list =(x)=>{

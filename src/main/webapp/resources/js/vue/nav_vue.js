@@ -57,23 +57,22 @@ nav_vue = {
 		</nav`
 	},
 	/*sidebar_admin : ()=>{
-		return '<div class="themoin-mypage">'+
-		'	<div class="tab-container">'+
-		'		<div class="tab">'+
-		'			<!-- <a v-for="list of lists" :key="list.aclick" @click="list.aclick" class="list.isShow"> {{list.text}}</a> -->'+
-		'			<a class="active1" @click.prevent="admin_a">관리자 변경</a>'+
-		'			<a class="" @click.prevent="pwdchg_a">비밀번호 변경</a>'+
-		'			<a class="" @click.prevent="studentList_a">학생 목록</a>'+
-		'			<a class="" @click.prevent="studentsFindSome_a">조건별 학생 검색</a>'+
-		'			<a class="" @click.prevent="scoreEdit_a">학생 성적 수정</a>'+
-		'			<a class="" @click.prevent="idSearch_a">ID 학생 검색</a>'+
-		'			'+
-		'			<div class="spacer"></div>'+
-		'			<img src="https://img.themoin.com/public/img/img-man-s.svg">'+
-		'			<p>{{cemail}}</p>'+
-		'		</div>'+
-		'	</div>'+
-		'</div>'
+		return `<div class="themoin-mypage">
+			<div class="tab-container">
+				<div class="tab">
+					<!-- <a v-for="list of lists" :key="list.aclick" @click="list.aclick" class="list.isShow"> {{list.text}}</a> -->
+					<a class="active1" @click.prevent="admin_a">관리자 변경</a>
+					<a class="" @click.prevent="pwdchg_a">비밀번호 변경</a>
+					<a class="" @click.prevent="studentList_a">학생 목록</a>
+					<a class="" @click.prevent="studentsFindSome_a">조건별 학생 검색</a>
+					<a class="" @click.prevent="scoreEdit_a">학생 성적 수정</a>
+					<a class="" @click.prevent="idSearch_a">ID 학생 검색</a>
+					<div class="spacer"></div>
+					<img src="https://img.themoin.com/public/img/img-man-s.svg">
+					<p>{{cemail}}</p>
+				</div>
+			</div>
+		</div>`
 	},*/
 	sidebar_cus : ()=>{
 		return `<div class="themoin-mypage"> 

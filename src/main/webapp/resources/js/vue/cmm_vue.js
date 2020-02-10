@@ -1,6 +1,7 @@
 var cmm_vue = cmm_vue || {}
 cmm_vue = {
 	head : ()=>{
+
 		return `<head> 
 		<!-- Google Tag Manager --> 
 		<!--	<script type="text/javascript" async="" src="//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js"></script>  
@@ -15,7 +16,6 @@ cmm_vue = {
 			 
 
 			<!-- Bootstrap core CSS --> 
-			 
 		<style>
 		canvas{
 			-moz-user-select: none;

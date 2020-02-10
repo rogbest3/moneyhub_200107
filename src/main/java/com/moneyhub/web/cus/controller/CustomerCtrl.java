@@ -37,24 +37,25 @@ public class CustomerCtrl extends Proxy {
 	@Autowired AccountService accountService;
 	@Autowired AccountMapper accMapper;
 	@Autowired Account acc;
-	// @Autowired CustMailSender mailSender;
-	// private HttpServletRequest request;
 
-	@PostMapping("/login")
-	public Map<?, ?> login(@RequestBody Customer param) {
+	@PostMapping("/login/{cemail}/")
+	public Map<?, ?> login(@RequestBody Customer param, @PathVariable String cemail) {
 		System.out.println(param.toString());
 		Function<Customer, Customer> f = t -> cusMapper.login(t);
 		cus = f.apply(param);
 		// System.out.println(cus.getCemail());
+		Function<String, Account> f2 = t -> accMapper.getAcc(t);
+		acc = f2.apply(cemail);
 		String result = (cus != null) ? "SUCCESS" : "FAIL";
 		box.clear();
 		box.put("msg", result);
 		box.put("cus", cus);
+		box.put("acc", acc);
 		System.out.println(box.get());
 
 		return box.get();
 	}
-
+	
 	@PostMapping("/")
 	public Map<?, ?> join(@RequestBody Customer param) {
 		System.out.println("join 들어옴");
@@ -69,6 +70,7 @@ public class CustomerCtrl extends Proxy {
 		accountService.createAcc(param);
 		box.clear();
 		box.put("msg", "SUCCESS");
+		System.out.println("회원가입 box.get() : " + box.get().toString());
 		return box.get();
 	}
 
@@ -174,15 +176,14 @@ public class CustomerCtrl extends Proxy {
 		box.clear();
 		if (zip != null) {
 			box.put("msg", "true");
-			box.put("cus", cus);
+			box.put("cus", param);
 		} else {
 			box.put("msg", "false");
 		}
-		System.out.println("cus는?" + cus);
+		System.out.println("param은?" + param);
 		System.out.println("박스에 담긴 메시지: " + box.get());
 		return box.get();
 	}
-	
 
 	@GetMapping("/getAcc/{cemail}/{cno}")
 	public Map<? ,?> getAcc(@PathVariable HashMap<String,Object> map){
@@ -193,8 +194,9 @@ public class CustomerCtrl extends Proxy {
 		  box.put("acc", f.apply(map.get("cemail").toString())); 
 		  System.out.println("box.get() -----------> "+box.get());
 		 
-		return box.get();
+		return box.get();w
 	}
+
 	
 	@PostMapping("/acc/update")
 	public void updateAcc(@RequestBody HashMap<String, Object> deal) {

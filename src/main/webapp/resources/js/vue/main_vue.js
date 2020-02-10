@@ -210,7 +210,7 @@ main_vue ={
 							<p class="color-deepgrey"></p> 
 						</div>
 						<div class="steps" style="max-width: 1365px; text-align: center; "> 
-								<div class="threesteps">
+									<div id="exchange_btn" class="threesteps">
 									<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
 									<h3>환전</h3>
 								</div>
@@ -260,6 +260,7 @@ main_vue ={
 						</div> 
 					</div>
 				</div> 
+
 
 	<div class="user-remit-container"> 
 				<div class="user-title"> 

@@ -2,15 +2,18 @@
 var auth = auth || {}
 auth =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, img, auth_vue_js, cookie_js, kakao_js
+	let _, js, img, auth_vue_js, cookie_js, kakao_js, exch, cus
 	
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
 		img = $.img()
+		exch = $.exch()
+		cus = $.cusInfo()
 		auth_vue_js = js + '/vue/auth_vue.js'
 		cookie_js = js + '/cmm/cookie.js'
 		kakao_js = js + '/kakao/kakao_login.js'
+		
 	}
 	let onCreate =x=>{
 		init()
@@ -46,9 +49,9 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
+
 		$('#cemail').val('dmswl@dmswl.com')
 		$('#cpwd').val('12345678')
-
 
 		join_2_page_btn()
 	}
@@ -70,7 +73,7 @@ auth =(()=>{
 		.click(e=>{
 			e.preventDefault()
 			$.ajax({
-				url : _ + '/customers/login',
+				url : _ + '/customers/login/'+ $('#cemail').val() + '/',
 				type : 'POST',
 				data : JSON.stringify({
 					cemail : $('#cemail').val(),
@@ -81,7 +84,7 @@ auth =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						//===========================================================계좌정보 getJSON으로 받아서 배포
-						let cemail = d.cus.cemail
+						/*let cemail = d.cus.cemail
 						let cno = d.cus.cno
 						$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, t=>{
 							if(d.msg === "SUCCESS"){
@@ -91,12 +94,28 @@ auth =(()=>{
 							}else{
 								alert('계좌 getJSON 실패')
 							}
-						})
-						//============================================================
-						/*alert(d.cus.cname+'님 환영합니다.')*/
+						})*/
+						alert(d.cus.cname+'님 환영합니다.')
+						//====================================================== 세션에 저장 EJ
+						sessionStorage.setItem('cus', JSON.stringify(d.cus))
+						//======================================================
+						//====================================================== MK
+						/*$.extend(new Customer_Info(d.cus))*/
+						//======================================================
+						//====================================================== HM
+						sessionStorage.setItem('acc', JSON.stringify(d.acc))
+						sessionStorage.setItem('CEMAIL', d.cus.cemail)
+						sessionStorage.setItem('CPWD', d.cus.cpwd)
+						sessionStorage.setItem('ZIP', d.cus.zip)
+						sessionStorage.setItem('ADDR', d.cus.addr)
+						sessionStorage.setItem('DADDR', d.cus.daddr)
+						sessionStorage.setItem('CNO', d.cus.cno)
+						//======================================================
+
 						mypage.onCreate()
 					}
 					else{
+						alert('이메일 및 비밀번호를 확인해주세요.')
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
 						$('#login_pwd').css('color', 'red')
 					}					
@@ -140,7 +159,6 @@ auth =(()=>{
 			        	$('#agree_box_3 div.box').attr('class', 'box')
 					}
 			        else{
-
 			        	$('#agree_box_all div.box').attr('class', 'box checked')
 			        	$('#agree_box_1 div.box').attr('class', 'box checked')
 			        	$('#agree_box_2 div.box').attr('class', 'box checked')
@@ -273,7 +291,6 @@ auth =(()=>{
 		     		
 		     		$('#birth_check').text('생년월일을 확인해주세요.');
 					$('#birth_check').css('color', 'red'); 
-		    	
 				}else{
 					$('#birth_check').text('');
 					birthJ = true;
@@ -288,58 +305,82 @@ auth =(()=>{
 			}else{
 				// 1.입력된 생년월일이 8자 초과할때 : auth:false
 				$('#birth_check').text('생년월일을 확인해주세요.');
-				$('#birth_check').css('color', 'red');  
+				$('#birth_check').css('color', 'red');
 			}
 		})
+		
+		
 		$('<button/>')
 		.text('가입완료')
 		.addClass('btn-submit')
 		.appendTo('.moin-login form.signup')
 		.click(e=>{
 			e.preventDefault()
+//			if(!$('#agree_box_1').is(":checked")){
+//				alert('이용약관 동의항목 체크가 필요합니다.')
+//				return false
+//			}else if(!$('#agree_box_1').is(":checked")){
+//				alert('개인정보 수집 이용 동의항목 체크가 필요합니다.')
+//				return false
+//			}
 			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
 				$.getJSON(_+'/customers/getAcc/' + sessionStorage.getItem('CEMAIL') + '/' + sessionStorage.getItem('CNO'), d=>{
 					if(d.msg === "SUCCESS"){
 						$('#cname').text(d.cname)
 						$('#account').text(d.acc.acctNo)
 						$('#balance').text(common.comma_create(d.acc.balance))
-						sessionStorage.setItem('acctNo',d.acc.acctNo)
+						acc.acctNo = d.acc.acctNo
+						acc.balance = d.acc.balance
+						sessionStorage.setItem('acc',JSON.stringify(acc))
+						alert('회원가입 시 세션에 저장된 acc는???' + JSON.stringify(acc))
+//						sessionStorage.setItem('ACCTNO',d.acc.acctNo)
+//						alert('acctNo는?????'+sessionStorage.getItem('ACCTNO'))
 					}else{
 						alert('실패')
+						return false
 					}
 				})
-				$.ajax({
-					url : _+'/customers/',
-					type : 'POST',
-					data : JSON.stringify({
-						cemail : $('#cemail').val(),
-						cpwd : $('#cpwd').val(),
-						cname : $('#lname').val() + $('#fname').val(),
-						cphone : $('#cphone').val(),
-						zip : $('#zip').val(),
-						addr : $('#addr').val(),
-						daddr : $('#daddr').val(),
-						birth : $('#birth').val()
-						// cemail, cpwd, cfm_cpwd, fname, lname,
-						// phone1(국가코드), cphone
-					}),
-					dataType : 'json',
-					contentType : 'application/json',
-					success : d=>{
-						if(d.msg === 'SUCCESS'){
-							login_page()
-							login()
-							alert('회원가입이 완료되었습니다.')
-						}else{
-							alert('회원가입 실패')
+				
+				if($('#lname').val().length > 0 && $('#fname').val().length > 0
+						&& $('#zip').val().length > 0 && $('#addr').val().length > 0 
+						&& $('#daddr').val().length > 0 && $('#birth').val().length > 0){
+					$.ajax({
+						url : _+'/customers/',
+						type : 'POST',
+						data : JSON.stringify({
+							cemail : $('#cemail').val(),
+							cpwd : $('#cpwd').val(),
+							cname : $('#lname').val() + $('#fname').val(),
+							zip : $('#zip').val(),
+							addr : $('#addr').val(),
+							daddr : $('#daddr').val(),
+							birth : $('#birth').val()
+							// cemail, cpwd, cfm_cpwd, fname, lname,
+							// phone1(국가코드), cphone
+						}),
+						dataType : 'json',
+						contentType : 'application/json',
+						success : d=>{
+							if(d.msg === 'SUCCESS'){
+								login_page()
+								login()
+								alert('회원가입이 완료되었습니다.')
+							}else{
+								alert('회원가입 실패')
+								return false
+							}
+						},
+						error : e=>{
+							alert('잘못 입력된 부분이 있습니다.')
+							return false
 						}
-					},
-					error : e=>{
-						alert('잘못 입력된 부분이 있습니다.')
-					}
-				})
+					})
+				}else{
+					alert('잘못 입력된 부분이 있습니다.')
+				}
 			}else{
 				alert('잘못 입력된 부분이 있습니다.')
+				return false
 			}
 		})
 	}
