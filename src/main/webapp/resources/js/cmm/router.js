@@ -29,7 +29,7 @@ function Session(x){
 		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
 		money : ()=>{ return JSON.parse(sessionStorage.getItem('money'))},
 		acc : ()=>{ return JSON.parse(sessionStorage.getItem('acc'))},
-		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))}
+		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))},
 		exchangeCount : ()=>{ return sessionStorage.getItem('exchangeCount') }
 	}
 }
