@@ -48,8 +48,13 @@ faq =(()=>{
 		$('.wu_send_product_3').remove()
 	}
 	
-	let faq_list =(x)=>{
-
+	let faq_list =(x)=>{	
+//		x.keyword.replace( /  /gi, ' ' )
+		if( x.keyword == ' ' || x.keyword == undefined || ( x.keyword.length < 2 )){ 
+			x.keyword = null
+		}else{
+			x.keyword = x.keyword.trim()
+		}
 		$.getJSON( `${_}/faq/lists/page/${x.nowPage}/search/${x.keyword}`, d=>{
 			$('.content').empty()
 			$('.bundle_paging').empty()
@@ -125,6 +130,7 @@ faq =(()=>{
 		        })
 			}
 		})
+		
 	}
 
 	return { onCreate, faq_list }
