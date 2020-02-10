@@ -20,21 +20,24 @@ main_vue ={
             </ul>
         </div>
 		<div class="themoin-remit-component"> 
-			<div class="steps" style="max-width: 1365px; text-align: center;">
-							<div class="threesteps">
-									<img src="/web/resources/img/main/exchange.png" style="width: 250px;">
-									<h3>환전</h3>
-								</div>
-								<div id="remit_btn" class="threesteps">
-									<img src="/web/resources/img/main/remit.png" style="width: 300px">
-									<h3>wu 해외송금</h3>
-								</div>
-								<div class="threesteps">
-									<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
-									<h3>모의 환전</h3>
-								</div>
-				</div>
-			</div> 
+			<div class="steps" style="max-width: 1365px; text-align: center; "> 
+               <div id="idx_exchg_btn" class="threesteps">
+               <img id="idx_exch_btn2" src="/web/resources/img/main/exchange.png" style="width: 300px;">
+               <br><br>
+               <h2 style="font-weight:bold; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif">환전</h2>
+               </div>
+               <div id="idx_remit_btn" class="threesteps">
+               <img src="/web/resources/img/main/remit.png" style="width: 300px">
+               <br><br>
+               <h2 style="font-weight:bold; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif">wu 해외송금</h2>
+               </div>
+               <div id="idx_testexchg_btn" class="threesteps">
+               <img src="/web/resources/img/main/testexchange.png" style="width: 300px">
+               <br><br>
+               <h2 style="font-weight:bold; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif">모의 환전</h2>
+               </div>
+               </div>
+         </div> 
 		</div> 
 		<div class="themoin-landing-countries"> 
 			<div> 
@@ -206,24 +209,23 @@ main_vue ={
 				</div> 
 			</div> 
 				<div class="themoin-remit-component"> 
-						<div id="moin-event-amount" class="moin-event-amount"> 
-						<h1>머니허브 기능 이용하기</span> 
-							<p class="color-deepgrey"></p> 
-						</div>
 						<div class="steps" style="max-width: 1365px; text-align: center; "> 
-									<div id="exchange_btn" class="threesteps">
-									<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
-									<h3>환전</h3>
-								</div>
-								<div id="remit_btn" class="threesteps">
-									<img src="/web/resources/img/main/remit.png" style="width: 300px">
-									<h3>wu 해외송금</h3>
-								</div>
-								<div id="exchange_test_btn" class="threesteps">
-									<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
-									<h3>모의 환전</h3>
-								</div>
-						</div>
+                           <div id="exchange_btn" class="threesteps">
+                           <img src="/web/resources/img/main/exchange.png" style="width: 300px;">
+                           <br><br>
+                           <h2 style="font-weight:bold; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif">환전</h2>
+                        </div>
+                        <div id="remit_btn" class="threesteps">
+                           <img src="/web/resources/img/main/remit.png" style="width: 300px">
+                           <br><br>
+                           <h2 style="font-weight:bold; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif">WU 해외송금</h2>
+                        </div>
+                        <div  id="exchange_test_btn" class="threesteps">
+                           <img src="/web/resources/img/main/testexchange.png" style="width: 300px">
+                           <br><br>
+                           <h2 style="font-weight:bold; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', Helvetica, Arial, sans-serif">모의 환전</h2>
+                        </div>
+                  </div>
 				</div> 
 				<div class="themoin-remit-component" id="remit_slider" style="display:none;"> 
 					<div id="moin-event-amount" class="moin-event-amount"> 

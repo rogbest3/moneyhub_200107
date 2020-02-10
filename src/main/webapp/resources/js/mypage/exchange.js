@@ -33,6 +33,7 @@ exchange =(()=>{
 		
 	}
 	let setContentView =()=>{
+		
 		$('#root div.mypage')
 		.html(mypage_vue.exchange())
 		//$.getScript(exChart_js)
@@ -76,8 +77,6 @@ exchange =(()=>{
 				$(this).click(function(){
 					if(confirm('환전하시겠습니까? 확인을 누르시면 바로 실행됩니다.')){
 
-						sessionStorage.getItem('cus')
-						sessionStorage.getItem('acc')
 						exch.exchKrw = $('.form-calculator .amount-row input.send-amount').val() //환전할 원화 금액
 						exch.exchCnt = $('.form-calculator .amount-row input.receive-amount').val() //환전된 외화 금액
 						exch.cntcd = $('.form-calculator .amount-row .receive h3').text()
@@ -93,8 +92,18 @@ exchange =(()=>{
 								dataType : 'json',
 								contentType : 'application/json',
 								success : d=>{
-
 									if(d.msg === 'SUCCESS'){
+										let cemail = cus.cemail
+										let cno = cus.cno
+										$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, t=>{
+											if(d.msg === "SUCCESS"){
+												acc.balance = t.acc.balance
+												alert(acc.balance)
+												sessionStorage.setItem('acc', JSON.stringify(acc))
+											}else{
+												alert('계좌 getJSON 실패')
+											}
+										})
 										alert('머니허브 계좌로 이동합니다.')
 										$.ajax({
 											url : _ + '/exchange/balanceChg',
@@ -112,14 +121,12 @@ exchange =(()=>{
 												}else if(d.msg === 'FAIL'){
 													alert('잔액이 부족합니다. 잔액를 확인해주세요.')
 												}
-												
 											},
 											error : e=>{
 												alert('cus_info_chg ajax 실패')  
 											}
 										})
 										
-
 										var tab_id = $(this).attr('data-tab')
 										$(this).addClass('active')
 										$("#"+tab_id).addClass('active')

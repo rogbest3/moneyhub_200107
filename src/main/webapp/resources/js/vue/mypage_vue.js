@@ -94,8 +94,8 @@ mypage_vue = {
 	},
 	pwd_chg : ()=>{
 		return `<div class="themoin-mypage-password">
-			        <div class="content">
-			        <h1 style="margin:30px auto">비밀번호 변경 안내</h1>
+			        <div class="content"><br>
+			        <h1 style="margin:30px auto">비밀번호 변경 안내</h1><br>
 			        <p>다른 사이트에서 사용한 적이 없는 비밀번호나 이전에 사용한 적이 없는 비밀번호를 입력해주세요.<br>생일이나 전화번호, 연속된 숫자 등의 알기 쉬운 비밀번호도 피해주세요.</p>
 			        <form action="/a/v1/member/update" method="post" style="padding-bottom: 40px;">
 			           <div class="form-row">
@@ -278,8 +278,8 @@ mypage_vue = {
 	},
 	withdrawal : ()=>{
 		return `<div class="themoin-mypage-password">
-			        <div class="content">
-			        <h1 style="margin:30px auto">회원 탈퇴</h1>
+			        <div class="content"><br>
+			        <h1 style="margin:30px auto">회원 탈퇴</h1><br>
 			        <p>더 이상 머니허브 서비스를 이용하지 않으시겠습니까?</p>
 			        <form action="/a/v1/member/update" method="delete" style="padding-bottom: 40px;">
 			           <div class="form-row">
@@ -312,7 +312,7 @@ mypage_vue = {
 	},
 	exchange_test1 : ()=>{
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0; min-height:840px;">
+		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0; min-height:840px;"><br>
 					<h1 style="margin:30px auto">모의 환전 시작하기</h1>
 					<div id="exchange_test_header" style="width : 100%; height : 150px; text-align: center;">
 						<div style="width : 100%; height : 50px; padding-top : 20px; font-size: 18px;"><b>모의 환전 시작일</b></div>
@@ -501,7 +501,7 @@ mypage_vue = {
 								<div id="exchange_box" class="form-calculator main" style="width: 100%; min-width: 400px;">
 									<div class="amount-row" style="min-height: 100px;">
 										<div class="">
-											<p style="text-align: left;">송금 금액</p>
+											<p style="text-align: left;">환전 금액</p>
 											<input class="send-amount" id="exchange_send_amount"  type="text" tabindex="0" placeholder="0.00" value="1000000">
 										</div>
 										<div class="unit-select send" tabindex="0">
@@ -532,7 +532,7 @@ mypage_vue = {
 	},
 	exchange : ()=>{
 		return 	`<div class="themoin-remit-component" style="padding: 30px 0 40px 0;border-top-width: 0px;">
-					<div id="moin-event-amount" class="moin-event-amount">
+					<div id="moin-event-amount" class="moin-event-amount"><br>
 					<h1 style="padding-bottom: 0px;">지금 바로 머니허브 환전을 이용해보세요</span>
 						<p class="color-deepgrey"></p>
 					</div>
