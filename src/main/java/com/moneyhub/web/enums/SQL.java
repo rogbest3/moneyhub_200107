@@ -7,10 +7,11 @@ public enum SQL {
 	CREATE_EXRATE, DROP_EXRATE, TRUNCATE_EXRATE,
 	CREATE_FEEDB, DROP_FEEDB, TRUNCATE_FEEDB,
 	CREATE_ADMIN, DROP_ADMIN, INSERT_ADMIN,
-	CREATE_FEE, DROP_FEE, INSERT_FEE_ONE, INSERT_FEE_TWO,
+	CREATE_FEE, DROP_FEE, TRUNCATE_FEE,INSERT_FEE_ONE, INSERT_FEE_TWO,
 	CREATE_TRDHR,DROP_TRDHR,CREATE_TRD,DROP_TRD,
 	CREATE_RCPT, DROP_RCPT,
-	CREATE_DATEPICKER, DROP_DATEPICKER, TRUNCATE_DATEPICKER
+	CREATE_DATEPICKER, DROP_DATEPICKER, TRUNCATE_DATEPICKER,
+	INSERT_FEEDB_ONE, INSERT_FEEDB_TWO
 	;
 	@Override
 	public String toString() {
@@ -63,30 +64,31 @@ public enum SQL {
 			result = "TRUNCATE TABLE CUSTOMER";
 			break;
 			
-		case CREATE_FEEDB :
-			result = "CREATE TABLE FEEDB\r\n" + 
+		case CREATE_FEE :
+			result = "CREATE TABLE FEE\r\n" + 
 					"( \r\n" + 
-					"  SEQ       	INT  		   NOT NULL AUTO_INCREMENT  COMMENT '순번',\r\n" + 
-					"  BDATE    	INT    NOT NULL       		    		COMMENT '기준일',\r\n" + 
-					"  CUSNUM 	 	VARCHAR(20)    NULL        				COMMENT '고객번호',\r\n" + 
-					"  TXSEQ     	VARCHAR(20)    NULL    					COMMENT '거래일련번호',\r\n" + 
-					"  FEETYPCD     VARCHAR(20)    NULL    					COMMENT '수수료종류코드',\r\n" + 
-					"  AMNT     	VARCHAR(20)    NULL        				COMMENT '수수료금액',\r\n" + 
-					"  CRTMEN     	VARCHAR(20)	   NULL      				COMMENT '생성자', \r\n" + 
-					"  CRTDATE      DATE		   NULL      				COMMENT '생성일자', \r\n" + 
-					"  UMEM     	VARCHAR(20)	   NULL       				COMMENT '수정자',\r\n" + 
-					"  UDATE     	DATE  		   NULL       				COMMENT '수정일자',\r\n" +
-					"  PRIMARY KEY (SEQ)\r\n" + 
-					")";
+					"  BSDATE VARCHAR(20) NULL COMMENT'기준일자',\r\n" + 
+					"  MTCN VARCHAR(16) NULL COMMENT'거래일련번호',\r\n" + 
+					"  CNO VARCHAR(12) NULL  COMMENT'고객번호',\r\n" + 
+					"  SEQ INT(4) NOT NULL auto_increment COMMENT'순번' unique,\r\n" + 
+					"  FEE_STAT_CD VARCHAR(2) NULL COMMENT'수수료상태코드',\r\n" + 
+					"  FEE_AMNT INT(10) NULL COMMENT'수수료금액',\r\n" + 
+					"  CRTMEM VARCHAR(20) NULL COMMENT'생성아이디', \r\n" + 
+					"  CRTDT DATE NULL COMMENT'생성일자', \r\n" + 
+					"  UPMEM VARCHAR(20) NULL COMMENT'수정아이디',\r\n" + 
+					"  UPDT DATE NULL COMMENT'수정일자',\r\n" +
+					"  PRIMARY KEY(SEQ)\r\n" + 
+					")default character set utf8 collate utf8_general_ci";
 			break;
 			
-		case DROP_FEEDB :
-			result = "DROP TABLE FEEDB";
+		case DROP_FEE :
+			result = "DROP TABLE FEE";
 			break;
 			
-		case TRUNCATE_FEEDB :
-			result = "TRUNCATE TABLE FEEDB";
+		case TRUNCATE_FEE :
+			result = "TRUNCATE TABLE FEE";
 			break;
+			
 			
 		case CREATE_EXRATE : 
 			result = "CREATE TABLE IF NOT EXISTS EXRATE(\n" + 
@@ -126,8 +128,8 @@ public enum SQL {
 					 "VALUES ( 1, 1) ";
 			break;
 			
-		case CREATE_FEE :
-			result = "CREATE TABLE IF NOT EXISTS FEE\r\n" +
+		case CREATE_FEEDB :
+			result = "CREATE TABLE IF NOT EXISTS FEEDB\r\n" +
 					"( \r\n" +  
 					"	SEQ          INT			NOT NULL AUTO_INCREMENT  COMMENT '순번',\r\n" + 
 					"	SDATE        TIMESTAMP DEFAULT NOW()			     COMMENT '생성일',\r\n" + 
@@ -137,18 +139,18 @@ public enum SQL {
 					")  DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI";
 			break;
 			
-		case INSERT_FEE_ONE :
-			result = "INSERT INTO FEE  ( FEETYPCD, AMNT )\r\n " +
+		case INSERT_FEEDB_ONE :
+			result = "INSERT INTO FEEDB  ( FEETYPCD, AMNT )\r\n " +
 					 "VALUES ( 1, 6) ";
 			break;
 			
-		case INSERT_FEE_TWO :
-			result = "INSERT INTO FEE  ( FEETYPCD, AMNT )\r\n " +
+		case INSERT_FEEDB_TWO :
+			result = "INSERT INTO FEEDB  ( FEETYPCD, AMNT )\r\n " +
 					 "VALUES ( 2, 12) ";
 			break;
 			
-		case DROP_FEE :
-			result = "DROP TABLE FEE";
+		case DROP_FEEDB :
+			result = "DROP TABLE FEEDB";
 			break;	
 			
 		case CREATE_TRDHR :
