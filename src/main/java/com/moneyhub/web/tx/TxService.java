@@ -14,7 +14,7 @@ import com.moneyhub.web.faq.FAQ;
 import com.moneyhub.web.faq.FAQMapper;
 import com.moneyhub.web.pxy.CrawlingProxy;
 import com.moneyhub.web.pxy.CustomerProxy;
-import com.moneyhub.web.pxy.ExrateStoreProxy;
+import com.moneyhub.web.pxy.ExrateProxy;
 import com.moneyhub.web.pxy.FAQStoreProxy;
 import com.moneyhub.web.pxy.FeeDBProxy;
 
@@ -22,7 +22,7 @@ import com.moneyhub.web.pxy.FeeDBProxy;
 public class TxService {
 	@Autowired CrawlingProxy crawler;
 	@Autowired FAQStoreProxy faqPxy;
-	@Autowired ExrateStoreProxy exPxy;
+	@Autowired ExrateProxy exPxy;
 	@Autowired Exrate exrate;
 	@Autowired FAQ faq;
 	@Autowired FAQMapper faqMapper;

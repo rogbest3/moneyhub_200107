@@ -219,7 +219,7 @@ main_vue ={
 									<img src="/web/resources/img/main/remit.png" style="width: 300px">
 									<h3>wu 해외송금</h3>
 								</div>
-								<div class="threesteps">
+								<div id="exchange_test_btn" class="threesteps">
 									<img src="/web/resources/img/main/testexchange.png" style="width: 300px">
 									<h3>모의 환전</h3>
 								</div>

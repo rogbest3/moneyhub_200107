@@ -1,27 +1,22 @@
 $(document).ready(function(){
 	let usd, eur, cny, jpy, aud		
-//	let flag = 'default'
-
+	let exrateSess = $.exrateSess()
+	
 	let exchange_box =x=>{
 		$('.form-calculator .amount-row .receive p').text(`${x.country}`)
 		$('.form-calculator .amount-row .receive h3').text(`${x.cntcd}`)
 		
-		$('#exchange_test_exrate p')
+		/*$('#exchange_test_exrate p')
 		.text(`${x.cntcd} 환율 : ${x.exrate}`)
-		.css({ 'text-align': 'left', margin : '5px' })
-                    			
-		$('#popup-exchange')
-		.show()
+		.css({ 'text-align': 'left', margin : '5px' })*/
 		
 		$.getScript($.js() + '/remit/remit_box.js')
 		.done(()=>{
 			remit_box.onCreate({ flag : 'exchange', cntcd : x.cntcd })
 		})
 	}
-	let exrateSess = $.exrateSess()
-
+	
 	$.getJSON(`${$.ctx()}/exrate/search/bdate/${exrateSess.bdate}`, d=>{
-//		sessionStorage.setItem('exrateSess', '');
 		$.each(d.exlist.reverse(), (i,j)=>{	
 			switch (j.cntcd) {
 			case 'USD':
@@ -44,10 +39,8 @@ $(document).ready(function(){
 		
 		sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
 		
-		$('#exchange_datepicker b')
+		$('#exchange_test_header b')
 		.text(`환율 기준일 : ${exrateSess.bdate}`)
-		
-//		alert(`global - exrate_bdate : ${$.exrateSess().bdate}`)	
 		
 		common.total_amount_calc()
 		
@@ -69,22 +62,34 @@ $(document).ready(function(){
                                 "font-size": 10,
                                 "font-weight" : "bold",
                                 fill: "#99d9ea"	//000
-                            }
-                          /*  attrsHover: {
+                            },
+                            attrsHover: {
                                 animDuration: 0,
                                 fill: "#616161",	//277dbc
                                 "font-weight" : "bold"
-                            }*/
+                            }
                         },
                         eventHandlers: {
                             click: function (e, id, mapElem, textElem) {
-                            	$('.form-calculator .amount-row .send')
-                            	.css({ cursor : 'text',
-                            		'background-image' : 'none'})
-                            	$('.form-calculator .amount-row .send p').text(`대한민국`)
-                    			$('.form-calculator .amount-row .send h3').text(`KRW`)
-                    			$('#exchange_send_amount').val(1000000)
-                    			
+                            	if(id === 'KR' || id === 'US' || id === 'JP' || id === 'CN' || id === 'AU' || id === 'DE'){
+                            		$('#popup-exchange')
+                        			.html(mypage_vue.exchange_popup())
+                        			.show()
+                        			
+                        			$.getScript($.js() + '/mypage/exchange_test.js')
+                        			.done(()=>{
+                        				exchange_test.exchange_popup()
+                        			})
+                        			
+                                	$('.form-calculator .amount-row .send')
+                                	.css({ cursor : 'text',
+                                		'background-image' : 'none'})
+                                	$('.form-calculator .amount-row .send p').text(`대한민국`)
+                        			$('.form-calculator .amount-row .send h3').text(`KRW`)
+                        			$('#exchange_send_amount').val(1000000)
+                        			
+                            	}
+                            	
                         		if(id === 'KR'){
                         			$('.form-calculator .amount-row .send')
                         			.css({ cursor : 'pointer',
@@ -93,22 +98,30 @@ $(document).ready(function(){
                         			$('.form-calculator .amount-row .send h3').text(`USD`)
                         			$('#exchange_send_amount').val(1000)
                             		exchange_box({country : '대한민국', cntcd : 'KRW', exrate : 1})
+                            		exrateSess.cntcd = 'KRW'
                             	}
-                            	else if(id === 'US' || id === 'MX'){
+                            	else if(id === 'US'){
                             		exchange_box({country : '미국', cntcd : 'USD', exrate : usd})
+                            		exrateSess.cntcd = 'USD'
                             	}
                             	else if(id === 'JP'){
                             		exchange_box({country : '일본', cntcd : 'JPY', exrate : jpy})
+                            		exrateSess.cntcd = 'JPY'
                             	}
                             	else if(id === 'CN'){
                             		exchange_box({country : '중국', cntcd : 'CNY', exrate : cny})
+                            		exrateSess.cntcd = 'CNY'
                             	}
                             	else if(id === 'AU'){
                             		exchange_box({country : '호주', cntcd : 'AUD', exrate : aud})
+                            		exrateSess.cntcd = 'AUD'
                             	}
                             	else if(id === 'DE'){
                             		exchange_box({country : '유럽', cntcd : 'EUR', exrate : eur})
+                            		exrateSess.cntcd = 'EUR'
                             	}
+                            	sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
+                    			
                             }
                         }
                     }
@@ -162,9 +175,9 @@ $(document).ready(function(){
                 },
                 areas: {
                 	  "KR": {
-  					    "value": "400",
-  					     text: {content: `대한민국 : 1 KRW`, attrs: {fill: "#000", "font-size": 20 }, 
-  					    	 	position : "top", "font-weight" : "bold", margin : {x : 80, y: 40}}	// 20 25
+                		  "value": "400",
+  					      text: {content: `대한민국 : 1 KRW`, attrs: {fill: "#000", "font-size": 20 }, 
+  					      position : "top", "font-weight" : "bold", margin : {x : 80, y: 40}}	// 20 25
   					  },
                 	  "US": {
                           "value": "400",

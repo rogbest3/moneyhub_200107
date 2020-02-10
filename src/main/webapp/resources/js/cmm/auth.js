@@ -53,6 +53,9 @@ auth =(()=>{
 		$('#cemail').val('dmswl@dmswl.com')
 		$('#cpwd').val('12345678')
 
+		/*$('#cemail').val('abc@naver.com')
+		$('#cpwd').val('aa')*/
+
 		join_2_page_btn()
 	}
 	
@@ -83,18 +86,6 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						//===========================================================계좌정보 getJSON으로 받아서 배포
-						/*let cemail = d.cus.cemail
-						let cno = d.cus.cno
-						$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, t=>{
-							if(d.msg === "SUCCESS"){
-								d.cus.acctNo = t.acc.acctNo
-								d.cus.balance = t.acc.balance
-								sessionStorage.setItem('cus', JSON.stringify(d.cus))
-							}else{
-								alert('계좌 getJSON 실패')
-							}
-						})*/
 						alert(d.cus.cname+'님 환영합니다.')
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						//====================================================== HM

@@ -2076,7 +2076,7 @@
 
             // workaround for older version of Raphael
             if (elem.mapElem !== undefined || elem.textElem !== undefined) {
-                if (self.paper.safari) self.paper.safari();
+      //          if (self.paper.safari) self.paper.safari();
             }
         },
 
@@ -2154,7 +2154,7 @@
 
             // workaround for older version of Raphael
             if (elem.mapElem !== undefined || elem.textElem !== undefined) {
-                if (self.paper.safari) self.paper.safari();
+      //          if (self.paper.safari) self.paper.safari();
             }
         },
 

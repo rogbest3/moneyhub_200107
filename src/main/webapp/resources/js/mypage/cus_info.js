@@ -8,18 +8,17 @@ cus_info =(()=>{
 		js = $.js()
 		cus = $.cusInfo()
 		mypage_vue_js = js + '/vue/mypage_vue.js'
-		cookie_js = js + '/cmm/cookie.js'
+//		cookie_js = js + '/cmm/cookie.js'
 	}
 	
 	let onCreate =()=>{
 		init()
 		$.when(
-			$.getScript(mypage_vue_js),
-			$.getScript(cookie_js)
+			$.getScript(mypage_vue_js)
+//			$.getScript(cookie_js)
 		)
 		.done(()=>{
 			setContentView()
-			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -29,15 +28,18 @@ cus_info =(()=>{
 	let setContentView =()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.cus_info())
-		$.getJSON(_+'/customers/cusInfo/' + $('#cemail').val(), d=>{
-			sessionStorage.getItem('cus',JSON.stringify(cus))
-			$('#infoEmail').text(cus.cemail)
-			$('#infoName').text(cus.cname)
-			$('#infoZip').text(cus.zip)
-			$('#infoAddr').text(cus.addr)
-			$('#infoAddr2').text(cus.daddr)
-			$('#infoBirth').text(cus.birth)
-		})
+
+		let cus = $.cusInfo()
+//		alert(JSON.stringify(cus))
+/*		zip : sessionStorage.setItem('ZIP', cus.zip)
+		addr : sessionStorage.setItem('ADDR', cus.addr)
+		daddr : sessionStorage.setItem('DADDR', cus.daddr)*/
+		$('#infoEmail').text(cus.cemail)
+		$('#infoName').text(cus.cname)
+		$('#infoZip').text(cus.zip)
+		$('#infoAddr').text(cus.addr)
+		$('#infoAddr2').text(cus.daddr)
+		$('#infoBirth').text(cus.birth)
 		
 		$('<button/>')
 			.text('정보수정하기')

@@ -14,7 +14,11 @@ import lombok.NoArgsConstructor;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-public class Exrate {
+public class Exrate implements Comparable<Exrate>{
 	private String seq, bdate, cntcd, crtmem, upmem, udate; 
 	private double exrate;
+	@Override
+	public int compareTo(Exrate o) {
+		return this.bdate.compareTo(o.bdate);
+	}
 }

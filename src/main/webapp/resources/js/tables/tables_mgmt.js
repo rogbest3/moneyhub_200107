@@ -2,11 +2,10 @@
 var tables_mgmt = tables_mgmt || {}
 tables_mgmt =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, disableDays, holidays
+	let _, js, disableDays
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
-		holidays = []
 		disableDays = []
 		
 	}

@@ -39,7 +39,6 @@ mypage =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js),
-			$.getScript(line_graph_js),
 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
@@ -71,6 +70,7 @@ mypage =(()=>{
 		
 		$('#remit_btn')
 		.click(function(){
+
 		$("#remit_slider").toggle();
 			var top = $('#remit_slider').offset().top - 75;
 			$('html').scrollTop(top);
@@ -82,7 +82,7 @@ mypage =(()=>{
 	let page_move =()=>{
 		$('#mgmt')
 		.click(()=>{
-			sidebar.onCreate()
+			sidebar.onCreate('')
 			$('html').scrollTop(0);
 		})
 		
@@ -114,6 +114,13 @@ mypage =(()=>{
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
+		
+		$('#exchange_test_btn')
+		.click(()=>{
+			sidebar.onCreate('exchange_test')
+			$('html').scrollTop(0);
+		})
+		
 	}
 	
 	let clock_excute =()=>{
@@ -193,6 +200,7 @@ mypage =(()=>{
 		 /*alert('deal.remitstart'+deal.remitstart+'deal.remitend'+ deal.remitend)*/
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{  //seq 받기
 			let pxy = d.pager
+
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본'},
 				{ img : 'cn', cntcd : 'CNY', curr : '중국'},
 				{ img : 'us', cntcd : 'USD', curr : '미국'},
@@ -216,6 +224,7 @@ mypage =(()=>{
 							j.img = k.img
 						}
 					})
+
 					$(`<div class="themoin-main-remititem">
 							<div class="simple">
 								<div class="unit-flag">
