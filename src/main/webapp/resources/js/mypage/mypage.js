@@ -167,7 +167,8 @@ mypage =(()=>{
 				$.each(d.exlist.reverse(), (i, j)=>{
 						exrate_arr.push(parseFloat(j.exrate))
 				})
-				deal.exrate = exrate_arr[0]
+				deal.exrate = exrate_arr[exrate_arr.length-1] //소수점 둘째자리로 저장 후 넘겨야함
+				alert(deal.exrate)
 				sessionStorage.setItem('deal',JSON.stringify(deal))
 			})
 			
@@ -186,12 +187,12 @@ mypage =(()=>{
 			.addClass('index-send-btn moin-body')
 			.appendTo('#remit_box')
 			.click(()=>{
-								deal.cntp =$('.form-calculator .amount-row .receive p').text() 
-								deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
-								deal.trdusd = common.comma_remove(send_amount.val())
-								sessionStorage.setItem('deal',JSON.stringify(deal))
-								foreignRemit.onCreate()
-								$('html').scrollTop(top);
+				deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
+				deal.trdusd = common.comma_remove(send_amount.val())
+				sessionStorage.setItem('deal',JSON.stringify(deal))
+				foreignRemit.onCreate()
+				$('html').scrollTop(top);
 			})
 	}
 	

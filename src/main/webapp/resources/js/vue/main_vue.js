@@ -243,7 +243,7 @@ main_vue ={
 							<div class="amount-row"> 
 								<div class="" style="float:left"> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="" numberOnly maxlength="4" style="width: 35%;"> 
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="" numberOnly maxlength="5" style="width: 50%;"> 
 									<p id="max_amount" style="color:cornflowerblue;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0"> 
