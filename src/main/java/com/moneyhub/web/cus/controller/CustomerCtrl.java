@@ -39,40 +39,37 @@ public class CustomerCtrl extends Proxy {
 	@Autowired Account acc;
 
 	@PostMapping("/login/{cemail}/")
-	public Map<?, ?> login(@RequestBody Customer param, @PathVariable String cemail) {
-		System.out.println(param.toString());
-		Function<Customer, Customer> f = t -> cusMapper.login(t);
-		cus = f.apply(param);
-		// System.out.println(cus.getCemail());
-		Function<String, Account> f2 = t -> accMapper.getAcc(t);
-		acc = f2.apply(cemail);
-		String result = (cus != null) ? "SUCCESS" : "FAIL";
-		box.clear();
-		box.put("msg", result);
-		box.put("cus", cus);
-		box.put("acc", acc);
-		System.out.println(box.get());
-
-		return box.get();
-	}
-	
-	@PostMapping("/")
-	public Map<?, ?> join(@RequestBody Customer param) {
-		System.out.println("join 들어옴");
-		System.out.println(param.toString());
-		Consumer<Customer> c = o -> cusMapper.join(o);
-		c.accept(param);
-		System.out.println("첫번째 비번: " + param.getCpwd());
-		String encrypwd = CustomerSha256.encrypt(param.getCpwd());
-		param.setCpwd(encrypwd);
-		System.out.println("두번째 비번: " + param.getCpwd());
-		cusMapper.join(param);
-		accountService.createAcc(param);
-		box.clear();
-		box.put("msg", "SUCCESS");
-		System.out.println("회원가입 box.get() : " + box.get().toString());
-		return box.get();
-	}
+    public Map<?, ?> login(@RequestBody Customer param, @PathVariable String  cemail) {
+          System.out.println("login 들어옴 param은? - "+param.toString());
+          String encrypwd = CustomerSha256.encrypt(param.getCpwd());
+          param.setCpwd(encrypwd);
+          System.out.println("로그인 시 param.getCpwd는? - "  +param.getCpwd());
+          Function<Customer, Customer> f = t -> cusMapper.login(t);
+          cus = f.apply(param);
+          System.out.println("로그인 시 cus는? - "+ cus.toString());
+          Function<String, Account> f2 = t -> accMapper.getAcc(t);
+          acc = f2.apply(cemail);
+          String result = (cus != null) ? "SUCCESS" : "FAIL";
+          box.clear();
+          box.put("msg", result);
+          box.put("cus", cus);
+          box.put("acc", acc);
+          System.out.println(box.get());
+          return box.get();
+    }
+    
+    @PostMapping("/")
+    public Map<?, ?> join(@RequestBody Customer param) {
+          System.out.println("join 들어옴 param은? - " + param.toString());
+          String encrypwd = CustomerSha256.encrypt(param.getCpwd());
+          param.setCpwd(encrypwd);
+          cusMapper.join(param);
+          accountService.createAcc(param);
+          box.clear();
+          box.put("msg", "SUCCESS");
+          System.out.println("회원가입 box.get() : " + box.get().toString());
+          return box.get();
+    }
 
 	@GetMapping("/existid/{cemail}/")
 	public Map<?, ?> existId(@PathVariable String cemail) {
@@ -127,28 +124,32 @@ public class CustomerCtrl extends Proxy {
 	}
 
 	@PostMapping("/pwdChg")
-	public Map<?, ?> pwdChg(@RequestBody Customer param) {
-		System.out.println("자바 비번변경 들어옴");
-		System.out.println("---------------"+param.toString());
-		Consumer<Customer> c = o -> cusMapper.pwdChg(o);
-		c.accept(param);
-		System.out.println("***********"+param.toString());
-		System.out.println("cus는???????????"+cus);
-		String cpwd = cus.getCpwd(); //로그인 시 입력한 비밀번호
-		String cpwd2 = param.getCpwd(); //비밀번호 변경 시 입력한 비밀번호x
-		System.out.println("cpwd는? " + cpwd + " / cpwd2는? " + cpwd2);
-		System.out.println("cus.getCpwd()는? " + cus.getCpwd() + " / param.getCpwd()는? " + param.getCpwd());
-		box.clear();
-		//box.put("msg", (cpwd != cpwd2) ? "true" : "false");
-		if (param.getCemail().equals(cus.getCemail()) && cpwd != cpwd2) {
-			box.put("msg", "true");
-			box.put("cus", cus);
-		} else {
-			box.put("msg", "false");
-		}
-		System.out.println("박스에 담긴 메시지: " + box.get());
-		return box.get();
-	}
+    public Map<?, ?> pwdChg(@RequestBody Customer param) {
+          System.out.println("자바 비번변경 들어옴");
+          System.out.println("---------------"+param.toString());
+//        Consumer<Customer> c = o -> cusMapper.pwdChg(o);
+//        c.accept(param);
+          System.out.println("***********"+param.toString());
+          System.out.println("cus는???????????"+cus);
+          String cpwd = cus.getCpwd(); //로그인 시 입력한 비밀번호
+          String cpwd2 = param.getCpwd(); //비밀번호 변경 시 입력한 비밀번호x
+          String encrypwd = CustomerSha256.encrypt(param.getCpwd());
+          param.setCpwd(encrypwd);
+          Consumer<Customer> c = o -> cusMapper.pwdChg(o);
+          c.accept(param);
+          System.out.println("cpwd는? " + cpwd + " / cpwd2는? " + cpwd2);
+          System.out.println("cus.getCpwd()는? " + cus.getCpwd() + " /  param.getCpwd()는? " + param.getCpwd());
+          box.clear();
+          //box.put("msg", (cpwd != cpwd2) ? "true" : "false");
+          if (param.getCemail().equals(cus.getCemail()) && cpwd != cpwd2) {
+                 box.put("msg", "true");
+                 box.put("cus", cus);
+          } else {
+                 box.put("msg", "false");
+          }
+          System.out.println("박스에 담긴 메시지: " + box.get());
+          return box.get();
+    }
 	
 	@GetMapping("/cusInfo/{cemail}")
 	public Map<? ,?> cusInfo(Customer param){
