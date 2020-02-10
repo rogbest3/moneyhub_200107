@@ -79,15 +79,11 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						alert(d.cus.cname+'님 환영합니다.')
+//						alert(d.cus.cname+'님 환영합니다.')
 						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						sessionStorage.setItem('ACC', JSON.stringify(d.result))
-						alert('cus'+JSON.stringify(d.cus))
-						//======================================================
-						//====================================================== MK
-						/*$.extend(new Customer_Info(d.cus))*/
-						//======================================================
+//						alert('cus'+JSON.stringify(d.cus))
 						//====================================================== HM
 						/*sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)

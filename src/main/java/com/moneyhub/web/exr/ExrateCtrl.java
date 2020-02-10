@@ -25,21 +25,21 @@ import com.moneyhub.web.pxy.Proxy;
 @RestController
 @RequestMapping("/exrate")
 public class ExrateCtrl extends Proxy{
-//	static final SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-
 	@Autowired ExrateSevice exService;
 	@Autowired Box<Object> box;
 	@Autowired Exrate exrate;
 	
-	
+	@GetMapping("/exchangetest/{bdate}")
+	public Map<?, ?> exchangeTestExrate(@PathVariable String bdate){
+		print("exchangetest 진입 - " + bdate);
+		return exService.exchangeTestSelect(bdate);
+	}
 	
 	@GetMapping("/search/cntcd/{cntcd}")
 	public Map<?, ?> cntcdSearchExrate(@PathVariable String cntcd){
 		print("cntcd search 진입 - cntcd : " + cntcd);
-		ArrayList<Exrate> list = new ArrayList<>();
-		list = exService.cntcdSearchExrate(cntcd);
 		box.clear();
-		box.put("exlist", list);
+		box.put("exlist", exService.cntcdSearchExrate(cntcd));
 		print(box.get().toString());
 		return box.get();
 	}
@@ -47,10 +47,8 @@ public class ExrateCtrl extends Proxy{
 	@GetMapping("/search/bdate/{bdate}")
 	public Map<?, ?> bdateSearchExrate(@PathVariable String bdate){
 		print("bdate search 진입 - bdate : " + bdate);
-		ArrayList<Exrate> list = new ArrayList<>();
-		list = exService.bdateSearchExrate(bdate);
 		box.clear();
-		box.put("exlist", list);
+		box.put("exlist", exService.bdateSearchExrate(bdate));
 		print(box.get().toString());
 		return box.get();
 	}
@@ -97,6 +95,5 @@ public class ExrateCtrl extends Proxy{
 		map.clear();
 		map.put("result", "SUCCESS");
 		return map;
-		
 	}
 }

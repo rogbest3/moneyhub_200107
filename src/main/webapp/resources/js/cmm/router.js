@@ -1,7 +1,6 @@
 "use strict"
 function Session(x){	
 //	var exrateSess = {}
-//	var money = {}
 	sessionStorage.setItem('ctx', x);
 	sessionStorage.setItem('js', x + '/resources/js');
 	sessionStorage.setItem('css', x + '/resources/css');
@@ -23,19 +22,8 @@ function Session(x){
 		exrateSess : ()=>{ return JSON.parse(sessionStorage.getItem('exrateSess'))},
 		profitsChart : ()=>{ return JSON.parse(sessionStorage.getItem('profitsChart'))},
 		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
-		holidays : ()=>{ return JSON.parse(localStorage.getItem('holidays')) },
-		money : ()=>{ return JSON.parse(sessionStorage.getItem('money'))},
 		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
 		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))}
-	}
-}
-function Customer_Info(x){
-	sessionStorage.setItem('cemail', x.cemail)
-	sessionStorage.setItem('cname', x.cname)
-	
-	return{
-		cemail : ()=>{ return sessionStorage.getItem('cemail') },
-		cname : ()=>{ return sessionStorage.getItem('cname') }
 	}
 }
 

@@ -38,7 +38,6 @@ mypage =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js),
-			$.getScript(line_graph_js),
 			$.getScript(remit_box_js)
 		)
 		.done(()=>{
@@ -70,7 +69,8 @@ mypage =(()=>{
 		
 		$('#remit_btn')
 		.click(function(){
-		$("#remit_slider").toggle()
+			$("#remit_slider").toggle()
+			$('html').scrollTop((remit_slider.style.display === 'none') ? 0 : 290)
 		})
 
 	}
@@ -78,7 +78,7 @@ mypage =(()=>{
 	let page_move =()=>{
 		$('#mgmt')
 		.click(()=>{
-			sidebar.onCreate()
+			sidebar.onCreate('')
 			$('html').scrollTop(0);
 		})
 		
@@ -110,6 +110,13 @@ mypage =(()=>{
 			mypage.onCreate()
 			$('html').scrollTop(0);
 		})
+		
+		$('#exchange_test_btn')
+		.click(()=>{
+			sidebar.onCreate('exchange_test')
+			$('html').scrollTop(0);
+		})
+		
 	}
 	let clock_excute =()=>{
 		clock = new Clock()
@@ -154,7 +161,7 @@ mypage =(()=>{
 				})
 				deal.exrate = exrate_arr[0]
 				sessionStorage.setItem('deal',JSON.stringify(deal))
-				alert(JSON.stringify(deal))
+//				alert(JSON.stringify(deal))
 			})
 				$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 					common.receive_value_calc(deal.exrate)
@@ -181,10 +188,10 @@ mypage =(()=>{
 		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
 			/* console.log(`들어온 알씨피티`+stringifyJSON(d.rcpt)) */
-			alert(pxy.rowCount)
+//			alert(pxy.rowCount)
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
-				alert(d.map.length)
+//				alert(d.map.length)
 				$.each(d.map, (i, j)=>{ 
 					$(`<div class="themoin-main-remititem">
 							<div class="simple">

@@ -3,7 +3,9 @@ exchange_test =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 
 	let _, js, mypage_vue_js, global_map_js, exth, exrateSess, profitsChart, 
-		bdate_exist_flag, deposit, exchangeCount, getCno, line_graph_js, disableDays
+		bdate_exist_flag, deposit, exchangeCount, getCno, line_graph_js, disableDays,
+		getMapFlag, saveFlag
+		
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -17,9 +19,11 @@ exchange_test =(()=>{
 		deposit = 100000000
 		exchangeCount = 0
 		getCno = $.cusInfo().cno
+		getMapFlag = false
+		saveFlag = false
 		
 		exrateSess.flag = 'default'
-		exrateSess.bdate = common.clock_format()	
+//		exrateSess.bdate = common.clock_format()	
 		sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess))
 		disableDays = []
 	}
@@ -29,56 +33,69 @@ exchange_test =(()=>{
 			$.getScript(mypage_vue_js)
 		)
 		.done(()=>{
-			setContentView()
-			retention_amount()
-			exchange_popup()
+			setContentView1()
+			getHoliday()
+			datepicker_show()
 			
-			$('#exchange_datepicker b')
-			.text(`환율 기준일 : ${common.clock_format()}`)
-			
-			$.getJSON(`${_}/datepicker/selectall`, d=>{
-				$.each(d.dpk, (i, j)=>{
-					disableDays[i] = j.ddate
-				})
-//				alert('disableDays ' + JSON.stringify(disableDays))
-			})
-			
-			datepicker_option()
-			$('#exchange_datepicker img')
-			.click(()=>{
-				$('#ui-datepicker-div').css({display:'block', 'vertical-align': 'middle'})
-			})
-			
-			$('#datepicker').datepicker()
-			.change(()=>{
-				amount_history()
-				
-				exrateSess.flag = 'select'
-				exrateSess.bdate = $('#datepicker').val()
-				sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
-				
-				$('#world_map')
-				.html(`<div class="mapcontainer">
-					        <div class="map">
-					            <span>Alternative content for the map</span>
-					        </div>
-					    </div>`)
-				  
-				$.getScript($.js() + '/maps/global_map.js')
-				
-			})
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
 		})	
 	}
-	let setContentView =()=>{
-		$('head')
-		.append(mypage_vue.exchange_test_head())
+	let onCreate2 =()=>{
+		setContentView2()
+		retention_amount()
+		exchange_popup()
 		
+	//	getHoliday()
+		datepicker_show()
+	}
+	
+	let setContentView1 =()=>{
 		$('#root div.mypage')
-		.html(mypage_vue.exchange_test())
-
+		.html(mypage_vue.exchange_test1())
+		
+		$('#exchange_datepicker')
+		.css({
+			height : '60px',
+			margin : '10px auto',
+			'text-align' : 'center'
+		})	
+		
+		$('#test_mode_1')
+		.css({ width : '50%', float : 'left' })
+		
+		$('#test_mode_2')
+		.css({ width : '50%', float : 'left' })
+		
+		$('<button/>')
+		.text('모드 1')
+		.addClass('btn btn-lg btn-info')
+		.appendTo('#test_mode_1')
+		.click(()=>{
+			
+		})
+		
+		$('<button/>')
+		.text('모드 2')
+		.addClass('btn btn-lg btn-success')
+		.appendTo('#test_mode_2')
+		.click(()=>{
+			getMapFlag = true
+			onCreate2()
+		})
+	}
+	
+	let setContentView2 =()=>{
+	/*	$('head')
+		.append(mypage_vue.exchange_test_head())
+	*/	
+		$('#root div.mypage')
+		.html(mypage_vue.exchange_test2())
+		
+		sessionStorage.setItem('chartFlag', 'historyChart')
+		$.getScript(line_graph_js)
+		
 		$('#popup-exchange')
 		.html(mypage_vue.exchange_popup())
 		.hide()
@@ -131,11 +148,22 @@ exchange_test =(()=>{
 			
 			common.total_amount_calc()
 			
+			exrateSess.cntcd = ''
+			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
 			$('#popup-exchange')
 			.hide()
 		})
 	
-		common.popup_close('exchange')
+	//	common.popup_close('exchange')
+		$('#popup-exchange .moin-close')
+		.click(e=>{
+			e.preventDefault()
+//			exrateSess.cntcd = ''
+//			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
+			$('#cntcd_slide').css({ 'display': 'none' })
+			$('#popup-exchange').hide()
+//			$('#popup-exchange').empty()
+		})
 	}
 	
 	let retention_amount =()=>{
@@ -171,19 +199,25 @@ exchange_test =(()=>{
 			.addClass('btn btn-lg btn-primary')
 			.appendTo('#init_btn')
 			.click(()=>{
-				$.ajax({
+				exchangeCount = 0
+				exth = []
+				amount_init()
+				$('#exchange_test_chart1').empty()
+				init_Exth()
+				/*$.ajax({
 					url : `${_}/exth/delete/${getCno}`,
 					type : 'DELETE',
 					contentType : 'application/json',
 					success : d=>{
+						exchangeCount = 0
 						amount_init()
 						exth = []
-						$('#exchange_test_chart').empty()
+						$('#exchange_test_chart1').empty()
 					},
 					error : e=>{
 						alert('ajax 실패')
 					}
-				})
+				})*/
 			})
 			
 			$('#save_btn').css({
@@ -197,10 +231,15 @@ exchange_test =(()=>{
 			.addClass('btn btn-lg btn-primary')
 			.appendTo('#save_btn')
 			.click(()=>{
-//				alert('저장 시 exth - ' + JSON.stringify(exth))
+				alert('exth 길이 : ' + exth.length)
+				init_Exth()
+				saveFlag = true
+				amount_history()
+				
 				if( exth.length > 0 ){
-					amount_history()
+					alert('정렬 전 ' + JSON.stringify(exth))
 					common.object_sort(exth)
+					exchangeCount = 0
 					
 					$.ajax({
 						url : `${_}/exth/insert/${deposit}`,
@@ -209,15 +248,15 @@ exchange_test =(()=>{
 						dataType : 'JSON',
 						contentType : 'application/json',
 						success : d=>{
-//							alert('exth - ' + JSON.stringify(exth))
-						//	exth = []
-							
+							saveFlag = false
 							profitsChart= d.exth
 							sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
 							sessionStorage.setItem('chartFlag', 'profitsChart')
 							
 //							alert('profitsChart : ' + JSON.stringify($.profitsChart()))
 //							alert('chartFlag : ' + $.chartFlag())
+							$('#exchange_test_chart1')
+							.html(`<canvas id="canvas" style="width:100%; height: 150px; max-height: 250px; margin-top: 60px"></canvas>`)
 							$.getScript(line_graph_js)
 							
 						/*	$('#test_history').empty()
@@ -236,15 +275,73 @@ exchange_test =(()=>{
 				}
 			})
 	}
+	let init_Exth =()=>{
+		$.ajax({
+			url : `${_}/exth/delete/${getCno}`,
+			type : 'DELETE',
+			contentType : 'application/json',
+			success : ()=>{
+
+			},
+			error : e=>{
+				alert('ajax 실패')
+			}
+		})
+	}
+	let getHoliday =()=>{
+		$.getJSON(`${_}/datepicker/selectall`, d=>{
+			$.each(d.dpk, (i, j)=>{
+				disableDays[i] = j.ddate
+			})
+//			alert('disableDays ' + JSON.stringify(disableDays))
+		})
+	}
+	
+	let datepicker_show =()=>{
+		datepicker_option()
+		
+		$('#exchange_datepicker img')
+		.css({ float: 'left', 'margin-top': '10px' })
+		.click(()=>{
+			$('#ui-datepicker-div').css({display:'block', 'vertical-align': 'middle'})
+		})
+		
+		$('#datepicker').datepicker()
+		.change(()=>{
+			amount_history()
+			exchangeCount = 0
+			
+			exrateSess.flag = 'select'
+			exrateSess.bdate = $('#datepicker').val()
+			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
+			if(getMapFlag === true){
+				$('#world_map')
+				.html(`<div class="mapcontainer">
+					        <div class="map">
+					            <span>Alternative content for the map</span>
+					        </div>
+					    </div>`)
+//				alert('chartFlag : ' + $.chartFlag())	    
+				$('#exchange_test_chart2')
+				.html(`<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+
+						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+
+						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>`)
+				
+				$.getScript($.js() + '/maps/global_map.js')
+				$.getScript($.js() + '/exchart/line_graph.js')
+			}else{
+				$('#exchange_test_header b')
+				.text(`모의 환전 시작일 : ${$.exrateSess().bdate}`)
+			}
+		})
+	}
 	
 	let datepicker_option =()=>{
-		
-		$('head').append(`<style type="text/css">
-							.ui-datepicker-week-end { color:red; }
-							.ui-datepicker-week-end .ui-state-default { color:red; }
-						</style>`)
 						
-
 		$.datepicker.setDefaults({
 	        dateFormat: 'yymmdd',
 	        prevText: '이전 달',
@@ -293,8 +390,8 @@ exchange_test =(()=>{
 			// 주 표시
 //			showWeek: true
 			beforeShowDay: function(date){
-			    let day = date.getDay();
-				let thismonth = date.getMonth()+1;
+				let day = date.getDay();
+			   	let thismonth = date.getMonth()+1;
 				let thisday = date.getDate();
 
 				if(thismonth < 10){
@@ -305,15 +402,16 @@ exchange_test =(()=>{
 				}
 				
 			    ymd = date.getFullYear() + "-" + thismonth + "-" + thisday;
-			    
+				
 			    for(let i=0; i<disableDays.length; i++){
-			    	if ( $.inArray(ymd, disableDays) != -1 ) {		
-//			    		alert(ymd + ' === ' + disableDays[i] )
-				        return [false]	// ,'' , disableDaysName[i]
+			    	if ( $.inArray(ymd, disableDays) != -1 ) {		 // 공휴일 날짜 출력
+				        return [false, 'Highlighted', ymd]	
 				    }
 			    }
-
-			    return [(day != 0 && day != 6)]
+			    if((day != 0 && day != 6)){				// 평일 날짜 출력
+			    	return [true]
+			    }
+			    return [false]
 			}		
 		})
 	}
@@ -329,7 +427,7 @@ exchange_test =(()=>{
 	}
 	let amount_history =()=>{
 		let bdate_exist
-		if(exchangeCount > 0){
+		if(exchangeCount > 0 || saveFlag === true){	// 환전버튼 클릭 시 ++
 			$.each(exth, (i, j)=>{
 				if(exrateSess.bdate === j.bdate ){	//	날짜가 같을 시 오버라이딩 시키기
 //					alert('날짜 같음')
@@ -360,9 +458,10 @@ exchange_test =(()=>{
 						jpy : common.comma_remove($('#exchange_JPY').text()),
 						cno : getCno	})
 			}
-			exchangeCount = 0
+//			exchangeCount = 0
+//			saveFlag = false
 		}
 		
 	}
-	return { onCreate }
+	return { onCreate, exchange_popup }
 })()

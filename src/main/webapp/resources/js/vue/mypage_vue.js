@@ -1,8 +1,8 @@
 var mypage_vue = mypage_vue || {}
 mypage_vue = {
 	cus_info : ()=>{
-		return '<div class="themoin-mypage-profile" style="text-align:-webkit-center"><br>'+
-		'        <h1>회원정보</h1><br>'+
+		return '<div class="themoin-mypage-profile" style="text-align:-webkit-center">'+
+		'        <h1 style="margin:30px auto">회원정보</h1>'+
 		'        <p class="newmoin-text-text-button" style="text-align: center;">기입한 연락처로 송금 관련 알림이 발송됩니다. 중요한 안내를 받지 못하는 일이 없도록 정확히 입력해주세요.<br>회원정보는 개인정보처리방침에 따라 안전하게 보호되며, 회원님의 동의없이 공개되지 않습니다.<br>정보 수정을 원하시면 하단의 수정하기 버튼을 눌러주세요.<br></p><br>'+
 		'        <div class="themoin-info-preview">'+
 		'            <div class="head">로그인 정보</div>'+
@@ -39,9 +39,9 @@ mypage_vue = {
 		'    </div>'
 	},
 	cus_info_chg : ()=>{
-		return '<div class="themoin-mypage-profile"><br>'+
-		'        <h1>회원정보</h1><br>'+
-		'        <p class="newmoin-text-text-button" style="text-align: center;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며, 회원님의 동의없이 공개되지 않습니다.<br>정보 수정을 원하시면 하단의 수정하기 버튼을 눌러주세요.<br></p><br>'+
+		return '<div class="themoin-mypage-profile">'+
+		'        <h1 style="margin:30px auto">회원정보</h1>'+
+		'        <p class="newmoin-text-text-button" style="text-align: center;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며, 회원님의 동의없이 공개되지 않습니다.<br>정보 수정을 원하시면 하단의 수정하기 버튼을 눌러주세요.<br></p>'+
 		'        <div class="content themoin-recipient-field-section">'+
 		'            <form action="/a/v1/member/update" method="post">'+
 		'                <div class="form-row col-2">'+
@@ -82,12 +82,12 @@ mypage_vue = {
 		'                </div>'+
 		'            </div>'+
 		'        </div>'+
-		'        <div class="form-row submit-row">'+
-		'            <div class="submit">'+
-		'                <button id="info_chg_cancle" class="account-send-btn" type="button" tabindex="0" style="width:50%; float:right;">취소</button>'+
+		'        <div class="form-row submit-row" style="margin: 0 0 40px 0;">'+
+		'            <div class="submit" style="margin-top: 0;">'+
+		'               <button id="info_chg_check" class="account-send-btn" type="button" tabindex="0" style="width:50%;margin-top: 0;">저장</button>'+ 
 		'            </div>'+
-		'            <div class="submit">'+
-		'				<button id="info_chg_check" class="account-send-btn" type="button" tabindex="0" style="width:50%">저장</button>'+
+		'            <div class="submit" style="margin-top: 0;">'+
+		'				<button id="info_chg_cancle" class="account-send-btn" type="button" tabindex="0" style="width:50%; float:right;margin-top: 0;">취소</button>'+
 		'            </div>'+
 		'        </div>'+
 		'    </div>'
@@ -95,9 +95,9 @@ mypage_vue = {
 	pwd_chg : ()=>{
 		return '<div class="themoin-mypage-password">'+
 		'        <div class="content">'+
-		'            <h1>비밀번호 변경 안내</h1>'+
+		'            <h1 style="margin:30px auto">비밀번호 변경 안내</h1>'+
 		'            <p>다른 사이트에서 사용한 적이 없는 비밀번호나 이전에 사용한 적이 없는 비밀번호를 입력해주세요.<br>생일이나 전화번호, 연속된 숫자 등의 알기 쉬운 비밀번호도 피해주세요.</p>'+
-		'            <form action="/a/v1/member/update" method="post">'+
+		'            <form action="/a/v1/member/update" method="post" style="padding-bottom: 40px;">'+
 		'               <div class="form-row">'+
 		'                    <div class="email">'+
 		'                        <div class="moin-input">'+
@@ -147,8 +147,8 @@ mypage_vue = {
 		'    </div>'
 	},
 	auth_mgmt : ()=>{
-		return '<div><br>'+
-		'        <h1 style="text-align : center">자산정보</h1><br>'+
+		return '<div>'+
+		'        <h1 style="text-align : center; margin:30px 0 10px 0">자산정보</h1>'+
 		'        <div class="themoin-info-preview" style="margin: 0 auto">'+
 		'            <div class="head">발급된 가상계좌</div>'+
 		'            <ol>'+
@@ -277,9 +277,9 @@ mypage_vue = {
 	withdrawal : ()=>{
 		return '<div class="themoin-mypage-password">'+
 		'        <div class="content">'+
-		'            <h1>회원 탈퇴</h1>'+
+		'            <h1  style="margin:30px auto">회원 탈퇴</h1>'+
 		'            <p>더 이상 머니허브 서비스를 이용하지 않으시겠습니까?</p>'+
-		'            <form action="/a/v1/member/update" method="delete">'+
+		'            <form action="/a/v1/member/update" method="delete" style="padding-bottom: 40px;">'+
 		'               <div class="form-row">'+
 		'                    <div class="email">'+
 		'                        <div class="moin-input">'+
@@ -308,15 +308,50 @@ mypage_vue = {
 		'        </div>'+
 		'    </div>'
 	},
-	exchange_test : ()=>{
+	exchange_test1 : ()=>{
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0">
-					<div id="exchange_datepicker">
+		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0; min-height:840px;">
+					<h1 style="margin:30px auto">모의 환전 시작하기</h1>
+					<div id="exchange_test_header" style="width : 100%; height : 150px; text-align: center;">
+						<div style="width : 100%; height : 50px; padding-top : 20px; font-size: 18px;"><b>모의 환전 시작일</b></div>
+						<div id="exchange_datepicker" style="width :100%; height:60px;">
+							<p style="font-weight: bold; width : 100%;">모의 환전 시작일 변경</p>
+							<div style="width : 100%; height:35px; padding-left: 390px"><input type="text" id="datepicker" class="form-control" style="width: 240px; float: left"></div>
+				    	</div>
+					</div>	
+					
+					<div style="width:100%; height : 100px; text-align: center; margin-top:20px">
+			    		<div id="test_mode_1"><p>선택일로 부터 순차적으로 모의 환전</p></div>
+			    		<div id="test_mode_2"><p>환전일 선택하여 모의 환전</p></div>
+			    	</div>
+					    
+					</div>
+				    <div>
+				    	
+				    </div>
+				    
+				</div>
+				<style type="text/css">
+					.ui-datepicker-week-end { color:red; }
+					.ui-datepicker-week-end .ui-state-default { color:red; }
+					.Highlighted span {
+					   background-color : #fcfcfc !important;
+					   background-image :none !important;
+					   color: red !important;
+					   font-weight:bold !important;
+					   font-size: 12px;
+					}
+				</style>	`
+	},
+	exchange_test2 : ()=>{
+//		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
+		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0; min-height:840px;">
+					<div id="exchange_test_header" style="width : 100%; height : 80px; text-align: center;">
 						<div style="width : 70%; height : 100%; padding-top : 20px; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
 						<div id="exchange_datepicker" style="width : 30%; float:left">
-						<p style="font-weight: bold; width : 250px;">환율 기준일 변경</p>
-						<p><input type="text" id="datepicker" class="form-control" style="width: 78%; float: left"></p>
-			    	</div>
+							<p style="font-weight: bold; width : 100%; height: 25px;">환율 기준일 변경</p>
+							<div style="width : 100%; height: 35px; padding-left : 50px"><input type="text" id="datepicker" class="form-control" style="width: 78%; float: left"></div>
+				    	</div>
 					</div>	
 					<div id="world_map">
 					    <div class="mapcontainer">
@@ -325,7 +360,7 @@ mypage_vue = {
 					        </div>
 					    </div>
 					</div>
-				    <div>
+				    <div style="width:100%;height:360px">
 				    	<div id="amount" class="themoin-info-preview" style="width:33%; min-width:330px;">
 					    	<ol style="border-bottom-width: 0px;"></ol>
 					    	<div style="width:100%">
@@ -334,66 +369,127 @@ mypage_vue = {
 					    	</div>
 					    	<div id="test_history"></div>
 					    </div>
-				    	<div id="exchange_test_chart" style="width:67%;float:left">                         
+				    	<div id="exchange_test_chart1" style="width:67%;float:left">                         
 				 	      	<canvas id="canvas" style="width:100%; height: 150px; max-height: 250px; margin-top: 60px"></canvas> 
-						</div> 
+						</div>
+						
 				    </div>
-				    
-				</div>`
+				    <div id="exchange_test_chart2" style="width:100%;height:510px">      
+						<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+
+						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+
+						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+					</div>  
+				</div>
+				<style type="text/css">
+			        body {
+			            color: #5d5d5d;
+			            font-family: Helvetica, Arial, sans-serif;
+			        }
+			
+			        h1 {
+			            font-size: 30px;
+			            margin: auto;
+			            margin-top: 50px;
+			        }
+			
+			        .container {
+			            max-width: 800px;
+			            margin: auto;
+			        }
+			
+			        /* Specific mapael css class are below
+			         * 'mapael' class is added by plugin
+			        */
+			
+			        .mapael .map {
+			            position: relative;
+			        }
+			
+			        .mapael .mapTooltip {
+			            position: absolute;
+			            background-color: #fff;
+			            moz-opacity: 0.70;
+			            opacity: 0.70;
+			            filter: alpha(opacity=70);
+			            border-radius: 10px;
+			            padding: 10px;
+			            z-index: 1000;
+			            max-width: 200px;
+			            display: none;
+			            color: #343434;
+			        }
+
+					.ui-datepicker-week-end { color:red; }
+					.ui-datepicker-week-end .ui-state-default { color:red; }
+					.Highlighted span {
+					   background-color : #fcfcfc !important;
+					   background-image :none !important;
+					   color: red !important;
+					   font-weight:bold !important;
+					   font-size: 12px;
+					}
+
+			    </style>
+				<script src="/web/resources/js/maps/jquery.mapael.js"></script>
+			    <script src="/web/resources/js/maps/global_map.js"></script>
+			    <script src="/web/resources/js/maps/world_countries.js"></script>`
 	},
 	exchange_test_head : ()=>{
 		return `<style type="text/css">
-        body {
-            color: #5d5d5d;
-            font-family: Helvetica, Arial, sans-serif;
-        }
+			        body {
+			            color: #5d5d5d;
+			            font-family: Helvetica, Arial, sans-serif;
+			        }
+			
+			        h1 {
+			            font-size: 30px;
+			            margin: auto;
+			            margin-top: 50px;
+			        }
+			
+			        .container {
+			            max-width: 800px;
+			            margin: auto;
+			        }
+			
+			        /* Specific mapael css class are below
+			         * 'mapael' class is added by plugin
+			        */
+			
+			        .mapael .map {
+			            position: relative;
+			        }
+			
+			        .mapael .mapTooltip {
+			            position: absolute;
+			            background-color: #fff;
+			            moz-opacity: 0.70;
+			            opacity: 0.70;
+			            filter: alpha(opacity=70);
+			            border-radius: 10px;
+			            padding: 10px;
+			            z-index: 1000;
+			            max-width: 200px;
+			            display: none;
+			            color: #343434;
+			        }
 
-        h1 {
-            font-size: 30px;
-            margin: auto;
-            margin-top: 50px;
-        }
+					.ui-datepicker-week-end { color:red; }
+					.ui-datepicker-week-end .ui-state-default { color:red; }
 
-        .container {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        /* Specific mapael css class are below
-         * 'mapael' class is added by plugin
-        */
-
-        .mapael .map {
-            position: relative;
-        }
-
-        .mapael .mapTooltip {
-            position: absolute;
-            background-color: #fff;
-            moz-opacity: 0.70;
-            opacity: 0.70;
-            filter: alpha(opacity=70);
-            border-radius: 10px;
-            padding: 10px;
-            z-index: 1000;
-            max-width: 200px;
-            display: none;
-            color: #343434;
-        }
-    </style>
-
-    <script src="/web/resources/js/maps/global_map.js"></script>
-	<script src="/web/resources/js/maps/jquery.mapael.js"></script>
-    <script src="/web/resources/js/maps/world_countries.js"></script>
-`
-//		<script src="/web/resources/js/datepicker/bootstrap-datepicker.js"></script>
-//<script src="/web/resources/js/datepicker/bootstrap-datepicker.ko.js"></script>
-//<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+			    </style>
+				<script src="/web/resources/js/maps/jquery.mapael.js"></script>
+			    <script src="/web/resources/js/maps/global_map.js"></script>
+			    <script src="/web/resources/js/maps/world_countries.js"></script>`
 	},
 	exchange_popup : ()=>{	//themoin-remit-component
 		return `<div class="moin-popup">
 					<div class="themoin-unit-select-popup" tabindex="-1">
-						<div class="unit-content" style="width: 500px; height: 400px;">
+						<div class="unit-content" style="width: 500px; height: auto; min-height: 420px ; max-height : 700px; padding-bottom:20px;">
 							<a class="moin-close">
 								<img src="https://img.themoin.com/public/img/btn-close.png" srcset="https://img.themoin.com/public/img/btn-close.png 1x,
 										https://img.themoin.com/public/img/btn-close@2x.png 2x,
@@ -401,7 +497,7 @@ mypage_vue = {
 							</a>
 							<div class="themoin-remit-component" style="padding-top: 23px; border-top-width: 0px; padding-bottom: 0px; margin: 0 auto;">
 								<div id="exchange_box" class="form-calculator main" style="width: 100%; min-width: 400px;">
-									<div class="amount-row" style="height: 100px;">
+									<div class="amount-row" style="min-height: 100px;">
 										<div class="">
 											<p style="text-align: left;">송금 금액</p>
 											<input class="send-amount" id="exchange_send_amount"  type="text" tabindex="0" placeholder="0.00" value="1000000">
@@ -411,7 +507,10 @@ mypage_vue = {
 											<h3>KRW</h3>
 										</div>
 									</div>
-									<div class="amount-row" style="height: 100px;">
+									<div id="cntcd_slide" class="amount-row" style="min-height: 270px; display : none">
+											<ul style="width : 100%; border-width : 1px; border-color :#dbdbdf; border-top-style: solid; border-left-style: solid; border-right-style: solid;" ></ul>
+									</div>
+									<div class="amount-row" style="min-height: 100px;">
 										<div class="">
 											<p style="text-align: left;">예상 비용</p>
 											<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="">
@@ -430,9 +529,9 @@ mypage_vue = {
 					</div>`
 	},
 	exchange : ()=>{
-		return 	'<div class="themoin-remit-component">'+
+		return 	'<div class="themoin-remit-component" style="padding: 30px 0 40px 0;border-top-width: 0px;">'+
 		'		<div id="moin-event-amount" class="moin-event-amount">'+
-		'		<h1>지금 바로 머니허브 환전을 이용해보세요</span>'+
+		'		<h1 style="padding-bottom: 0px;">지금 바로 머니허브 환전을 이용해보세요</span>'+
 		'			<p class="color-deepgrey"></p>'+
 		'		</div>'+
 		'<div id="chart" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>'+

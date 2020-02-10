@@ -1,5 +1,6 @@
 //		window.onload = function() {//
 $(document).ready(function(){
+	let value
 	let config = {
 		type: 'line',
 		data: {
@@ -34,7 +35,7 @@ $(document).ready(function(){
 						return `머니허브 환율`
 					},
 					label : function(tooltipItem, data){
-						return config.data.datasets[0].data[tooltipItem['index']]
+						return common.comma_create(config.data.datasets[0].data[tooltipItem['index']])
 					}
 				},
 				intersect: false
@@ -67,14 +68,11 @@ $(document).ready(function(){
 			}
 		}
 	};
-//	alert('그래프')
+
 	let ctx = document.getElementById('canvas').getContext('2d');
 	let getProfitsChart = $.profitsChart()
-
+	
 	if( $.chartFlag() === 'profitsChart'){
-//		let ctx2 = document.getElementById('pofitsCanvas').getContext('2d');
-		
-		alert('profisChart length - ' + getProfitsChart.length)
 		config.data.labels = []
 		config.data.datasets[0].data = []
 		
@@ -82,12 +80,40 @@ $(document).ready(function(){
 			config.data.labels[i] = j.bdate.substr(-5).replace('-', '/')
 			config.data.datasets[0].data[i] = parseFloat(j.profits)
 		})
-		console.log(config.data.labels)
-		console.log(config.data.datasets[0].data)
 		config.options.title.text = `날짜별 수익금 차트`
 		
 		window.myLine = new Chart(ctx, config);
 		
+	}else if($.chartFlag() === 'historyChart'){	
+		let usdData = [], eurData = [], cnyData = [], jpyData = [], audData = [], ctx, tempConfig = {}
+		$.getJSON( `/web/exrate/exchangetest/${$.exrateSess().bdate}`, d=>{
+			let l = d.usdRate.length
+			config.data.labels = []
+			for(let i=0; i<l; i++){
+				config.data.labels[i] = d.usdRate[i].bdate.substr(-5).replace('-', ' / ')
+				usdData[i] = parseFloat(d.usdRate[i].exrate)
+				eurData[i] = parseFloat(d.eurRate[i].exrate)
+				cnyData[i] = parseFloat(d.cnyRate[i].exrate)
+				jpyData[i] = parseFloat(d.jpyRate[i].exrate)
+				audData[i] = parseFloat(d.audRate[i].exrate)
+			}
+			let lineData = [{ ctxId : 'canvas2', data : usdData, color : '#2DCCD6', title : 'USD(미국) 환율 그래프', cf : config2 },
+							{ ctxId : 'canvas3', data : eurData, color : '#36a2eb', title : 'EUR(유럽) 환율 그래프', cf : config3  },
+                            { ctxId : 'canvas4', data : audData, color : '#ffcd56', title : 'AUD(호주) 환율 그래프', cf : config4  },
+                            { ctxId : 'canvas5', data : cnyData, color : '#ff6384', title : 'CNY(중국) 환율 그래프', cf : config5  },
+                            { ctxId : 'canvas6', data : jpyData, color : '#9966ff', title : 'JPY(일본) 환율 그래프', cf : config6  }]
+			$.each(lineData, (i, j)=>{
+				let ctx = document.getElementById(j.ctxId).getContext('2d');
+				tempConfig = j.cf
+				tempConfig.options.tooltips.backgroundColor = j.color
+				tempConfig.data.datasets[0].backgroundColor = j.color
+				tempConfig.data.datasets[0].borderColor = j.color
+				tempConfig.data.labels = config.data.labels
+				tempConfig.data.datasets[0].data = j.data
+				tempConfig.options.title.text = j.title
+				window.myLine = new Chart(ctx, tempConfig);
+			})
+		})
 	}else{
 		let cntcd = $('.form-calculator .amount-row .receive h3').text()
 		$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
@@ -95,70 +121,343 @@ $(document).ready(function(){
 				config.data.labels[i] = j.bdate.substr(-5).replace('-', ' / ')
 				config.data.datasets[0].data[i] = parseFloat(j.exrate)
 			})
-			config.options.title.text = `1 USD = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
+			config.options.title.text = `1 USD = ${common.comma_create(config.data.datasets[0].data[config.data.datasets[0].data.length -1])} KRW`
 			window.myLine = new Chart(ctx, config);
 		})
 	}
-	
-	
-})
-		
-
-/*		document.getElementById('randomizeData').addEventListener('click', function() {
-			config.data.datasets.forEach(function(dataset) {
-				dataset.data = dataset.data.map(function() {
-					return randomScalingFactor();
-				});
-
-			});
-
-			window.myLine.update();
-		});
-
-		var colorNames = Object.keys(window.chartColors);
-		document.getElementById('addDataset').addEventListener('click', function() {
-			var colorName = colorNames[config.data.datasets.length % colorNames.length];
-			var newColor = window.chartColors[colorName];
-			var newDataset = {
-				label: 'Dataset ' + config.data.datasets.length,
-				backgroundColor: newColor,
-				borderColor: newColor,
+	let config2 = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: '머니허브 환율',
+				backgroundColor: '#2DCCD6',		//window.chartColors.blue,
+				borderColor: '#2DCCD6',
+				lineTension : 0,
 				data: [],
-				fill: false
-			};
-
-			for (var index = 0; index < config.data.labels.length; ++index) {
-				newDataset.data.push(randomScalingFactor());
+				fill: false	
+			}]
+		},
+		options: {
+			responsive: true,
+			legend : {
+				display : false
+			},
+			title: {
+				display: true,
+				text: '',
+				fontSize : 18
+			},
+			tooltips: {
+				displayColors : false,
+				backgroundColor : '#2DCCD6',
+				titleFontColor : '#fff',
+				titleAlign : 'center',
+				titleFontStyle : 'bold',
+				callbacks : {
+					title : function(tooltipItem, data){
+						return `머니허브 환율`
+					},
+					label : function(tooltipItem, data){
+						return common.comma_create(config2.data.datasets[0].data[tooltipItem['index']])
+					}
+				},
+				intersect: false
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					}
+				}],
+				yAxes: [{
+					display: false,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Value'
+					}
+				}]
 			}
-
-			config.data.datasets.push(newDataset);
-			window.myLine.update();
-		});
-
-		document.getElementById('addData').addEventListener('click', function() {
-			if (config.data.datasets.length > 0) {
-				var month = MONTHS[config.data.labels.length % MONTHS.length];
-				config.data.labels.push(month);
-
-				config.data.datasets.forEach(function(dataset) {
-					dataset.data.push(randomScalingFactor());
-				});
-
-				window.myLine.update();
+		}
+	};
+	let config3 = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: '머니허브 환율',
+				backgroundColor: '#36a2eb',		//window.chartColors.blue,
+				borderColor: '#36a2eb',
+				lineTension : 0,
+				data: [],
+				fill: false	
+			}]
+		},
+		options: {
+			responsive: true,
+			legend : {
+				display : false
+			},
+			title: {
+				display: true,
+				text: '',
+				fontSize : 18
+			},
+			tooltips: {
+				displayColors : false,
+				backgroundColor : '#36a2eb',
+				titleFontColor : '#fff',
+				titleAlign : 'center',
+				titleFontStyle : 'bold',
+				callbacks : {
+					title : function(tooltipItem, data){
+						return `머니허브 환율`
+					},
+					label : function(tooltipItem, data){
+						return common.comma_create(config3.data.datasets[0].data[tooltipItem['index']])
+					}
+				},
+				intersect: false
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					}
+				}],
+				yAxes: [{
+					display: false,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Value'
+					}
+				}]
 			}
-		});
-
-		document.getElementById('removeDataset').addEventListener('click', function() {
-			config.data.datasets.splice(0, 1);
-			window.myLine.update();
-		});
-
-		document.getElementById('removeData').addEventListener('click', function() {
-			config.data.labels.splice(-1, 1); // remove the label first
-
-			config.data.datasets.forEach(function(dataset) {
-				dataset.data.pop();
-			});
-
-			window.myLine.update();
-		});*/
+		}
+	};
+	let config4 = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: '머니허브 환율',
+				backgroundColor: '#36a2eb',		//window.chartColors.blue,
+				borderColor: '#36a2eb',
+				lineTension : 0,
+				data: [],
+				fill: false	
+			}]
+		},
+		options: {
+			responsive: true,
+			legend : {
+				display : false
+			},
+			title: {
+				display: true,
+				text: '',
+				fontSize : 18
+			},
+			tooltips: {
+				displayColors : false,
+				backgroundColor : '#36a2eb',
+				titleFontColor : '#fff',
+				titleAlign : 'center',
+				titleFontStyle : 'bold',
+				callbacks : {
+					title : function(tooltipItem, data){
+						return `머니허브 환율`
+					},
+					label : function(tooltipItem, data){
+						return common.comma_create(config4.data.datasets[0].data[tooltipItem['index']])
+					}
+				},
+				intersect: false
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					}
+				}],
+				yAxes: [{
+					display: false,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Value'
+					}
+				}]
+			}
+		}
+	};
+	let config5 = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: '머니허브 환율',
+				backgroundColor: '#36a2eb',		//window.chartColors.blue,
+				borderColor: '#36a2eb',
+				lineTension : 0,
+				data: [],
+				fill: false	
+			}]
+		},
+		options: {
+			responsive: true,
+			legend : {
+				display : false
+			},
+			title: {
+				display: true,
+				text: '',
+				fontSize : 18
+			},
+			tooltips: {
+				displayColors : false,
+				backgroundColor : '#36a2eb',
+				titleFontColor : '#fff',
+				titleAlign : 'center',
+				titleFontStyle : 'bold',
+				callbacks : {
+					title : function(tooltipItem, data){
+						return `머니허브 환율`
+					},
+					label : function(tooltipItem, data){
+						return common.comma_create(config5.data.datasets[0].data[tooltipItem['index']])
+					}
+				},
+				intersect: false
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					}
+				}],
+				yAxes: [{
+					display: false,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Value'
+					}
+				}]
+			}
+		}
+	};
+	let config6 = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: '머니허브 환율',
+				backgroundColor: '#36a2eb',		//window.chartColors.blue,
+				borderColor: '#36a2eb',
+				lineTension : 0,
+				data: [],
+				fill: false	
+			}]
+		},
+		options: {
+			responsive: true,
+			legend : {
+				display : false
+			},
+			title: {
+				display: true,
+				text: '',
+				fontSize : 18
+			},
+			tooltips: {
+				displayColors : false,
+				backgroundColor : '#36a2eb',
+				titleFontColor : '#fff',
+				titleAlign : 'center',
+				titleFontStyle : 'bold',
+				callbacks : {
+					title : function(tooltipItem, data){
+						return `머니허브 환율`
+					},
+					label : function(tooltipItem, data){
+						return common.comma_create(config6.data.datasets[0].data[tooltipItem['index']])
+					}
+				},
+				intersect: false
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					}
+				}],
+				yAxes: [{
+					display: false,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: true,
+						labelString: 'Value'
+					}
+				}]
+			}
+		}
+	};		
+})

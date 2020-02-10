@@ -50,4 +50,11 @@
 		FROM EXRATE 
 		WHERE BDATE LIKE #{bdate}
 	</select>
+	
+	<select id="exchangeTestSelect" resultType="Exrate">
+		SELECT *
+		FROM EXRATE
+		WHERE CNTCD = 'USD' OR CNTCD = 'EUR' OR CNTCD = 'AUD' OR CNTCD = 'CNY' OR CNTCD = 'JPY'
+		ORDER BY BDATE
+	</select>
 </mapper>
