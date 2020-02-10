@@ -120,9 +120,13 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_review(deal)) 
 		
+		alert('deal 1 : '+ JSON.stringify(deal))
 		$('#complete_remit_btn')
 		.click( e => {
 			e.preventDefault()
+			
+			alert('deal 2 : '+ JSON.stringify(deal))
+			
 			$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',
@@ -163,10 +167,9 @@ foreignRemit = (()=>{
 						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					}
 				})
-				/*deal.trdusd = null
+				deal.trdusd = null
 				mypage.onCreate()
-				mypage.remit_list(deal)
-				$('html').scrollTop(0);*/
+				$('html').scrollTop(0);
 			})
 		
 		$('#copy_btn').on('click', function(e){

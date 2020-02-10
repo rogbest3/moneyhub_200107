@@ -18,20 +18,15 @@ public class ExthService {
 	
 	@Transactional
 	public ArrayList<Exth> insertExth(ArrayList<Exth> paramList, String deposit){
-//		profits
 		float l = paramList.get(0).getTotal() / Float.parseFloat(deposit);
-		System.out.println(paramList.get(0).getTotal() + " / " + Float.parseFloat(deposit)
-							+ " = rerate : " + l);
+//		System.out.println(paramList.get(0).getTotal() + " / " + Float.parseFloat(deposit)
+//							+ " = rerate : " + l);
 		
 		int profits = paramList.get(0).getTotal() - pxy.integer(deposit);
-		System.out.println(paramList.get(0).getTotal() + " - " + Float.parseFloat(deposit)
-		+ " = rerate : " + profits);
+//		System.out.println(paramList.get(0).getTotal() + " - " + Float.parseFloat(deposit)
+//		+ " = rerate : " + profits);
 		
 		paramList.forEach( i -> System.out.println(i));
-		
-/*		if( exthMapper.totalCount() > 0 ){
-			exthMapper.truncateExthByCno(paramList.get(0).getCno());
-		}*/
 		
 		for( Exth e : paramList ) {
 			e.setProfits(e.getTotal() - pxy.integer(deposit));

@@ -50,8 +50,8 @@ auth =(()=>{
 		.appendTo('.themoin-login')
 		
 
-		$('#cemail').val('dmswl@dmswl.com')
-		$('#cpwd').val('12345678')
+		$('#cemail').val('abcd@naver.com')
+		$('#cpwd').val('11')
 
 		/*$('#cemail').val('abc@naver.com')
 		$('#cpwd').val('aa')*/

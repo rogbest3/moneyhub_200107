@@ -117,7 +117,7 @@ mypage =(()=>{
 		
 		$('#exchange_test_btn')
 		.click(()=>{
-			sidebar.onCreate('exchange_test')
+			exchange_test.onCreate()
 			$('html').scrollTop(0);
 		})
 		
@@ -167,7 +167,7 @@ mypage =(()=>{
 				$.each(d.exlist.reverse(), (i, j)=>{
 						exrate_arr.push(parseFloat(j.exrate))
 				})
-				deal.exrate = exrate_arr[0]
+				deal.exrate = exrate_arr[exrate_arr.length-1]
 				sessionStorage.setItem('deal',JSON.stringify(deal))
 			})
 			

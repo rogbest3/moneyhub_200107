@@ -41,6 +41,29 @@ common = (function(){
 				common.remit_send()
 			})
 		},
+		exchange_test_send_keyup : function(flag){
+			let send = $('.form-calculator .amount-row input.send-amount')
+			common.remit_send()
+			
+			send
+			.keyup(()=>{
+				let send_cntcd = $('.form-calculator .amount-row .send h3').text()
+				let send_value
+				
+				if( parseFloat(common.comma_remove(send.val())) > parseFloat(common.comma_remove($('#exchange_' + send_cntcd ).text()))){
+					send_value = common.comma_create(common.comma_remove($('#exchange_' + send_cntcd).text()))
+				}else if(parseFloat(common.comma_remove(send.val())) === parseFloat(common.comma_remove($('#exchange_' + send_cntcd ).text()))){
+					send_value = common.comma_create(parseFloat(common.comma_remove($('#exchange_' + send_cntcd).text())).toFixed(2))
+				}else{
+					send_value = common.comma_create(common.comma_remove(send.val()))
+					if( parseFloat(common.comma_remove($('#exchange_' + send_cntcd).text())) === 0 ){
+						send_value = 0
+					}
+				}
+				send.val(send_value)
+			})
+			
+		},
 		receive_value_calc : function(x){
 			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
 				receive_value = receive_value * x //* 0.985

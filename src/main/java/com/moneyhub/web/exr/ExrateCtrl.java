@@ -31,32 +31,32 @@ public class ExrateCtrl extends Proxy{
 	
 	@GetMapping("/exchangetest/{bdate}")
 	public Map<?, ?> exchangeTestExrate(@PathVariable String bdate){
-		print("exchangetest 진입 - " + bdate);
+//		print("exchangetest 진입 - " + bdate);
 		return exService.exchangeTestSelect(bdate);
 	}
 	
 	@GetMapping("/search/cntcd/{cntcd}")
 	public Map<?, ?> cntcdSearchExrate(@PathVariable String cntcd){
-		print("cntcd search 진입 - cntcd : " + cntcd);
+//		print("cntcd search 진입 - cntcd : " + cntcd);
 		box.clear();
 		box.put("exlist", exService.cntcdSearchExrate(cntcd));
-		print(box.get().toString());
+//		print(box.get().toString());
 		return box.get();
 	}
 	
 	@GetMapping("/search/bdate/{bdate}")
 	public Map<?, ?> bdateSearchExrate(@PathVariable String bdate){
-		print("bdate search 진입 - bdate : " + bdate);
+//		print("bdate search 진입 - bdate : " + bdate);
 		box.clear();
 		box.put("exlist", exService.bdateSearchExrate(bdate));
-		print(box.get().toString());
+//		print(box.get().toString());
 		return box.get();
 	}
 	
 	@PostMapping("/insert/api")
 	public Map<?, ?> insertExrate(@RequestBody HashMap<String, Exrate[]> paramMap){
-		print("insert 진입 - list : " + paramMap.get("paramList").length);
-		print(paramMap.get("paramList").toString());
+//		print("insert 진입 - list : " + paramMap.get("paramList").length);
+//		print(paramMap.get("paramList").toString());
 		exService.insertExrate(paramMap.get("paramList"));
 		box.put("result", "SUCCESS");
 		return box.get();
@@ -64,7 +64,7 @@ public class ExrateCtrl extends Proxy{
 	
 	@GetMapping("/create/table")//
 	public Map<?, ?> createTable(){
-		print("테이블 생성 진입");
+//		print("테이블 생성 진입");
 		HashMap<String, String> map = new HashMap<>();
 		map.put("CREATE_EXRATE", SQL.CREATE_EXRATE.toString());
 		exService.createExrate(map);
@@ -76,7 +76,7 @@ public class ExrateCtrl extends Proxy{
 	
 	@GetMapping("/delete/table")
 	public Map<?, ?> deleteTable(){
-		print("테이블 삭제 진입");
+//		print("테이블 삭제 진입");
 		HashMap<String, String> map = new HashMap<>();
 		map.put("DROP_EXRATE", SQL.DROP_EXRATE.toString());
 		exService.deleteExrate(map);
@@ -87,7 +87,7 @@ public class ExrateCtrl extends Proxy{
 	
 	@GetMapping("/truncate/table")
 	public Map<?, ?> truncateTable(){
-		print("테이블 내용 삭제 진입");
+//		print("테이블 내용 삭제 진입");
 		HashMap<String, String> map = new HashMap<>();
 		map.put("TRUNCATE_EXRATE", SQL.TRUNCATE_EXRATE.toString());
 		exService.truncateExrate(map);

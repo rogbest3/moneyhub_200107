@@ -31,6 +31,7 @@ public class RemitServiceImpl{
 		String mtcn = CharUtil.excuteGenerate();
 		Date date = new Date();
 		//거래,acctNo
+		System.out.println("==========> exrate : " + (double) deal.get("exrate"));
 		trd.setBsdate(sdf.format(date));
 		trd.setMtcn(mtcn);
 		trd.setCno(deal.get("cno").toString());

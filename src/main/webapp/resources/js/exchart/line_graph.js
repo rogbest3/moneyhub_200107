@@ -68,21 +68,104 @@ $(document).ready(function(){
 			}
 		}
 	};
-
+	let config1 = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: '머니허브 환율',
+				backgroundColor: '#fb6400',		//window.chartColors.blue,
+				borderColor: '#fb6400',
+				lineTension : 0,
+				data: [],
+				fill: false
+			}],
+			yAxisID: 'y-axis-1'
+		},
+		options: {
+			responsive: true,
+			legend : {
+				display : false
+			},
+			title: {
+				display: true,
+				text: '',
+				fontSize : 20
+			},
+			tooltips: {
+				displayColors : false,
+				backgroundColor : '#fb6400',
+				titleFontColor : '#fff',
+				titleAlign : 'center',
+				titleFontStyle : 'bold',
+				callbacks : {
+					title : function(tooltipItem, data){
+						return `머니허브 환율`
+					},
+					label : function(tooltipItem, data){
+						return common.comma_create(config1.data.datasets[0].data[tooltipItem['index']])
+					}
+				},
+				intersect: false
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					gridLines : {
+						display : false
+					},
+					scaleLabel: {
+						display: false,
+						labelString: 'Month'
+					}
+				}],
+				yAxes: [{
+					type: 'linear',
+					display: true,
+					position: 'left',
+					id: 'y-axis-1',
+					gridLines : {
+						drawOnChartArea: false
+					},
+					ticks : {
+						stepSize : 500000,
+						callback: function(value, index, values) {
+					        if(parseInt(value) > 999){
+					            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					        } else if (parseInt(value) < -999) {
+					            return "-" + Math.abs(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					        } else {
+					            return value;
+					        }
+					    }
+					}
+					/*scaleLabel: {
+						display: true,
+						labelString: 'Value'
+					}*/
+				}]
+			}
+		}
+	};
 	let ctx = document.getElementById('canvas').getContext('2d');
 	let getProfitsChart = $.profitsChart()
-	
+
 	if( $.chartFlag() === 'profitsChart'){
-		config.data.labels = []
-		config.data.datasets[0].data = []
-		
+		config1.data.labels = []
+		config1.data.datasets[0].data = []
+
+		alert('profitsChart - ' + JSON.stringify(getProfitsChart))
 		$.each(getProfitsChart, (i, j)=>{
-			config.data.labels[i] = j.bdate.substr(-5).replace('-', '/')
-			config.data.datasets[0].data[i] = parseFloat(j.profits)
+			config1.data.labels[i] = j.bdate.substr(-5).replace('-', ' / ')
+			config1.data.datasets[0].data[i] = parseFloat(j.profits)
 		})
-		config.options.title.text = `날짜별 수익금 차트`
+		config1.options.title.text = `환전 날짜별 수익금 차트`
 		
-		window.myLine = new Chart(ctx, config);
+		window.myLine = new Chart(ctx, config1);
 		
 	}else if($.chartFlag() === 'historyChart'){	
 		let usdData = [], eurData = [], cnyData = [], jpyData = [], audData = [], ctx, tempConfig = {}

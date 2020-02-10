@@ -3,7 +3,7 @@ exchange_test =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 
 	let _, js, mypage_vue_js, global_map_js, exth, exrateSess, profitsChart, 
-		bdate_exist_flag, deposit, getCno, line_graph_js, disableDays,
+		bdate_exist_flag, deposit, getCno, line_graph_js, disableDays, dpkMinFlag,
 		getMapFlag, saveFlag
 		
 	let init =()=>{
@@ -20,6 +20,7 @@ exchange_test =(()=>{
 		getCno = $.cusInfo().cno
 		getMapFlag = false
 		saveFlag = false
+		dpkMinFlag = false
 		
 		exrateSess.flag = 'default'
 //		exrateSess.bdate = common.clock_format()	
@@ -28,11 +29,14 @@ exchange_test =(()=>{
 	}
 	let onCreate =()=>{
 		init()
+		$('.themoin-main').empty()
+		$('.themoin-footer').empty()
+		
 		$.when(
 			$.getScript(mypage_vue_js)
 		)
 		.done(()=>{
-			setContentView1()
+			setContentView()
 			getHoliday()
 			datepicker_show()
 			
@@ -50,8 +54,8 @@ exchange_test =(()=>{
 		datepicker_show()
 	}
 	
-	let setContentView1 =()=>{
-		$('#root div.mypage')
+	let setContentView =()=>{
+		$('.themoin-main')
 		.html(mypage_vue.exchange_test1())
 		
 		$('#exchange_datepicker')
@@ -72,7 +76,7 @@ exchange_test =(()=>{
 		.addClass('btn btn-lg btn-info')
 		.appendTo('#test_mode_1')
 		.click(()=>{
-			if($.exrateSess().flag === 'select'){
+			if($.exrateSess().flag === 'select2'){
 				alert('준비중입니다.... 모드2를 선택해 주세요.')
 			}else{
 				alert('시작일을 선택해 주세요.')
@@ -84,21 +88,18 @@ exchange_test =(()=>{
 		.addClass('btn btn-lg btn-success')
 		.appendTo('#test_mode_2')
 		.click(()=>{
-			getMapFlag = true
-			if($.exrateSess().flag === 'select'){
+			if($.exrateSess().flag === 'select2'){
+				getMapFlag = true
+				dpkMinFlag = true
 				onCreate2()
 			}else{
 				alert('시작일을 선택해 주세요.')
 			}
-			
 		})
 	}
 	
 	let setContentView2 =()=>{
-	/*	$('head')
-		.append(mypage_vue.exchange_test_head())
-	*/	
-		$('#root div.mypage')
+		$('.themoin-main')
 		.html(mypage_vue.exchange_test2())
 		
 		sessionStorage.setItem('chartFlag', 'historyChart')
@@ -156,10 +157,7 @@ exchange_test =(()=>{
 				exchange_KRW.text(exchange_KRW.text().substring(0, exchange_KRW.text().indexOf('.')))
 			}
 			common.total_amount_calc()
-			
-//			exrateSess.cntcd = ''
-//			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
-		
+
 			$('#popup-exchange')
 			.hide()
 		})
@@ -167,11 +165,8 @@ exchange_test =(()=>{
 		$('#popup-exchange .moin-close')
 		.click(e=>{
 			e.preventDefault()
-//			exrateSess.cntcd = ''
-//			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
 			$('#cntcd_slide').css({ 'display': 'none' })
 			$('#popup-exchange').hide()
-//			$('#popup-exchange').empty()
 		})
 	}
 	
@@ -193,10 +188,11 @@ exchange_test =(()=>{
 				'font-size' : '18px'
 			})
 			.appendTo('#amount ol')
-			
+		})
+		
 			$('#amount')
 			.css({ float : 'left'})
-			})
+			
 			$('#init_btn').css({
 				width:'50%',
 				float : 'left',
@@ -228,39 +224,30 @@ exchange_test =(()=>{
 			.click(()=>{
 				init_Exth()
 				saveFlag = true
+				
 				amount_history()
-//				alert('exth 길이 : ' + exth.length)
-//				alert('저장 후 exchangeCount : ' + $.exchangeCount())
-				if( exth.length > 0 ){
-					alert('정렬 전 ' + JSON.stringify(exth))
-					common.object_sort(exth)
-					sessionStorage.setItem('exchangeCount', 0)
-					$.ajax({
-						url : `${_}/exth/insert/${deposit}`,
-						type : 'POST',
-						data : JSON.stringify(exth),
-						dataType : 'JSON',
-						contentType : 'application/json',
-						success : d=>{
-							saveFlag = false
-							profitsChart= d.exth
-							sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
-							sessionStorage.setItem('chartFlag', 'profitsChart')
-							
-//							alert('profitsChart : ' + JSON.stringify($.profitsChart()))
-//							alert('chartFlag : ' + $.chartFlag())
-							$('#exchange_test_chart1')
-							.html(`<canvas id="canvas" style="width:100%; height: 150px; max-height: 250px; margin-top: 60px"></canvas>`)
-							$.getScript(line_graph_js)
-						
-						},
-						error : e=>{
-							alert('ajax 실패')
-						}
-					})
-				}else{
-					alert('환전을 해주세요.')
-				}
+				common.object_sort(exth)
+				sessionStorage.setItem('exchangeCount', 0)
+				$.ajax({
+					url : `${_}/exth/insert/${deposit}`,
+					type : 'POST',
+					data : JSON.stringify(exth),
+					dataType : 'JSON',
+					contentType : 'application/json',
+					success : d=>{
+						saveFlag = false
+						profitsChart= d.exth
+						sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
+						sessionStorage.setItem('chartFlag', 'profitsChart')
+	
+						$('#exchange_test_chart1')
+						.html(`<canvas id="canvas" style="width:100%; height: 295px; max-height: 300px; margin-top: 60px"></canvas>`)
+						$.getScript(line_graph_js)
+					},
+					error : e=>{
+						alert('ajax 실패')
+					}
+				})
 			})
 	}
 	let init_Exth =()=>{
@@ -276,16 +263,67 @@ exchange_test =(()=>{
 			}
 		})
 	}
+	
+	let getMapGraph =()=>{
+		if(getMapFlag === true){
+			getMap()
+			getGraph()
+		}else{
+			$('#exchange_test_header b')
+			.text(`모의 환전 시작일 : ${$.exrateSess().bdate}`)
+		}
+	}
+	
+	let getMap =()=>{
+		$('#world_map')
+		.html(`<div class="mapcontainer">
+			        <div class="map">
+			            <span>Alternative content for the map</span>
+			        </div>
+			    </div>`)
+		$.getScript($.js() + '/maps/global_map.js')
+	}
+	
+	let getGraph =()=>{
+		$('#exchange_test_chart2')
+		.html(`<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+				<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+				<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+				<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
+				<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>`)
+		sessionStorage.setItem('chartFlag', 'historyChart')
+		$.getScript(line_graph_js)
+	}
+	
 	let getHoliday =()=>{
 		$.getJSON(`${_}/datepicker/selectall`, d=>{
 			$.each(d.dpk, (i, j)=>{
 				disableDays[i] = j.ddate
 			})
-//			alert('disableDays ' + JSON.stringify(disableDays))
 		})
 	}
 	
 	let datepicker_show =()=>{
+		datepicker_kr()
+		
+/*		if($.exrateSess().flag === 'select'){
+			alert('모드2 달력 옵션 주기')
+			$('#datepicker').datepicker({
+				 onClose: function( selectedDate ) {    
+	                 // 시작일(fromDate) datepicker가 닫힐때
+	                 // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+	                 $("#datepicker").datepicker( "option", "minDate", selectedDate );
+	                 $('#exchange_datepicker img')
+	     			.css({ float: 'left', 'margin-top': '10px' })
+	             }
+			})
+		if($.exrateSess().flag === 'select'){
+		alert('모드2 달력 옵션 주기')
+		}else{
+			alert('모드2 선택 안됨')
+		}*/
+		
+		
 		datepicker_option()
 		
 		$('#exchange_datepicker img')
@@ -296,41 +334,21 @@ exchange_test =(()=>{
 		
 		$('#datepicker').datepicker()
 		.change(()=>{
-			amount_history()
-//			alert('날짜 변경 후 exchangeCount : ' + $.exchangeCount())
-//			alert('날짜 변경 후 exth : ' + JSON.stringify(exth))
-			
-			exrateSess.flag = 'select'
-			exrateSess.bdate = $('#datepicker').val()
-			sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
-			if(getMapFlag === true){
-				$('#world_map')
-				.html(`<div class="mapcontainer">
-					        <div class="map">
-					            <span>Alternative content for the map</span>
-					        </div>
-					    </div>`)
-//				alert('chartFlag : ' + $.chartFlag())	    
-				$('#exchange_test_chart2')
-				.html(`<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
-						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
-						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>`)
+			if(exrateSess.bdate !== $('#datepicker').val()){
+				amount_history()
+//				alert('날짜 변경 후 exchangeCount : ' + $.exchangeCount())
+//				alert('날짜 변경 후 exth : ' + JSON.stringify(exth))
 				
-				$.getScript($.js() + '/maps/global_map.js')
-				$.getScript($.js() + '/exchart/line_graph.js')
-			}else{
-				$('#exchange_test_header b')
-				.text(`모의 환전 시작일 : ${$.exrateSess().bdate}`)
+				exrateSess.flag = 'select2'
+				exrateSess.bdate = $('#datepicker').val()
+				sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
+				
+				getMapGraph()
 			}
 		})
 	}
 	
-	let datepicker_option =()=>{
-						
+	let datepicker_kr =()=>{
 		$.datepicker.setDefaults({
 	        dateFormat: 'yymmdd',
 	        prevText: '이전 달',
@@ -344,7 +362,8 @@ exchange_test =(()=>{
 	        yearSuffix: '년',
 	        yearRange: "2019:2020"
 	    })
-	    
+	}
+	let datepicker_option =()=>{
 		$('#datepicker').datepicker({
 			// datepicker 애니메이션 타입
 			// option 종류 : "show" , "slideDown", "fadeIn", "blind", "bounce", "clip", "drop", "fold", "slide"
@@ -373,7 +392,7 @@ exchange_test =(()=>{
 			// alt 데이터 포멧
 			altFormat: "DD, d MM, yy",
 			// 선택 가능한 날짜(수 형식) - 현재 기준 -20일
-//			minDate: -20,
+	//		minDate: $('#datepicker').val(),
 			// 선택 가능한 최대 날짜(문자 형식) - 현재 기준 +1월 +20일
 			maxDate: "0M 0D",
 			// 주 표시
@@ -401,8 +420,24 @@ exchange_test =(()=>{
 			    	return [true]
 			    }
 			    return [false]
-			}		
+			},onClose: function( selectedDate ) {    
+                // 시작일(fromDate) datepicker가 닫힐때
+                // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+				if(getMapFlag === true){
+					if( selectedDate !== '' ){
+						$("#datepicker").datepicker( "option", "minDate", selectedDate )
+					}else{
+						$("#datepicker").datepicker( "option", "minDate", $.exrateSess().bdate )
+					}
+					
+					$('#exchange_datepicker img')
+	    			.css({ float: 'left', 'margin-top': '10px' })
+				}
+            }
 		})
+		if( dpkMinFlag === true){
+			$("#datepicker").datepicker( "option", "minDate", $.exrateSess().bdate )
+		}
 	}
 
 	let amount_init =()=>{
