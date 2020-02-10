@@ -24,7 +24,8 @@ function Session(x){
 		chartFlag : ()=>{ return sessionStorage.getItem('chartFlag') },
 		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
 		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))},
-		exchangeCount : ()=>{ return sessionStorage.getItem('exchangeCount') }
+		exchangeCount : ()=>{ return sessionStorage.getItem('exchangeCount') },
+		exrateFlag : ()=>{ return sessionStorage.getItem('exrateFlag') }
 	}
 }
 

@@ -414,6 +414,7 @@ exchange_test =(()=>{
 		$('#exchange_CNY').text(0)
 		$('#exchange_JPY').text(0)
 	}
+	
 	let amount_history =()=>{
 		let bdate_exist
 //		alert('amount_history - exchangeCount : ' + $.exchangeCount() + ', saveFlag : ' + saveFlag)

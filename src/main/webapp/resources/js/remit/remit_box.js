@@ -21,7 +21,6 @@ remit_box =(()=>{
 			$.getScript(exrate_js)
 		)
 		.done(()=>{
-			common.remit_send_focusout()
 			popup()
 		})
 		.fail(()=>{
@@ -31,6 +30,7 @@ remit_box =(()=>{
 	
 	let popup =()=>{
 		if(flag === 'exchange'){	// 모의 환전 시
+			common.exchange_test_send_keyup()
 			let send_data = [ //{ img : 'kr', cntcd : 'KRW', curr : '대한민국 한화', flag : ''}, 
 							{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },
 							{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
@@ -52,9 +52,11 @@ remit_box =(()=>{
 					}
 				}
 			})
+//			sessionStorage.setItem('exrateFlag', 'exchange_test')
 			exrate.onCreate()
 			
 		}else{	// 모의 환전 아닐 때
+			common.remit_send_focusout()
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '' },
 					{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '' },
 					{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '' },

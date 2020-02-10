@@ -499,7 +499,7 @@ mypage_vue = {
 								<div id="exchange_box" class="form-calculator main" style="width: 100%; min-width: 400px;">
 									<div class="amount-row" style="min-height: 100px;">
 										<div class="">
-											<p style="text-align: left;">송금 금액</p>
+											<p style="text-align: left;">환전 금액</p>
 											<input class="send-amount" id="exchange_send_amount"  type="text" tabindex="0" placeholder="0.00" value="1000000">
 										</div>
 										<div class="unit-select send" tabindex="0">

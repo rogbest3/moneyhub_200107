@@ -14,6 +14,12 @@ exrate =(()=>{
 		rate_calc()
 	}
 	let rate_calc =()=>{
+
+		/*if($.exrateFlag() === 'exchange_test'){
+			
+		}else{
+			
+		}*/
 		if( receive_cntcd !== 'KRW'){	// 외화로 환전
 			exrate_select(receive_cntcd)
 			$('#exchange_test_exrate p')
