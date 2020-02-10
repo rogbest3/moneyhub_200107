@@ -148,6 +148,7 @@ mypage_vue = {
 	},
 	auth_mgmt : ()=>{
 		cus = $.cusInfo()
+		acc = $.acc()
 		return `<div><br>
 			        <h1 style="text-align : center">자산정보</h1><br>
 			        <div class="themoin-info-preview" style="margin: 0 auto">
@@ -156,7 +157,7 @@ mypage_vue = {
 			                <li>
 			                    <p>계좌번호</p>
 			                    <p class="fs-block" id="bank" style="color:black; font-weight:bold;">국민은행&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="account" style="color:black; font-weight:bold;">${cus.acctNo}</p>
+			                    <p class="fs-block" id="account" style="color:black; font-weight:bold;">${acc.acctNo}</p>
 			                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>
 			                    <p class="fs-block" id="cname" style="color:black; font-weight:bold;">${cus.cname}</p>
 			                    <p class="fs-block" style="color:black; font-weight:bold;">_머니허브</p>
@@ -172,7 +173,7 @@ mypage_vue = {
 			            <ol>
 			                <li>
 			                    <p>현재잔액</p>
-			                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;">${cus.balance}</p>
+			                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;">${acc.balance}</p>
 			                    <p class="fs-block">&nbsp;</p>
 			                    <p class="fs-block" style="color:black; font-weight:bold;">원</p>
 			                </li>

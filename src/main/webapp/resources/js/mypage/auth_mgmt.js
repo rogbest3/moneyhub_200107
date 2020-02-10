@@ -29,29 +29,10 @@ auth_mgmt =(()=>{
 		$('#root div.mypage')
 		.html(mypage_vue.auth_mgmt())
 
-		let cus = $.cusInfo()
-        let cemail = cus.cemail
-        let cno = cus.cno
+
         let exch = $.exch()
         let exchKrw = exch.exchKrw
         let bsdate = exch.bsdate
-        $.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, d=>{
-        	
-//        	$(function(){
-//        		let accInfo = new Array(cus.cname,d.acc.acctNo,common.comma_create(d.acc.balance))
-//        		$('p').html(accInfo.join('  '))
-//        	})
-        	
-            if(d.msg === "SUCCESS"){
-                $('#cname').text(cus.cname)
-                $('#account').text(d.acc.acctNo)
-                $('#balance').text(common.comma_create(d.acc.balance))
-                sessionStorage.setItem('acc',JSON.stringify(d.acc))
-                /*sessionStorage.setItem('acctNo',d.acc.acctNo)*/
-            }else{
-                alert('실패')
-            }
-        })	
 		
 		$('#copy_btn').on('click', function(e){
 			var text = $('#account').html()

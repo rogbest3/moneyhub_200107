@@ -194,7 +194,7 @@ public class CustomerCtrl extends Proxy {
 		  box.put("acc", f.apply(map.get("cemail").toString())); 
 		  System.out.println("box.get() -----------> "+box.get());
 		 
-		return box.get();w
+		return box.get();
 	}
 
 	

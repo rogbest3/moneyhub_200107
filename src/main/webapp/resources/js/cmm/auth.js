@@ -96,12 +96,7 @@ auth =(()=>{
 							}
 						})*/
 						alert(d.cus.cname+'님 환영합니다.')
-						//====================================================== 세션에 저장 EJ
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
-						//======================================================
-						//====================================================== MK
-						/*$.extend(new Customer_Info(d.cus))*/
-						//======================================================
 						//====================================================== HM
 						sessionStorage.setItem('acc', JSON.stringify(d.acc))
 						sessionStorage.setItem('CEMAIL', d.cus.cemail)
@@ -324,23 +319,6 @@ auth =(()=>{
 //				return false
 //			}
 			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
-				$.getJSON(_+'/customers/getAcc/' + sessionStorage.getItem('CEMAIL') + '/' + sessionStorage.getItem('CNO'), d=>{
-					if(d.msg === "SUCCESS"){
-						$('#cname').text(d.cname)
-						$('#account').text(d.acc.acctNo)
-						$('#balance').text(common.comma_create(d.acc.balance))
-						acc.acctNo = d.acc.acctNo
-						acc.balance = d.acc.balance
-						sessionStorage.setItem('acc',JSON.stringify(acc))
-						alert('회원가입 시 세션에 저장된 acc는???' + JSON.stringify(acc))
-//						sessionStorage.setItem('ACCTNO',d.acc.acctNo)
-//						alert('acctNo는?????'+sessionStorage.getItem('ACCTNO'))
-					}else{
-						alert('실패')
-						return false
-					}
-				})
-				
 				if($('#lname').val().length > 0 && $('#fname').val().length > 0
 						&& $('#zip').val().length > 0 && $('#addr').val().length > 0 
 						&& $('#daddr').val().length > 0 && $('#birth').val().length > 0){
