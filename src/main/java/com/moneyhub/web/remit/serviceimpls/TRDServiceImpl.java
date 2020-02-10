@@ -12,10 +12,9 @@ import com.moneyhub.web.pxy.Inventory;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
 import com.moneyhub.web.remit.mappers.TRDMapper;
-import com.moneyhub.web.remit.services.TRDService;
 
 @Service
-public class TRDServiceImpl implements TRDService{
+public class TRDServiceImpl{
 	@Autowired Proxy pxy;
 	@Autowired Box<Object> box;
 	@Autowired Inventory<Object> inventory;

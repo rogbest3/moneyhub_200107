@@ -5,7 +5,7 @@
 
 <mapper namespace="com.moneyhub.web.remit.mappers.TRDHRMapper">
 	<select id="selectAll" resultType="Map"  parameterType="PageProxy">
-		SELECT C.CNO cno,T.BSDATE bsdate,T.MTCN mtcn,T.TRD_USD trdUsd,T.TRD_KRW trdKrw,T.CNTCD cntCd,R.PASS_FNM passFnm,R.PASS_LNM passLnm,T.EXRATE exrate
+		SELECT C.CNO cno,T.BSDATE bsdate,T.MTCN mtcn,T.TRD_USD trdUsd,T.TRD_KRW trdKrw,T.CNTCD cntCd,R.CNTP cntp, R.PASS_FNM passFnm,R.PASS_LNM passLnm,T.EXRATE exrate
 		FROM ( SELECT C.CNO 
 				FROM CUSTOMER C 
 				WHERE CNO = #{cno}
@@ -13,6 +13,7 @@
 		WHERE T.CNO = C.CNO 
 		AND C.CNO = R.CNO
 		AND T.MTCN = R.MTCN
+		ORDER BY BSDATE DESC
 		LIMIT ${startRow}, ${pageSize}
 	</select>
 	<select id="countTRDHR" resultType="String" parameterType="PageProxy">

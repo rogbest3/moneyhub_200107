@@ -5016,7 +5016,6 @@ _:-ms-fullscreen, :root .themoin-unit-dropdown {
     margin-top: 20px; }
     .themoin-remit-extended-component .label-fee > span {
       color: #fc133a; }
-
 .themoin-remit-states-component h2 {
   padding-top: 70px; }
   .themoin-remit-states-component h2 img {
@@ -5453,7 +5452,7 @@ _:-ms-fullscreen, :root .themoin-unit-dropdown {
   .themoin-profile-section form {
     width: 100%;
     display: -ms-flexbox;
-    display: flex;
+    display: inline-table;
     -ms-flex-direction: column;
         flex-direction: column; }
   .themoin-profile-section .form-row {
@@ -7287,7 +7286,11 @@ _:-ms-fullscreen, :root .themoin-unit-dropdown {
       border: none;
       color: #ffffff;
       background-color: #5451a6; }
-
+      
+/* 송금 css */
+.themoin-profile-section form{ display: contents;   text-align-last: center;text-align: center;}
+.themoin-profile-section form label{  width: 100%;}
+.themoin-profile-section form input{ width: 80%;}
 .themoin-verify-account-edd {
   display: -ms-flexbox;
   display: flex;

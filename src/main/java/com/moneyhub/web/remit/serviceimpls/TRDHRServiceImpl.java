@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +15,11 @@ import com.moneyhub.web.pxy.Inventory;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
 import com.moneyhub.web.remit.domains.RCPT;
-import com.moneyhub.web.remit.domains.TRDHR;
 import com.moneyhub.web.remit.mappers.RCPTMapper;
 import com.moneyhub.web.remit.mappers.TRDHRMapper;
-import com.moneyhub.web.remit.services.TRDHRService;
 
 @Service
-public class TRDHRServiceImpl implements TRDHRService{
+public class TRDHRServiceImpl{
 	@Autowired Proxy pxy;
 	@Autowired Box<Object> box;
 	@Autowired Inventory<Object> inventory;

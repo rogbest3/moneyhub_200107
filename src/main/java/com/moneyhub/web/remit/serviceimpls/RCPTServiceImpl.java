@@ -12,10 +12,9 @@ import com.moneyhub.web.pxy.Inventory;
 import com.moneyhub.web.pxy.PageProxy;
 import com.moneyhub.web.pxy.Proxy;
 import com.moneyhub.web.remit.mappers.RCPTMapper;
-import com.moneyhub.web.remit.services.RCPTService;
 
 @Service
-public class RCPTServiceImpl implements RCPTService{
+public class RCPTServiceImpl{
 		@Autowired Proxy pxy;
 		@Autowired Box<Object> box;
 		@Autowired Inventory<Object> inventory;

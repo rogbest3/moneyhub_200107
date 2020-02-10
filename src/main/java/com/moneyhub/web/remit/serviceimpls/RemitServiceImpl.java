@@ -13,12 +13,10 @@ import com.moneyhub.web.remit.domains.RCPT;
 import com.moneyhub.web.remit.domains.TRD;
 import com.moneyhub.web.remit.domains.TRDHR;
 import com.moneyhub.web.remit.mappers.RemitMapper;
-import com.moneyhub.web.remit.services.RemitService;
 import com.moneyhub.web.remit.util.CharUtil;
 
 @Service
-public class RemitServiceImpl implements RemitService{
-	Date date = new Date();
+public class RemitServiceImpl{
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	@Autowired TRDHR trdhr;
@@ -28,10 +26,10 @@ public class RemitServiceImpl implements RemitService{
 	@Autowired
 	private RemitMapper remitMapper;
 	
-	@Override
 	@Transactional
 	public void insertRemit(HashMap<String, Object> deal) {
 		String mtcn = CharUtil.excuteGenerate();
+		Date date = new Date();
 		//거래,acctNo
 		trd.setBsdate(sdf.format(date));
 		trd.setMtcn(mtcn);
@@ -73,12 +71,15 @@ public class RemitServiceImpl implements RemitService{
 		rcpt.setCrtdt(sdf.format(date));
 		remitMapper.insertRCPT(rcpt);
 		
-		/*
-		 * //수수료 fee.setBsdate(sdf.format(date)); fee.setMtcn(mtcn);
-		 * fee.setCno(deal.get("cno").toString()); fee.setCrtmem("LEJ");
-		 * fee.setCrtdt(sdf.format(date)); fee.setFeeAmnt((int) deal.get("fee"));
-		 * remitMapper.insertFee(fee);
-		 */
+	  //수수료 fee.setBsdate(sdf.format(date)); fee.setMtcn(mtcn);
+	  fee.setBsdate(sdf.format(date));
+	  fee.setMtcn(mtcn);
+	  fee.setCno(deal.get("cno").toString()); 
+	  fee.setCrtmem("LEJ");
+	  fee.setCrtdt(sdf.format(date)); 
+	  fee.setFeeAmnt(Integer.valueOf(deal.get("fee").toString()));
+	  remitMapper.insertFee(fee);
+		 
 	}
 
 }

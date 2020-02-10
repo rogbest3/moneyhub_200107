@@ -46,8 +46,8 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
-		$('#cemail').val('11')
-		$('#cpwd').val('11')
+		$('#cemail').val('dmswl@dmswl.com')
+		$('#cpwd').val('12345678')
 
 
 		join_2_page_btn()
@@ -80,25 +80,21 @@ auth =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
-						alert(d.cus.cname+'님 환영합니다.')
-						//====================================================== 세션에 저장 EJ
-						sessionStorage.setItem('cus', JSON.stringify(d.cus))
-						sessionStorage.setItem('ACC', JSON.stringify(d.result))
-						//======================================================
-						//====================================================== MK
-						/*$.extend(new Customer_Info(d.cus))*/
-						//======================================================
-						//====================================================== HM
-						/*sessionStorage.setItem('CEMAIL', d.cus.cemail)
-						sessionStorage.setItem('CPWD', d.cus.cpwd)
-						sessionStorage.setItem('ZIP', d.cus.zip)
-						sessionStorage.setItem('ADDR', d.cus.addr)
-						sessionStorage.setItem('DADDR', d.cus.daddr)
-						sessionStorage.setItem('CNO', d.cus.cno)
-						sessionStorage.setItem('ACC', JSON.stringify(d.result))*/
-						//======================================================
+						//===========================================================계좌정보 getJSON으로 받아서 배포
+						let cemail = d.cus.cemail
+						let cno = d.cus.cno
+						$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, t=>{
+							if(d.msg === "SUCCESS"){
+								d.cus.acctNo = t.acc.acctNo
+								d.cus.balance = t.acc.balance
+								sessionStorage.setItem('cus', JSON.stringify(d.cus))
+							}else{
+								alert('계좌 getJSON 실패')
+							}
+						})
+						//============================================================
+						/*alert(d.cus.cname+'님 환영합니다.')*/
 						mypage.onCreate()
-					
 					}
 					else{
 						$('#login_pwd').text('이메일 및 비밀번호를 확인해주세요.')
@@ -109,6 +105,7 @@ auth =(()=>{
 					alert('login ajax 실패')  
 				}
 			})
+			
 		})
 		$.getScript(kakao_js)
 	}
