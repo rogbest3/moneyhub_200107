@@ -162,7 +162,7 @@ mypage =(()=>{
 		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
-
+			sessionStorage.getItem('cntimg')//숙제 수취 국가
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 				$.each(d.exlist.reverse(), (i, j)=>{
 						exrate_arr.push(parseFloat(j.exrate))
