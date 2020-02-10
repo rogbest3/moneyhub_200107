@@ -145,7 +145,6 @@ auth =(()=>{
 			        	$('#agree_box_3 div.box').attr('class', 'box')
 					}
 			        else{
-
 			        	$('#agree_box_all div.box').attr('class', 'box checked')
 			        	$('#agree_box_1 div.box').attr('class', 'box checked')
 			        	$('#agree_box_2 div.box').attr('class', 'box checked')
