@@ -36,7 +36,6 @@ exchange =(()=>{
 		
 		$('#root div.mypage')
 		.html(mypage_vue.exchange())
-		//$.getScript(exChart_js)
 		
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
@@ -45,22 +44,31 @@ exchange =(()=>{
 		
 		let cntcd = $('.form-calculator .amount-row .receive h3').text()
 		let exch_arr = []
+		//200212 hm 주석처리
 		$.getJSON('/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist, (i, j)=>{
 				exch_arr.push(parseFloat(j.exrate))
 			})
 			exch.exrate = exch_arr[0]
 			sessionStorage.setItem('exch',JSON.stringify(exch))
-		})
-		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			alert('exchange.js / 세션에 담긴 exch.exrate는? ' + exch.exrate)
+			
+			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+//			alert('1번 exchange.js 59번 라인 ')
 					common.receive_value_calc(exch.exrate)
+//					alert('4번 exch.exrate는? ' + exch.exrate)
+//					alert('7번 common.receive_value_calc(exch.exrate)' + common.receive_value_calc()) //exch.exrate는 undefined
+					
+			}) 
 		})
+		
 				
 		$(function(){
 			$('#exchangebutton').one('click', function(){
-				$('#chart').fadeIn()
+				$('#chart2').fadeIn()
 
 				$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
+					alert(alert('exchange -> d.msg는?' + d.msg))
 					if(d.msg === 'UP'){
 						$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
 						$('#exchange_check').css('color', 'blue')
@@ -98,7 +106,7 @@ exchange =(()=>{
 										$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, t=>{
 											if(d.msg === "SUCCESS"){
 												acc.balance = t.acc.balance
-												alert(acc.balance)
+												alert('exchange의 acc.balance는? '+acc.balance)
 												sessionStorage.setItem('acc', JSON.stringify(acc))
 											}else{
 												alert('계좌 getJSON 실패')

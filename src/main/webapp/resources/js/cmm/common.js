@@ -42,9 +42,39 @@ common = (function(){
 			})
 		},
 		receive_value_calc : function(x){
-			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
-				receive_value = receive_value * x //* 0.985
-			$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
+			let send_value = $('.form-calculator .amount-row input.send-amount').val()
+			let receive_value = $('.form-calculator .amount-row input.receive-amount').val()
+			let receive_cntcd = $('.form-calculator .amount-row .unit-select.receive h3').text()
+//			alert('common의 receive_value는? ' + receive_value)
+//			alert('common의 send_value? ' + send_value)
+//			alert('환전되는 통화: ' + receive_cntcd)
+//			alert('2번, 5번 common의 x는? ' + x)
+			if( receive_cntcd === 'KRW'){
+//				alert('KRW임')
+				receive_value = send_value * x
+//				alert('exrate : ' + x + ', receive_value : ' + receive_value)
+				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
+			}
+			else{
+//				alert('KRW 아님')
+				receive_value = send_value / x
+//				alert('exrate : ' + x + ', receive_value : ' + receive_value)
+				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
+			}
+			
+			//200210 수정 hm - 2
+//			if( $('.form-calculator .amount-row input.send-amount h3').text() === 'KRW'){
+//				receive_value = send_value * x //* 0.985
+//			}
+//			else{
+//				alert('3번, 6번 exrate : ' + x + ', send_value : ' + send_value + ', receive_value : ' + receive_value) //여기서 receive_value는 krw임
+//				receive_value = send_value / x //* 0.985
+//			}
+//			200210 수정 hm
+//			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
+//				receive_value = receive_value * x //* 0.985
+			
+//			$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
 		},
 		total_amount_calc : function(){
 			let exrateSess = $.exrateSess()

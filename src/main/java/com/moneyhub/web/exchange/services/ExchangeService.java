@@ -37,6 +37,7 @@ public class ExchangeService {
 		exch.setExchCnt(exchange.get("exchCnt").toString());
 		exch.setExFee(1); //수수료율
 		Double exrate1 = (Double) exchange.get("exrate");
+		exch.setExrate(exrate1);
 		exch.setFeeExrate(exrate1 * (exch.getExFee()/100)); //수수료금액
 		exch.setMhRate(exrate1 + exch.getFeeExrate()); //수수료 포함된 머니허브 환율 -> 이 환율이 환전 시 사용되는 환율
 		String code = "0";
