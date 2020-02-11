@@ -97,7 +97,6 @@ auth =(()=>{
 						sessionStorage.setItem('DADDR', d.cus.daddr)
 						sessionStorage.setItem('CNO', d.cus.cno)
 						//======================================================
-
 						mypage.onCreate()
 					}
 					else{

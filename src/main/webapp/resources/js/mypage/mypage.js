@@ -125,7 +125,7 @@ mypage =(()=>{
 	
 	let clock_excute =()=>{
 		clock = new Clock()
-		$('#clock').text(`실시간 모인 환율 - ${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일` +
+		$('#clock').text(`실시간 머니허브 환율 - ${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일` +
 				` ${clock.hours < 10 ? `0${clock.hours}` : clock.hours}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }:${clock.seconds < 10 ? `0${clock.seconds }` : clock.seconds }`)
 	}
 
@@ -159,13 +159,18 @@ mypage =(()=>{
 	
 	let remit_receive = ()=>{
 		deal = $.deal()
+		let cntimg = sessionStorage.getItem('cntimg')
+		
+		if(cntimg != `https://img.themoin.com/public/img/circle-flag-us.svg` || cntimg == null && deal.cntp == null ){
+			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
+		}
+		
 		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
-			sessionStorage.getItem('cntimg')//숙제 수취 국가
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 				$.each(d.exlist.reverse(), (i, j)=>{
-						exrate_arr.push(parseFloat(j.exrate))
+						exrate_arr.push(parseFloat(j.exrate)) //서브스트링
 				})
 				deal.exrate = exrate_arr[exrate_arr.length-1] //소수점 둘째자리로 저장 후 넘겨야함
 				alert(deal.exrate)
@@ -176,7 +181,6 @@ mypage =(()=>{
 					$(this).val($(this).val().replace(/[^0-9]/g,""))
 					if($(this).val() >5000) {
 							send_amount.val(5000)
-							//숙제 텍스트 배열 정리 해야됨
 							$('#max_amount').text('송금 가능 금액은 5,000$입니다.')
 					}
 					common.receive_value_calc(deal.exrate)
@@ -219,6 +223,7 @@ mypage =(()=>{
 			
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
+				
 				$.each(d.map, (i, j)=>{
 					$.each(receive_data, (i, k)=>{
 						if(j.cntCd == k.cntcd && j.cntp == k.curr){
@@ -256,28 +261,40 @@ mypage =(()=>{
 										<p>송금이 정상적으로 완료되었습니다.</p>
 									</div>
 								</div>
-									<div class="simple-spacer"></div>
-										<div class="user-sendlist-status">
-											<div class="user-sendlist-state">
-												<div class="user-sendlist-state-text moin-body">거래 완료</div>
-											</div>
-											<a id = "delete_history"class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
-											<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
-										</div>
+								<div class="simple-spacer"></div>
+								<div class="user-sendlist-status">
+								<div class="user-sendlist-state">
+								<div class="user-sendlist-state-text moin-body">거래 완료</div>
+								</div>
+								<a id = "delete_history" class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
+								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
+								</div>
 							</div>
 						</div>`)
 				    .appendTo('.remits')
-				   //숙제 송금 거래 시간이 +1한 시간보다 작으면 입금 확인중 , 입금하기 뜨게 하기
-				    if( Number(j.bsdate.replace(/[^0-9]/g,"")) >= deal.remitstart && Number(j.bsdate.replace(/[^0-9]/g,"")) < deal.remitend){
+				   //숙제 송금 거래 시간이 +1한 시간보다 작으면 입금 확인중 , 입금하기 뜨게 하기 디비 상태변화 확인후 변경 
+				    /*if( Number(j.bsdate.replace(/[^0-9]/g,"")) >= deal.remitstart && Number(j.bsdate.replace(/[^0-9]/g,"")) < deal.remitend){
 				    	$('.user-sendlist-status').empty()
 				    	$(`<div class="user-sendlist-state">
-												<div class="user-sendlist-state-text moin-body">입금 대기중</div>
-											</div>
-											<button type="button desktop" class="user-sendlist-btn">입금 하기</button>
-											<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`
-				    		).appendTo('.user-sendlist-status')
-				    }
-					//숙제 내역 삭제
+								<div class="user-sendlist-state-text moin-body">입금 대기중</div>
+								</div>
+								<button type="button desktop" class="user-sendlist-btn">입금 하기</button>
+								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
+				    	.appendTo('.user-sendlist-status')
+				    } else {
+				    	$(`<div class="user-sendlist-state">
+								<div class="user-sendlist-state-text moin-body">거래 완료</div>
+								</div>
+								<a id = "delete_history"class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
+								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
+				    	.appendTo('.user-sendlist-status')
+				    }*/
+				    
+				    
+				})
+				
+				
+				//숙제 내역 삭제
 					$('#delete_history')
 					.click( e => {
 						e.preventDefault()
@@ -294,9 +311,24 @@ mypage =(()=>{
 							}
 						})
 					})
-				})
 				
-	
+				/*if( Number(j.bsdate.replace(/[^0-9]/g,"")) >= deal.remitstart && Number(j.bsdate.replace(/[^0-9]/g,"")) < deal.remitend){
+			    	$('.user-sendlist-status').empty()
+			    	$(`<div class="user-sendlist-state">
+							<div class="user-sendlist-state-text moin-body">입금 대기중</div>
+							</div>
+							<button type="button desktop" class="user-sendlist-btn">입금 하기</button>
+							<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
+			    	.appendTo('.user-sendlist-status')
+			    } else {
+			    	$(`<div class="user-sendlist-state">
+							<div class="user-sendlist-state-text moin-body">거래 완료</div>
+							</div>
+							<a id = "delete_history"class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
+							<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
+			    	.appendTo('.user-sendlist-status')
+			    }*/
+				
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
 				if(pxy.existPrev){
 					$(`<button class="control">
@@ -340,7 +372,6 @@ mypage =(()=>{
 						})
 					}
 				}
-				
 				
 	        	if(pxy.existNext){
 					$(`<button class="control">다음

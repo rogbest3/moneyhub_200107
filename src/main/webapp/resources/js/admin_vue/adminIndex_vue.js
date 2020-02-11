@@ -53,6 +53,10 @@ adminIndex_vue ={
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
 		'          <span>모의환전차트</span>'+
 		'        </a>'+
+		'        <a class="nav-link collapsed" id="cusmain" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
+		'          <i class="fas fa-fw fa-chart-area"></i>'+
+		'          <span>회원 메인</span>'+
+		'        </a>'+
 		'     <!-- Divider -->'+
 		'      <hr class="sidebar-divider d-none d-md-block">'+
 		'     <!-- Sidebar Toggler (Sidebar) -->'+
@@ -198,7 +202,7 @@ adminIndex_vue ={
 		'           <div class="topbar-divider d-none d-sm-block"></div>'+
 		'           <!-- Nav Item - User Information -->'+
 		'            <li class="nav-item dropdown no-arrow">'+
-		'              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
+		'              <button class="nav-link dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'+
 		'                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>'+
 		'                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">'+
 		'              </a>'+

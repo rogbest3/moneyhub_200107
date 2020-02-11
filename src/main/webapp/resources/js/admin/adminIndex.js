@@ -80,6 +80,12 @@ adminIndex =(()=>{
 			$('div.container').empty()
 			profitChart.onCreate()
 		})
+		
+		
+		//EJ fee test
+		/*$('#cusmain').click(()=>{
+			alert('클릭했다')
+		})*/
 	}
 	
 	

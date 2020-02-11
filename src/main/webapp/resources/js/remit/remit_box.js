@@ -131,11 +131,8 @@ remit_box =(()=>{
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
 					
-					/*$('#chart')
-					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)
-					$.getScript(line_graph_js)*/
-					sessionStorage.setItem('cntimg', $('.form-calculator .amount-row .receive img').attr("src"))//숙제 수취 국가 메인화면 변경
-					deal.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명, 국가코드
+					sessionStorage.setItem('cntimg', `https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
+					deal.cntp =$('.form-calculator .amount-row .receive p').text()
 					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 					sessionStorage.setItem('deal',JSON.stringify(deal))
 					alert("레미트박스 국가명 >>>"+deal.cntp+"국가코드 >>>"+deal.cntcd)

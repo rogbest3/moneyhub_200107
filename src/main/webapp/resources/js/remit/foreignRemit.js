@@ -42,7 +42,8 @@ foreignRemit = (()=>{
 		$('#popup-exchange').empty()
 		
 		let cntimg = sessionStorage.getItem('cntimg')
-		if(cntimg== null){
+		alert(cntimg+deal.cntp)
+		if(cntimg != `https://img.themoin.com/public/img/circle-flag-us.svg` && deal.cntp == '미국'){
 			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
 		}
 	}
@@ -53,9 +54,19 @@ foreignRemit = (()=>{
 		common.remit_send_focusout()
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		
-		if(deal.trdusd >= 3000)
-		{$('#fee_check').text('12')}
-		else {$('#fee_check').text('6')}
+		//EJ fee test
+		if(deal.lowfee == null && deal.highfee == null){
+			if(deal.trdusd >= 3000)
+			{$('#fee_check').text('12')}
+			else {$('#fee_check').text('6')}
+		}
+		
+		if(deal.lowfee != null && deal.trdusd < 3000){
+			$('#fee_check').text(deal.lowfee)
+		} else if(deal.highfee != null && deal.trdusd >=3000){
+			$('#fee_check').text(deal.highfee)
+		}
+		
 		
 		common.receive_value_calc(deal.exrate)
 		

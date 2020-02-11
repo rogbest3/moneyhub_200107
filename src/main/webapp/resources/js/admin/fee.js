@@ -2,11 +2,12 @@
 var fee = fee || {}
 fee =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, cookie_js, fee_vue_js
+	let _, js, cookie_js, fee_vue_js,deal
 	
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
+		deal = $.deal()
 		cookie_js = js + '/cmm/cookie.js'
 		fee_vue_js = js + '/admin_vue/fee_vue.js'
 	}
@@ -55,6 +56,9 @@ fee =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert('업데이트 성공')
+						deal.lowfee = $('#feeOneUpdateValue').val()
+						alert(deal.lowfee)
+						sessionStorage.setItem('deal', JSON.stringify(deal))
 						$('head').empty()
 						$('div.container').empty()
 						selectFee()
@@ -82,6 +86,9 @@ fee =(()=>{
 				contentType : 'application/json',
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
+						deal.highfee = $('#feeTwoUpdateValue').val()
+						alert(deal.highfee)
+						sessionStorage.setItem('deal', JSON.stringify(deal))
 						alert('업데이트 성공')
 						$('head').empty()
 						$('div.container').empty()

@@ -1,5 +1,7 @@
 package com.moneyhub.web.remit.domains;
 
+import java.math.BigDecimal;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -16,5 +18,5 @@ public class TRDHR {
 
 	private String bsdate,mtcn,cno,trdUsd,trdKrw,acctNo,cntcd,crtmem,crtdt,upmem,updt;
 	private int seq,trdStatCd,chngCausCd;
-	private double exrate;
+	private BigDecimal exrate;
 }

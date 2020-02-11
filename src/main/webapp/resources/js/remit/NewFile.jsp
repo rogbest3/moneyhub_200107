@@ -7,6 +7,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<div class="user-sendlist-status">
+		<div class="user-sendlist-state">
+			<div class="user-sendlist-state-text moin-body">거래 완료</div>
+		</div>
+		<a id = "delete_history"class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
+		<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
+	</div>
+
+
+
+
+
+
 	<div class="steps" style="max-width: 1365px; text-align: center;">
 		<div id="idx_exchg_btn" class="threesteps">
 			<img src="/web/resources/img/main/exchange.png" style="width: 300px;">
