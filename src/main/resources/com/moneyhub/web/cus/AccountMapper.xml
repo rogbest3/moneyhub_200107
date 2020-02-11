@@ -5,22 +5,58 @@
     
 <mapper namespace="com.moneyhub.web.cus.mappers.AccountMapper">
 
-	<insert id="createAcc" parameterType="Account">
+	<!-- <insert id="createAcc" parameterType="Account">
 	    INSERT INTO ACCOUNT (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL, 
 	    					ACHCNTCD, CRTMEM, CRTDT, UPMEM, UPDT) 
 	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{withdrawal},
 	    		#{achcntcd}, #{crtmem}, now(), #{upmem}, #{updt})
+	</insert> -->
+	
+	<insert id="createAcc" parameterType="Account">
+	    INSERT INTO ACCOUNT (CEMAIL, BSDATE,BALANCE, ACCT_NO, ACHCNTCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(),#{balance} #{acctNo},#{achcntcd}, #{crtmem}, now())
 	</insert>
 	
-	<select id="existAcc" resultType="integer">
+	<insert id="createAccHistory" parameterType="AccountHistory">
+	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL,COMMENT, ACHCNTCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{withdrawal}, #{comment},
+	    		#{achcntcd}, #{crtmem}, now())
+	</insert>
+	
+	<select id="existAcc" resultType="integer"> <!--계좌 중복방지   -->
 		SELECT COUNT(*) 
 		FROM ACCOUNT
 		WHERE ACCT_NO = #{acctNo}
 	</select>
 	
-	 <select id="getAcc" resultType="Account">
-        SELECT CEMAIL cemail, ACCT_NO acctNo, BALANCE balance,  CRTDT crtdt
+	 <select id="getAcc" resultType="Account"> <!--모든 고객 계좌 조회  -->
+        SELECT CEMAIL cemail, ACCT_NO acctNo,  CRTDT crtdt
         FROM ACCOUNT
         WHERE CEMAIL = #{cemail}
    	 </select>
+   	 
+   	  <select id="getAccHis" resultType="AccountHistory"><!--고객 계좌내역  -->
+        SELECT CEMAIL cemail, ACCT_NO acctNo, BALANCE balance,  CRTDT crtdt,DEPOSIT deposit,
+        				WITHDRAWAL withdrawal,ATYPECD atypecd,ACHCNTCD achcntcd, COMMENT comment
+        FROM ACCOUNT_HISTORY
+        WHERE CEMAIL = #{cemail}
+   	 </select>
+   	 
+   	 <update id="balance" parameterType="Account"> <!--테스트 필요  -->
+		UPDATE ACCOUNT_HISTORY
+		SET BALANCE = #{balance},
+		BSDATE = now()
+		WHERE CEMAIL = #{cemail}
+	</update>
+	
+	<insert id="withdrawal" parameterType="AccountHistory">
+	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, WITHDRAWAL,COMMENT, ACHCNTCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{withdrawal}, #{comment},#{achcntcd}, #{crtmem}, now())
+	</insert>
+	
+	<insert id="deposit" parameterType="AccountHistory"> <!--테스트 필요  -->
+	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT,COMMENT, ACHCNTCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{comment},#{achcntcd}, #{crtmem}, now())
+	</insert>
+	
 </mapper>

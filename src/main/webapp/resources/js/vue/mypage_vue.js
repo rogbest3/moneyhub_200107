@@ -149,6 +149,7 @@ mypage_vue = {
 	auth_mgmt : ()=>{
 		cus = $.cusInfo()
 		acc = $.acc()
+		accHis = $.accHis()
 		return `<div><br>
 			        <h1 style="text-align : center; margin:30px 0 10px 0">자산정보</h1><br>
 			        <div class="themoin-info-preview" style="margin: 0 auto">
@@ -173,7 +174,7 @@ mypage_vue = {
 			            <ol>
 			                <li>
 			                    <p>현재잔액</p>
-			                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;">${acc.balance}</p>
+			                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;">${common.comma_create(accHis.balance)}</p>
 			                    <p class="fs-block">&nbsp;</p>
 			                    <p class="fs-block" style="color:black; font-weight:bold;">원</p>
 			                </li>

@@ -82,8 +82,8 @@ foreignRemit = (()=>{
 				$('#max_amount').text('송금 가능 금액은 5,000$입니다.')
 				}
 			if(common.comma_remove($(this).val()) >= 3000){
-				$('#fee_check').text('12')}
-			else {$('#fee_check').text('6')}
+				$('#fee_check').text(deal.highFee)}
+			else {$('#fee_check').text(deal.lowFee)}
 			common.receive_value_calc(deal.exrate)
 		})
 		
@@ -101,7 +101,7 @@ foreignRemit = (()=>{
 	}
 	let remit_cusInfo =()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_complete())
+		.html(remit_vue.remit_cusInfo())
 		$('#sec_remit_btn').click(()=>{
 				remit_rcpt()
 			})
@@ -164,21 +164,21 @@ foreignRemit = (()=>{
 		sessionStorage.setItem('deal',JSON.stringify(deal))
 			$('#main_user_btn').click( e => {
 				e.preventDefault()
-				$.ajax({
-					url: _+'/customers/acc/update',
+				/*$.ajax({ // 계좌에 인설트
+					url: _+'/account/withdrawal',
 					type : 'POST',
 					data : JSON.stringify(deal),
 					contentType :'application/json',
 					success : () => {
 						alert("ajax성공")
-						deal.trdusd = null
-						mypage.onCreate()
-						$('html').scrollTop(0);
 					},
 					error : (request,status,error) => {
 						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					}
-				})
+				})*/
+				deal.trdusd = null
+				mypage.onCreate()
+				$('html').scrollTop(0);
 			})
 		
 		$('#copy_btn').on('click', function(e){

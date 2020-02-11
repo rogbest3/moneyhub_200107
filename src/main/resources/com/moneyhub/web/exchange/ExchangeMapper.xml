@@ -24,13 +24,13 @@
 		LIMIT 0,10
 	</select>
 	
-	<update id="balanceChg" parameterType="Account">
+	<!-- <update id="balanceChg" parameterType="Account">
 		UPDATE ACCOUNT
 		SET BALANCE = #{balance},
 		WITHDRAWAL = #{withdrawal},
 		BSDATE = now()
 		WHERE CEMAIL = #{cemail}
-	</update>
+	</update> -->
 	
 	<!-- <select id="exTrend1" resultType="Exrate">
 		SELECT *

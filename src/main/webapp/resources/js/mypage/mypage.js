@@ -12,6 +12,7 @@ mypage =(()=>{
 		js = $.js()
 		cus = $.cusInfo()
 		exch = $.exch()
+		
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -270,24 +271,6 @@ mypage =(()=>{
 				    .appendTo('.remits')
 				})
 				
-				
-				//숙제 내역 삭제
-				/*	$('#delete_history')
-					.click( e => {
-						e.preventDefault()
-						$.ajax({
-							url: _+'/remit/delete/trdhr/list/row',
-							type : 'POST',
-							data : {mtcn : j.mtcn},
-							contentType :'application/json',
-							success : () => {
-								alert("ajax성공")
-							},
-							error : (request,status,error) => {
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-							}
-						})
-					})*/
 				
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
 				if(pxy.existPrev){

@@ -50,8 +50,8 @@ auth =(()=>{
 		.appendTo('.themoin-login')
 		
 
-		$('#cemail').val('dmswl@dmswl.com')
-		$('#cpwd').val('12345678')
+		$('#cemail').val('11')
+		$('#cpwd').val('11')
 
 		/*$('#cemail').val('abc@naver.com')
 		$('#cpwd').val('aa')*/
@@ -88,14 +88,15 @@ auth =(()=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
-						//====================================================== HM
 						sessionStorage.setItem('acc', JSON.stringify(d.acc))
-						sessionStorage.setItem('CEMAIL', d.cus.cemail)
+						sessionStorage.setItem('accHis', JSON.stringify(d.accHis))
+						//====================================================== HM
+						/*sessionStorage.setItem('CEMAIL', d.cus.cemail)
 						sessionStorage.setItem('CPWD', d.cus.cpwd)
 						sessionStorage.setItem('ZIP', d.cus.zip)
 						sessionStorage.setItem('ADDR', d.cus.addr)
 						sessionStorage.setItem('DADDR', d.cus.daddr)
-						sessionStorage.setItem('CNO', d.cus.cno)
+						sessionStorage.setItem('CNO', d.cus.cno)*/
 						//======================================================
 						mypage.onCreate()
 					}

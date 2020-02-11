@@ -1,6 +1,5 @@
 package com.moneyhub.web.cus.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.moneyhub.web.cus.domains.Account;
+import com.moneyhub.web.cus.domains.AccountHistory;
 import com.moneyhub.web.cus.domains.Customer;
 import com.moneyhub.web.cus.mappers.AccountMapper;
 import com.moneyhub.web.cus.mappers.CustomerMapper;
@@ -37,6 +37,7 @@ public class CustomerCtrl extends Proxy {
 	@Autowired AccountService accountService;
 	@Autowired AccountMapper accMapper;
 	@Autowired Account acc;
+	@Autowired AccountHistory accHis;
 
 	@PostMapping("/login/{cemail}/")
     public Map<?, ?> login(@RequestBody Customer param, @PathVariable String  cemail) {
@@ -47,13 +48,16 @@ public class CustomerCtrl extends Proxy {
           Function<Customer, Customer> f = t -> cusMapper.login(t);
           cus = f.apply(param);
           System.out.println("로그인 시 cus는? - "+ cus.toString());
-          Function<String, Account> f2 = t -> accMapper.getAcc(t);
-          acc = f2.apply(cemail);
+          Function<String, Account> p = t -> accMapper.getAcc(t);
+          acc = p.apply(cemail);
+          Function<String, AccountHistory> p1 = t -> accMapper.getAccHis(t);
+          accHis = p1.apply(cemail);
           String result = (cus != null) ? "SUCCESS" : "FAIL";
           box.clear();
           box.put("msg", result);
           box.put("cus", cus);
           box.put("acc", acc);
+          box.put("accHis", accHis);
           System.out.println(box.get());
           return box.get();
     }
@@ -79,29 +83,6 @@ public class CustomerCtrl extends Proxy {
 		return box.get();
 	}
 	
-//	@GetMapping("/existid/{acct_no}/")
-//	public Map<?, ?> existAcc(@PathVariable String acc) {
-//		System.out.println("existAcc!!!!!! 들어옴");
-//		Function<String, Integer> f = o -> accMapper.existAcc(o);
-//		box.clear();
-//		box.put("msg", (f.apply(acc) != 0) ? "Y" : "N");
-//		System.out.println(box.get());
-//		return box.get();
-//	}
-
-//	@PostMapping("/pwdCheck")
-//	public Map<?, ?> pwdCheck(@RequestBody Customer param) {
-	// Function<Customer, Customer> f = t -> cusMapper.login(t);
-	// cus = f.apply(param);
-//		int result = cusMapper.pwdCheck(param);
-//		String result2 = Integer.toString(result);
-//		System.out.println("비밀번호 체크1 : "+result);
-//		System.out.println("비밀번호 체크2 : "+result2);
-//		box.clear();
-//		box.put("msg", result2);
-//		return box.get();
-//	}
-
 	@DeleteMapping("/withdrawal")
 	public Map<?, ?> withdrawal(@RequestBody Customer param) {
 		System.out.println("자바 withdrawal 들어옴");
@@ -186,24 +167,27 @@ public class CustomerCtrl extends Proxy {
 		return box.get();
 	}
 
-	@GetMapping("/getAcc/{cemail}/{cno}")
-	public Map<? ,?> getAcc(@PathVariable HashMap<String,Object> map){
-		  box.clear();
-		  System.out.println("=============================계좌번호 조회 들어옴1!!!!!" +map); 
-		  Function<String, Account> f = t -> accMapper.getAcc(t);
-		  box.put("msg","SUCCESS"); 
-		  box.put("acc", f.apply(map.get("cemail").toString())); 
-		  System.out.println("box.get() -----------> "+box.get());
-		 
-		return box.get();
-	}
+	
+//	@GetMapping("/existid/{acct_no}/")
+//	public Map<?, ?> existAcc(@PathVariable String acc) {
+//		System.out.println("existAcc!!!!!! 들어옴");
+//		Function<String, Integer> f = o -> accMapper.existAcc(o);
+//		box.clear();
+//		box.put("msg", (f.apply(acc) != 0) ? "Y" : "N");
+//		System.out.println(box.get());
+//		return box.get();
+//	}
 
-	
-	@PostMapping("/acc/update")
-	public void updateAcc(@RequestBody HashMap<String, Object> deal) {
-		//EJ 계좌 히스토리
-		//계좌 히스토리 테이블 생성 및 인설트 완성 후 업데이트
-	}
-	
-	
+//	@PostMapping("/pwdCheck")
+//	public Map<?, ?> pwdCheck(@RequestBody Customer param) {
+	// Function<Customer, Customer> f = t -> cusMapper.login(t);
+	// cus = f.apply(param);
+//		int result = cusMapper.pwdCheck(param);
+//		String result2 = Integer.toString(result);
+//		System.out.println("비밀번호 체크1 : "+result);
+//		System.out.println("비밀번호 체크2 : "+result2);
+//		box.clear();
+//		box.put("msg", result2);
+//		return box.get();
+//	}
 }

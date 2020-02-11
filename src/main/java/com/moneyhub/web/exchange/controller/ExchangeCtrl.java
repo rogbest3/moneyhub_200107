@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.moneyhub.web.cus.domains.Account;
+import com.moneyhub.web.cus.domains.AccountHistory;
 import com.moneyhub.web.exchange.domains.Exchange;
 import com.moneyhub.web.exchange.mappers.ExchangeMapper;
 import com.moneyhub.web.exchange.services.ExchangeService;
@@ -29,6 +30,7 @@ public class ExchangeCtrl extends Proxy {
 	@Autowired Box<Object> box;
 	@Autowired ExchangeService exService;
 	@Autowired Account acc;
+	@Autowired AccountHistory accHistory;
 
 	@PostMapping("/insert")
 	public Map<?, ?> insertExchange(@RequestBody HashMap<String, Object> exchange){
@@ -45,21 +47,17 @@ public class ExchangeCtrl extends Proxy {
 		return exService.ExTrend(cntcd);
 	}
 	
-
-	@PostMapping("/balanceChg")
-	public Map<?, ?> balanceChg(@RequestBody HashMap<String, Object> exchange){
-		System.out.println("계좌 현재 잔액 변경 들어옴 여기서 exchange는? - " + exchange);
-		exService.balanceChg(exchange);
-		box.clear();
-		box.put("acc", acc);
-		if(acc.getBalance() > 0) {
-			box.put("msg", "SUCCESS");
-		}else {
-			box.put("msg", "FAIL");
-		}
-		System.out.println("잔액 변경하는 자바 부분에서 box.get() -> " + box.get());
-		return box.get();
-	}
+	/*
+	 * @PostMapping("/balanceChg") public Map<?, ?> balanceChg(@RequestBody
+	 * HashMap<String, Object> exchange){
+	 * System.out.println("계좌 현재 잔액 변경 들어옴 여기서 exchange는? - " + exchange);
+	 * exService.balanceChg(exchange); box.clear(); box.put("acc", acc);
+	 * 
+	 * //EJ 수정 acc -> 히스토리로 연결 if(accHistory.getBalance() > 0) { box.put("msg",
+	 * "SUCCESS"); }else { box.put("msg", "FAIL"); }
+	 * System.out.println("잔액 변경하는 자바 부분에서 box.get() -> " + box.get()); return
+	 * box.get(); }
+	 */
 	
 	
 	

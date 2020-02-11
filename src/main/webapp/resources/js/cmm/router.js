@@ -10,9 +10,10 @@ function Session(x){
 	sessionStorage.setItem('deal',JSON.stringify(deal));
 	var exch = {} // 환전 객체
 	sessionStorage.setItem('exch',JSON.stringify(exch));
-	var acc = {}
+	var acc = {} //계좌 정보
 	sessionStorage.setItem('acc',JSON.stringify(acc));
-
+	var accHis = {}
+	sessionStorage.setItem('accHis',JSON.stringify(accHis));
 	return{
 		ctx : ()=>{ return sessionStorage.getItem('ctx');},
 		js : ()=>{ return sessionStorage.getItem('js');},
@@ -29,6 +30,7 @@ function Session(x){
 		account : ()=>{ return JSON.parse(sessionStorage.getItem('account'))},
 		money : ()=>{ return JSON.parse(sessionStorage.getItem('money'))},
 		acc : ()=>{ return JSON.parse(sessionStorage.getItem('acc'))},
+		accHis : ()=>{ return JSON.parse(sessionStorage.getItem('accHis'))},
 		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))},
 		exchangeCount : ()=>{ return sessionStorage.getItem('exchangeCount') }
 	}
@@ -47,9 +49,9 @@ function Clock(){
 	}
 }
 
-function Remit_send(){
+/*function Remit_send(){
 	let send = $('.form-calculator .amount-row input.send-amount')
 	let send_value = comma_create(send.val().replace(/,/gi, ''))	
 	alert('Remit_send')
 	send.val(send_value)
-}
+}*/

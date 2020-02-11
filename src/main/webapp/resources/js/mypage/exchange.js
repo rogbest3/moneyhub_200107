@@ -2,7 +2,8 @@ var exchange = exchange || {}
 exchange =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 
-	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, nav_vue_js, exch, cus, acc
+	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, 
+			nav_vue_js, exch, cus, acc,accHis
 
 	let init =()=>{
 		_ = $.ctx()
@@ -84,7 +85,7 @@ exchange =(()=>{
 						exch.exrate = exch.exrate
 						sessionStorage.setItem('exch',JSON.stringify(exch))
 
-						$('#auth_mgmt').each(function(){
+						$('#auth_mgmt').each(function(){ //거래 인설트
 							$.ajax({
 								url : _+'/exchange/insert',
 								type : 'POST',
@@ -93,20 +94,21 @@ exchange =(()=>{
 								contentType : 'application/json',
 								success : d=>{
 									if(d.msg === 'SUCCESS'){
+										accHis = $.accHis()
 										let cemail = cus.cemail
 										let cno = cus.cno
-										$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, t=>{
+										$.getJSON(_+'/account/getacchis/' + cemail + '/' + cno, t=>{
 											if(d.msg === "SUCCESS"){
-												acc.balance = t.acc.balance
-												alert(acc.balance)
-												sessionStorage.setItem('acc', JSON.stringify(acc))
+												accHis.balance = t.accHis.balance
+												alert(accHis.balance)
+												sessionStorage.setItem('accHis', JSON.stringify(accHis))
 											}else{
 												alert('계좌 getJSON 실패')
 											}
 										})
 										alert('머니허브 계좌로 이동합니다.')
 										$.ajax({
-											url : _ + '/exchange/balanceChg',
+											url : _ + '/account/withdrawal',
 											type : 'POST',
 											data : JSON.stringify({
 												cemail : cus.cemail,
