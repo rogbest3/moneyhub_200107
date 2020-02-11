@@ -236,15 +236,15 @@ main_vue ={
 						<div id="remit_box" class="form-calculator main"> 
 							<div class="amount-row"> 
 								<div class="unit-select receive" style="display:-webkit-inline-box;border-width:inherit;max-width:none;align-self: center;">
-									<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
-									<p style="font-size: 19px;margin: 8px 10px 0px 20px;">미국</p><h3 style="margin: 8px 0px 0px 0px;">USD</h3>
+									<img id="cntimg" src="https://img.themoin.com/public/img/circle-flag-us.svg">
+									<p id= "cntp" style="font-size: 19px;margin: 8px 10px 0px 20px;">미국</p><h3 id="cntcd" style="margin: 8px 0px 0px 0px;">USD</h3>
 								</div>
 							</div> 
 							<div class="amount-row"> 
-								<div class="" style="float:left"> 
+								<div class="" style="padding: 13px 13px 16px 23px;"> 
 									<p>송금 금액</p> 
 									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="" numberOnly maxlength="5" style="width: 50%;"> 
-									<p id="max_amount" style="color:cornflowerblue;"></p>
+									<p id="max_amount" style="color:#d43349;font-size: 12px;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0"> 
 									<p>미 화</p> 
