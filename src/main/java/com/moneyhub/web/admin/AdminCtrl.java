@@ -55,6 +55,7 @@ public class AdminCtrl extends Proxy{
 	
 	@GetMapping("/fee")
 	public Map<?, ?> feeSelect(){
+		//null 값 뜨는 이유를 모르겠음..
 		Supplier<String> one = () -> adminMapper.feeSelectOne();
 		one.get();
 		Supplier<String> two = () -> adminMapper.feeSelectTwo();

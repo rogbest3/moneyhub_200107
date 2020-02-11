@@ -159,21 +159,18 @@ mypage =(()=>{
 	
 	let remit_receive = ()=>{
 		deal = $.deal()
-		let cntimg = sessionStorage.getItem('cntimg')
 		
-		if(cntimg != `https://img.themoin.com/public/img/circle-flag-us.svg` || cntimg == null && deal.cntp == null ){
+		if(deal.cntp == '미국'){
 			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
 		}
-		
 		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
 				$.each(d.exlist.reverse(), (i, j)=>{
-						exrate_arr.push(parseFloat(j.exrate)) //서브스트링
+						exrate_arr.push(parseFloat(j.exrate).toFixed(2))
 				})
-				deal.exrate = exrate_arr[exrate_arr.length-1] //소수점 둘째자리로 저장 후 넘겨야함
-				alert(deal.exrate)
+				deal.exrate = exrate_arr[exrate_arr.length-1]
 				sessionStorage.setItem('deal',JSON.stringify(deal))
 			})
 			
@@ -202,8 +199,7 @@ mypage =(()=>{
 	
 	let remit_list =(x)=>{
 		deal = $.deal()
-		 /*alert('deal.remitstart'+deal.remitstart+'deal.remitend'+ deal.remitend)*/
-		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{  //seq 받기
+		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
 
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본'},
@@ -272,30 +268,11 @@ mypage =(()=>{
 							</div>
 						</div>`)
 				    .appendTo('.remits')
-				   //숙제 송금 거래 시간이 +1한 시간보다 작으면 입금 확인중 , 입금하기 뜨게 하기 디비 상태변화 확인후 변경 
-				    /*if( Number(j.bsdate.replace(/[^0-9]/g,"")) >= deal.remitstart && Number(j.bsdate.replace(/[^0-9]/g,"")) < deal.remitend){
-				    	$('.user-sendlist-status').empty()
-				    	$(`<div class="user-sendlist-state">
-								<div class="user-sendlist-state-text moin-body">입금 대기중</div>
-								</div>
-								<button type="button desktop" class="user-sendlist-btn">입금 하기</button>
-								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
-				    	.appendTo('.user-sendlist-status')
-				    } else {
-				    	$(`<div class="user-sendlist-state">
-								<div class="user-sendlist-state-text moin-body">거래 완료</div>
-								</div>
-								<a id = "delete_history"class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
-								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
-				    	.appendTo('.user-sendlist-status')
-				    }*/
-				    
-				    
 				})
 				
 				
 				//숙제 내역 삭제
-					$('#delete_history')
+				/*	$('#delete_history')
 					.click( e => {
 						e.preventDefault()
 						$.ajax({
@@ -310,24 +287,7 @@ mypage =(()=>{
 								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 							}
 						})
-					})
-				
-				/*if( Number(j.bsdate.replace(/[^0-9]/g,"")) >= deal.remitstart && Number(j.bsdate.replace(/[^0-9]/g,"")) < deal.remitend){
-			    	$('.user-sendlist-status').empty()
-			    	$(`<div class="user-sendlist-state">
-							<div class="user-sendlist-state-text moin-body">입금 대기중</div>
-							</div>
-							<button type="button desktop" class="user-sendlist-btn">입금 하기</button>
-							<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
-			    	.appendTo('.user-sendlist-status')
-			    } else {
-			    	$(`<div class="user-sendlist-state">
-							<div class="user-sendlist-state-text moin-body">거래 완료</div>
-							</div>
-							<a id = "delete_history"class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
-							<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">`)
-			    	.appendTo('.user-sendlist-status')
-			    }*/
+					})*/
 				
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
 				if(pxy.existPrev){

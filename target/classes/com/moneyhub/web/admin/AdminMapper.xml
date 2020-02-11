@@ -87,7 +87,7 @@
 		WHERE CNO = #{cno}
 	</update>
 	
-	<select id="feeSelectOne" resultType="string">
+	<select id="feeSelectOne" resultType="String">
 	<![CDATA[
 		SELECT AMNT FROM FEEDB	
 		WHERE FEETYPCD = '1'
@@ -96,7 +96,7 @@
 	]]>
 	</select>
 	
-	<select id="feeSelectTwo" resultType="string">
+	<select id="feeSelectTwo" resultType="String">
 	<![CDATA[
 		SELECT AMNT FROM FEEDB	
 		WHERE FEETYPCD = '2'

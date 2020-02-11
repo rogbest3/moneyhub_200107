@@ -39,7 +39,7 @@ public class RemitServiceImpl{
 		trd.setTrdUsd(deal.get("trdusd").toString());
 		trd.setTrdKrw(deal.get("trdkrw").toString());
 		trd.setCntcd("1");
-		trd.setExrate((double) deal.get("exrate"));
+		trd.setExrate(deal.get("exrate").toString());
 		trd.setCrtmem("LEJ");
 		trd.setCrtdt(sdf.format(date));
 		remitMapper.insertTRD(trd);
@@ -53,7 +53,7 @@ public class RemitServiceImpl{
 		trdhr.setTrdUsd(deal.get("trdusd").toString());
 		trdhr.setTrdKrw(deal.get("trdkrw").toString());
 		trdhr.setCntcd(deal.get("cntcd").toString());
-		trdhr.setExrate((double) deal.get("exrate"));
+		trdhr.setExrate(deal.get("exrate").toString());
 		trdhr.setCrtmem("LEJ");
 		trdhr.setCrtdt(sdf.format(date));
 		remitMapper.insertTRDHR(trdhr);

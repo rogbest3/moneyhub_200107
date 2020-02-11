@@ -18,7 +18,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class="" style="padding: 13px 13px 16px 23px;"> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="" numberOnly maxlength="5" style="width: 50%;"> 
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdusd}" numberOnly maxlength="5" style="width: 50%;"> 
 									<p id="max_amount" style="color:#d43349;font-size: 12px;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
@@ -390,6 +390,10 @@ remit_vue = {
 									</div>
 									<button id="copy_acc_btn">계좌 복사하기</button>
 									<input id="clip_acc" type="text" value="" style="position:absolute;top:-9999em;"/>
+								</div>
+								<div class="remit_info">
+									<button type="button desktop" class="user-send-btn">허브페이로 입금 하기
+									</button>
 								</div>
 								<p class="warning">반드시 ‘인증받은 계좌’로 한번에 금액을 입금해주세요. 여러번 송금할 시에도 각각 따로 보내주셔야 합니다.</p>
 							</div>

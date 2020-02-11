@@ -1,7 +1,5 @@
 package com.moneyhub.web.remit.domains;
 
-import java.math.BigDecimal;
-
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +14,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TRD {
 
-	private String bsdate,mtcn,cno,trdUsd,trdKrw,cntcd,crtmem,crtdt,upmem,updt;
+	private String bsdate,mtcn,cno,trdUsd,trdKrw,cntcd,crtmem,crtdt,upmem,updt,exrate;
 	private int trdStatCd,chngCausCd,acctNo;
-	private BigDecimal exrate;
 }
