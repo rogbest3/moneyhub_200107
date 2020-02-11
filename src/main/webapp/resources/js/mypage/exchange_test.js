@@ -4,7 +4,7 @@ exchange_test =(()=>{
 
 	let _, js, mypage_vue_js, global_map_js, exth, exrateSess, profitsChart, 
 		bdate_exist_flag, deposit, getCno, line_graph_js, disableDays, dpkMinFlag,
-		getMapFlag, saveFlag
+		getMapFlag, saveFlag, weekday
 		
 	let init =()=>{
 		_ = $.ctx()
@@ -26,6 +26,7 @@ exchange_test =(()=>{
 //		exrateSess.bdate = common.clock_format()	
 		sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess))
 		disableDays = []
+		weekday = []
 	}
 	let onCreate =()=>{
 		init()
@@ -37,9 +38,14 @@ exchange_test =(()=>{
 		)
 		.done(()=>{
 			setContentView()
-			getHoliday()
-			datepicker_show()
 			
+			getHoliday()
+			.then(function(){
+				datepicker_show()
+			})
+			.catch(function(e){
+				alert('오동작')
+			})
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -48,9 +54,7 @@ exchange_test =(()=>{
 	let onCreate2 =()=>{
 		setContentView2()
 		retention_amount()
-//		exchange_popup()
 		
-	//	getHoliday()
 		datepicker_show()
 	}
 	
@@ -60,18 +64,15 @@ exchange_test =(()=>{
 		
 		$('#exchange_datepicker')
 		.css({
-			height : '60px',
+			height : '250px',
 			margin : '10px auto',
 			'text-align' : 'center'
 		})	
 		
-		$('#test_mode_1')
-		.css({ width : '50%', float : 'left' })
+		$('#test_mode')
+		.css({ width : '100%'})
 		
-		$('#test_mode_2')
-		.css({ width : '50%', float : 'left' })
-		
-		$('<button/>')
+		/*$('<button/>')
 		.text('모드 1')
 		.addClass('btn btn-lg btn-info')
 		.appendTo('#test_mode_1')
@@ -81,12 +82,13 @@ exchange_test =(()=>{
 			}else{
 				alert('시작일을 선택해 주세요.')
 			}
-		})
+		})*/
 		
 		$('<button/>')
-		.text('모드 2')
+		.text('모의 환전 시작')
 		.addClass('btn btn-lg btn-success')
-		.appendTo('#test_mode_2')
+		.css({ width : '240px', 'font-weight' : 'bold' })
+		.appendTo('#test_mode')
 		.click(()=>{
 			if($.exrateSess().flag === 'select2'){
 				getMapFlag = true
@@ -218,7 +220,7 @@ exchange_test =(()=>{
 			})
 			
 			$('<button/>')
-			.text('저장')
+			.text('저 장')
 			.addClass('btn btn-lg btn-primary')
 			.appendTo('#save_btn')
 			.click(()=>{
@@ -295,35 +297,31 @@ exchange_test =(()=>{
 		$.getScript(line_graph_js)
 	}
 	
-	let getHoliday =()=>{
-		$.getJSON(`${_}/datepicker/selectall`, d=>{
-			$.each(d.dpk, (i, j)=>{
-				disableDays[i] = j.ddate
+	function getHoliday (){
+		return new Promise(function(resolve){
+			$.getJSON(`${_}/datepicker/selectall`, d=>{
+				if(d){
+					$.each(d.dpk, (i, j)=>{
+						disableDays[i] = j.ddate
+					})
+					resolve()
+				}
 			})
 		})
 	}
 	
 	let datepicker_show =()=>{
-		datepicker_kr()
 		
-/*		if($.exrateSess().flag === 'select'){
-			alert('모드2 달력 옵션 주기')
-			$('#datepicker').datepicker({
-				 onClose: function( selectedDate ) {    
-	                 // 시작일(fromDate) datepicker가 닫힐때
-	                 // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-	                 $("#datepicker").datepicker( "option", "minDate", selectedDate );
-	                 $('#exchange_datepicker img')
-	     			.css({ float: 'left', 'margin-top': '10px' })
-	             }
-			})
-		if($.exrateSess().flag === 'select'){
-		alert('모드2 달력 옵션 주기')
-		}else{
-			alert('모드2 선택 안됨')
-		}*/
+		$('<button/>')
+		.text('다음일')
+		.addClass('btn btn-sm btn-primary')
+//		.css({ 'font-weight' : 'bold' })
+		.appendTo('#next_day_btn')
+		.click(()=>{
+			alert('>>>>')
+		})
 		
-		
+		datepicker_kr()	
 		datepicker_option()
 		
 		$('#exchange_datepicker img')
@@ -344,6 +342,7 @@ exchange_test =(()=>{
 				sessionStorage.setItem('exrateSess', JSON.stringify(exrateSess));
 				
 				getMapGraph()
+				weekday = []
 			}
 		})
 	}
@@ -364,6 +363,7 @@ exchange_test =(()=>{
 	    })
 	}
 	let datepicker_option =()=>{
+		weekday = []
 		$('#datepicker').datepicker({
 			// datepicker 애니메이션 타입
 			// option 종류 : "show" , "slideDown", "fadeIn", "blind", "bounce", "clip", "drop", "fold", "slide"
@@ -397,6 +397,8 @@ exchange_test =(()=>{
 			maxDate: "0M 0D",
 			// 주 표시
 //			showWeek: true
+//			tooltips : { today: "Today" }, 안먹힘
+			 
 			beforeShowDay: function(date){
 				let day = date.getDay();
 			   	let thismonth = date.getMonth()+1;
@@ -410,13 +412,14 @@ exchange_test =(()=>{
 				}
 				
 			    ymd = date.getFullYear() + "-" + thismonth + "-" + thisday;
-				
 			    for(let i=0; i<disableDays.length; i++){
 			    	if ( $.inArray(ymd, disableDays) != -1 ) {		 // 공휴일 날짜 출력
 				        return [false, 'Highlighted', ymd]	
 				    }
 			    }
+			    alert('onCreate2 weekday : ' + JSON.stringify(weekday))
 			    if((day != 0 && day != 6)){				// 평일 날짜 출력
+			    	weekday.push(ymd)
 			    	return [true]
 			    }
 			    return [false]
@@ -436,6 +439,7 @@ exchange_test =(()=>{
             }
 		})
 		if( dpkMinFlag === true){
+			$('#datepicker').datepicker('setDate', $.exrateSess().bdate)
 			$("#datepicker").datepicker( "option", "minDate", $.exrateSess().bdate )
 		}
 	}
