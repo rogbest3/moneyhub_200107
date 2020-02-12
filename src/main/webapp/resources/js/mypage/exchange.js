@@ -55,7 +55,7 @@ exchange =(()=>{
 			})
 			exch.exrate = exch_arr[0]
 			sessionStorage.setItem('exch',JSON.stringify(exch))
-			alert('exchange.js / 세션에 담긴 exch.exrate는? ' + exch.exrate)
+			alert('1) exchange.js / 세션에 담긴 exch.exrate는? ' + exch.exrate)
 			
 			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 //			alert('1번 exchange.js 59번 라인 ')

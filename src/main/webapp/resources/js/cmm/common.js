@@ -65,8 +65,8 @@ common = (function(){
 			
 		},
 		receive_value_calc : function(x){
-			let send_value = $('.form-calculator .amount-row input.send-amount').val()
-			let receive_value = $('.form-calculator .amount-row input.receive-amount').val()
+			let send_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+			let receive_value = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			let receive_cntcd = $('.form-calculator .amount-row .unit-select.receive h3').text()
 			let disabled_cntcd = $('#remit_receive_cntcd').text()
 //			alert('common의 receive_value는? ' + receive_value)

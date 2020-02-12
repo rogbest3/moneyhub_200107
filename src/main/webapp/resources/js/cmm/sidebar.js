@@ -21,7 +21,7 @@ sidebar = (()=>{
 			init_page()
 		})
 		.fail(()=>{
-			alert()
+			alert('sidebar 실패')
 		})
 	}
 	let setContentView =()=>{
