@@ -43,13 +43,13 @@
    	 </select>
    	 
    	 <update id="balance" parameterType="Account"> <!--테스트 필요  -->
-		UPDATE ACCOUNT_HISTORY
+		UPDATE ACCOUNT
 		SET BALANCE = #{balance},
 		BSDATE = now()
 		WHERE CEMAIL = #{cemail}
 	</update>
 	
-	<insert id="withdrawal" parameterType="AccountHistory">
+	<insert id="withdrawal" parameterType="AccountHistory"> <!--테스트 필요  --> 
 	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, WITHDRAWAL,COMMENT, ACHCNTCD, CRTMEM, CRTDT) 
 	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{withdrawal}, #{comment},#{achcntcd}, #{crtmem}, now())
 	</insert>
