@@ -28,12 +28,8 @@ tables_vue ={
 		'        <div class="container-fluid">'+
 		'         <!-- Page Heading -->'+
 		'          <h1 class="h3 mb-2 text-gray-800">고객 정보 관리</h1>'+
-//		'          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>'+
 		'         <!-- DataTales Example -->'+
 		'          <div class="card shadow mb-4">'+
-//		'            <div class="card-header py-3">'+
-//		'              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>'+
-//		'            </div>'+
 		'            <div class="card-body">'+
 		'              <div class="table-responsive">'+
 		'                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">'+
@@ -49,12 +45,12 @@ tables_vue ={
 		'                  </thead>'+
 		'                  <tfoot>'+
 		'                    <tr>'+
-		'                      <th>Name</th>'+
-		'                      <th>Position</th>'+
-		'                      <th>Office</th>'+
-		'                      <th>Age</th>'+
-		'                      <th>Start date</th>'+
-		'                      <th>Salary</th>'+
+		'                      <th>로그인 아이디</th>'+
+		'                      <th>이름</th>'+
+		'                      <th>거래금액(한화기준계산)</th>'+
+		'                      <th>나이</th>'+
+		'                      <th>가입날짜</th>'+
+		'                      <th>고객상태코드</th>'+
 		'                    </tr>'+
 		'                  </tfoot>'+
 		'                  <tbody id="adminMemberList">'+
@@ -66,18 +62,6 @@ tables_vue ={
 		'       </div>'+
 		'        <!-- /.container-fluid -->'+
 		'     </div>'+
-//		'      <!-- End of Main Content -->'+
-//		'     <!-- Footer -->'+
-//		'      <footer class="sticky-footer bg-white">'+
-//		'        <div class="container my-auto">'+
-//		'          <div class="copyright text-center my-auto">'+
-//		'            <span>Copyright &copy; Your Website 2019</span>'+
-//		'          </div>'+
-//		'        </div>'+
-//		'      </footer>'+
-//		'      <!-- End of Footer -->'+
-//		'   </div>'+
-//		'    <!-- End of Content Wrapper -->'+
 		' </div>'+
 		'  <!-- End of Page Wrapper -->'+
 		' <!-- Scroll to Top Button-->'+
@@ -102,13 +86,6 @@ tables_vue ={
 		'      </div>'+
 		'    </div>'+
 		'  </div>'+
-//		' <!-- Bootstrap core JavaScript-->'+
-//		'  <script src="/web/resources/vendor/jquery/jquery.min.js"></script>'+
-//		'  <script src="/web/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>'+
-//		' <!-- Core plugin JavaScript-->'+
-//		'  <script src="/web/resources/vendor/jquery-easing/jquery.easing.min.js"></script>'+
-//		' <!-- Custom scripts for all pages-->'+
-//		'  <script src="/web/resources/js/sb-admin-2.min.js"></script>'+
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/datatables/jquery.dataTables.min.js"></script>'+
 		'  <script src="/web/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>'+

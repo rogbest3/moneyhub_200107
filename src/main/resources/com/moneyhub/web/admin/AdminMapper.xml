@@ -4,77 +4,91 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.moneyhub.web.admin.AdminMapper">
-	<!-- <select id="memberPieChart" resultType="map">		
+	
+	<select id="memberNowCount" resultType="string">
+		SELECT COUNT(CNO) FROM CUSTOMER
 		<![CDATA[
-			SELECT 
-			DISTINCT (SELECT DISTINCT 10 FROM CUSTOMER 
-				WHERE AGE<20 AND 10<=AGE) AS '10',
-				(SELECT DISTINCT 20 FROM CUSTOMER 
-				WHERE AGE<30 AND 20<=AGE) AS '20',
-			    (SELECT DISTINCT 30 FROM CUSTOMER 
-				WHERE AGE<40 AND 30<=AGE) AS '30',
-			    (SELECT DISTINCT 40 FROM CUSTOMER 
-				WHERE AGE<50 AND 40<=AGE) AS '40',
-			    (SELECT DISTINCT 50 FROM CUSTOMER 
-				WHERE AGE<60 AND 50<=AGE) AS '50',
-			    (SELECT DISTINCT 60 FROM CUSTOMER 
-				WHERE AGE<70 AND 60<=AGE) AS '60',
-			    (SELECT DISTINCT 70 FROM CUSTOMER 
-				WHERE AGE<80 AND 70<=AGE) AS '70',
-			    (SELECT DISTINCT 80 FROM CUSTOMER 
-				WHERE AGE<90 AND 80<=AGE) AS '80',
-			    (SELECT DISTINCT 90 FROM CUSTOMER 
-				WHERE AGE<100 AND 90<=AGE) AS '90'
-			FROM CUSTOMER ORDER BY AGE
+		WHERE SDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
 		]]>
-		
-	</select>-->
+	</select>
+	
+	<select id="memberTotalBalance" resultType="string">
+		SELECT SUM(BALANCE) FROM ACCOUNT
+	</select>
+	
+	<select id="memberNowExchange" resultType="string">
+		SELECT IFNULL(SUM(EXCH_KRW),0) FROM EXCHANGE
+		<![CDATA[
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		]]>
+	</select>
+	
+	<select id="totalProfitExchange" resultType="int">
+		SELECT IFNULL(SUM(EX_FEE),0) FROM EXCHANGE
+		<![CDATA[		
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		]]>
+	</select>
+	
+	<select id="totalProfitFee" resultType="int">
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE
+		<![CDATA[
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		]]>
+	</select>
 		
 	<select id="memberPieChartCount" parameterType="string" resultType="string">
-		SELECT COUNT(AGE) FROM CUSTOMER
+		SELECT COUNT(BIRTH) FROM CUSTOMER
 		WHERE 
 		<![CDATA[
-			AGE < #{value} AND #{value}-10 < AGE
+			(DATE_FORMAT(NOW(), "%Y" )-DATE_FORMAT(BIRTH, "%Y" )+1) < #{value} + 10
+			AND 
+			#{value} < (DATE_FORMAT(NOW(), "%Y" )-DATE_FORMAT(BIRTH, "%Y" )+1)
 		]]>
 	</select>
 	
 	<select id="feeDBChart" resultType="string">
 	<![CDATA[
-		SELECT DISTINCT (BSDATE) 
+		SELECT DISTINCT DATE_FORMAT(BSDATE, "%d" ) AS BSDATE
 		FROM FEE
-		ORDER BY BSDATE+0
+		ORDER BY BSDATE
 	]]>	
 	</select>
 	
 	<select id="feeDBChartAMNT" parameterType="string" resultType="string">
-		SELECT SUM(FEE_AMNT) FROM FEE	
-		WHERE BSDATE LIKE #{value}
+	<![CDATA[
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
+		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value}
+	]]>	
 	</select>
 	
 	<select id="feeChartOneAMNT" parameterType="string" resultType="string">
 	<![CDATA[
-		SELECT SUM(FEE_AMNT) FROM FEE	
-		WHERE BSDATE LIKE #{value} AND FEE_STAT_CD = '1'
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
+		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value} AND FEE_STAT_CD = '1'
 	]]>
 	</select>
 	
 	<select id="feeChartTwoAMNT" parameterType="string" resultType="string">
 	<![CDATA[
-		SELECT SUM(FEE_AMNT) FROM FEE	
-		WHERE BSDATE LIKE #{value} AND FEE_STAT_CD = '2'
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
+		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value} AND FEE_STAT_CD = '2'
 	]]>
 	</select>
 	
 	<select id="adminLogin" resultType="Admin">
 		SELECT *
-		FROM ADMIN
+		FROM ADMIN 
 		WHERE AMAIL = #{amail} AND PWD = #{pwd}
 	</select>
 	
 	<select id="memberList" resultType="map">
 		<![CDATA[
-		SELECT CNO, CEMAIL, CNAME, CPWD , AGE, DATE_FORMAT(SDATE, "%Y/%m/%d") AS SDATE, CSTCD 
-		FROM CUSTOMER
+		SELECT A.BALANCE AS BALANCE, C.CNO, C.CEMAIL, C.CPWD , C.CNAME, C.ZIP, C.ADDR, C.DADDR, 
+			(DATE_FORMAT(NOW(), "%Y" )-DATE_FORMAT(C.BIRTH, "%Y" )+1) AS AGE, 
+			DATE_FORMAT(C.SDATE, "%Y/%m/%d") AS SDATE, C.CSTCD
+		FROM ACCOUNT A, CUSTOMER C
+		WHERE A.CEMAIL = C.CEMAIL
 		]]>
 	</select>
 	

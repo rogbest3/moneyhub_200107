@@ -34,6 +34,45 @@ public class AdminCtrl extends Proxy{
 		return box.get();
 	}
 	
+	@GetMapping("/memberNowCount")
+	public Map<?, ?> memberNowCount(){
+		Supplier<String> one = () -> adminMapper.memberNowCount();
+		one.get();
+		box.clear();
+		box.put("memberNowCount", one.get());
+		return box.get();
+	}
+	
+	@GetMapping("/memberTotalBalance")
+	public Map<?, ?> memberTotalBalance(){
+		Supplier<String> one = () -> adminMapper.memberTotalBalance();
+		one.get();
+		box.clear();
+		box.put("memberTotalBalance", one.get());
+		return box.get();
+	}
+	
+	@GetMapping("/memberNowExchange")
+	public Map<?, ?> memberNowExchange(){
+		Supplier<String> one = () -> adminMapper.memberNowExchange();
+		one.get();
+		box.clear();
+		box.put("memberNowExchange", one.get());
+		return box.get();
+	}
+	
+	@GetMapping("/totalProfit")
+	public Map<?, ?> totalProfit(){
+		Supplier<Integer> exchange = () -> adminMapper.totalProfitExchange();
+		exchange.get();
+		Supplier<Integer> fee = () -> adminMapper.totalProfitFee();
+		fee.get();
+		box.clear();
+		box.put("totalProfit", exchange.get()+fee.get());
+		return box.get();
+	}
+	
+	
 	@GetMapping("/member")
 	public Map<?, ?> memberList(){
 		ArrayList<Map<String, Object>> list = new ArrayList<>();

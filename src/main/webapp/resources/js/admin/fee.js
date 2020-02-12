@@ -31,7 +31,6 @@ fee =(()=>{
 	
 	let selectFee = () => {
 		$.getJSON(_ + '/admin/fee',d=>{
-			$(fee_vue.fee_head()).appendTo('head')
 			$(fee_vue.fee_body(d)).appendTo('div.container-fluid')
 			$('#feeOneUpdateValue').val('')
 			$('#feeTwoUpdateValue').val('')
@@ -55,7 +54,6 @@ fee =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert('업데이트 성공')
-						$('head').empty()
 						$('div.container').empty()
 						selectFee()
 					}
@@ -83,7 +81,6 @@ fee =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert('업데이트 성공')
-						$('head').empty()
 						$('div.container').empty()
 						selectFee()
 					}

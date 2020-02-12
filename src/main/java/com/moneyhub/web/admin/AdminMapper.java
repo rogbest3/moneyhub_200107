@@ -16,6 +16,12 @@ public interface AdminMapper {
 	
 	public Admin adminLogin(Admin param);
 	
+	public String memberNowCount();
+	public String memberTotalBalance();
+	public String memberNowExchange();
+	public int totalProfitExchange();
+	public int totalProfitFee();
+	
 	public ArrayList<Map<String, Object>> memberList();
 	public void memberUpdate(Admin param);
 	
