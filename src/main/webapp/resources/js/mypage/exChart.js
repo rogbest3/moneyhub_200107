@@ -73,6 +73,7 @@ $(document).ready(function(){
 		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))
 			config.data.datasets[0].data.push(parseFloat(j.exrate))
+//			alert('exchart j.exrate는? ' + config.data.datasets[0].data[config.data.datasets[0].data.length -1])
 		})
 		config.options.title.text = `머니허브환율 1 ${cntcd} = ${config.data.datasets[0].data[config.data.datasets[0].data.length -1]} KRW`
 
@@ -85,9 +86,9 @@ $(document).ready(function(){
 		window.myLine = new Chart(ctx, config);
 	})
 	
-	let receive_value_calc =()=>{
+	let receive_value_calc =(x)=>{
 		let receive_value = $('.form-calculator .amount-row input.send-amount').val().replace(/,/gi, '') 
-							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * 0.985
+							/ config.data.datasets[0].data[config.data.datasets[0].data.length -1] * x
 		$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 	}
 	

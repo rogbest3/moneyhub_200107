@@ -5,7 +5,8 @@ mypage =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
-		line_graph_js,deal, remit_box_js, clock, profitsChart,cus, exch
+		line_graph_js,deal, remit_box_js, clock, profitsChart,cus, exch,
+		exchange_js
 
 	let init =()=>{
 		_ = $.ctx()
@@ -24,6 +25,7 @@ mypage =(()=>{
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
+		exchange_js = js + '/mypage/exchange.js'
 		
 		profitsChart = {}
 		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
@@ -40,7 +42,8 @@ mypage =(()=>{
 			$.getScript(compo_js),
 			$.getScript(event_js),
 			$.getScript(faq_js),
-			$.getScript(remit_box_js)
+			$.getScript(remit_box_js),
+			$.getScript(exchange_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -71,16 +74,40 @@ mypage =(()=>{
 		
 		$('#remit_btn')
 		.click(function(){
-
-		$("#remit_slider").toggle();
-			var top = $('#remit_slider').offset().top - 75;
-			$('html').scrollTop(top);
-			
+		$("#remit_slider").show();
+		var top = $('#remit_slider').offset().top - 75;
+		$('html').scrollTop(top);
+		$('#exchange_slider').hide()
+		remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 		})
-
+		
+		$('#exchange_btn')
+		.click(function(){
+			exchange.onCreate()
+		})
 	}
 
 	let page_move =()=>{
+		$('#exch')
+		.click(()=>{
+			alert('클릭')
+//			sidebar.onCreate('')
+			exchange.onCreate('')
+			$('html').scrollTop(0);
+		})
+		
+		$('#remit')
+		.click(()=>{
+			
+			$('html').scrollTop(0);
+		})
+		
+		$('#testexch')
+		.click(()=>{
+			
+			$('html').scrollTop(0);
+		})
+		
 		$('#mgmt')
 		.click(()=>{
 			sidebar.onCreate('')
