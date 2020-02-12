@@ -13,8 +13,8 @@
 	</insert> -->
 	
 	<insert id="createAcc" parameterType="Account">
-	    INSERT INTO ACCOUNT (CEMAIL, BSDATE,BALANCE, ACCT_NO, ACHCNTCD, CRTMEM, CRTDT) 
-	    VALUES (#{cemail}, now(),#{balance} #{acctNo},#{achcntcd}, #{crtmem}, now())
+	    INSERT INTO ACCOUNT (CEMAIL, BSDATE, BALANCE, ACCT_NO, ACHCNTCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail},now(),#{balance},#{acctNo},#{achcntcd}, #{crtmem}, now())
 	</insert>
 	
 	<insert id="createAccHistory" parameterType="AccountHistory">
