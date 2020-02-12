@@ -12,7 +12,7 @@ function_vue = {
 							<div id="remit_box" class="form-calculator main">
 								<div class="amount-row">
 									<div class="">
-										<p>환전 금액</p>
+										<p>환전할 원화 금액</p>
 										<input class="send-amount" id="exchange_amount"  type="text" tabindex="0" placeholder="0.00">
 									</div>
 									<div class="unit-select disabled" tabindex="0" >
@@ -22,7 +22,7 @@ function_vue = {
 								</div>
 								<div class="amount-row">
 									<div class="">
-										<p>예상 비용</p>
+										<p>환전될 외화 금액</p>
 										<input class="receive-amount" id="expect" type="text" tabindex="0" placeholder="0.00" readonly="">
 									</div>
 									<div class="unit-select receive" tabindex="0">
@@ -44,10 +44,10 @@ function_vue = {
 									          https://img.themoin.com/public/img/btn-close@2x.png 2x,
 									          https://img.themoin.com/public/img/btn-close@3x.png 3x">
 				      			</a>
-				      			<h3>송금 국가 선택</h3>
+				      			<h3>환전할 통화 선택</h3>
 				      			<div id="popup_box">
 				      				<form onsubmit="return false">
-				      					<input type="text" placeholder="송금국가를 선택해주세요.">
+				      					<input type="text" placeholder="환전할 통화를 선택해주세요.">
 				      					<button>입력</button>
 				      				</form>
 				      				<ul>
