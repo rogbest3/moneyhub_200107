@@ -48,6 +48,10 @@ $(document).ready(function(){
                 map: {
                     name: "world_countries",
                     width : "100%",
+                    'defaultPlot specific attributes' : {
+                    	 height : '510px',
+                    },
+//                    height : 510,
                     defaultArea: {
                         attrs: {
                             stroke: "#fff",

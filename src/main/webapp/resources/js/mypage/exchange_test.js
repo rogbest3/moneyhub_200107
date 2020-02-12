@@ -417,7 +417,8 @@ exchange_test =(()=>{
 				        return [false, 'Highlighted', ymd]	
 				    }
 			    }
-			    alert('onCreate2 weekday : ' + JSON.stringify(weekday))
+//			    alert('onCreate2 weekday : ' + JSON.stringify(weekday))
+	
 			    if((day != 0 && day != 6)){				// 평일 날짜 출력
 			    	weekday.push(ymd)
 			    	return [true]

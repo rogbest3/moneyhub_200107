@@ -11,7 +11,7 @@ $(document).ready(function(){
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
@@ -48,17 +48,17 @@ $(document).ready(function(){
 				xAxes: [{
 					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
-						display: false,
+						display: true,
 						labelString: 'Month'
 					}
 				}],
 				yAxes: [{
-					display: false,
+					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
 						display: true,

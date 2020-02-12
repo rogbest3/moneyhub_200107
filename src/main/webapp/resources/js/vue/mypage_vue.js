@@ -341,17 +341,23 @@ mypage_vue = {
 					}
 				</style>	`
 	},
-	exchange_test2 : ()=>{
+	exchange_test2 : ()=>{	//	max-width : 1060px; margin: 30px auto;; min-height:840px;
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; max-width : 1060px; margin: 30px auto;; min-height:840px;">
-					<div id="exchange_test_header" style="width : 100%; height : 80px; text-align: center;">
+		return `<div class="container" style="width: 100% !important; max-width:none;">
+					<div id="world_map" style="width: 90%; max-width:none; height : 520px; margin-top:20px">
+					    <div class="mapcontainer">
+					        <div class="map">
+					            <span></span>
+					        </div>
+					    </div>
+					</div>
+					
+					<div id="exchange_test_header" style="width : 90%; height : 80px; text-align: center; max-width:none;">
 						<div style="width : 70%; height : 100%; float:left; font-size: 18px;">
-							<div style="width : 70%; height : 100%; float:left; text-align:right; padding-top:20px" ><b>환율 기준일 : </b></div>
+							<div style="width : 70%; height : 100%; float:left; text-align:right; padding-top:20px" >
+								<b>환율 기준일 : </b>
+							</div>
 							<div id="next_day_btn" style="width : 30%; height : 100%; float:left;text-align:left; padding: 18px 0 0 30px;">
-								<div class="arrow">
-								  	<div class="arrow-top"></div>
-								  	<div class="arrow-bottom"></div>
-								</div>
 							</div>
 						</div>
 						
@@ -361,14 +367,8 @@ mypage_vue = {
 								<input type="text" id="datepicker" class="form-control" style="width: 78%; float: left">
 							</div>
 				    	</div>
-					</div>	
-					<div id="world_map">
-					    <div class="mapcontainer">
-					        <div class="map">
-					            <span></span>
-					        </div>
-					    </div>
 					</div>
+					
 				    <div style="width:100%;height:430px">
 				    	<div id="amount" class="themoin-info-preview" style="width:33%; min-width:330px;">
 					    	<ol style="border-bottom-width: 0px;"></ol>
@@ -419,7 +419,9 @@ mypage_vue = {
 			        .mapael .map {
 			            position: relative;
 			        }
-			
+					.map svg {
+						height : 500px;
+					}
 			        .mapael .mapTooltip {
 			            position: absolute;
 			            background-color: #fff;
