@@ -66,7 +66,7 @@ $(document).ready(function(){
 			}
 		}
 	};
-	let ctx = document.getElementById('canvas').getContext('2d');
+	let ctx = document.getElementById('canvas2').getContext('2d');
 	
 	let cntcd = $('.form-calculator .amount-row .receive h3').text()
 	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{	

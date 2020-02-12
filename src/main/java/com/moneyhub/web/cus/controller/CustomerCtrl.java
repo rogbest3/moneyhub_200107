@@ -86,6 +86,8 @@ public class CustomerCtrl extends Proxy {
 	@DeleteMapping("/withdrawal")
 	public Map<?, ?> withdrawal(@RequestBody Customer param) {
 		System.out.println("자바 withdrawal 들어옴");
+		String encrypwd = CustomerSha256.encrypt(param.getCpwd());
+        param.setCpwd(encrypwd);
 		String cpwd = cus.getCpwd();
 		String cpwd2 = param.getCpwd();
 		System.out.println("cpwd는? " + cpwd + " / cpwd2는? " + cpwd2);
@@ -107,22 +109,14 @@ public class CustomerCtrl extends Proxy {
 	@PostMapping("/pwdChg")
     public Map<?, ?> pwdChg(@RequestBody Customer param) {
           System.out.println("자바 비번변경 들어옴");
-          System.out.println("---------------"+param.toString());
-//        Consumer<Customer> c = o -> cusMapper.pwdChg(o);
-//        c.accept(param);
-          System.out.println("***********"+param.toString());
           System.out.println("cus는???????????"+cus);
-          String cpwd = cus.getCpwd(); //로그인 시 입력한 비밀번호
-          String cpwd2 = param.getCpwd(); //비밀번호 변경 시 입력한 비밀번호x
           String encrypwd = CustomerSha256.encrypt(param.getCpwd());
           param.setCpwd(encrypwd);
           Consumer<Customer> c = o -> cusMapper.pwdChg(o);
           c.accept(param);
-          System.out.println("cpwd는? " + cpwd + " / cpwd2는? " + cpwd2);
-          System.out.println("cus.getCpwd()는? " + cus.getCpwd() + " /  param.getCpwd()는? " + param.getCpwd());
+          System.out.println("cus.getCpdwd()는? " + cus.getCpwd() + " /  param.getCpwd()는? " + param.getCpwd());
           box.clear();
-          //box.put("msg", (cpwd != cpwd2) ? "true" : "false");
-          if (param.getCemail().equals(cus.getCemail()) && cpwd != cpwd2) {
+          if (param.getCemail().equals(cus.getCemail()) && cus.getCpwd() != param.getCpwd()) {
                  box.put("msg", "true");
                  box.put("cus", cus);
           } else {
