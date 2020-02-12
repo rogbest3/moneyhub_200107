@@ -48,7 +48,7 @@ public class AccountService {
 			//EJ 계좌내역 테이블 인서트
 			accHistory.setCemail(param.getCemail());
 			/* accHistory.setBsdate(sdf.format(date)); */
-			accHistory.setAchcntcd("1"); // 상태코드 1은 입금 2는 출금
+			accHistory.setAstatcd("1"); // 상태코드 1은 입금 2는 출금
 			accHistory.setBalance(balance);
 			accHistory.setDeposit(deposit);
 			accHistory.setAcctNo(result); 

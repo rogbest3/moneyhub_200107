@@ -18,9 +18,9 @@
 	</insert>
 	
 	<insert id="createAccHistory" parameterType="AccountHistory">
-	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL,COMMENT, ACHCNTCD, CRTMEM, CRTDT) 
+	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT, WITHDRAWAL,COMMENT, ASTATCD, CRTMEM, CRTDT) 
 	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{withdrawal}, #{comment},
-	    		#{achcntcd}, #{crtmem}, now())
+	    		#{astatcd}, #{crtmem}, now())
 	</insert>
 	
 	<select id="existAcc" resultType="integer"> <!--계좌 중복방지   -->
@@ -37,7 +37,7 @@
    	 
    	  <select id="getAccHis" resultType="AccountHistory"><!--고객 계좌내역  -->
         SELECT CEMAIL cemail, ACCT_NO acctNo, BALANCE balance,  CRTDT crtdt,DEPOSIT deposit,
-        				WITHDRAWAL withdrawal,ATYPECD atypecd,ACHCNTCD achcntcd, COMMENT comment
+        				WITHDRAWAL withdrawal,ATYPECD atypecd,ASTATCD astatcd, COMMENT comment
         FROM ACCOUNT_HISTORY
         WHERE CEMAIL = #{cemail}
    	 </select>
@@ -50,13 +50,13 @@
 	</update>
 	
 	<insert id="withdrawal" parameterType="AccountHistory"> <!--테스트 필요  --> 
-	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, WITHDRAWAL,COMMENT, ACHCNTCD, CRTMEM, CRTDT) 
-	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{withdrawal}, #{comment},#{achcntcd}, #{crtmem}, now())
+	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, WITHDRAWAL,COMMENT, ASTATCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{withdrawal}, #{comment},#{astatcd}, #{crtmem}, now())
 	</insert>
 	
 	<insert id="deposit" parameterType="AccountHistory"> <!--테스트 필요  -->
-	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT,COMMENT, ACHCNTCD, CRTMEM, CRTDT) 
-	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{comment},#{achcntcd}, #{crtmem}, now())
+	    INSERT INTO ACCOUNT_HISTORY (CEMAIL, BSDATE, ACCT_NO, BALANCE, DEPOSIT,COMMENT, ASTATCD, CRTMEM, CRTDT) 
+	    VALUES (#{cemail}, now(), #{acctNo}, #{balance}, #{deposit}, #{comment},#{astatcd}, #{crtmem}, now())
 	</insert>
 	
 </mapper>
