@@ -154,9 +154,11 @@ remit_box =(()=>{
 				}
 				else if( j.flag === 'exchange2'){
 					alert('remit_box cntcd_display.flag 여기?' + j.flag)
-					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`)
-					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`)
-//					alert(`j.cntcd - ${j.cntcd}`)
+					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`) //레미트박스 국가
+					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`) //레미트박스 통화
+					alert(`remit_box.js에서 선택된 통화 j.cntcd -> ${j.cntcd}`)
+					exch.cntp = j.curr.substring(0, j.curr.indexOf(' '))
+					alert(`exch.cntp는? -> ${j.curr.substring(0, j.curr.indexOf(' '))}`)
 					exch.cntcd = j.cntcd
 					let exch_arr = []
 					function getExrate(){
@@ -177,16 +179,17 @@ remit_box =(()=>{
 					getExrate()
 					.then(()=>{
 						common.receive_value_calc(exch_arr[0])
-						$('#exch_box .amount-row input.send-amount').keyup(()=>{
+						$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 							common.receive_value_calc(exch_arr[0])
 						})
 						alert('>>>remit_box - exch.exrate : '+$.exch().exrate +', exch.cntcd : ' + $.exch().cntcd)
 						//alert 결과는 object로 나옴 왜? cntcd가 선택한 cntcd + USD 함께 나옴
-						alert('선택한 국가 : ' + $('#exch_box .amount-row .receive p').text())
+						alert('선택한 국가 : ' + $('.form-calculator .amount-row .receive p').text())
 					})
 					.catch(()=>{
 						alert('오동작')
 					})
+					alert('remitbox의192번째줄 (제일 마지막임)'+"exch.cntp - " + exch.cntp+"   exch.cntcd - " + exch.cntcd + 'exch.exrate - ' + exch.exrate)
 //					sessionStorage.setItem('exch',JSON.stringify(exch))
 //					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
 
@@ -206,11 +209,6 @@ remit_box =(()=>{
 //							$('#exchange_check').css('font-weight', 'bold')
 //						}
 //					})
-
-					exch.cntp =$('.form-calculator .amount-row .receive p').text() //송금 국가명
-					exch.cntcd = $('.form-calculator .amount-row .receive h3').text() //국가코드
-					sessionStorage.setItem('exch',JSON.stringify(exch))
-					alert('remitbox의 213번째줄 (제일 마지막임)'+"exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
 
 //					$('#chart')
 //					.html(`<canvas id="canvas" style="width:70%; height: 150px; max-height: 220px"></canvas>`)

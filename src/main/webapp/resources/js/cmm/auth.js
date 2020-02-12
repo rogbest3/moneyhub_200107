@@ -49,6 +49,11 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
+		$('#login_logo')
+		.click(()=>{
+			app.onCreate()
+			$('html').scrollTop(0)
+		})
 
 		$('#cemail').val('bb@naver.com')
 		$('#cpwd').val('aa')
@@ -109,7 +114,6 @@ auth =(()=>{
 					alert('login ajax 실패')  
 				}
 			})
-			
 		})
 		$.getScript(kakao_js)
 	}
@@ -117,6 +121,12 @@ auth =(()=>{
 	let join_1_page =()=>{
 		$('#root')
 		.html(auth_vue.login_body(_))
+		
+		$('#login_logo')
+		.click(()=>{
+			app.onCreate()
+			$('html').scrollTop(0)
+		})
 		
 		$(auth_vue.join_1())
 		.appendTo('.themoin-login')
@@ -131,6 +141,12 @@ auth =(()=>{
 		.click(()=>{
 			$('#root')
 			.html(auth_vue.join_body(_))
+			
+			$('#join_logo')
+			.click(()=>{
+				app.onCreate()
+				$('html').scrollTop(0)
+			})
 			
 			$(auth_vue.join_2(img))
 			.appendTo('.themoin-signup')

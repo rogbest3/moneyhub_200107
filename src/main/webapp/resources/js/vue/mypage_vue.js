@@ -446,13 +446,11 @@ mypage_vue = {
 			            color: #5d5d5d;
 			            font-family: Helvetica, Arial, sans-serif;
 			        }
-			
 			        h1 {
 			            font-size: 30px;
 			            margin: auto;
 			            margin-top: 50px;
 			        }
-			
 			        .container {
 			            max-width: 800px;
 			            margin: auto;
