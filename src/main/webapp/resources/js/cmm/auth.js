@@ -340,15 +340,15 @@ auth =(()=>{
 							}
 						},
 						error : e=>{
-							alert('잘못 입력된 부분이 있습니다.')
+							alert('잘못 입력된 부분이 있습니다.1')
 							return false
 						}
 					})
 				}else{
-					alert('잘못 입력된 부분이 있습니다.')
+					alert('잘못 입력된 부분이 있습니다.2')
 				}
 			}else{
-				alert('잘못 입력된 부분이 있습니다.')
+				alert('잘못 입력된 부분이 있습니다.3')
 				return false
 			}
 		})

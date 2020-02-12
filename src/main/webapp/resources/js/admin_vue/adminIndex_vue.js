@@ -24,8 +24,8 @@ adminIndex_vue ={
 		'    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">'+
 		'     <!-- Sidebar - Brand -->'+
 		'      <a class="sidebar-brand d-flex align-items-center justify-content-center" id="adminHome">'+
-		'        <div class="sidebar-brand-icon rotate-n-15">'+
-		'          <i class="fas fa-laugh-wink"></i>'+
+		'        <div class="sidebar-brand-icon">'+
+		'          <i class="fas fa-fw fa-home"></i>'+
 		'        </div>'+
 		'        <div class="sidebar-brand-text mx-3">MONEYHUB ADMIN</div>'+
 		'      </a>'+
@@ -49,9 +49,9 @@ adminIndex_vue ={
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
 		'          <span>환전수수료 조정</span>'+
 		'        </a>'+
-		'        <a class="nav-link collapsed" id="profitChart" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
-		'          <i class="fas fa-fw fa-chart-area"></i>'+
-		'          <span>모의환전차트</span>'+
+		'        <a class="nav-link collapsed" id="adminLogout" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
+		'          <i class="fas fa-fw fa-home"></i>'+
+		'          <span>로그아웃</span>'+
 		'        </a>'+
 		'        <a class="nav-link collapsed" id="cusmain" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">'+
 		'          <i class="fas fa-fw fa-chart-area"></i>'+
@@ -235,7 +235,6 @@ adminIndex_vue ={
 		'         <!-- Page Heading -->'+
 		'          <div class="d-sm-flex align-items-center justify-content-between mb-4">'+
 		'            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>'+
-		'            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>'+
 		'          </div>'+
 		'         <!-- Content Row -->'+
 		'          <div class="row">'+
@@ -245,11 +244,8 @@ adminIndex_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="row no-gutters align-items-center">'+
 		'                    <div class="col mr-2">'+
-		'                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>'+
-		'                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>'+
-		'                    </div>'+
-		'                    <div class="col-auto">'+
-		'                      <i class="fas fa-calendar fa-2x text-gray-300"></i>'+
+		'                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">오늘자 고객 총 환전 금객</div>'+
+		'                      <div class="h5 mb-0 font-weight-bold text-gray-800"><table><tbody id="memberNowExchange"></tbody></table></div>'+
 		'                    </div>'+
 		'                  </div>'+
 		'                </div>'+
@@ -261,11 +257,8 @@ adminIndex_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="row no-gutters align-items-center">'+
 		'                    <div class="col mr-2">'+
-		'                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>'+
-		'                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>'+
-		'                    </div>'+
-		'                    <div class="col-auto">'+
-		'                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>'+
+		'                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">고객 총 보유 자산</div>'+
+		'                      <div class="h5 mb-0 font-weight-bold text-gray-800"><table><tbody id="memberTotalBalance"></tbody></table></div>'+
 		'                    </div>'+
 		'                  </div>'+
 		'                </div>'+
@@ -277,20 +270,8 @@ adminIndex_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="row no-gutters align-items-center">'+
 		'                    <div class="col mr-2">'+
-		'                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>'+
-		'                      <div class="row no-gutters align-items-center">'+
-		'                        <div class="col-auto">'+
-		'                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>'+
-		'                        </div>'+
-		'                        <div class="col">'+
-		'                          <div class="progress progress-sm mr-2">'+
-		'                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>'+
-		'                          </div>'+
-		'                        </div>'+
-		'                      </div>'+
-		'                    </div>'+
-		'                    <div class="col-auto">'+
-		'                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>'+
+		'                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">오늘자 환전 및 송금 총합 수익</div>'+
+		'                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><table><tbody id="totalProfit"></tbody></table></div>'+
 		'                    </div>'+
 		'                  </div>'+
 		'                </div>'+
@@ -302,11 +283,9 @@ adminIndex_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="row no-gutters align-items-center">'+
 		'                    <div class="col mr-2">'+
-		'                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>'+
-		'                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>'+
-		'                    </div>'+
-		'                    <div class="col-auto">'+
-		'                      <i class="fas fa-comments fa-2x text-gray-300"></i>'+
+		'                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">오늘자 고객 가입 수</div>'+
+		'                      <div class="h5 mb-0 font-weight-bold text-gray-800"><table><tbody id="memberNowCount"></tbody></table>'+
+		'					   </div>'+
 		'                    </div>'+
 		'                  </div>'+
 		'                </div>'+
@@ -397,26 +376,26 @@ adminIndex_vue ={
 		'             <!-- Project Card Example -->'+
 		'              <div class="card shadow mb-4">'+
 		'                <div class="card-header py-3">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">Projects</h6>'+
+		'                  <h6 class="m-0 font-weight-bold text-primary">국가별 환전비율</h6>'+
 		'                </div>'+
 		'                <div class="card-body">'+
-		'                  <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">중국 <span class="float-right">20%</span></h4>'+
 		'                  <div class="progress mb-4">'+
 		'                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">미국 <span class="float-right">40%</span></h4>'+
 		'                  <div class="progress mb-4">'+
 		'                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">일본 <span class="float-right">60%</span></h4>'+
 		'                  <div class="progress mb-4">'+
 		'                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">영국 <span class="float-right">80%</span></h4>'+
 		'                  <div class="progress mb-4">'+
 		'                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>'+
+		'                  <h4 class="small font-weight-bold">기타 <span class="float-right">Complete!</span></h4>'+
 		'                  <div class="progress">'+
 		'                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+

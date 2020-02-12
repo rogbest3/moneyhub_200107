@@ -20,7 +20,6 @@ public class AdminChartService {
 		for(String p: s) {	
 			list.add(adminMapper.memberPieChartCount(p));
 		}	
-		System.out.println(list.toString()+"list값");
 		return list;
 	}
 	
@@ -34,7 +33,7 @@ public class AdminChartService {
 		ArrayList<String> list = new ArrayList<>();
 		for(String p: s) {	
 			list.add(adminMapper.feeDBChartAMNT(p));
-		}	
+		}			
 		return list;
 	}
 	
