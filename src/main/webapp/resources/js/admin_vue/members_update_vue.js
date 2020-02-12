@@ -21,7 +21,6 @@ memberUpdate_vue ={
 			'   <div class="card o-hidden border-0 shadow-lg my-5">'+
 			'      <div class="card-body p-0">'+
 			'        <!-- Nested Row within Card Body -->'+
-			'        <div class="row">'+
 			'          <div class="col-lg-7">'+
 			'            <div class="p-5">'+
 			'              <div class="text-center">'+
@@ -64,17 +63,9 @@ memberUpdate_vue ={
 			'              </form>'+
 			'            </div>'+
 			'          </div>'+
-			'        </div>'+
 			'      </div>'+
 			'    </div>'+
 			' </div>'+
-//			' <!-- Bootstrap core JavaScript-->'+
-//			'  <script src="/web/resources/vendor/jquery/jquery.min.js"></script>'+
-//			'  <script src="/web/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>'+
-//			' <!-- Core plugin JavaScript-->'+
-//			'  <script src="/web/resources/vendor/jquery-easing/jquery.easing.min.js"></script>'+
-//			' <!-- Custom scripts for all pages-->'+
-//			'  <script src="/web/resources/js/sb-admin-2.min.js"></script>'+
 			'</body>'
 		}
 		
