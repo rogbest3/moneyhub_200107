@@ -30,17 +30,7 @@ sidebar = (()=>{
 	}
 	
 	let init_page =()=>{
-		if(page_flag === 'exchange_test'){
-			$('#exchange_test').attr('class', 'active')
-			$('#exchange_test').siblings().not('div.spacer').attr('class', '')
-			exchange_test.onCreate()
-		}else{
-			cus_info.onCreate()
-		/*	$.getJSON(_+'/customers/cusInfo/' + $('#cemail').val(), d=>{
-				cemail : sessionStorage.getItem('CEMAIL')
-				$('#mypageId').text(d.cus.cemail)
-			})*/
-		}
+		cus_info.onCreate()
 	}
 	
 	let mypage_move =()=>{ //내역삭제
@@ -57,7 +47,6 @@ sidebar = (()=>{
 			.appendTo('.tab')
 			.click(function(e){
 				e.preventDefault()
-//				alert(j.className + ' - ' + $(this).attr('id'))
 				$(this).attr('class', 'active')
 				$(this).siblings().not('div.spacer').attr('class', '')
 				

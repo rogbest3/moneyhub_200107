@@ -118,7 +118,7 @@ mypage =(()=>{
 		
 		$('#exchange_test_btn')
 		.click(()=>{
-			sidebar.onCreate('exchange_test')
+			exchange_test.onCreate()
 			$('html').scrollTop(0);
 		})
 		

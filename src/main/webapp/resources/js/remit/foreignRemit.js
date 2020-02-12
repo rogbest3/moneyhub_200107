@@ -135,9 +135,13 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_review()) 
 		
+		alert('deal 1 : '+ JSON.stringify(deal))
 		$('#complete_remit_btn')
 		.click( e => {
 			e.preventDefault()
+			
+			alert('deal 2 : '+ JSON.stringify(deal))
+			
 			$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',

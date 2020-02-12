@@ -315,24 +315,20 @@ mypage_vue = {
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
 		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0; min-height:840px;"><br>
 					<h1 style="margin:30px auto">모의 환전 시작하기</h1>
-					<div id="exchange_test_header" style="width : 100%; height : 150px; text-align: center;">
+					<div id="exchange_test_header" style="width : 100%; height : 330px; text-align: center;">
 						<div style="width : 100%; height : 50px; padding-top : 20px; font-size: 18px;"><b>모의 환전 시작일</b></div>
-						<div id="exchange_datepicker" style="width :100%; height:60px;">
-							<p style="font-weight: bold; width : 100%;">모의 환전 시작일 변경</p>
-							<div style="width : 100%; height:35px; padding-left: 390px"><input type="text" id="datepicker" class="form-control" style="width: 240px; float: left"></div>
+						
+						<div id="exchange_datepicker" style="width :100%; height:250px;">
+							<p style="font-weight: bold; width : 100%;">모의 환전 시작일 선택</p>
+							<div style="width : 100%; height:215px; padding-left: 405px">
+								<div id="datepicker"  style="width: 240px; float: left"></div>
+							</div>
 				    	</div>
 					</div>	
 					
-					<div style="width:100%; height : 100px; text-align: center; margin-top:20px">
-			    		<div id="test_mode_1"><p>선택일로 부터 순차적으로 모의 환전</p></div>
-			    		<div id="test_mode_2"><p>환전일 선택하여 모의 환전</p></div>
+					<div style="width:100%; height : 200px; text-align: center; margin-top:20px">
+			    		<div id="test_mode"><p>환전일 선택하여 모의 환전</p><br></div>
 			    	</div>
-					    
-					</div>
-				    <div>
-				    	
-				    </div>
-				    
 				</div>
 				<style type="text/css">
 					.ui-datepicker-week-end { color:red; }
@@ -348,12 +344,23 @@ mypage_vue = {
 	},
 	exchange_test2 : ()=>{
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; margin-left : 0; margin-right : 0; min-height:840px;">
+		return `<div class="container" style="width: 100% !important; max-width : 1060px; margin: 30px auto;; min-height:840px;">
 					<div id="exchange_test_header" style="width : 100%; height : 80px; text-align: center;">
-						<div style="width : 70%; height : 100%; padding-top : 20px; float:left; font-size: 18px;"><b>환율 기준일 : </b></div>
+						<div style="width : 70%; height : 100%; float:left; font-size: 18px;">
+							<div style="width : 70%; height : 100%; float:left; text-align:right; padding-top:20px" ><b>환율 기준일 : </b></div>
+							<div id="next_day_btn" style="width : 30%; height : 100%; float:left;text-align:left; padding: 18px 0 0 30px;">
+								<div class="arrow">
+								  	<div class="arrow-top"></div>
+								  	<div class="arrow-bottom"></div>
+								</div>
+							</div>
+						</div>
+						
 						<div id="exchange_datepicker" style="width : 30%; float:left">
 							<p style="font-weight: bold; width : 100%; height: 25px;">환율 기준일 변경</p>
-							<div style="width : 100%; height: 35px; padding-left : 50px"><input type="text" id="datepicker" class="form-control" style="width: 78%; float: left"></div>
+							<div style="width : 100%; height: 35px; padding-left : 50px">
+								<input type="text" id="datepicker" class="form-control" style="width: 78%; float: left">
+							</div>
 				    	</div>
 					</div>	
 					<div id="world_map">
@@ -363,17 +370,17 @@ mypage_vue = {
 					        </div>
 					    </div>
 					</div>
-				    <div style="width:100%;height:360px">
+				    <div style="width:100%;height:430px">
 				    	<div id="amount" class="themoin-info-preview" style="width:33%; min-width:330px;">
 					    	<ol style="border-bottom-width: 0px;"></ol>
 					    	<div style="width:100%">
 					    		<div id="init_btn"></div>
-					    		<div id="save_btn"></div>
+					    		<div id="save_btn" style="padding-left:40px"></div>
 					    	</div>
 					    	<div id="test_history"></div>
 					    </div>
 				    	<div id="exchange_test_chart1" style="width:67%;float:left">                         
-				 	      	<canvas id="canvas" style="width:100%; height: 150px; max-height: 250px; margin-top: 60px"></canvas> 
+				 	      	<canvas id="canvas" style="width:100%; height: 295px; max-height: 300px; margin-top: 60px"></canvas> 
 						</div>
 						
 				    </div>
@@ -385,7 +392,9 @@ mypage_vue = {
 						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
 
 						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-					</div>  
+					</div> 
+					<br> 
+					<br> 
 				</div>
 				<style type="text/css">
 			        body {
@@ -435,7 +444,7 @@ mypage_vue = {
 					   font-weight:bold !important;
 					   font-size: 12px;
 					}
-
+					
 			    </style>
 				<script src="/web/resources/js/maps/jquery.mapael.js"></script>
 			    <script src="/web/resources/js/maps/global_map.js"></script>
@@ -502,7 +511,7 @@ mypage_vue = {
 								<div id="exchange_box" class="form-calculator main" style="width: 100%; min-width: 400px;">
 									<div class="amount-row" style="min-height: 100px;">
 										<div class="">
-											<p style="text-align: left;">환전 금액</p>
+											<p style="text-align: left;">환전123 금액</p>
 											<input class="send-amount" id="exchange_send_amount"  type="text" tabindex="0" placeholder="0.00" value="1000000">
 										</div>
 										<div class="unit-select send" tabindex="0">

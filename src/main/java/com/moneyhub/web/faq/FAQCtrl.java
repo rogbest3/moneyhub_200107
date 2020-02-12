@@ -39,7 +39,7 @@ public class FAQCtrl extends Proxy{
 	
 	@GetMapping("/truncate/table")
 	public Map<?, ?> truncateTable(){
-		print("테이블 내용 삭제 진입");
+//		print("테이블 내용 삭제 진입");
 		faqService.truncateFAQ();
 		box.clear();
 		box.put("result", "SUCCESS");
@@ -48,7 +48,7 @@ public class FAQCtrl extends Proxy{
 	
 	@GetMapping("/lists/page/{nowPage}/search/{keyword}")
 	public Map<?, ?> faqList(@PathVariable String nowPage, @PathVariable String keyword) {
-		print("리스트 진입 - nowPage : " + nowPage + ", keyword : " + keyword);
+//		print("리스트 진입 - nowPage : " + nowPage + ", keyword : " + keyword);
 		int pageSize = 5, blockSize = 5;
 		pager.setKeyword((keyword.equals("null") ? null : keyword.toUpperCase()));
 		pager.setPageSize(pageSize);

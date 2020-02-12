@@ -32,7 +32,8 @@ function Session(x){
 		acc : ()=>{ return JSON.parse(sessionStorage.getItem('acc'))},
 		accHis : ()=>{ return JSON.parse(sessionStorage.getItem('accHis'))},
 		exch : ()=>{ return JSON.parse(sessionStorage.getItem('exch'))},
-		exchangeCount : ()=>{ return sessionStorage.getItem('exchangeCount') }
+		exchangeCount : ()=>{ return sessionStorage.getItem('exchangeCount') },
+		exrateFlag : ()=>{ return sessionStorage.getItem('exrateFlag') }
 	}
 }
 

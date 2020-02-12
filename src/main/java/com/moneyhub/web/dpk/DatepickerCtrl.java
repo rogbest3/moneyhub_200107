@@ -29,8 +29,7 @@ public class DatepickerCtrl extends Proxy{
 
 	@GetMapping("/create/table")
 	public Map<?, ?> createTable(){
-//		faqService.createFAQ();
-		print("datepicker 테이블 생성 진입");
+//		print("datepicker 테이블 생성 진입");
 		box.clear();
 		box.put("CREATE_DATEPICKER", SQL.CREATE_DATEPICKER.toString());
 		Consumer<HashMap<String, Object>> c = t -> dpkMapper.createDatepicker(t);
@@ -42,8 +41,7 @@ public class DatepickerCtrl extends Proxy{
 	
 	@GetMapping("/delete/table")
 	public Map<?, ?> deleteTable(){
-//		faqService.deleteFAQ();
-		print("datepicker 테이블 삭제 진입");
+//		print("datepicker 테이블 삭제 진입");
 		box.clear();
 		box.put("DROP_DATEPICKER", SQL.DROP_DATEPICKER.toString());
 		Consumer<HashMap<String, Object>> c = t -> dpkMapper.deleteDatepicker(t);
@@ -55,7 +53,7 @@ public class DatepickerCtrl extends Proxy{
 	
 	@GetMapping("/truncate/table")
 	public Map<?, ?> truncateTable(){
-		print("datepicker 테이블 내용 삭제 진입");
+//		print("datepicker 테이블 내용 삭제 진입");
 		box.clear();
 		box.put("TRUNCATE_DATEPICKER", SQL.TRUNCATE_DATEPICKER.toString());
 		Consumer<HashMap<String, Object>> c = t -> dpkMapper.truncateDatepicker(t);
@@ -67,8 +65,8 @@ public class DatepickerCtrl extends Proxy{
 	
 	@PostMapping("/insert/holiday")
 	public Map<?, ?> holidayInsert(@RequestBody ArrayList<Datepicker> paramList){
-		System.out.println("datepicker Holiday insert 진입 - " + paramList.size());
-		System.out.println(paramList);
+//		System.out.println("datepicker Holiday insert 진입 - " + paramList.size());
+//		System.out.println(paramList);
 		dpkService.insertHoliday(paramList);
 		box.put("result", "SUCCESS");
 		return box.get();
@@ -76,7 +74,6 @@ public class DatepickerCtrl extends Proxy{
 	@GetMapping("/selectall")
 	public Map<?, ?> selectAll(){
 		System.out.println("datepicker selectAll 진입");
-		
 		Supplier<ArrayList<Datepicker>> f = () -> dpkMapper.selectAll();	
 		box.put("dpk", f.get());
 		print(box.get("dpk").toString());
