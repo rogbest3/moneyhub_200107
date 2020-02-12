@@ -89,7 +89,7 @@ mypage =(()=>{
 	let page_move =()=>{
 		$('#exch')
 		.click(()=>{
-			alert('클릭')
+			/*alert('클릭')*/
 //			sidebar.onCreate('')
 			exchange.onCreate('')
 			$('html').scrollTop(0);

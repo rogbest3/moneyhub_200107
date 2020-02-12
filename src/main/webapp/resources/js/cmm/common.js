@@ -80,7 +80,7 @@ common = (function(){
 				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
 			}
 			else {
-				alert('KRW 아님')
+				/*alert('KRW 아님')*/
 				receive_value = send_value / x
 //				alert('exrate : ' + x + ', receive_value : ' + receive_value)
 				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))

@@ -163,14 +163,14 @@
 	
 	<select id="exchangeDBSelect" resultType="string">
 	<![CDATA[
-		SELECT AMNT FROM EXCHAGEDB
+		SELECT AMNT FROM EXCHANGEDB
 		ORDER BY SEQ
 		DESC LIMIT 1
 	]]>
 	</select>
 	
 	<insert id="exchangeDBUpdate" parameterType="map">
-		INSERT INTO EXCHAGEDB (AMNT)
+		INSERT INTO EXCHANGEDB (AMNT)
 		VALUES (#{exchangeDBValue})
 	</insert>
 	

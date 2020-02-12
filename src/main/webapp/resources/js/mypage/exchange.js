@@ -17,6 +17,7 @@ exchange =(()=>{
 		line_graph_js = js + '/exchart/line_graph.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		function_vue_js = js + '/vue/function_vue.js'
+//		auth_mgmt_js = js + '/mypage/auth_mgmt.js'
 	}
 	let onCreate =()=>{
 		init()
@@ -55,7 +56,7 @@ exchange =(()=>{
 			})
 			exch.exrate = exch_arr[0]
 			sessionStorage.setItem('exch',JSON.stringify(exch))
-			alert('1) exchange.js / 세션에 담긴 exch.exrate는? ' + exch.exrate)
+			/*alert('1) exchange.js / 세션에 담긴 exch.exrate는? ' + exch.exrate)*/
 			
 			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 //			alert('1번 exchange.js 59번 라인 ')
@@ -70,7 +71,7 @@ exchange =(()=>{
 				$('#chart2').fadeIn()
 
 				$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
-					alert(alert('exchange -> d.msg는?' + d.msg))
+					/*alert(alert('exchange -> d.msg는?' + d.msg))*/
 					if(d.msg === 'UP'){
 						$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
 						$('#exchange_check').css('color', 'blue')
@@ -84,9 +85,11 @@ exchange =(()=>{
 					}
 				})
 				$.getScript(exChart_js)
+				
 				$(this).click(function(){
 					if(confirm('환전하시겠습니까? 확인을 누르시면 바로 실행됩니다.')){
-
+						
+						auth_mgmt.onCreate()
 						exch.exchKrw = $('.form-calculator .amount-row input.send-amount').val() //환전할 원화 금액
 						exch.exchCnt = $('.form-calculator .amount-row input.receive-amount').val() //환전된 외화 금액
 						exch.cntcd = $('.form-calculator .amount-row .receive h3').text()
@@ -95,6 +98,7 @@ exchange =(()=>{
 						sessionStorage.setItem('exch',JSON.stringify(exch))
 
 						$('#auth_mgmt').each(function(){ //거래 인설트
+							
 							$.ajax({
 								url : _+'/exchange/insert',
 								type : 'POST',
@@ -109,7 +113,7 @@ exchange =(()=>{
 										$.getJSON(_+'/account/getacchis/' + cemail + '/' + cno, t=>{
 											if(d.msg === "SUCCESS"){
 												accHis.balance = t.accHis.balance
-												alert(accHis.balance)
+												/*alert(accHis.balance)*/
 												sessionStorage.setItem('accHis', JSON.stringify(accHis))
 												//==========================================================HM
 												/*acc.balance = t.acc.balance
@@ -170,9 +174,10 @@ exchange =(()=>{
 									}
 								}
 							})
-
 						})
 					}
+					/*alert('못탐')
+					auth_mgmt.onCreate()*/
 				})
 			})
 		})
