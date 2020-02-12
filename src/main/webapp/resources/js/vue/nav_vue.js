@@ -48,7 +48,10 @@ nav_vue = {
 					<div class="line1"></div> 
 					<div class="line2"></div> 
 				</a> 
-				<ul class=""> 
+				<ul class="">
+					<li><a id="exch">환전</a></li>
+					<li><a id="remit">해외 송금</a></li>
+					<li><a id="testexch">모의 환전</a></li>
 					<li><a id="mgmt">내 계정 관리</a></li> 
 					<li><a id="logout">로그아웃</a></li> 
 					<li class="mobile"> 

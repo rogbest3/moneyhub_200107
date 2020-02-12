@@ -25,9 +25,8 @@ foreignRemit = (()=>{
 		)
 		.done(()=>{
 			setContentView()
-			remit_deal()
+			deal_get()
  			remit_box.onCreate({ flag : 'remit', cntcd : '' })
-//			window.remit_send()
 			
 		})
 		.fail(()=>{
@@ -41,22 +40,38 @@ foreignRemit = (()=>{
 		$('.themoin-footer').remove()
 		$('#popup-exchange').empty()
 		
-		let cntimg = sessionStorage.getItem('cntimg')
-		if(cntimg== null){
+		if(deal.cntp == '미국'){
 			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
 		}
+	}
+
+	
+	let deal_get = ()=>{
+		$.getJSON(`${_}/admin/fee`, d=>{
+		if(d.feeOne != null && d.feeOne != 0){
+		deal.lowFee = d.feeOne
+		} else { 
+			deal.lowFee = '6'
+		}
+		if(d.feeTwo != null && d.feeTwo != 0){
+		deal.highFee = d.feeTwo
+		} else{
+			deal.highFee = '12'
+		}
+		sessionStorage.setItem('deal', JSON.stringify(deal))
+		remit_deal()
+		})
 	}
 	
 	let remit_deal = ()=>{
 		//숙제 실시간 환율 연동하기.....
-		
 		common.remit_send_focusout()
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		
-		if(deal.trdusd >= 3000)
-		{$('#fee_check').text('12')}
-		else {$('#fee_check').text('6')}
 		
+		if(deal.trdusd >= 3000)
+			{$('#fee_check').text(deal.highFee)}
+			else {$('#fee_check').text(deal.lowFee)}
 		common.receive_value_calc(deal.exrate)
 		
 		$('.form-calculator .amount-row input:text[numberOnly].send-amount').keyup(function(){
@@ -66,10 +81,9 @@ foreignRemit = (()=>{
 				$('#max_amount').text('송금 가능 금액은 5,000$입니다.')
 				}
 			if(common.comma_remove($(this).val()) >= 3000){
-				$('#fee_check').text('12')}
-			else {$('#fee_check').text('6')}
+				$('#fee_check').text(deal.highFee)}
+			else {$('#fee_check').text(deal.lowFee)}
 			common.receive_value_calc(deal.exrate)
-			
 		})
 		
 		$('#first_remit_btn').click(()=>{
@@ -86,7 +100,7 @@ foreignRemit = (()=>{
 	}
 	let remit_cusInfo =()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_cusInfo(deal))
+		.html(remit_vue.remit_cusInfo())
 		$('#sec_remit_btn').click(()=>{
 				remit_rcpt()
 			})
@@ -96,7 +110,7 @@ foreignRemit = (()=>{
 	}
 	let remit_rcpt = ()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_rcpt(deal))
+		.html(remit_vue.remit_rcpt())
 		$('#third_remit_btn').click(()=>{
 			let rcpsf = document.getElementById('pass_fnm').value
 			let rcpsl = document.getElementById('pass_lnm').value
@@ -118,15 +132,13 @@ foreignRemit = (()=>{
 	}
 	let remit_review = ()=>{
 		$('.themoin-main')
-		.html(remit_vue.remit_review(deal)) 
+		.html(remit_vue.remit_review()) 
 		
-		alert('deal 1 : '+ JSON.stringify(deal))
 		$('#complete_remit_btn')
 		.click( e => {
 			e.preventDefault()
-			
-			alert('deal 2 : '+ JSON.stringify(deal))
-			
+			deal.exrate = String(deal.exrate)
+			sessionStorage.setItem('deal',JSON.stringify(deal))
 			$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',
@@ -146,17 +158,15 @@ foreignRemit = (()=>{
 	let remit_complete =()=>{
 		clock = new Clock()
 		$('.themoin-main')
-		.html(remit_vue.remit_complete(deal))
+		.html(remit_vue.remit_complete())
 		setInterval(msg_time, 1000);
 		$('#remit_clock').text(`${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일 ${clock.hours < 10 ? `0${clock.hours+1}` : clock.hours+1}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }까지`)
-		deal.remitstart =`${clock.year}${clock.month+1}${clock.clockDate}${clock.hours < 10 ? `0${clock.hours}` : clock.hours}${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }`
-		deal.remitend = `${clock.year}${clock.month+1}${clock.clockDate}${clock.hours < 10 ? `0${clock.hours+1}` : clock.hours+1}${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }`
+
 		sessionStorage.setItem('deal',JSON.stringify(deal))
-			alert(deal.remitend)
 			$('#main_user_btn').click( e => {
 				e.preventDefault()
-				$.ajax({
-					url: _+'/customers/acc/update',
+				/*$.ajax({ // 계좌에 인설트
+					url: _+'/account/withdrawal',
 					type : 'POST',
 					data : JSON.stringify(deal),
 					contentType :'application/json',
@@ -166,7 +176,7 @@ foreignRemit = (()=>{
 					error : (request,status,error) => {
 						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					}
-				})
+				})*/
 				deal.trdusd = null
 				mypage.onCreate()
 				$('html').scrollTop(0);
@@ -204,9 +214,11 @@ foreignRemit = (()=>{
 	
 	var SetTime = 3599;	
 	function msg_time() {
-		var msg = `입금 기한 ${Math.floor(SetTime / 60)} : ${(SetTime % 60)}`
+		`${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }`
+		let min = SetTime / 60
+		let sec = SetTime % 60
+		var msg = `입금 기한 ${Math.floor(min)} : ${sec <10 ? `0${sec}`:`${sec}`}`
 		SetTime--;	
-		$('#deposit_hour').text(msg)
 	}
 	
 	return {onCreate}

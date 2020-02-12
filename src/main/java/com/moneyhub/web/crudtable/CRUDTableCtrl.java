@@ -18,7 +18,6 @@ public class CRUDTableCtrl extends Proxy{
 	
 	@Autowired CRUDCustomer customer;
 	@Autowired CRUDFeeDB fee;
-	@Autowired CRUDFee feeDB;
 	
 	@Autowired Box<Object> box;	
 	@Autowired CRUDTableService crudTableService;

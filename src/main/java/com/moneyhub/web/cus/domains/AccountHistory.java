@@ -12,18 +12,8 @@ import lombok.NoArgsConstructor;
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountHistory {  //EJ 계좌 히스토리
+public class AccountHistory {  // 계좌 내역 테이블
 	
-	private String cemail,
-				bsdate,
-				acctNo,
-				balance,
-				deposit,
-				withdrawal,
-				achcntcd,
-				crtmem,
-				crtdt,
-				upmem,
-				updt;
-	private int seq;
+	private String cemail, bsdate, acctNo, astatcd,atypecd,comment, crtmem, crtdt, upmem, updt;
+	private int balance, deposit, withdrawal,seq;
 }

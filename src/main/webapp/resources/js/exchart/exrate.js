@@ -36,10 +36,11 @@ exrate =(()=>{
 	let receive_value_calc =()=>{
 		let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
 		if( receive_cntcd === 'KRW'){
-			receive_value = receive_value * exrate //* 0.985
+
+			receive_value = receive_value * exrate
 		}
 		else{
-			receive_value = receive_value / exrate //* 0.985
+			receive_value = receive_value / exrate
 		}
 		$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 		deal.trdusd = $('.form-calculator .amount-row input.send-amount').val()

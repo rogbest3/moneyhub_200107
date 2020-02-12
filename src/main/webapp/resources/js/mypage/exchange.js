@@ -2,7 +2,8 @@ var exchange = exchange || {}
 exchange =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 
-	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, nav_vue_js, exch, cus, acc
+	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, 
+			nav_vue_js, exch, cus, acc,accHis,function_vue_js
 
 	let init =()=>{
 		_ = $.ctx()
@@ -15,13 +16,16 @@ exchange =(()=>{
 		remit_box_js = js + '/remit/remit_box.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
+		function_vue_js = js + '/vue/function_vue.js'
+//		auth_mgmt_js = js + '/mypage/auth_mgmt.js'
 	}
 	let onCreate =()=>{
 		init()
 		$.when(
 			$.getScript(mypage_vue_js),
 			$.getScript(remit_box_js),
-			$.getScript(nav_vue_js)
+			$.getScript(nav_vue_js),
+			$.getScript(function_vue_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -34,33 +38,40 @@ exchange =(()=>{
 	}
 	let setContentView =()=>{
 		
-		$('#root div.mypage')
-		.html(mypage_vue.exchange())
-		//$.getScript(exChart_js)
+		$('#root div.themoin-main')
+		.html(function_vue.exchangeFunction())
 		
 		$('#popup-root')
-		.html(main_vue.cntcd_popup())
+		.html(function_vue.exch_cntcd_popup())
 		.hide()
+		
 		$('#popup-exchange').empty()
 		
 		let cntcd = $('.form-calculator .amount-row .receive h3').text()
 		let exch_arr = []
+		//200212 hm 주석처리
 		$.getJSON('/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist, (i, j)=>{
 				exch_arr.push(parseFloat(j.exrate))
 			})
 			exch.exrate = exch_arr[0]
 			sessionStorage.setItem('exch',JSON.stringify(exch))
-		})
-		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			/*alert('1) exchange.js / 세션에 담긴 exch.exrate는? ' + exch.exrate)*/
+			
+			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+//			alert('1번 exchange.js 59번 라인 ')
 					common.receive_value_calc(exch.exrate)
+//					alert('4번 exch.exrate는? ' + exch.exrate)
+//					alert('7번 common.receive_value_calc(exch.exrate)' + common.receive_value_calc()) //exch.exrate는 undefined
+			}) 
 		})
 				
 		$(function(){
 			$('#exchangebutton').one('click', function(){
-				$('#chart').fadeIn()
+				$('#chart2').fadeIn()
 
 				$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
+					/*alert(alert('exchange -> d.msg는?' + d.msg))*/
 					if(d.msg === 'UP'){
 						$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
 						$('#exchange_check').css('color', 'blue')
@@ -74,9 +85,11 @@ exchange =(()=>{
 					}
 				})
 				$.getScript(exChart_js)
+				
 				$(this).click(function(){
 					if(confirm('환전하시겠습니까? 확인을 누르시면 바로 실행됩니다.')){
-
+						
+						auth_mgmt.onCreate()
 						exch.exchKrw = $('.form-calculator .amount-row input.send-amount').val() //환전할 원화 금액
 						exch.exchCnt = $('.form-calculator .amount-row input.receive-amount').val() //환전된 외화 금액
 						exch.cntcd = $('.form-calculator .amount-row .receive h3').text()
@@ -84,7 +97,8 @@ exchange =(()=>{
 						exch.exrate = exch.exrate
 						sessionStorage.setItem('exch',JSON.stringify(exch))
 
-						$('#auth_mgmt').each(function(){
+						$('#auth_mgmt').each(function(){ //거래 인설트
+							
 							$.ajax({
 								url : _+'/exchange/insert',
 								type : 'POST',
@@ -93,20 +107,26 @@ exchange =(()=>{
 								contentType : 'application/json',
 								success : d=>{
 									if(d.msg === 'SUCCESS'){
+										accHis = $.accHis()
 										let cemail = cus.cemail
 										let cno = cus.cno
-										$.getJSON(_+'/customers/getAcc/' + cemail + '/' + cno, t=>{
+										$.getJSON(_+'/account/getacchis/' + cemail + '/' + cno, t=>{
 											if(d.msg === "SUCCESS"){
-												acc.balance = t.acc.balance
-												alert(acc.balance)
-												sessionStorage.setItem('acc', JSON.stringify(acc))
+												accHis.balance = t.accHis.balance
+												/*alert(accHis.balance)*/
+												sessionStorage.setItem('accHis', JSON.stringify(accHis))
+												//==========================================================HM
+												/*acc.balance = t.acc.balance
+												alert('exchange의 acc.balance는? '+acc.balance)
+												sessionStorage.setItem('acc', JSON.stringify(acc))*/
+												//==========================================================
 											}else{
 												alert('계좌 getJSON 실패')
 											}
 										})
 										alert('머니허브 계좌로 이동합니다.')
 										$.ajax({
-											url : _ + '/exchange/balanceChg',
+											url : _ + '/account/withdrawal',
 											type : 'POST',
 											data : JSON.stringify({
 												cemail : cus.cemail,
@@ -154,9 +174,10 @@ exchange =(()=>{
 									}
 								}
 							})
-
 						})
 					}
+					/*alert('못탐')
+					auth_mgmt.onCreate()*/
 				})
 			})
 		})

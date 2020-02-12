@@ -7,6 +7,8 @@
     <typeAliases>
     	<typeAlias alias="Customer"  type="com.moneyhub.web.cus.domains.Customer"/>
     	<typeAlias alias="Account"  type="com.moneyhub.web.cus.domains.Account"/>
+    	<typeAlias alias="AccountHistory"  type="com.moneyhub.web.cus.domains.AccountHistory"/>
+    	
 		<typeAlias alias="FAQ"  type="com.moneyhub.web.faq.FAQ"/>
 		<typeAlias alias="PageProxy"  type="com.moneyhub.web.pxy.PageProxy"/>
 		<typeAlias alias="Exrate"  type="com.moneyhub.web.exr.Exrate"/>

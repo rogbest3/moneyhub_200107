@@ -18,6 +18,6 @@ public interface CustomerMapper {
 	public void pwdChg(Customer param);
 	public Customer cusInfo(Customer param);
 	public void cusInfoChg(Customer param);
-	public Customer CreateAcc(Customer param);
+	/* public Customer CreateAcc(Customer param); */
 	public Customer getInfo(Customer param);
 }

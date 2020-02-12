@@ -198,6 +198,7 @@ main_vue ={
 		deal = $.deal()
 		cus = $.cusInfo()
 		acc = $.acc()
+		accHis = $.accHis()
 		return `<div class="themoin-main"> 
 			<div class="themoin-currency-component" style="height: 230px;"> 
 		   	  	<div class="content"> 
@@ -236,15 +237,15 @@ main_vue ={
 						<div id="remit_box" class="form-calculator main"> 
 							<div class="amount-row"> 
 								<div class="unit-select receive" style="display:-webkit-inline-box;border-width:inherit;max-width:none;align-self: center;">
-									<img src="https://img.themoin.com/public/img/circle-flag-us.svg">
-									<p style="font-size: 19px;margin: 8px 10px 0px 20px;">미국</p><h3 style="margin: 8px 0px 0px 0px;">USD</h3>
+									<img id="cntimg" src="https://img.themoin.com/public/img/circle-flag-us.svg">
+									<p id= "cntp" style="font-size: 19px;margin: 8px 10px 0px 20px;">미국</p><h3 id="cntcd" style="margin: 8px 0px 0px 0px;">USD</h3>
 								</div>
 							</div> 
 							<div class="amount-row"> 
-								<div class="" style="float:left"> 
+								<div class="" style="padding: 13px 13px 16px 23px;"> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="" numberOnly maxlength="4" style="width: 35%;"> 
-									<p id="max_amount" style="color:cornflowerblue;"></p>
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="" numberOnly maxlength="5" style="width: 50%;"> 
+									<p id="max_amount" style="color:#d43349;font-size: 12px;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0"> 
 									<p>미 화</p> 
@@ -257,7 +258,7 @@ main_vue ={
 									<input class="receive-amount" type="text" tabindex="0" placeholder="0.00" readonly="" value="0"> 
 								</div> 
 								<div class="unit-select disabled" tabindex="0" > 
-									<p>한 화</p><h3 style="color:#0077c8">KRW</h3>
+									<p >한 화</p><h3 id ="remit_receive_cntcd" style="color:#0077c8">KRW</h3>
 								</div> 
 							</div> 
 						</div> 
@@ -278,7 +279,7 @@ main_vue ={
 					<h3>송금 내역</h3> 
 				</div> 
 				<div class="user-limit"> 
-					<p>계좌 잔액 :<span id="acc_bal"> ${acc.balance}</span> 원</p> 
+					<p>계좌 잔액 :<span id="acc_bal"> ${common.comma_create(accHis.balance)}</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 누적 송금액 :<span> 0</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 

@@ -34,6 +34,77 @@ public class AdminCtrl extends Proxy{
 		return box.get();
 	}
 	
+	@GetMapping("/exchangeTotalCount")
+	public Map<?, ?> exchangeTotalCount(){
+		Supplier<Integer> total = () -> adminMapper.exchangeTotalCount();
+		Supplier<Integer> usd = () -> adminMapper.exchangeUSDCount();
+		Supplier<Integer> cny = () -> adminMapper.exchangeCNYCount();
+		Supplier<Integer> jpy = () -> adminMapper.exchangeJPYCount();
+		Supplier<Integer> eur = () -> adminMapper.exchangeEURCount();		
+		total.get();
+		usd.get();
+		cny.get();
+		jpy.get();
+		eur.get();		
+		box.clear();
+//		box.put("exchangeUSDPercentage", usd.get()/total.get()*100);
+//		box.put("exchangeCNYPercentage", cny.get()/total.get()*100);
+//		box.put("exchangeJPYPercentage", jpy.get()/total.get()*100);
+//		box.put("exchangeEURPercentage", eur.get()/total.get()*100);
+//		box.put("exchangeAnotherPercentage", 100-(usd.get()/total.get()*100)-(cny.get()/total.get()*100)
+//				-(jpy.get()/total.get()*100)-(eur.get()/total.get()*100));
+		int a = (usd.get()+5)*100;
+		int b = (cny.get()+3)*100;
+		int c = (jpy.get()+2)*100;
+		int d = (eur.get()+3)*100;
+		int e = (total.get()+30);	
+		box.put("exchangeUSDPercentage", (a/e));
+		box.put("exchangeCNYPercentage", (b/e));
+		box.put("exchangeJPYPercentage", (c/e));
+		box.put("exchangeEURPercentage", (d/e));
+		box.put("exchangeAnotherPercentage", 100-(a/e)-(b/e)-(c/e)-(d/e));
+		return box.get();
+	}
+	
+	@GetMapping("/memberNowCount")
+	public Map<?, ?> memberNowCount(){
+		Supplier<String> one = () -> adminMapper.memberNowCount();
+		one.get();
+		box.clear();
+		box.put("memberNowCount", one.get());
+		return box.get();
+	}
+	
+	@GetMapping("/memberTotalBalance")
+	public Map<?, ?> memberTotalBalance(){
+		Supplier<String> one = () -> adminMapper.memberTotalBalance();
+		one.get();
+		box.clear();
+		box.put("memberTotalBalance", one.get());
+		return box.get();
+	}
+	
+	@GetMapping("/memberNowExchange")
+	public Map<?, ?> memberNowExchange(){
+		Supplier<String> one = () -> adminMapper.memberNowExchange();
+		one.get();
+		box.clear();
+		box.put("memberNowExchange", one.get());
+		return box.get();
+	}
+	
+	@GetMapping("/totalProfit")
+	public Map<?, ?> totalProfit(){
+		Supplier<Integer> exchange = () -> adminMapper.totalProfitExchange();
+		exchange.get();
+		Supplier<Integer> fee = () -> adminMapper.totalProfitFee();
+		fee.get();
+		box.clear();
+		box.put("totalProfit", exchange.get()+fee.get());
+		return box.get();
+	}
+	
+	
 	@GetMapping("/member")
 	public Map<?, ?> memberList(){
 		ArrayList<Map<String, Object>> list = new ArrayList<>();
@@ -55,6 +126,7 @@ public class AdminCtrl extends Proxy{
 	
 	@GetMapping("/fee")
 	public Map<?, ?> feeSelect(){
+		//null 값 뜨는 이유를 모르겠음..
 		Supplier<String> one = () -> adminMapper.feeSelectOne();
 		one.get();
 		Supplier<String> two = () -> adminMapper.feeSelectTwo();

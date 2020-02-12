@@ -21,7 +21,7 @@ sidebar = (()=>{
 			init_page()
 		})
 		.fail(()=>{
-			alert()
+			alert('sidebar 실패')
 		})
 	}
 	let setContentView =()=>{
@@ -33,7 +33,7 @@ sidebar = (()=>{
 		cus_info.onCreate()
 	}
 	
-	let mypage_move =()=>{
+	let mypage_move =()=>{ //내역삭제
 		let data = [{ id : 'cus_info', 		className : 'active',	tabNo : 1, title : '회원 정보'		},
 					{ id : 'pwd_chg', 		className : '', 		tabNo : 2, title : '비밀번호 변경'	},
 					{ id : 'auth_mgmt', 	className : '', 		tabNo : 3, title : '머니허브 계좌'	},
@@ -77,151 +77,7 @@ sidebar = (()=>{
 		.append(`<div class="spacer"></div> 
 				<img src="https://img.themoin.com/public/img/img-man-s.svg">
 				<p id="mypageId"></p>`)
-		/*
-		$('#cus_info')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#pwd_chg').removeClass('active')
-			$('#auth_mgmt').removeClass('active')
-			$('#alarm').removeClass('active')
-			$('#ref_mgmt').removeClass('active')
-			$('#withdrawal').removeClass('active')
-			$('#exchange_test').removeClass('active')
-			$('#exchange').removeClass('active')
-			
-			cus_info.onCreate()
-		})
 		
-		$('#pwd_chg')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#cus_info').removeClass('active')
-			$('#auth_mgmt').removeClass('active')
-			$('#alarm').removeClass('active')
-			$('#ref_mgmt').removeClass('active')
-			$('#withdrawal').removeClass('active')
-			$('#exchange_test').removeClass('active')
-			$('#exchange').removeClass('active')
-			
-			pwd_chg.onCreate()
-			
-		})
-		
-		$('#auth_mgmt')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#cus_info').removeClass('active')
-			$('#pwd_chg').removeClass('active')
-			$('#alarm').removeClass('active')
-			$('#ref_mgmt').removeClass('active')
-			$('#withdrawal').removeClass('active')
-			$('#exchange_test').removeClass('active')
-			$('#exchange').removeClass('active')
-			
-			auth_mgmt.onCreate()
-			
-		})
-		
-		$('#alarm')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$('#alarm').removeClass('active')
-			$('themoin-mypage-profile').removeClass('active')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#cus_info').removeClass('active')
-			$('#pwd_chg').removeClass('active')
-			$('#auth_mgmt').removeClass('active')
-			$('#ref_mgmt').removeClass('active')
-			$('#withdrawal').removeClass('active')
-			$('#exchange_test').removeClass('active')
-			$('#exchange').removeClass('active')
-			
-			alarm.onCreate()
-			
-		})
-		
-		$('#ref_mgmt')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$('#ref_mgmt').removeClass('active')
-			$('themoin-mypage-profile').removeClass('active')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#cus_info').removeClass('active')
-			$('#pwd_chg').removeClass('active')
-			$('#auth_mgmt').removeClass('active')
-			$('#alarm').removeClass('active')
-			$('#withdrawal').removeClass('active')
-			$('#exchange_test').removeClass('active')
-			$('#exchange').removeClass('active')
-			
-			ref_mgmt.onCreate()
-			
-		})
-		
-		$('#withdrawal')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$('#withdrawal').removeClass('active')
-			$('themoin-mypage-profile').removeClass('active')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#cus_info').removeClass('active')
-			$('#pwd_chg').removeClass('active')
-			$('#auth_mgmt').removeClass('active')
-			$('#alarm').removeClass('active')
-			$('#ref_mgmt').removeClass('active')
-			$('#exchange_test').removeClass('active')
-			$('#exchange').removeClass('active')
-			
-			withdrawal.onCreate()
-			
-		})
-		
-		$('#exchange_test')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$('#exchange_test').removeClass('active')
-			$('themoin-mypage-profile').removeClass('active')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#cus_info').removeClass('active')
-			$('#pwd_chg').removeClass('active')
-			$('#auth_mgmt').removeClass('active')
-			$('#alarm').removeClass('active')
-			$('#ref_mgmt').removeClass('active')
-			$('#withdrawal').removeClass('active')
-			$('#exchange').removeClass('active')
-			
-			exchange_test.onCreate()
-			
-		})
-		
-		$('#exchange')
-		.click(function(){
-			var tab_id = $(this).attr('data-tab')
-			$('#exchange').removeClass('active')
-			$('themoin-mypage-profile').removeClass('active')
-			$(this).addClass('active')
-			$("#"+tab_id).addClass('active')
-			$('#cus_info').removeClass('active')
-			$('#pwd_chg').removeClass('active')
-			$('#auth_mgmt').removeClass('active')
-			$('#alarm').removeClass('active')
-			$('#ref_mgmt').removeClass('active')
-			$('#withdrawal').removeClass('active')
-			$('#exchange_test').removeClass('active')
-			
-			exchange.onCreate()
-			
-		})*/
 	}
 	return { onCreate }
 })()

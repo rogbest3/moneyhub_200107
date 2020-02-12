@@ -32,7 +32,7 @@ exchangeDB =(()=>{
 	
 	let selectExchangeDB = () => {
 		$.getJSON(_ + '/admin/exchangeDB',d=>{
-			$(exchangeDB_vue.exchangeDB_head()).appendTo('head')
+//			$(exchangeDB_vue.exchangeDB_head()).appendTo('head')
 			$(exchangeDB_vue.exchangeDB_body()).appendTo('div.container-fluid')
 			$('#exchangeDBUpdateValue').val('')
 			$('#exchangeDBReadOnly').val(`현재 수수료 ${d.exchangeDB} 적용중`)
@@ -54,7 +54,7 @@ exchangeDB =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert('업데이트 성공')
-						$('head').empty()
+//						$('head').empty()
 						$('div.container').empty()
 						selectExchangeDB()
 					}

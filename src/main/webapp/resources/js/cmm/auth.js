@@ -49,12 +49,18 @@ auth =(()=>{
 		$(auth_vue.login())
 		.appendTo('.themoin-login')
 		
+		$('#login_logo')
+		.click(()=>{
+			app.onCreate()
+			$('html').scrollTop(0)
+		})
 
-		$('#cemail').val('abcd@naver.com')
+		$('#cemail').val('11')
 		$('#cpwd').val('11')
 
-		/*$('#cemail').val('abc@naver.com')
+		/*$('#cemail').val('bb@naver.com')
 		$('#cpwd').val('aa')*/
+
 
 		join_2_page_btn()
 	}
@@ -88,16 +94,8 @@ auth =(()=>{
 					if(d.msg === 'SUCCESS'){
 						alert(d.cus.cname+'님 환영합니다.')
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
-						//====================================================== HM
 						sessionStorage.setItem('acc', JSON.stringify(d.acc))
-						sessionStorage.setItem('CEMAIL', d.cus.cemail)
-						sessionStorage.setItem('CPWD', d.cus.cpwd)
-						sessionStorage.setItem('ZIP', d.cus.zip)
-						sessionStorage.setItem('ADDR', d.cus.addr)
-						sessionStorage.setItem('DADDR', d.cus.daddr)
-						sessionStorage.setItem('CNO', d.cus.cno)
-						//======================================================
-
+						sessionStorage.setItem('accHis', JSON.stringify(d.accHis))
 						mypage.onCreate()
 					}
 					else{
@@ -110,7 +108,6 @@ auth =(()=>{
 					alert('login ajax 실패')  
 				}
 			})
-			
 		})
 		$.getScript(kakao_js)
 	}
@@ -118,6 +115,12 @@ auth =(()=>{
 	let join_1_page =()=>{
 		$('#root')
 		.html(auth_vue.login_body(_))
+		
+		$('#login_logo')
+		.click(()=>{
+			app.onCreate()
+			$('html').scrollTop(0)
+		})
 		
 		$(auth_vue.join_1())
 		.appendTo('.themoin-login')
@@ -132,6 +135,12 @@ auth =(()=>{
 		.click(()=>{
 			$('#root')
 			.html(auth_vue.join_body(_))
+			
+			$('#join_logo')
+			.click(()=>{
+				app.onCreate()
+				$('html').scrollTop(0)
+			})
 			
 			$(auth_vue.join_2(img))
 			.appendTo('.themoin-signup')
@@ -196,8 +205,6 @@ auth =(()=>{
 
 	let join =()=>{
 		existId()
-		// <button class="btn-submit" type="submit">가입완료</button>
-		
 		
 		$('#cpwd').blur(function(){
 			if(pwJ.test($('#cpwd').val())){
@@ -302,13 +309,6 @@ auth =(()=>{
 		.appendTo('.moin-login form.signup')
 		.click(e=>{
 			e.preventDefault()
-//			if(!$('#agree_box_1').is(":checked")){
-//				alert('이용약관 동의항목 체크가 필요합니다.')
-//				return false
-//			}else if(!$('#agree_box_1').is(":checked")){
-//				alert('개인정보 수집 이용 동의항목 체크가 필요합니다.')
-//				return false
-//			}
 			if($('#cpwd').val() === $('#cfm_cpwd').val() && $('#cpwd').val().length > 0){
 				if($('#lname').val().length > 0 && $('#fname').val().length > 0
 						&& $('#zip').val().length > 0 && $('#addr').val().length > 0 
@@ -324,8 +324,7 @@ auth =(()=>{
 							addr : $('#addr').val(),
 							daddr : $('#daddr').val(),
 							birth : $('#birth').val()
-							// cemail, cpwd, cfm_cpwd, fname, lname,
-							// phone1(국가코드), cphone
+
 						}),
 						dataType : 'json',
 						contentType : 'application/json',
@@ -340,15 +339,15 @@ auth =(()=>{
 							}
 						},
 						error : e=>{
-							alert('잘못 입력된 부분이 있습니다.')
+							alert('잘못 입력된 부분이 있습니다.1')
 							return false
 						}
 					})
 				}else{
-					alert('잘못 입력된 부분이 있습니다.')
+					alert('잘못 입력된 부분이 있습니다.2')
 				}
 			}else{
-				alert('잘못 입력된 부분이 있습니다.')
+				alert('잘못 입력된 부분이 있습니다.3')
 				return false
 			}
 		})
@@ -360,29 +359,6 @@ auth =(()=>{
 				'<div style="height:20px; margin-top:10px"></div>')
 			.appendTo('#moneyhub-id')
 			
-		/*$('#cemail').keyup(()=>{
-			if($('#cemail').val().length >= 1){
-				$.getJSON(_+'/customers' + '/existid/' + $('#cemail').val(), d=>{
-					if(d.msg === 'Y'){
-						$('#moneyhub-id div')
-						.text('이미 있는 아이디입니다.')
-						.css({
-							color : 'red'
-						})
-
-					}else{
-						$('#moneyhub-id div')
-						.text('사용 가능한 이메일입니다.')
-						.css({
-							color : 'blue'
-						})
-					}
-				})
-			}
-			else{
-				$('#moin-input-id div').empty()
-			}
-		})*/
 		$('#cemail').keyup(()=>{
 			if($('#cemail').val().length >= 1){
 				$.ajax({

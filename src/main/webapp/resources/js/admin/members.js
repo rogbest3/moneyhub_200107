@@ -32,8 +32,8 @@ members =(()=>{
 	}	
 	
 	let setContentViewUpdate =x=>{	
-		$(memberUpdate_vue.memberUpdateHead()).appendTo('head')
-		$(memberUpdate_vue.memberUpdateBody(x)).appendTo('div.container')
+//		$(memberUpdate_vue.memberUpdateHead()).appendTo('head')
+		$(memberUpdate_vue.memberUpdateBody(x)).appendTo('div.container-fluid')
 		$('#updateComplete').click(e=>{
 			e.preventDefault()			
 			$.ajax({				
@@ -51,7 +51,6 @@ members =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert('업데이트 성공')
-						$('head').empty()
 						$('div.container').empty()
 						selectTableMember()
 					}
@@ -66,7 +65,6 @@ members =(()=>{
 			})
 		})
 		$('#updateCancel').click(()=>{
-			$('head').empty()
 			$('div.container').empty()
 			selectTableMember()
 		})
@@ -74,21 +72,21 @@ members =(()=>{
 	
 	let selectTableMember = () => {
 		$.getJSON(_ + '/admin/member',d=>{
-			$(tables_vue.tables_head()).appendTo('head')
+//			$(tables_vue.tables_head()).appendTo('head')
 			$(tables_vue.tables_body()).appendTo('div.container-fluid')
 				$.each(d.adm,(i,j)=>{
 					let jObject = j
 					$('                    <tr>'+
 							'                      <td>'+j.CEMAIL+'</td>'+
 							'                      <td>'+j.CNAME+'</td>'+
-							'                      <td>23,928,000 원</td>'+
+							'                      <td>'+j.BALANCE+'원</td>'+
 							'                      <td>'+j.AGE+'</td>'+
 							'                      <td>'+j.SDATE+'</td>'+
 							'                      <td>'+j.CSTCD+'</td>'+
 							'                    </tr>')
 							.appendTo('#adminMemberList')
 							.click(()=>{
-								$('head').empty()
+//								$('head').empty()
 								$('div.container-fluid').empty()
 								setContentViewUpdate(jObject)
 							})

@@ -3,7 +3,7 @@ auth_vue ={
 	login_body : ()=>{
 		return 	`<div class="themoin-login">
 						<div>
-						<div class="image-box">
+						<div class="image-box" id="login_logo">
 				<img src="/web/resources/img/logo/ci_logo.png">
 						</div>
 					</div>
@@ -45,7 +45,7 @@ auth_vue ={
 	join_body : x=>{
 		return `	<div class="themoin-signup">
 						<div>
-							<div class="image-box">
+							<div class="image-box" id="join_logo">
 								<img src="/web/resources/img/logo/ci_logo.png">
 							</div>
 						</div>

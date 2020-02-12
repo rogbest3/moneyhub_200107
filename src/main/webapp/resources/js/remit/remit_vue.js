@@ -16,10 +16,10 @@ remit_vue = {
 								</div>
 							</div> 
 							<div class="amount-row"> 
-								<div class=""> 
+								<div class="" style="padding: 13px 13px 16px 23px;"> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00" value="${common.comma_create(deal.trdusd)}" numberOnly maxlength="4" style="width: 35%;"> 
-									<p id="max_amount" style="color:cornflowerblue;"></p>
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdusd}" numberOnly maxlength="5" style="width: 50%;"> 
+									<p id="max_amount" style="color:#d43349;font-size: 12px;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
 									<p>미화</p><h3>USD</h3> 
@@ -49,7 +49,7 @@ remit_vue = {
 										<input class="receive-amount" type="text" tabindex="0" value="" readonly=""> 
 									</div> 
 									<div class="unit-select disabled" tabindex="0"> 
-										<p>한 화</p><h3 style="color:#0077c8">KRW</h3> 
+										<p>한 화</p><h3 id ="remit_receive_cntcd" style="color:#0077c8">KRW</h3> 
 									</div> 
 								</div> 
 						</div> 
@@ -390,6 +390,19 @@ remit_vue = {
 									</div>
 									<button id="copy_acc_btn">계좌 복사하기</button>
 									<input id="clip_acc" type="text" value="" style="position:absolute;top:-9999em;"/>
+								</div>
+								<div class="remit_info">
+									<button class="user-send-btn" style="background-color: #1b4d72;color: white;border: outset;width: 100%;">허브페이로 입금 하기</button>
+								</div>
+								<div class="remit_info" style="display: block;text-align-last: center;">
+									<div style="">
+									<p class="info_desc" style=" padding: 0 0px 9px 0px;">허브페이 잔액
+									<input type="text" value="" readOnly="" style="margin: 0 0 0 15px;"/>
+									</p>
+										<p class="info_desc" style=" padding: 0px 0px 14px 0px;">입금할 금액
+										<input type="text" value="" style="margin: 0 0 0 30px;"/ ></p>
+									</div>
+									<button style="color:white; background-color: #00558f;  height: 36px;">입금하기</button>
 								</div>
 								<p class="warning">반드시 ‘인증받은 계좌’로 한번에 금액을 입금해주세요. 여러번 송금할 시에도 각각 따로 보내주셔야 합니다.</p>
 							</div>

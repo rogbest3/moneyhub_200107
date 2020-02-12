@@ -4,7 +4,7 @@ adminIndex =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cookie_js, adminIndex_vue_js, members_js
 		,fee_js, exchangeDB_js, profitChart_js
-		, qna_js, adminIndexHome_vue_js
+		, qna_js, adminIndexHome_vue_js, app_js, index_js
 	
 	let init =()=>{
 		_ = $.ctx()
@@ -17,6 +17,8 @@ adminIndex =(()=>{
 		profitChart_js = js + '/admin/profitChart.js'
 		qna_js = js + '/admin/qna.js'
 		adminIndexHome_vue_js = js + '/admin_vue/adminIndexHome_vue.js'
+		app_js = js + '/app.js'
+		index_js = js + '/admin_vue/index_head_vue.js'
 	}
 	
 	let onCreate =()=>{
@@ -29,7 +31,9 @@ adminIndex =(()=>{
 			$.getScript(exchangeDB_js),
 			$.getScript(profitChart_js),
 			$.getScript(qna_js),
-			$.getScript(adminIndexHome_vue_js)
+			$.getScript(adminIndexHome_vue_js),
+			$.getScript(app_js),
+			$.getScript(index_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -42,44 +46,61 @@ adminIndex =(()=>{
 	
 	let setContentView =()=>{
 		$('head').empty()
+		$('body').empty()
 		$(adminIndex_vue.main_head()).appendTo('head')
-		$('body').html(adminIndex_vue.main_body())			
-		leftMenuEvent()
+		$.getJSON(_+'/admin/exchangeTotalCount',d=>{
+			$(adminIndex_vue.main_body(d)).appendTo('body')	
+			topTotalAdmin()
+			leftMenuEvent()
+		})	
 	}	
+	
+	let topTotalAdmin=()=>{
+		$.getJSON(_+'/admin/memberNowExchange',d=>{
+			$('<tr><td>'+d.memberNowExchange+'원</td></tr>').appendTo('#memberNowExchange')
+		})
+		$.getJSON(_+'/admin/memberTotalBalance',d=>{
+			$('<tr><td>'+d.memberTotalBalance+'원</td></tr>').appendTo('#memberTotalBalance')
+		})
+		$.getJSON(_+'/admin/totalProfit',d=>{
+			$('<tr><td>'+d.totalProfit+'원</td></tr>').appendTo('#totalProfit')
+		})
+		$.getJSON(_+'/admin/memberNowCount',d=>{
+			$('<tr><td>'+d.memberNowCount+'명</td></tr>').appendTo('#memberNowCount')
+		})
+	}
 	
 	let leftMenuEvent = () => {
 		$('#adminHome').click(()=>{
 			$('div.container-fluid').empty()
-			$('head').empty()
 			$('div.container').empty()
-			$(adminIndexHome_vue.home_head()).appendTo('head')
-			$('div.container-fluid').html(adminIndexHome_vue.home_body())
+			$.getJSON(_+'/admin/exchangeTotalCount',d=>{
+				$(adminIndexHome_vue.home_body(d)).appendTo('div.container-fluid')
+				topTotalAdmin()
+			})				
 		})
 		$('#members').click(()=>{
 			$('div.container-fluid').empty()
-			$('head').empty()
 			$('div.container').empty()
 			members.onCreate()
 		})
 		$('#fee').click(e=>{
 			e.preventDefault()
 			$('div.container-fluid').empty()
-			$('head').empty()
 			$('div.container').empty()
 			fee.onCreate()
 		})
 		$('#exchangeDB').click(()=>{
 			$('div.container-fluid').empty()
-			$('head').empty()
 			$('div.container').empty()
 			exchangeDB.onCreate()
 		})
-		$('#profitChart').click(()=>{
-			$('div.container-fluid').empty()
-			$('head').empty()
-			$('div.container').empty()
-			profitChart.onCreate()
+		$('#adminLogout').click(()=>{
+//			$(index_head_vue.head()).appendTo('head')
+//			app.onCreate() 
+//			$('html').scrollTop(0)
 		})
+
 	}
 	
 	
