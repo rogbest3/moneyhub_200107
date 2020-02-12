@@ -36,6 +36,7 @@ exrate =(()=>{
 	let receive_value_calc =()=>{
 		let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
 		if( receive_cntcd === 'KRW'){
+			alert("송금"+receive_cntcd)
 			receive_value = receive_value * exrate //* 0.985
 		}
 		else{

@@ -68,18 +68,19 @@ common = (function(){
 			let send_value = $('.form-calculator .amount-row input.send-amount').val()
 			let receive_value = $('.form-calculator .amount-row input.receive-amount').val()
 			let receive_cntcd = $('.form-calculator .amount-row .unit-select.receive h3').text()
+			let disabled_cntcd = $('#remit_receive_cntcd').text()
 //			alert('common의 receive_value는? ' + receive_value)
 //			alert('common의 send_value? ' + send_value)
 //			alert('환전되는 통화: ' + receive_cntcd)
 //			alert('2번, 5번 common의 x는? ' + x)
-			if( receive_cntcd === 'KRW'){
-//				alert('KRW임')
+			if( receive_cntcd === 'KRW' || disabled_cntcd === 'KRW'){
+				/*alert('KRW임')*/
 				receive_value = send_value * x
 //				alert('exrate : ' + x + ', receive_value : ' + receive_value)
 				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
 			}
-			else{
-//				alert('KRW 아님')
+			else {
+				alert('KRW 아님')
 				receive_value = send_value / x
 //				alert('exrate : ' + x + ', receive_value : ' + receive_value)
 				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))

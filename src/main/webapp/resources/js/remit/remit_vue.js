@@ -49,7 +49,7 @@ remit_vue = {
 										<input class="receive-amount" type="text" tabindex="0" value="" readonly=""> 
 									</div> 
 									<div class="unit-select disabled" tabindex="0"> 
-										<p>한 화</p><h3 style="color:#0077c8">KRW</h3> 
+										<p>한 화</p><h3 id ="remit_receive_cntcd" style="color:#0077c8">KRW</h3> 
 									</div> 
 								</div> 
 						</div> 

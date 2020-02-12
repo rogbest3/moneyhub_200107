@@ -16,4 +16,5 @@ public class TRDHR {
 
 	private String bsdate,mtcn,cno,trdUsd,trdKrw,acctNo,cntcd,crtmem,crtdt,upmem,updt,exrate;
 	private int seq,trdStatCd,chngCausCd;
+	/* private double exrate; */
 }

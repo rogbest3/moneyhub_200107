@@ -72,7 +72,6 @@ foreignRemit = (()=>{
 		if(deal.trdusd >= 3000)
 			{$('#fee_check').text(deal.highFee)}
 			else {$('#fee_check').text(deal.lowFee)}
-		
 		common.receive_value_calc(deal.exrate)
 		
 		$('.form-calculator .amount-row input:text[numberOnly].send-amount').keyup(function(){
@@ -135,13 +134,11 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_review()) 
 		
-		alert('deal 1 : '+ JSON.stringify(deal))
 		$('#complete_remit_btn')
 		.click( e => {
 			e.preventDefault()
-			
-			alert('deal 2 : '+ JSON.stringify(deal))
-			
+			deal.exrate = String(deal.exrate)
+			sessionStorage.setItem('deal',JSON.stringify(deal))
 			$.ajax({
 				url: _+'/remit/insert',
 				type : 'POST',
