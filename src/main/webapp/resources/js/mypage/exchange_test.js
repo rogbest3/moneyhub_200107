@@ -313,7 +313,7 @@ exchange_test =(()=>{
 	let datepicker_show =()=>{
 		
 		$('<button/>')
-		.text('다음일')
+		.text('다음')
 		.addClass('btn btn-sm btn-primary')
 //		.css({ 'font-weight' : 'bold' })
 		.appendTo('#next_day_btn')
