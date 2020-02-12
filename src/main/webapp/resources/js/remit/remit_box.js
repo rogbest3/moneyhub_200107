@@ -139,7 +139,7 @@ remit_box =(()=>{
 					deal.cntp =$('.form-calculator .amount-row .receive p').text()
 					deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 					sessionStorage.setItem('deal',JSON.stringify(deal))
-					alert("레미트박스 국가명 >>>"+deal.cntp+"국가코드 >>>"+deal.cntcd)
+					/*alert("레미트박스 국가명 >>>"+deal.cntp+"국가코드 >>>"+deal.cntcd)*/
 					
 				}
 				else if(( j.flag === 'exchange')){
@@ -156,12 +156,12 @@ remit_box =(()=>{
 
 				}
 				else if( j.flag === 'exchange2'){
-					alert('remit_box cntcd_display.flag 여기?' + j.flag)
+//					alert('2) remit_box cntcd_display.flag 여기?' + j.flag)
 					$('.form-calculator .amount-row .receive p').text(`${j.curr.substring(0, j.curr.indexOf(' '))}`) //레미트박스 국가
 					$('.form-calculator .amount-row .receive h3').text(`${j.cntcd}`) //레미트박스 통화
-					alert(`remit_box.js에서 선택된 통화 j.cntcd -> ${j.cntcd}`)
+					/*alert(`3) remit_box.js에서 선택된 통화 j.cntcd는? -> ${j.cntcd}`)*/
 					exch.cntp = j.curr.substring(0, j.curr.indexOf(' '))
-					alert(`exch.cntp는? -> ${j.curr.substring(0, j.curr.indexOf(' '))}`)
+					/*alert(`4) remit_box에서 선택된 국가 exch.cntp는? -> ${j.curr.substring(0, j.curr.indexOf(' '))}`)*/
 					exch.cntcd = j.cntcd
 					let exch_arr = []
 					function getExrate(){
@@ -173,7 +173,7 @@ remit_box =(()=>{
 									})
 									exch.exrate = exch_arr[0]
 									sessionStorage.setItem('exch', JSON.stringify(exch))
-									alert('getjson>>>remit_box - exch.exrate : '+$.exch().exrate +', exch.cntcd : ' + $.exch().cntcd)
+//									alert('6) getjson>>>remit_box - exch.exrate : '+exch.exrate +', exch.cntcd : ' + exch.cntcd)
 									resolve()
 								}
 							})
@@ -185,14 +185,14 @@ remit_box =(()=>{
 						$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 							common.receive_value_calc(exch_arr[0])
 						})
-						alert('>>>remit_box - exch.exrate : '+$.exch().exrate +', exch.cntcd : ' + $.exch().cntcd)
+//						alert('7) >>>remit_box - exch.exrate : '+$.exch().exrate +', exch.cntcd : ' + $.exch().cntcd)
 						//alert 결과는 object로 나옴 왜? cntcd가 선택한 cntcd + USD 함께 나옴
-						alert('선택한 국가 : ' + $('.form-calculator .amount-row .receive p').text())
+//						alert('8) 선택한 국가 : ' + $('.form-calculator .amount-row .receive p').text())
 					})
 					.catch(()=>{
 						alert('오동작')
 					})
-					alert('remitbox의192번째줄 (제일 마지막임)'+"exch.cntp - " + exch.cntp+"   exch.cntcd - " + exch.cntcd + 'exch.exrate - ' + exch.exrate)
+//					alert('5) remitbox의192번째줄'+"exch.cntp - " + exch.cntp+"   exch.cntcd - " + exch.cntcd + 'exch.exrate - ' + exch.exrate)
 //					sessionStorage.setItem('exch',JSON.stringify(exch))
 //					alert("exch.cntp - "+exch.cntp+"   exch.cntcd - "+exch.cntcd)
 

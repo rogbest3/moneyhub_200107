@@ -2,7 +2,7 @@
 var auth_mgmt = auth_mgmt || {}
 auth_mgmt =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
-	let _, js, main_vue_js, exch, cus, acc
+	let _, js, main_vue_js, exch, cus, acc,mypage_vue_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -10,12 +10,14 @@ auth_mgmt =(()=>{
 		cus = $.cusInfo()
 		acc = $.acc()
 		main_vue_js = js + '/vue/main_vue.js'
+		mypage_vue_js = js +'/vue/mypage_vue.js'
 	}
 	
 	let onCreate =()=>{
 		init()
 		$.when(
-			$.getScript(main_vue_js)	
+			$.getScript(main_vue_js),
+			$.getScript(mypage_vue_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -26,9 +28,8 @@ auth_mgmt =(()=>{
 	}
 	
 	let setContentView =()=>{
-		$('#root div.mypage')
+		$('#root .themoin-main')
 		.html(mypage_vue.auth_mgmt())
-
 
         let exch = $.exch()
         let exchKrw = exch.exchKrw

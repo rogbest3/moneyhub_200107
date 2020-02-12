@@ -16,7 +16,7 @@ adminIndexHome_vue ={
 			'  <link href="/web/resources/css/sb-admin-2.min.css" rel="stylesheet">'+
 			'</head>'
 		},	
-	home_body : ()=>{
+	home_body : d=>{
 		return '<body id="page-top">'+
 		' <!-- Page Wrapper -->'+
 		'  <div id="wrapper">'+
@@ -176,28 +176,28 @@ adminIndexHome_vue ={
 		'             <!-- Project Card Example -->'+
 		'              <div class="card shadow mb-4">'+
 		'                <div class="card-header py-3">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">국가별 환전비율</h6>'+
+		'                  <h6 class="m-0 font-weight-bold text-primary">국가별 모든 국가 대비 환전비율</h6>'+
 		'                </div>'+
 		'                <div class="card-body">'+
-		'                  <h4 class="small font-weight-bold">중국 <span class="float-right">20%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">미국 <span class="float-right">'+d.exchangeUSDPercentage+'%</span></h4>'+
 		'                  <div class="progress mb-4">'+
-		'                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>'+
+		'                    <div class="progress-bar bg-danger" role="progressbar" style="width: '+d.exchangeUSDPercentage+'%" aria-valuenow="'+d.exchangeUSDPercentage+'" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">미국 <span class="float-right">40%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">중국 <span class="float-right">'+d.exchangeCNYPercentage+'%</span></h4>'+
 		'                  <div class="progress mb-4">'+
-		'                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>'+
+		'                    <div class="progress-bar bg-warning" role="progressbar" style="width: '+d.exchangeCNYPercentage+'%" aria-valuenow="'+d.exchangeCNYPercentage+'" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">일본 <span class="float-right">60%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">일본 <span class="float-right">'+d.exchangeJPYPercentage+'%</span></h4>'+
 		'                  <div class="progress mb-4">'+
-		'                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>'+
+		'                    <div class="progress-bar" role="progressbar" style="width: '+d.exchangeJPYPercentage+'%" aria-valuenow="'+d.exchangeJPYPercentage+'" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">영국 <span class="float-right">80%</span></h4>'+
+		'                  <h4 class="small font-weight-bold">유럽(유로) <span class="float-right">'+d.exchangeEURPercentage+'%</span></h4>'+
 		'                  <div class="progress mb-4">'+
-		'                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>'+
+		'                    <div class="progress-bar bg-info" role="progressbar" style="width: '+d.exchangeEURPercentage+'%" aria-valuenow="'+d.exchangeEURPercentage+'" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
-		'                  <h4 class="small font-weight-bold">기타 <span class="float-right">Complete!</span></h4>'+
+		'                  <h4 class="small font-weight-bold">기타 국가 <span class="float-right">'+d.exchangeAnotherPercentage+'%</span></h4>'+
 		'                  <div class="progress">'+
-		'                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>'+
+		'                    <div class="progress-bar bg-success" role="progressbar" style="width: '+d.exchangeAnotherPercentage+'%" aria-valuenow="'+d.exchangeAnotherPercentage+'" aria-valuemin="0" aria-valuemax="100"></div>'+
 		'                  </div>'+
 		'              </div>'+
 		'           </div>'+

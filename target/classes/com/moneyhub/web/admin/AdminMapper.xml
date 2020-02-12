@@ -5,6 +5,38 @@
     
 <mapper namespace="com.moneyhub.web.admin.AdminMapper">
 	
+	<select id="exchangeTotalCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+	</select>
+	
+	<select id="exchangeUSDCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='USD'
+		]]>
+	</select>
+	
+	<select id="exchangeCNYCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='CNY'
+		]]>
+	</select>
+	
+	<select id="exchangeJPYCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='JPY'
+		]]>
+	</select>
+	
+	<select id="exchangeEURCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='EUR'
+		]]>
+	</select>
+	
 	<select id="memberNowCount" resultType="string">
 		SELECT COUNT(CNO) FROM CUSTOMER
 		<![CDATA[
@@ -25,7 +57,7 @@
 	
 	<select id="totalProfitExchange" resultType="int">
 		SELECT IFNULL(SUM(EX_FEE),0) FROM EXCHANGE
-		<![CDATA[		
+		<![CDATA[
 		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
 		]]>
 	</select>
@@ -131,14 +163,14 @@
 	
 	<select id="exchangeDBSelect" resultType="string">
 	<![CDATA[
-		SELECT AMNT FROM EXCHAGEDB
+		SELECT AMNT FROM EXCHANGEDB
 		ORDER BY SEQ
 		DESC LIMIT 1
 	]]>
 	</select>
 	
 	<insert id="exchangeDBUpdate" parameterType="map">
-		INSERT INTO EXCHAGEDB (AMNT)
+		INSERT INTO EXCHANGEDB (AMNT)
 		VALUES (#{exchangeDBValue})
 	</insert>
 	
