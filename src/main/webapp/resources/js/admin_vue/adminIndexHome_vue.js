@@ -51,8 +51,8 @@ adminIndexHome_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="row no-gutters align-items-center">'+
 		'                    <div class="col mr-2">'+
-		'                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>'+
-		'                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>'+
+		'                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">고객 총 보유 자산</div>'+
+		'                      <div class="h5 mb-0 font-weight-bold text-gray-800"><table><tbody id="memberTotalBalance"></tbody></table></div>'+
 		'                    </div>'+
 		'                    <div class="col-auto">'+
 		'                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>'+
@@ -67,10 +67,10 @@ adminIndexHome_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="row no-gutters align-items-center">'+
 		'                    <div class="col mr-2">'+
-		'                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">고객 총 보유 자산</div>'+
+		'                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">오늘자 환전 및 송금 총합 수익</div>'+
 		'                      <div class="row no-gutters align-items-center">'+
 		'                        <div class="col-auto">'+
-		'                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><table><tbody id="memberTotalBalance"></tbody></table></div>'+
+		'                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><table><tbody id="totalProfit"></tbody></table></div>'+
 		'                        </div>'+
 		'                      </div>'+
 		'                    </div>'+
@@ -239,5 +239,4 @@ adminIndexHome_vue ={
 		'  <script src="/web/resources/js/adminChart/chart-pie-member.js"></script>'+
 		'</body>'
 	}
-
 }

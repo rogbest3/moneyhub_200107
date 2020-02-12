@@ -47,6 +47,11 @@ adminIndex =(()=>{
 		$('body').empty()
 		$(adminIndex_vue.main_head()).appendTo('head')
 		$(adminIndex_vue.main_body()).appendTo('body')	
+		topTotalAdmin()
+		leftMenuEvent()
+	}	
+	
+	let topTotalAdmin=()=>{
 		$.getJSON(_+'/admin/memberNowExchange',d=>{
 			$('<tr><td>'+d.memberNowExchange+'원</td></tr>').appendTo('#memberNowExchange')
 		})
@@ -59,14 +64,14 @@ adminIndex =(()=>{
 		$.getJSON(_+'/admin/memberNowCount',d=>{
 			$('<tr><td>'+d.memberNowCount+'명</td></tr>').appendTo('#memberNowCount')
 		})
-		leftMenuEvent()
-	}	
+	}
 	
 	let leftMenuEvent = () => {
 		$('#adminHome').click(()=>{
 			$('div.container-fluid').empty()
 			$('div.container').empty()
 			$('div.container-fluid').html(adminIndexHome_vue.home_body())
+			topTotalAdmin()
 		})
 		$('#members').click(()=>{
 			$('div.container-fluid').empty()
