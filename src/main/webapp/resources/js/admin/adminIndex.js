@@ -4,7 +4,7 @@ adminIndex =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cookie_js, adminIndex_vue_js, members_js
 		,fee_js, exchangeDB_js, profitChart_js
-		, qna_js, adminIndexHome_vue_js, app_js
+		, qna_js, adminIndexHome_vue_js, app_js, index_js
 	
 	let init =()=>{
 		_ = $.ctx()
@@ -18,6 +18,7 @@ adminIndex =(()=>{
 		qna_js = js + '/admin/qna.js'
 		adminIndexHome_vue_js = js + '/admin_vue/adminIndexHome_vue.js'
 		app_js = js + '/app.js'
+		index_js = js + '/admin_vue/index_head_vue.js'
 	}
 	
 	let onCreate =()=>{
@@ -31,7 +32,8 @@ adminIndex =(()=>{
 			$.getScript(profitChart_js),
 			$.getScript(qna_js),
 			$.getScript(adminIndexHome_vue_js),
-			$.getScript(app_js)
+			$.getScript(app_js),
+			$.getScript(index_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -46,7 +48,14 @@ adminIndex =(()=>{
 		$('head').empty()
 		$('body').empty()
 		$(adminIndex_vue.main_head()).appendTo('head')
-		$(adminIndex_vue.main_body()).appendTo('body')	
+		$.getJSON(_+'/admin/exchangeTotalCount',d=>{
+			$(adminIndex_vue.main_body(d)).appendTo('body')	
+			topTotalAdmin()
+			leftMenuEvent()
+		})	
+	}	
+	
+	let topTotalAdmin=()=>{
 		$.getJSON(_+'/admin/memberNowExchange',d=>{
 			$('<tr><td>'+d.memberNowExchange+'원</td></tr>').appendTo('#memberNowExchange')
 		})
@@ -59,14 +68,16 @@ adminIndex =(()=>{
 		$.getJSON(_+'/admin/memberNowCount',d=>{
 			$('<tr><td>'+d.memberNowCount+'명</td></tr>').appendTo('#memberNowCount')
 		})
-		leftMenuEvent()
-	}	
+	}
 	
 	let leftMenuEvent = () => {
 		$('#adminHome').click(()=>{
 			$('div.container-fluid').empty()
 			$('div.container').empty()
-			$('div.container-fluid').html(adminIndexHome_vue.home_body())
+			$.getJSON(_+'/admin/exchangeTotalCount',d=>{
+				$(adminIndexHome_vue.home_body(d)).appendTo('div.container-fluid')
+				topTotalAdmin()
+			})				
 		})
 		$('#members').click(()=>{
 			$('div.container-fluid').empty()
@@ -85,8 +96,9 @@ adminIndex =(()=>{
 			exchangeDB.onCreate()
 		})
 		$('#adminLogout').click(()=>{
-			app.onCreate()
-			$('html').scrollTop(0)
+//			$(index_head_vue.head()).appendTo('head')
+//			app.onCreate() 
+//			$('html').scrollTop(0)
 		})
 	}
 	

@@ -33,7 +33,7 @@ members =(()=>{
 	
 	let setContentViewUpdate =x=>{	
 //		$(memberUpdate_vue.memberUpdateHead()).appendTo('head')
-		$(memberUpdate_vue.memberUpdateBody(x)).appendTo('div.container')
+		$(memberUpdate_vue.memberUpdateBody(x)).appendTo('div.container-fluid')
 		$('#updateComplete').click(e=>{
 			e.preventDefault()			
 			$.ajax({				
@@ -51,7 +51,6 @@ members =(()=>{
 				success : d=>{
 					if(d.msg === 'SUCCESS'){
 						alert('업데이트 성공')
-//						$('head').empty()
 						$('div.container').empty()
 						selectTableMember()
 					}
@@ -66,7 +65,6 @@ members =(()=>{
 			})
 		})
 		$('#updateCancel').click(()=>{
-//			$('head').empty()
 			$('div.container').empty()
 			selectTableMember()
 		})
