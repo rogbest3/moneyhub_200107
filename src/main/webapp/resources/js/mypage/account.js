@@ -87,8 +87,6 @@ account =(()=>{
 		})
 	}
 	
-
-	
 	let account_list =()=>{
 		accHis = $.accHis()
 		let cemail = cus.cemail
