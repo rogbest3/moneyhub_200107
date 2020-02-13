@@ -18,7 +18,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class="" style="padding: 13px 13px 16px 23px;"> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdusd}" numberOnly maxlength="5" style="width: 50%;"> 
+									<input id="send_input" class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdusd}" numberOnly maxlength="5" style="width: 50%;"> 
 									<p id="max_amount" style="color:#d43349;font-size: 12px;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 

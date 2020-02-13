@@ -48,7 +48,7 @@ public class AccountCtrl extends Proxy {
 	}
 
 	
-	@PostMapping("/withdrawal")
+	@PostMapping("/withdrawal")  //출금
 	public Map<?, ?> withDrawal(@RequestBody HashMap<String, Object> param){
 		System.out.println("계좌 현재 잔액 변경 들어옴 여기서 exchange는? - " + param);
 		accountService.withDrawal(param);

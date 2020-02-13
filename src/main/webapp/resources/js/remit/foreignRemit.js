@@ -179,7 +179,7 @@ foreignRemit = (()=>{
 				})*/
 				deal.trdusd = null
 				mypage.onCreate()
-				$('html').scrollTop(0);
+				$( 'html, body' ).stop().animate( { scrollTop : '825' } )
 			})
 		
 		$('#copy_btn').on('click', function(e){
@@ -206,19 +206,19 @@ foreignRemit = (()=>{
 				}else{
 					alert('복사실패')
 				}
-			} catch (err) { 
-				alert('이 브라우저는 지원하지 않습니다.') 
+			} catch (err) {
+				alert('이 브라우저는 지원하지 않습니다.')
 			}
 		})
 	}
 	
 	var SetTime = 3599;	
 	function msg_time() {
-		`${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }`
 		let min = SetTime / 60
 		let sec = SetTime % 60
 		var msg = `입금 기한 ${Math.floor(min)} : ${sec <10 ? `0${sec}`:`${sec}`}`
-		SetTime--;	
+		SetTime--;
+		$('#deposit_hour').text(msg)
 	}
 	
 	return {onCreate}

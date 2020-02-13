@@ -13,7 +13,6 @@ mypage =(()=>{
 		js = $.js()
 		cus = $.cusInfo()
 		exch = $.exch()
-		
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -57,8 +56,8 @@ mypage =(()=>{
 		.fail(()=>{
 			alert(WHEN_ERR)
 		})
-		
 	}
+	
 	let setContentView =()=>{
 		$('#remit_slider').hide()
 		
@@ -70,40 +69,38 @@ mypage =(()=>{
 		$.getScript(line_graph_js)
 
 		$('#popup-exchange').empty()
-		
-		$('#remit_btn')
-		.click(function(){
-		$("#remit_slider").show();
-		var top = $('#remit_slider').offset().top - 75;
-		$('html').scrollTop(top);
-		$('#exchange_slider').hide()
-		remit_box.onCreate({ flag : 'mypage', cntcd : '' })
-		})
-		
-		$('#exchange_btn')
-		.click(function(){
-			exchange.onCreate()
-		})
 	}
-
+	
 	let page_move =()=>{
+		nav_move()
+		main_move()
+		foot_move()
+	}
+	
+	let nav_move = ()=>{
+		$('.themoin-header a.logo')
+		.click(()=>{
+			mypage.onCreate()
+			$('html').scrollTop(0);
+		})
+		
 		$('#exch')
 		.click(()=>{
-			/*alert('클릭')*/
-//			sidebar.onCreate('')
 			exchange.onCreate('')
 			$('html').scrollTop(0);
 		})
 		
-		$('#remit')
-		.click(()=>{
-			
+		$('#nav_remit').click(()=>{
+			deal.cntp = '미국'
+			deal.cntcd = 'USD'
+			deal.trdusd = 0
+			sessionStorage.setItem('deal', JSON.stringify(deal))
+			foreignRemit.onCreate()
 			$('html').scrollTop(0);
 		})
 		
 		$('#testexch')
 		.click(()=>{
-			
 			$('html').scrollTop(0);
 		})
 		
@@ -121,6 +118,31 @@ mypage =(()=>{
 			app.onCreate()
 			$('html').scrollTop(0)
 		})
+	}
+	
+	let main_move = ()=>{
+		$('#exchange_btn')
+		.click(function(){
+			exchange.onCreate()
+		})
+		
+		$('#remit_btn')
+		.click(function(){
+		$("#remit_slider").show();
+		var top = $('#remit_slider').offset().top - 75;
+		$('html').scrollTop(top);
+		$('#exchange_slider').hide()
+		remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+		})
+		
+		$('#exchange_test_btn')
+		.click(()=>{
+			exchange_test.onCreate()
+			$('html').scrollTop(0);
+		})
+		
+	}
+	let foot_move = ()=>{
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
@@ -135,19 +157,6 @@ mypage =(()=>{
 		.click(()=>{
 			faq.onCreate(main_class)
 		})
-		
-		$('.themoin-header a.logo')
-		.click(()=>{
-			mypage.onCreate()
-			$('html').scrollTop(0);
-		})
-		
-		$('#exchange_test_btn')
-		.click(()=>{
-			exchange_test.onCreate()
-			$('html').scrollTop(0);
-		})
-		
 	}
 	
 	let clock_excute =()=>{
@@ -179,7 +188,6 @@ mypage =(()=>{
 				error : e=>{
 					alert('전송 실패')
 				}
-				
 			})
 		})
 	}

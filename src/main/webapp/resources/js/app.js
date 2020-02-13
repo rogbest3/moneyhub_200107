@@ -51,10 +51,8 @@ app =(()=>{
 			$.getScript(adminLogin_js)
 		)
 		.done(()=>{
-			
 			setContentView()
 			page_move()
-			
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -69,51 +67,27 @@ app =(()=>{
 		.html(nav_vue.nav(_))
 		.append(main_vue.main())
 		.append(cmm_vue.footer())
-		//================================================================= EJ
-		/*if($.cusInfo() != null && $.cusInfo() != ''){ //세션 정보로 메인 화면 구분 -> 새로고침 찾아서 적용할 것
-			alert('로그인된 세션'+$.cusInfo())
-			$('#root')
-			.html(nav_vue.logined_nav(_))
-			.append(main_vue.logined_main())
-		}else{
-			alert('로그인 전  세션'+$.cusInfo())
-			$('#root')
-			.html(nav_vue.nav(_))
-			.append(main_vue.main())
-		}
-		$('#root').append(cmm_vue.footer())*/
-		//========================================================새로고침시 세션비우기 EJ
-		/*function Reload(){
-			if(event.keyCode == 116)
-				sessionStorage.clear()
-		}
-		document.onkeydown = Reload;*/
-		//=========================================================
 		
 		$('#popup-root')
 		.html(main_vue.cntcd_popup())
 		.hide()
-
-		$('#idx_exchg_btn')
-		.click(()=>{
-			auth.onCreate('login')
-		})
-		
-		$('#idx_remit_btn')
-		.click(()=>{
-			auth.onCreate('login')
-		})
-		
-		$('#idx_testexchg_btn')
-		.click(()=>{
-			auth.onCreate('login')
-		})
-		
 		
 		$('#popup-exchange').empty()
 	}
 	
 	let page_move =()=>{
+		nav_move()
+		main_move()
+		foot_move()
+	}
+	
+	let nav_move = ()=>{
+		$('.themoin-header a.logo')
+		.click(()=>{
+			app.onCreate()
+			$('html').scrollTop(0);
+		})
+		
 		$('#join')
 		.click(()=>{
 			auth.onCreate('join')	
@@ -133,7 +107,26 @@ app =(()=>{
 		.click(()=>{
 			adminLogin.onCreate('admin_login')
 		})
-
+	}
+	
+	let main_move = ()=>{
+		$('#idx_exchg_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
+		$('#idx_remit_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+		
+		$('#idx_testexchg_btn')
+		.click(()=>{
+			auth.onCreate('login')
+		})
+	}
+	
+	let foot_move = ()=>{
 		$('#compo')
 		.click(()=>{
 			compo.onCreate(main_class)
@@ -148,14 +141,8 @@ app =(()=>{
 		.click(()=>{
 			faq.onCreate(main_class)
 		})
-		
-		$('.themoin-header a.logo')
-		.click(()=>{
-			app.onCreate()
-			$('html').scrollTop(0);
-		})
-	
 	}
+	
 
 	return { run, onCreate }
 })()

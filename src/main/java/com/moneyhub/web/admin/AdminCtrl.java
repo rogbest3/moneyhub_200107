@@ -172,5 +172,4 @@ public class AdminCtrl extends Proxy{
 		box.put("msg", "SUCCESS");
 		return box.get();
 	}
-
 }

@@ -266,7 +266,7 @@ main_vue ={
 				</div> 
 
 
-	<div class="user-remit-container"> 
+	<div class="user-remit-container" id="trade_history"> 
 				<div class="user-title"> 
 					<h3>내 입금 계좌</h3> 
 				</div> 
