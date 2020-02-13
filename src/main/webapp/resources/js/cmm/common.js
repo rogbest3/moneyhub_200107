@@ -69,36 +69,14 @@ common = (function(){
 			let receive_value = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			let receive_cntcd = $('.form-calculator .amount-row .unit-select.receive h3').text()
 			let disabled_cntcd = $('#remit_receive_cntcd').text()
-//			alert('common의 receive_value는? ' + receive_value)
-//			alert('common의 send_value? ' + send_value)
-//			alert('환전되는 통화: ' + receive_cntcd)
-//			alert('2번, 5번 common의 x는? ' + x)
 			if( receive_cntcd === 'KRW' || disabled_cntcd === 'KRW'){
-				/*alert('KRW임')*/
 				receive_value = send_value * x
-//				alert('exrate : ' + x + ', receive_value : ' + receive_value)
 				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
 			}
 			else {
-				/*alert('KRW 아님')*/
 				receive_value = send_value / x
-//				alert('exrate : ' + x + ', receive_value : ' + receive_value)
 				$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(2)))
 			}
-			
-			//200210 수정 hm - 2
-//			if( $('.form-calculator .amount-row input.send-amount h3').text() === 'KRW'){
-//				receive_value = send_value * x //* 0.985
-//			}
-//			else{
-//				alert('3번, 6번 exrate : ' + x + ', send_value : ' + send_value + ', receive_value : ' + receive_value) //여기서 receive_value는 krw임
-//				receive_value = send_value / x //* 0.985
-//			}
-//			200210 수정 hm
-//			let receive_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) 
-//				receive_value = receive_value * x //* 0.985
-			
-//			$('.form-calculator .amount-row input.receive-amount').val(common.comma_create(receive_value.toFixed(0)))
 		},
 		total_amount_calc : function(){
 			let exrateSess = $.exrateSess()
@@ -109,7 +87,6 @@ common = (function(){
 						+ parseFloat(common.comma_remove($('#exchange_CNY').text())) * exrateSess.cny
 						+ parseFloat(common.comma_remove($('#exchange_JPY').text())) * exrateSess.jpy
 			$('#total_money').text(common.comma_create(total.toFixed(0)))
-//			sessionStorage.setItem('exrateSess',JSON.stringify({}))	
 		},
 		object_sort : function(arr){
 			

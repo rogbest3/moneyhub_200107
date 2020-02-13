@@ -25,7 +25,7 @@ mypage =(()=>{
 		withdrawal_js = '/mypage/withdrawal.js'
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
-		exchange_js = js + '/mypage/exchange.js'
+		exchange_js = js + '/remit/exchange.js'
 		
 		profitsChart = {}
 		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
@@ -217,7 +217,7 @@ mypage =(()=>{
 			.click(()=>{
 				deal.cntp =$('.form-calculator .amount-row .receive p').text() 
 				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
-				deal.trdusd = common.comma_remove(send_amount.val())
+				deal.trdrcv = common.comma_remove(send_amount.val())
 				sessionStorage.setItem('deal',JSON.stringify(deal))
 				foreignRemit.onCreate()
 				$('html').scrollTop(top);
@@ -269,13 +269,13 @@ mypage =(()=>{
 								<div class="simple-amount">
 									<div class="user-sendlistdetail-amount">
 										<h3 class="user-sendlist-send">
-											<span class="user-sendlist-send">${common.comma_create(j.trdKrw)}</span> <span
+											<span class="user-sendlist-send">${common.comma_create(j.trdSnd)}</span> <span
 												class="user-sendlist-sendunit">KRW</span>
 										</h3>
 										<img src="https://img.themoin.com/public/img/ic-next-p.png"
 											class="user-sendlist-ic">
 										<h3 class="user-sendlist-receive">
-											<span class="user-sendlist-receive">${common.comma_create(j.trdUsd)}</span> <span
+											<span class="user-sendlist-receive">${common.comma_create(j.trdRcv)}</span> <span
 												class="user-sendlist-receiveunit">USD</span>
 										</h3>
 									</div>

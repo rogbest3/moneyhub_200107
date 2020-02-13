@@ -266,7 +266,7 @@ main_vue ={
 				</div> 
 
 
-	<div class="user-remit-container"> 
+	<div class="user-remit-container" id="tradeHis"> 
 				<div class="user-title"> 
 					<h3>내 입금 계좌</h3> 
 				</div> 
@@ -276,10 +276,10 @@ main_vue ={
 					</p> 
 				</div> 
 				<div class="user-title"> 
-					<h3>송금 내역</h3> 
+					<h3>거래 내역</h3> 
 				</div> 
 				<div class="user-limit"> 
-					<p>계좌 잔액 :<span id="acc_bal"></span> 원</p> 
+					<p>계좌 잔액 :<span id="acc_bal"></span>${common.comma_create(accHis.balance)} 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 누적 송금액 :<span> 0</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 

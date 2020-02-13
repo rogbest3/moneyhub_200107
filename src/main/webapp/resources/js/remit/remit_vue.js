@@ -18,7 +18,7 @@ remit_vue = {
 							<div class="amount-row"> 
 								<div class="" style="padding: 13px 13px 16px 23px;"> 
 									<p>송금 금액</p> 
-									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdusd}" numberOnly maxlength="5" style="width: 50%;"> 
+									<input class="send-amount" type="text" tabindex="0" placeholder="0.00"  value="${deal.trdrcv}" numberOnly maxlength="5" style="width: 50%;"> 
 									<p id="max_amount" style="color:#d43349;font-size: 12px;"></p>
 								</div> 
 								<div class="unit-select disabled" tabindex="0.00"> 
@@ -278,11 +278,11 @@ remit_vue = {
 									<p>보내는 금액</p>
 								<div>
 									<div class="amount">
-										<p >${common.comma_create(deal.trdkrw)}<span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} USD</p>
+										<p >${common.comma_create(deal.trdsnd)}<span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} USD</p>
 									</div>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png" class="user-sendlist-ic">
 									<div class="amount receive">
-										<p >${common.comma_create(deal.trdusd)}<span class="unit">USD</span></p><p>적용 환율 : 1 USD = ${deal.exrate} KRW</p>
+										<p >${common.comma_create(deal.trdrcv)}<span class="unit">USD</span></p><p>적용 환율 : 1 USD = ${deal.exrate} KRW</p>
 									</div>
 								</div>
 							</div>
@@ -374,7 +374,7 @@ remit_vue = {
 								<div class="remit_info" >
 									<div>
 										<p class="info_desc">입금할 금액</p>
-										<p class="copy_text" id="copy_amt" style="float:left">${common.comma_create(deal.trdkrw)}</p>
+										<p class="copy_text" id="copy_amt" style="float:left">${common.comma_create(deal.trdsnd)}</p>
 										<p class="copy_text"> &nbsp;&nbsp; KRW</p>
 									</div>
 									<button id="copy_btn">금액 복사하기</button>

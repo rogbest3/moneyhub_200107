@@ -36,8 +36,8 @@ public class RemitServiceImpl{
 		trd.setCno(deal.get("cno").toString());
 		trd.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
 		trd.setChngCausCd(0);
-		trd.setTrdUsd(deal.get("trdusd").toString());
-		trd.setTrdKrw(deal.get("trdkrw").toString());
+		trd.setTrdRcv(deal.get("trdrcv").toString());
+		trd.setTrdSnd(deal.get("trdsnd").toString());
 		trd.setCntcd("1");
 		trd.setExrate(deal.get("exrate").toString());
 		trd.setCrtmem("LEJ");
@@ -50,8 +50,8 @@ public class RemitServiceImpl{
 		trdhr.setCno(deal.get("cno").toString());
 		trdhr.setTrdStatCd(0);  //0=입금대기 -> 공통코드 관리
 		trdhr.setChngCausCd(0);
-		trdhr.setTrdUsd(deal.get("trdusd").toString());
-		trdhr.setTrdKrw(deal.get("trdkrw").toString());
+		trdhr.setTrdRcv(deal.get("trdrcv").toString());
+		trdhr.setTrdSnd(deal.get("trdsnd").toString());
 		trdhr.setCntcd(deal.get("cntcd").toString());
 		trdhr.setExrate(deal.get("exrate").toString());
 		trdhr.setCrtmem("LEJ");
