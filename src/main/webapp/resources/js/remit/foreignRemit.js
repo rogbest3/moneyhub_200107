@@ -3,7 +3,7 @@ var foreignRemit = foreignRemit || {}
 foreignRemit = (()=>{
 	const WHEN_ERR = '레미트 js파일을 찾지 못했습니다.'
 	let _,js,auth_js,main_vue_js,remit_vue_js,cookie_js,
-		amount,deal,remit_box_js,clock,cus
+		amount,deal,remit_box_js,clock,cus,acc
 
 	let init = ()=>{
 		_ = $.ctx()
@@ -161,22 +161,32 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_complete())
 		setInterval(msg_time, 1000);
 		$('#remit_clock').text(`${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일 ${clock.hours < 10 ? `0${clock.hours+1}` : clock.hours+1}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }까지`)
-
-		sessionStorage.setItem('deal',JSON.stringify(deal))
+		
+		$('#remit_wd').click(()=>{
+			acc = $.acc()
+			deal.cemail = acc.cemail
+			deal.acctNo = acc.acctNo
+			deal.type = '1'
+			sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert(JSON.stringify(deal))
+			
+			$.ajax({ //계좌 출금
+			url: _+'/account/withdrawal',
+			type : 'POST',
+			data : JSON.stringify(deal), 
+			contentType :'application/json',
+			success : () => {
+				alert("입금 확인되었습니다.")
+			},
+			error : (request,status,error) => {
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+			})
+		})
+		//토글~~~최대금액 설정하기
+		
 			$('#main_user_btn').click( e => {
 				e.preventDefault()
-				/*$.ajax({ // 계좌에 인설트
-					url: _+'/account/withdrawal',
-					type : 'POST',
-					data : JSON.stringify(deal),
-					contentType :'application/json',
-					success : () => {
-						alert("ajax성공")
-					},
-					error : (request,status,error) => {
-						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					}
-				})*/
 				deal.trdusd = null
 				mypage.onCreate()
 				$( 'html, body' ).stop().animate( { scrollTop : '825' } )

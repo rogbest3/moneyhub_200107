@@ -359,6 +359,7 @@ remit_vue = {
 			</div>`
 		},
 		remit_complete:()=>{
+			acc = $.acc()
 			cus = $.cusInfo()
 			deal = $.deal()
 			return `<div class="themoin-remit-success">
@@ -397,12 +398,12 @@ remit_vue = {
 								<div class="remit_info" style="display: block;text-align-last: center;">
 									<div style="">
 									<p class="info_desc" style=" padding: 0 0px 9px 0px;">허브페이 잔액
-									<input type="text" value="" readOnly="" style="margin: 0 0 0 15px;"/>
+									<input type="text" value="${common.comma_create(acc.balance)}" readOnly="" style="margin: 0 0 0 15px;"/>
 									</p>
 										<p class="info_desc" style=" padding: 0px 0px 14px 0px;">입금할 금액
 										<input type="text" value="" style="margin: 0 0 0 30px;"/ ></p>
 									</div>
-									<button style="color:white; background-color: #00558f;  height: 36px;">입금하기</button>
+									<button id="remit_wd"style="color:white; background-color: #00558f;  height: 36px;">입금하기</button>
 								</div>
 								<p class="warning">반드시 ‘인증받은 계좌’로 한번에 금액을 입금해주세요. 여러번 송금할 시에도 각각 따로 보내주셔야 합니다.</p>
 							</div>

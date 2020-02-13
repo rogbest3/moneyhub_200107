@@ -15,4 +15,7 @@ public interface AccountMapper {
 	public Account getAcc(String t);
 	
 	public void withDrawal(AccountHistory accHistory);
+	public void insertDeposit(AccountHistory accHistory);
+	public void updateBalance(Account acc);
+	public int getBalance(String accno);
 }

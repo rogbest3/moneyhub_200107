@@ -50,8 +50,10 @@ public class CustomerCtrl extends Proxy {
           System.out.println("로그인 시 cus는? - "+ cus.toString());
           Function<String, Account> p = t -> accMapper.getAcc(t);
           acc = p.apply(cemail);
-          Function<String, AccountHistory> p1 = t -> accMapper.getAccHis(t);
-          accHis = p1.apply(cemail);
+		/*
+		 * Function<String, AccountHistory> p1 = t -> accMapper.getAccHis(t); accHis =
+		 * p1.apply(cemail);
+		 */
           String result = (cus != null) ? "SUCCESS" : "FAIL";
           box.clear();
           box.put("msg", result);

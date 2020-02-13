@@ -83,7 +83,7 @@ index_head_vue = {
 						<script src="<%=application.getContextPath()%>/resources/js/cmm/sidebar.js"></script>
 						<script src="<%=application.getContextPath()%>/resources/js/mypage/cus_info_chg.js"></script>
 						<script src="<%=application.getContextPath()%>/resources/js/mypage/pwd_chg.js"></script>
-						<script src="<%=application.getContextPath()%>/resources/js/mypage/auth_mgmt.js"></script>
+						<script src="<%=application.getContextPath()%>/resources/js/mypage/account.js"></script>
 						<script src="<%=application.getContextPath()%>/resources/js/mypage/alarm.js"></script>
 						<script src="<%=application.getContextPath()%>/resources/js/mypage/ref_mgmt.js"></script>
 						<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>

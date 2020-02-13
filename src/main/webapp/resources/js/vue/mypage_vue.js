@@ -146,58 +146,6 @@ mypage_vue = {
 			    </div>
 			</div>`
 	},
-	auth_mgmt : ()=>{
-		cus = $.cusInfo()
-		acc = $.acc()
-		accHis = $.accHis()
-		return `<div><br>
-			        <h1 style="text-align : center; margin:30px 0 10px 0">자산정보</h1><br>
-			        <div class="themoin-info-preview" style="margin: 0 auto">
-			            <div class="head">발급된 가상계좌</div>
-			            <ol>
-			                <li>
-			                    <p>계좌번호</p>
-			                    <p class="fs-block" id="bank" style="color:black; font-weight:bold;">국민은행&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="account" style="color:black; font-weight:bold;">${acc.acctNo}</p>
-			                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="cname" style="color:black; font-weight:bold;">${cus.cname}</p>
-			                    <p class="fs-block" style="color:black; font-weight:bold;">_머니허브</p>
-			                </li>
-			                <li class="control">
-			                    <button class="text" id="copy_btn">가상계좌복사하기</button>
-			                    <input id="clip_target" type="text" value="" style="position:absolute;top:-9999em;"/>
-			                </li>
-			            </ol>
-			        </div>
-			        <div class="themoin-info-preview" style="margin: 0 auto">
-			            <div class="head">잔액</div>
-			            <ol>
-			                <li>
-			                    <p>현재잔액</p>
-			                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;">${common.comma_create(accHis.balance)}</p>
-			                    <p class="fs-block">&nbsp;</p>
-			                    <p class="fs-block" style="color:black; font-weight:bold;">원</p>
-			                </li>
-			            </ol>
-			        </div>
-			        <div class="themoin-info-preview" style="margin: 0 auto">
-			            <div class="head">거래내역</div>
-			            <ol>
-			                <li>
-			                    <p>HISTORY</p>
-			                    <p class="fs-block" id="hisdate" style="color:black">2020-02-04</p>
-			                    <p class="fs-block">&nbsp;&nbsp;&nbsp;</p>
-			                    <p class="fs-block" id="hispm" style="color:black">+</p>
-			                    <p class="fs-block">&nbsp;</p>
-			                    <p class="fs-block" id="exhistory" style="color:black">100,000,000</p>
-			                    <p class="fs-block">&nbsp;</p>
-			                    <p class="fs-block" style="color:black">원</p>
-			                </li>
-			            </ol>
-			        </div>
-			        <p class="warning" style="text-align : center">계좌이체는 계좌변경이 불가능 합니다. 인증계좌 변경 희망 시 홈페이지 1:1문의하기로 연락주세요.</p><br><br>
-			    </div>`
-	},
 	alarm : ()=>{
 		return `<div class="themoin-mypage-notification">
 			        <div class="content">

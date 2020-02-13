@@ -3,6 +3,7 @@ package com.moneyhub.web.cus.controller;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,39 +31,43 @@ public class AccountCtrl extends Proxy {
 	@Autowired Customer cus;
 	@Autowired Box<Object> box;
 	@Autowired SqlSession sqlsession;
-	@Autowired AccountService accountService;
+	@Autowired 
+	private AccountService accountService;
 	@Autowired AccountMapper accMapper;
 	@Autowired Account acc;
 	@Autowired AccountHistory accHis;
 
     
-	@GetMapping("/getacchis/{cemail}/{cno}")
-	public Map<? ,?> getAccHis(@PathVariable HashMap<String,Object> map){
-		System.out.println("===========계좌 내역 가져오기" +map); 
-		  box.clear();
-		  Function<String, AccountHistory> f = t -> accMapper.getAccHis(t);
-		  box.put("msg","SUCCESS"); 
-		  box.put("accHis", f.apply(map.get("cemail").toString())); 
-		  System.out.println("box.get() -----------> "+box.get());
-		return box.get();
+	
+	  @GetMapping("/getacchis/{cemail}/{cno}") //계좌 조회 
+	  public Map<? ,?> getAccHis(@PathVariable HashMap<String,Object> map){
+	  System.out.println("===========계좌 내역 가져오기" +map); box.clear();
+	  Function<String, AccountHistory> f = t -> accMapper.getAccHis(t);
+	  box.put("msg","SUCCESS"); box.put("accHis",
+	  f.apply(map.get("cemail").toString()));
+	  System.out.println("box.get() -----------> "+box.get()); 
+	  return box.get(); 
+	  }
+	 
+	
+	@PostMapping("/deposit")
+	public void deposit(@RequestBody HashMap<String, Object> deposit) {
+		accountService.deposit(deposit); 
 	}
-
 	
 	@PostMapping("/withdrawal")  //출금
-	public Map<?, ?> withDrawal(@RequestBody HashMap<String, Object> param){
-		System.out.println("계좌 현재 잔액 변경 들어옴 여기서 exchange는? - " + param);
+	public Map<?, ?> ReWithDrawal(@RequestBody HashMap<String, Object> param){
+		System.out.println("들어온 param은 >>>>>>>>>>>" + param);
 		accountService.withDrawal(param);
-		box.clear();
-		box.put("acc", accHis);
-		
-		//EJ 수정 acc -> 히스토리로 연결
-		if(accHis.getWithdrawal() > 0) {
-			box.put("msg", "SUCCESS");
-		}else {
-			box.put("msg", "FAIL");
+		return param;
 		}
-		System.out.println("잔액 변경하는 자바 부분에서 box.get() -> " + box.get());
+	
+	@GetMapping("/balance/{accno}")
+	public Map<? ,?> getBalance(@PathVariable String accno){
+		Function<String, Integer> balance = t -> accMapper.getBalance(t);
+		box.clear();
+		box.put("balance",  balance.apply(accno));
 		return box.get();
 	}
-
+	
 }

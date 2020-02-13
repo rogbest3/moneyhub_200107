@@ -36,7 +36,7 @@ sidebar = (()=>{
 	let mypage_move =()=>{ //내역삭제
 		let data = [{ id : 'cus_info', 		className : 'active',	tabNo : 1, title : '회원 정보'		},
 					{ id : 'pwd_chg', 		className : '', 		tabNo : 2, title : '비밀번호 변경'	},
-					{ id : 'auth_mgmt', 	className : '', 		tabNo : 3, title : '머니허브 계좌'	},
+					{ id : 'account', 	className : '', 		tabNo : 3, title : '머니허브 계좌'	},
 					{ id : 'exchange_test', className : '', 		tabNo : 4, title : '모의 환전'		},
 					{ id : 'exchange', 		className : '', 		tabNo : 5, title : '환전'		},
 					{ id : 'withdrawal',	className : '', 		tabNo : 6, title : '회원 탈퇴'		} ]
@@ -57,8 +57,8 @@ sidebar = (()=>{
 				case 'pwd_chg':
 					pwd_chg.onCreate()
 					break;
-				case 'auth_mgmt':
-					auth_mgmt.onCreate()
+				case 'account':
+					account.onCreate()
 					break;
 				case 'exchange_test':
 					exchange_test.onCreate()
