@@ -4,7 +4,7 @@ exchange =(()=>{
 
 	let _, js, mypage_vue_js, exChart_js, remit_box_js, line_graph_js, 
 			nav_vue_js, deal, cus, acc,accHis,function_vue_js, main_vue_js
-
+			,mypage_js, trade_exch_js
 	let init =()=>{
 		_ = $.ctx()
 		js = $.js()
@@ -18,6 +18,8 @@ exchange =(()=>{
 		nav_vue_js = js + '/vue/nav_vue.js'
 		function_vue_js = js + '/vue/function_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
+		mypage_js = js + '/mypage/mypage.js'
+		trade_exch_js = js + '/remit/trade_exch.js'
 	}
 	let onCreate =()=>{
 		init()
@@ -26,7 +28,8 @@ exchange =(()=>{
 			$.getScript(remit_box_js),
 			$.getScript(nav_vue_js),
 			$.getScript(function_vue_js),
-			$.getScript(main_vue_js)
+			$.getScript(main_vue_js),
+			$.getScript(trade_exch_js)
 		)
 		.done(()=>{
 			setContentView()
@@ -48,7 +51,8 @@ exchange =(()=>{
 		
 		$('#popup-exchange').empty()
 		
-		let cntcd = $('.form-calculator .amount-row .receive h3').text()
+		let cntcd = $('#exch_box .amount-row .receive h3').text()
+		alert('cntcd는? ' + cntcd)
 		let deal_arr = []
 		$.getJSON('/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist, (i, j)=>{
@@ -57,7 +61,7 @@ exchange =(()=>{
 			deal.exrate = deal_arr[0]
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			
-			$('.form-calculator .amount-row input.send-amount').keyup(()=>{
+			$('#exch_box .amount-row input.send-amount').keyup(()=>{
 					common.receive_value_calc(deal.exrate)
 			}) 
 		})
@@ -80,16 +84,35 @@ exchange =(()=>{
 					}
 				})
 				$.getScript(exChart_js)
+				$.getScript(mypage_js)
 				
 				$(this).click(function(){
 					if(confirm('환전하시겠습니까? 확인을 누르시면 바로 실행됩니다.')){
-						deal.trdSnd = $('.form-calculator .amount-row input.send-amount').val() //환전할 원화 금액
-						deal.trdRcv = $('.form-calculator .amount-row input.receive-amount').val() //환전된 외화 금액
+						deal.trdsnd = common.comma_remove($('.form-calculator .amount-row input.send-amount').val()) //환전할 원화 금액
+						deal.trdrcv = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val()) //환전된 외화 금액
 						deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
-						deal.cemail = cus.cemail
+						deal.cno = cus.cno
 						deal.exrate = deal.exrate
+						deal.crtmem = 'YHM'
+						deal.trdStatCd = '2' //출금
+						deal.trdTypeCd = '2' //환전
 						sessionStorage.setItem('deal',JSON.stringify(deal))
 						alert('deal에 담긴 것들은?' + JSON.stringify(deal))
+						$.ajax({
+							url: _+'/remit/insert',
+							type : 'POST',
+							data : JSON.stringify(deal),
+							contentType :'application/json',
+							success : () => {
+								alert("exchange에서 remit/insert 성공")
+								mypage.remit_list(deal)
+//								trade_Exch.onCreate()
+//								$('html').scrollTop(0)
+							},
+							error : (request,status,error) => {
+								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							}
+						})
 						mypage.onCreate()
 						$( 'html, body' ).stop().animate( { scrollTop : '825' })
 

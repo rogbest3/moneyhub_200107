@@ -78,6 +78,7 @@
 	<script src="<%=application.getContextPath()%>/resources/js/remit/foreignRemit.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_vue.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/remit/remit_box.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/remit/exchange.js"></script>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/cus_info.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/cmm/sidebar.js"></script>

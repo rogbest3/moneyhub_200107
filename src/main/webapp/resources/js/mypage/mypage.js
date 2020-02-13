@@ -73,11 +73,11 @@ mypage =(()=>{
 		
 		$('#remit_btn')
 		.click(function(){
-		$("#remit_slider").show();
-		var top = $('#remit_slider').offset().top - 75;
-		$('html').scrollTop(top);
-		$('#exchange_slider').hide()
-		remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+			$("#remit_slider").show();
+			var top = $('#remit_slider').offset().top - 75;
+			$('html').scrollTop(top);
+			$('#exchange_slider').hide()
+			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 		})
 		
 		$('#exchange_btn')

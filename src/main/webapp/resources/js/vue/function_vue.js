@@ -9,7 +9,7 @@ function_vue = {
 				<div id="chart2" style="display: none;"><canvas id="canvas1" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>
 					<div class="check_font" id="exchange_check" ></div>
 						<div class="moin-amount">
-							<div id="remit_box" class="form-calculator main">
+							<div id="exch_box" class="form-calculator main">
 								<div class="amount-row">
 									<div class="">
 										<p>환전할 원화 금액</p>
@@ -25,7 +25,7 @@ function_vue = {
 										<p>환전될 외화 금액</p>
 										<input class="receive-amount" id="expect" type="text" tabindex="0" placeholder="0.00" readonly="">
 									</div>
-									<div class="unit-select receive" id="receive" tabindex="0">
+									<div class="unit-select receive" id="receive_exch" tabindex="0">
 										<p>미국</p>
 										<h3>USD</h3>
 									</div>
