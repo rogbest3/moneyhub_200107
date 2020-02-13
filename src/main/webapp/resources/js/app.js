@@ -7,7 +7,6 @@ app =(()=>{
 		auth_js, compo_js, event_js, faq_js, main_class,
 		tables_mgmt_js, remit_box_js,deal,adminLogin_js
 
-	
 	let run =x=>{
 		$.when(
 			$.getScript( x + '/resources/js/cmm/router.js'),
