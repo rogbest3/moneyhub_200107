@@ -384,10 +384,8 @@ mypage_vue = {
 				    <div id="exchange_test_chart2" style="width:100%;height:510px">      
 						<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
 						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
 						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
 						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
 						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
 					</div> 
 					<br> 
@@ -435,7 +433,6 @@ mypage_vue = {
 			            display: none;
 			            color: #343434;
 			        }
-
 					.ui-datepicker-week-end { color:red; }
 					.ui-datepicker-week-end .ui-state-default { color:red; }
 					.Highlighted span {
