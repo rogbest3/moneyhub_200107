@@ -7,11 +7,11 @@ $(document).ready(function(){
 			labels: [],
 			datasets: [{
 				label: '머니허브 환율',
-				backgroundColor: '#2DCCD6',		//window.chartColors.blue,
+				backgroundColor: '#9de8ec',		//window.chartColors.blue,
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {

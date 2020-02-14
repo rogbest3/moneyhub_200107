@@ -344,32 +344,29 @@ mypage_vue = {
 	},
 	exchange_test2 : ()=>{
 //		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; max-width : 1060px; margin: 30px auto;; min-height:840px;">
-					<div id="exchange_test_header" style="width : 100%; height : 80px; text-align: center;">
-						<div style="width : 70%; height : 100%; float:left; font-size: 18px;">
-							<div style="width : 70%; height : 100%; float:left; text-align:right; padding-top:20px" ><b>환율 기준일 : </b></div>
-							<div id="next_day_btn" style="width : 30%; height : 100%; float:left;text-align:left; padding: 18px 0 0 30px;">
-								<div class="arrow">
-								  	<div class="arrow-top"></div>
-								  	<div class="arrow-bottom"></div>
-								</div>
-							</div>
-						</div>
-						
-						<div id="exchange_datepicker" style="width : 30%; float:left">
-							<p style="font-weight: bold; width : 100%; height: 25px;">환율 기준일 변경</p>
-							<div style="width : 100%; height: 35px; padding-left : 50px">
-								<input type="text" id="datepicker" class="form-control" style="width: 78%; float: left">
-							</div>
-				    	</div>
-					</div>	
-					<div id="world_map">
+		return `<div class="container" style="width: 100% !important; max-width:none;">
+					<div id="world_map" style="width: 90%; max-width:none; height : 520px; margin-top:30px">
 					    <div class="mapcontainer">
 					        <div class="map">
 					            <span></span>
 					        </div>
 					    </div>
 					</div>
+		
+					<div id="exchange_test_header" style="width : 90%; height : 80px; text-align: center; max-width:none;">
+						<div style="width : 70%; height : 100%; float:left; font-size: 18px;">
+							<div style="width : 70%; height : 100%; float:left; text-align:right; padding-top:20px" >
+								<b>환율 기준일 : </b>
+							</div>
+						</div>
+						<div id="exchange_datepicker" style="width : 30%; float:left">
+							<p style="font-weight: bold; width : 100%; height: 25px;">환율 기준일 변경</p>
+							<div style="width : 100%; height: 35px; padding-left : 50px">
+								<input type="text" id="datepicker" class="form-control" style="width: 78%; float: left">
+							</div>
+				    	</div>
+					</div>
+					
 				    <div style="width:100%;height:430px">
 				    	<div id="amount" class="themoin-info-preview" style="width:33%; min-width:330px;">
 					    	<ol style="border-bottom-width: 0px;"></ol>
@@ -420,7 +417,11 @@ mypage_vue = {
 			        .mapael .map {
 			            position: relative;
 			        }
-			
+			        
+					.map svg {
+						height : 500px;
+					}
+					
 			        .mapael .mapTooltip {
 			            position: absolute;
 			            background-color: #fff;
