@@ -1,9 +1,9 @@
 package com.moneyhub.web.cus.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +39,12 @@ public class AccountCtrl extends Proxy {
 
     
 	
-	  @GetMapping("/getacchis/{cemail}/{cno}") //계좌 조회 
+	  @GetMapping("/getacchis/{cemail}/{acctNo}") //계좌 조회 
 	  public Map<? ,?> getAccHis(@PathVariable HashMap<String,Object> map){
-	  System.out.println("===========계좌 내역 가져오기" +map); box.clear();
-	  Function<String, AccountHistory> f = t -> accMapper.getAccHis(t);
-	  box.put("msg","SUCCESS"); box.put("accHis",
-	  f.apply(map.get("cemail").toString()));
+	  System.out.println("===========계좌 내역 가져오기" +map); 
+	  box.clear();
+	  Function<HashMap<String,Object>, List<AccountHistory>> f = t -> accMapper.getAccHis(t);
+	  box.put("msg","SUCCESS"); box.put("accHis",f.apply(map));
 	  System.out.println("box.get() -----------> "+box.get()); 
 	  return box.get(); 
 	  }
@@ -62,11 +62,11 @@ public class AccountCtrl extends Proxy {
 		return param;
 		}
 	
-	@GetMapping("/balance/{accno}")
-	public Map<? ,?> getBalance(@PathVariable String accno){
+	@GetMapping("/balance/{acctNo}")
+	public Map<? ,?> getBalance(@PathVariable String acctNo){
 		Function<String, Integer> balance = t -> accMapper.getBalance(t);
 		box.clear();
-		box.put("balance",  balance.apply(accno));
+		box.put("balance",  balance.apply(acctNo));
 		return box.get();
 	}
 	

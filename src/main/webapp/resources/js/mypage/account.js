@@ -57,8 +57,6 @@ account =(()=>{
 		})
 	}
 	let account_deposit=()=>{
-		//입금하기
-
 		$('#deposit').click(()=>{
 			acc.deposit = $('#de_amount').val()
 			sessionStorage.setItem('acc', JSON.stringify(acc))
@@ -90,20 +88,20 @@ account =(()=>{
 	let account_list =()=>{
 		accHis = $.accHis()
 		let cemail = cus.cemail
-		let cno = cus.cno
-		$.getJSON(_+'/account/getacchis/' + cemail + '/' + cno, d=>{ // 내역 보이기
+		let account = acc.acctNo
+		$.getJSON(_+'/account/getacchis/' + cemail + '/' + account, d=>{ // 내역 보이기
 			if(d.msg === "SUCCESS"){
-				$.each(d, (i, j)=>{
-					alert(JSON.stringify(j))
-					if(j.atypecd == "1"){j.atypecd = "송금"}
-					else if (j.atypecd == "2"){j.atypecd = "환전"}
-					$(`<td>{j+1}</td>
-							<td>${j.bsdate}</td>
-							<td>${j.balance} 원</td>
-							<td>${j.comment}</td>
-							<td>${j.atypecd}</td>
-							<td>100,000,000 원</td>`)
-							.appendTo('#account_tbody')
+				$.each(d.accHis, (i, j)=>{
+					if(j.atypecd == '1'){j.atypecd = '송금'}
+					else if (j.atypecd == '2'){j.atypecd = '환전'}
+					else if(j.atypecd === null){j.atypecd == '-'}
+					$(`<tr><td>${j.bsdate}</td>
+					<td>${j.deposit} 원</td>
+					<td>${j.withdrawal} 원</td>
+					<td>${j.comment}</td>
+					<td>${j.atypecd}</td>
+					<td>${j.balance} 원</td></tr>`)
+					.appendTo('#account_tbody')
 				})
 			}else{
 				alert('계좌 getJSON 실패')

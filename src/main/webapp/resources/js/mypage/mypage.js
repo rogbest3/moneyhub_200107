@@ -6,7 +6,7 @@ mypage =(()=>{
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
 		line_graph_js,deal, remit_box_js, clock, profitsChart,cus, exch,
-		exchange_js
+		exchange_js,account_js
 
 	let init =()=>{
 		_ = $.ctx()
@@ -25,6 +25,7 @@ mypage =(()=>{
 		line_graph_js = js + '/exchart/line_graph.js'
 		remit_box_js = js + '/remit/remit_box.js'
 		exchange_js = js + '/mypage/exchange.js'
+		account_js = js + '/mypage/account.js'
 		
 		profitsChart = {}
 		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
@@ -138,6 +139,11 @@ mypage =(()=>{
 		$('#exchange_test_btn')
 		.click(()=>{
 			exchange_test.onCreate()
+			$('html').scrollTop(0);
+		})
+		
+		$('#account_go').click(()=>{
+			sidebar.onCreate('account')
 			$('html').scrollTop(0);
 		})
 		

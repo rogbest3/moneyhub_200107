@@ -8030,13 +8030,13 @@ li {
   background-color: rgba(255,255,255,0.3);
  }
 .tbl-content{
-  height:300px;overflow-x:auto;margin-top: 0px;border: 1px solid #747f9b;
+  height:300px;overflow-x:auto;margin-top: 0px;border: 1px solid white;
 }
 .tbl-header th{
   padding: 10px 0px; text-align: center;  font-weight: 500;  font-size: 14px;  color: #747f9b;  text-transform: uppercase; background-color: #fafbff;
 }
 .tbl-content td{
-  padding: 8px;  text-align: center;  vertical-align:middle;  font-weight: 300;  font-size: 12px; color: #747f9b;  border-bottom: solid 1px #747f9b;
+  padding: 8px;  text-align: center;  vertical-align:middle;  font-weight: 300;  font-size: 12px; color: #747f9b;  border-bottom: solid 1px white;
 }
 
 ::-webkit-scrollbar {

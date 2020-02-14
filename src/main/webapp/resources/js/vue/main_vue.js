@@ -273,7 +273,10 @@ main_vue ={
 				<div class="user-account"> 
 					<p class="warning"> 
 						내 입금 계좌 :  <span class="fs-block" id="cus_account">국민은행 ${acc.acctNo} ${cus.cname}</span> 
-					</p> 
+					</p>
+					<h4 id="account_go" style="cursor: pointer;"> 
+						계좌 상세 보기
+					</h4>
 				</div> 
 				<div class="user-title"> 
 					<h3>송금 내역</h3> 

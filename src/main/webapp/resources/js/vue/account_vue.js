@@ -52,11 +52,11 @@ account_vue = {
 										<table cellpadding="0" cellspacing="0" border="0">
 											<thead>
 												<tr>
-													<th>NO.</th>
 													<th>거래일</th>
-													<th>금액</th>
-													<th>거래 구분</th>
+													<th>입금액</th>
+													<th>출금액</th>
 													<th>구분</th>
+													<th>거래 구분</th>
 													<th>잔액</th>
 												</tr>
 											</thead>
@@ -64,112 +64,7 @@ account_vue = {
 									</div>
 									<div class="tbl-content">
 										<table cellpadding="0" cellspacing="0" border="0">
-											<tbody id="account_tbody">
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>2020-02-04</td>
-													<td>100,000,000 원</td>
-													<td>이벤트</td>
-													<td>입금</td>
-													<td>100,000,000 원</td>
-												</tr>
-											</tbody>
+											<tbody id="account_tbody"></tbody>
 										</table>
 									</div>
 								</section>

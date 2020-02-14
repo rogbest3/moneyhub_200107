@@ -77,7 +77,7 @@ public class AccountService {
 			accHistory.setComment("출금");
 			accHistory.setAtypecd(param.get("type").toString()); // 종류 1은 송금 2는 환전
 			accMapper.withDrawal(accHistory);
-			
+			System.out.println(param.get("type").toString());
 			acc.setCemail(param.get("cemail").toString());
 			acc.setAcctNo(param.get("acctNo").toString());
 			acc.setBalance(subBal);

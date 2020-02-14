@@ -16,7 +16,7 @@ sidebar = (()=>{
 		)
 		.done(()=>{
 			setContentView()
-			mypage_move()
+			mypage_move(x)
 			$('#mypageId').text($.cusInfo().cemail)
 			init_page()
 		})
@@ -33,14 +33,16 @@ sidebar = (()=>{
 		cus_info.onCreate()
 	}
 	
-	let mypage_move =()=>{ //내역삭제
+	let mypage_move =x=>{ //내역삭제
 		let data = [{ id : 'cus_info', 		className : 'active',	tabNo : 1, title : '회원 정보'		},
 					{ id : 'pwd_chg', 		className : '', 		tabNo : 2, title : '비밀번호 변경'	},
 					{ id : 'account', 	className : '', 		tabNo : 3, title : '머니허브 계좌'	},
 					{ id : 'exchange_test', className : '', 		tabNo : 4, title : '모의 환전'		},
-					{ id : 'exchange', 		className : '', 		tabNo : 5, title : '환전'		},
+					{ id : 'exchange', 		className : '', 		tabNo : 5, title : '환전'	},
 					{ id : 'withdrawal',	className : '', 		tabNo : 6, title : '회원 탈퇴'		} ]
-		
+		if(x == 'account'){  //어카운트로 안가
+			account.onCreate()
+		}
 		$.each(data, (i, j)=>{
 			$(`<a id="${j.id}" class="${j.className}" data-tab="tab-${j.tabNo}">${j.title}</a>`)
 			.css({'margin-right': '7%', 'padding-top' : '20px'})
