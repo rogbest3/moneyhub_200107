@@ -99,6 +99,10 @@ adminIndex =(()=>{
 //			$(index_head_vue.head()).appendTo('head')
 //			app.onCreate() 
 //			$('html').scrollTop(0)
+			$('head').empty()
+			$('body').empty()
+			$('<a href="http://localhost:8080/web/"').html()
+//			$('<a href="/web/WEB-INF/views/index.jsp"').html()
 		})
 
 	}
