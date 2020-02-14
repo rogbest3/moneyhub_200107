@@ -291,114 +291,132 @@ mypage_vue = {
 				</style>	`
 	},
 	exchange_test2 : ()=>{
-//		let exrate = $.exrate().bdate	${$.exrate().bdate}  class="form-control" style="width: 250px;"
-		return `<div class="container" style="width: 100% !important; max-width:none;">
-					<div id="world_map" style="width: 90%; max-width:none; height : 520px; margin-top:30px">
-					    <div class="mapcontainer">
-					        <div class="map">
-					            <span></span>
-					        </div>
-					    </div>
+			return `<div class="container" style="width: 100% !important; max-width: none;">
+			<div id="world_map"
+				style="width: 90%; max-width: none; height: 520px; margin-top: 30px">
+				<div class="mapcontainer">
+					<div class="map">
+						<span></span>
 					</div>
-		
-					<div id="exchange_test_header" style="width : 90%; height : 80px; text-align: center; max-width:none;">
-						<div style="width : 70%; height : 100%; float:left; font-size: 18px;">
-							<div style="width : 70%; height : 100%; float:left; text-align:right; padding-top:20px" >
-								<b>환율 기준일 : </b>
-							</div>
-						</div>
-						<div id="exchange_datepicker" style="width : 30%; float:left">
-							<p style="font-weight: bold; width : 100%; height: 25px;">환율 기준일 변경</p>
-							<div style="width : 100%; height: 35px; padding-left : 50px">
-								<input type="text" id="datepicker" class="form-control" style="width: 78%; float: left">
-							</div>
-				    	</div>
-					</div>
-					
-				    <div style="width:100%;height:430px">
-				    	<div id="amount" class="themoin-info-preview" style="width:33%; min-width:330px;">
-					    	<ol style="border-bottom-width: 0px;"></ol>
-					    	<div style="width:100%">
-					    		<div id="init_btn"></div>
-					    		<div id="save_btn" style="padding-left:40px"></div>
-					    	</div>
-					    	<div id="test_history"></div>
-					    </div>
-				    	<div id="exchange_test_chart1" style="width:67%;float:left">                         
-				 	      	<canvas id="canvas" style="width:100%; height: 295px; max-height: 300px; margin-top: 60px"></canvas> 
-						</div>
-						
-				    </div>
-				    <div id="exchange_test_chart2" style="width:100%;height:510px">      
-						<div style="width:100%;float:left;margin-top:20px"><canvas id="canvas2" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas3" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
-						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas4" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-						<div style="width:49%;float:left;margin-top:20px;margin-right:2%"><canvas id="canvas5" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-
-						<div style="width:49%;float:left;margin-top:20px;"><canvas id="canvas6" style="width:100%; height: 150px; max-height: 250px;"></canvas></div>
-					</div> 
-					<br> 
-					<br> 
 				</div>
-				<style type="text/css">
-			        body {
-			            color: #5d5d5d;
-			            font-family: Helvetica, Arial, sans-serif;
-			        }
-			
-			        h1 {
-			            font-size: 30px;
-			            margin: auto;
-			            margin-top: 50px;
-			        }
-			
-			        .container {
-			            max-width: 800px;
-			            margin: auto;
-			        }
-			
-			        /* Specific mapael css class are below
-			         * 'mapael' class is added by plugin
-			        */
-			
-			        .mapael .map {
-			            position: relative;
-			        }
-			        
-					.map svg {
-						height : 500px;
-					}
-					
-			        .mapael .mapTooltip {
-			            position: absolute;
-			            background-color: #fff;
-			            moz-opacity: 0.70;
-			            opacity: 0.70;
-			            filter: alpha(opacity=70);
-			            border-radius: 10px;
-			            padding: 10px;
-			            z-index: 1000;
-			            max-width: 200px;
-			            display: none;
-			            color: #343434;
-			        }
+			</div>
+			<div id="exchange_test_header"
+				style="width: 90%; height: 80px; text-align: center; max-width: none;">
+				<div style="width: 70%; height: 100%; float: left; font-size: 18px;">
+					<div
+						style="width: 70%; height: 100%; float: left; text-align: right; padding-top: 20px">
+						<b>환율 기준일 : </b>
+					</div>
+				</div>
+				<div id="exchange_datepicker" style="width: 30%; float: left">
+					<p style="font-weight: bold; width: 100%; height: 25px;">환율 기준일
+						변경</p>
+					<div style="width: 100%; height: 35px; padding-left: 50px">
+						<input type="text" id="datepicker" class="form-control"
+							style="width: 78%; float: left">
+					</div>
+				</div>
+			</div>
+			<div style="width: 100%; height: 430px">
+				<div id="amount" class="themoin-info-preview"
+					style="width: 33%; min-width: 330px;">
+					<ol style="border-bottom-width: 0px;"></ol>
+					<div style="width: 100%">
+						<div id="init_btn"></div>
+						<div id="save_btn" style="padding-left: 40px"></div>
+					</div>
+					<div id="test_history"></div>
+				</div>
+				<div id="exchange_test_chart1" style="width: 67%; float: left">
+					<canvas id="canvas"
+						style="width: 100%; height: 295px; max-height: 300px; margin-top: 60px"></canvas>
+				</div>
+			</div>
+			<div id="exchange_test_chart2" style="width: 100%; height: 510px">
+				<div style="width: 100%; float: left; margin-top: 20px">
+					<canvas id="canvas2"
+						style="width: 100%; height: 150px; max-height: 250px;"></canvas>
+				</div>
+				<div
+					style="width: 49%; float: left; margin-top: 20px; margin-right: 2%">
+					<canvas id="canvas3"
+						style="width: 100%; height: 150px; max-height: 250px;"></canvas>
+				</div>
+				<div style="width: 49%; float: left; margin-top: 20px;">
+					<canvas id="canvas4"
+						style="width: 100%; height: 150px; max-height: 250px;"></canvas>
+				</div>
+				<div
+					style="width: 49%; float: left; margin-top: 20px; margin-right: 2%">
+					<canvas id="canvas5"
+						style="width: 100%; height: 150px; max-height: 250px;"></canvas>
+				</div>
+				<div style="width: 49%; float: left; margin-top: 20px;">
+					<canvas id="canvas6"
+						style="width: 100%; height: 150px; max-height: 250px;"></canvas>
+				</div>
+			</div>
+			<br> <br>
+		</div>
+		<style type="text/css">
+	body {
+		color: #5D5D5D;
+		font-family: Helvetica, Arial, sans-serif;
+	}
 
-					.ui-datepicker-week-end { color:red; }
-					.ui-datepicker-week-end .ui-state-default { color:red; }
-					.Highlighted span {
-					   background-color : #fcfcfc !important;
-					   background-image :none !important;
-					   color: red !important;
-					   font-weight:bold !important;
-					   font-size: 12px;
-					}
-					
-			    </style>
-				<script src="/web/resources/js/maps/jquery.mapael.js"></script>
-			    <script src="/web/resources/js/maps/global_map.js"></script>
-			    <script src="/web/resources/js/maps/world_countries.js"></script>`
-	},
+	h1 {
+		font-size: 30px;
+		margin: auto;
+		margin-top: 50px;
+	}
+
+	.container {
+		max-width: 800px;
+		margin: auto;
+	}
+		/* Specific mapael css class are below			         * 'mapael' class is added by plugin			        */
+	.mapael .map {
+		position: relative;
+	}
+
+	.map svg {
+		height: 500px;
+	}
+
+	.mapael .mapTooltip {
+		position: absolute;
+		background-color: #fff;
+		moz-opacity: 0.70;
+		opacity: 0.70;
+		filter: alpha(opacity = 70);
+		border-radius: 10px;
+		padding: 10px;
+		z-index: 1000;
+		max-width: 200px;
+		display: none;
+		color: #343434;
+	}
+
+	.ui-datepicker-week-end {
+		color: red;
+	}
+
+	.ui-datepicker-week-end .ui-state-default {
+		color: red;
+	}
+
+	.Highlighted span {
+		background-color: #FCFCFC !important;
+		background-image: none !important;
+		color: red !important;
+		font-weight: bold !important;
+		font-size: 12px;
+	}
+	</style>
+		<script src="/web/resources/js/maps/jquery.mapael.js"></script>
+		<script src="/web/resources/js/maps/global_map.js"></script>
+		<script src="/web/resources/js/maps/world_countries.js"></script>
+		` },
 	exchange_test_head : ()=>{
 		return `<style type="text/css">
 			        body {
