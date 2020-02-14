@@ -68,8 +68,7 @@ $(document).ready(function(){
 	}
 	let ctx = document.getElementById('canvas1').getContext('2d');
 	
-	let cntcd = $('#receive h3').text()
-	
+	let cntcd = $('#receive_exch h3').text()
 	$.getJSON( '/web/exrate/search/cntcd/' + cntcd, d=>{
 		$.each(d.exlist.reverse(), (i, j)=>{
 			config.data.labels.push(j.bdate.substr(-2))

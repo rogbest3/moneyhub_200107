@@ -34,6 +34,7 @@ exchange =(()=>{
 		.done(()=>{
 			setContentView()
 			remit_box.onCreate({ flag : 'exchange2', cntcd : '' })
+			mypage.remit_list({ nowPage : 0, cno : cus.cno})
 		})
 		.fail(()=>{
 			alert(WHEN_ERR)
@@ -95,35 +96,38 @@ exchange =(()=>{
 						deal.exrate = deal.exrate
 						deal.crtmem = 'YHM'
 						deal.trdStatCd = '2' //출금
-						deal.trdTypeCd = '2' //환전
+						deal.trdTypeCd = '환전' //환전
+						deal.fee = Math.floor(parseInt(deal.trdrcv) * 0.01 * parseInt(deal.exrate))
+						deal.passName = cus.name
+						deal.rcemail = cus.cemail
+						deal.cntp = $('.form-calculator .amount-row #receive_exch p').text() 
 						sessionStorage.setItem('deal',JSON.stringify(deal))
 						alert('deal에 담긴 것들은?' + JSON.stringify(deal))
 						$.ajax({
-							url: _+'/remit/insert',
+							url: _+'/remit/insert/exch',
 							type : 'POST',
 							data : JSON.stringify(deal),
 							contentType :'application/json',
 							success : () => {
 								alert("exchange에서 remit/insert 성공")
-								mypage.remit_list(deal)
-//								trade_Exch.onCreate()
-//								$('html').scrollTop(0)
+								mypage.remit_list({ nowPage : 0, cno : cus.cno})
+								mypage.onCreate()
+								$( 'html, body' ).stop().animate( { scrollTop : '825' })
 							},
 							error : (request,status,error) => {
 								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 							}
 						})
-						mypage.onCreate()
-						$( 'html, body' ).stop().animate( { scrollTop : '825' })
+//						$( 'html, body' ).stop().animate( { scrollTop : '825' })
 
-						$('#auth_mgmt').each(function(){ //거래 인설트
-							$.ajax({
-								url : _+'/exchange/insert',
-								type : 'POST',
-								data: JSON.stringify(deal),
-								dataType : 'json',
-								contentType : 'application/json',
-								success : d=>{
+//						$('#auth_mgmt').each(function(){ //거래 인설트
+//							$.ajax({
+//								url : _+'/exchange/insert',
+//								type : 'POST',
+//								data: JSON.stringify(deal),
+//								dataType : 'json',
+//								contentType : 'application/json',
+//								success : d=>{
 //									if(d.msg === 'SUCCESS'){
 //										accHis = $.accHis()
 //										let cemail = cus.cemail
@@ -161,9 +165,9 @@ exchange =(()=>{
 //											}
 //										})
 //									}
-								}
-							})
-						})
+//								}
+//							})
+//						})
 					}
 				})
 			})

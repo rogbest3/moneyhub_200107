@@ -138,6 +138,9 @@ foreignRemit = (()=>{
 		.click( e => {
 			e.preventDefault()
 			deal.exrate = String(deal.exrate)
+			deal.trdStatCd = '2'
+			deal.trdTypeCd = '송금'
+			deal.crtmem = 'LEJ'
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			$.ajax({
 				url: _+'/remit/insert',

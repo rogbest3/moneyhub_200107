@@ -191,6 +191,31 @@ mypage =(()=>{
 			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
 		}
 		
+		let deal_cntp = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '', cntp : '일본' },
+			{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '', cntp : '중국' },
+			{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '', cntp : '미국' },
+			{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '', cntp : '싱가포르' },
+			{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '', cntp : '호주' },
+			{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '', cntp : '영국' },
+			{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '', cntp : '벨기에' },
+			{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '', cntp : '프랑스' },
+			{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '', cntp : '독일' },
+			{ img : 'it', cntcd : 'EUR', curr : '이탈리아 유로', flag : '', cntp : '이탈리아' },
+			{ img : 'nl', cntcd : 'EUR', curr : '네덜란드 유로', flag : '', cntp : '네덜란드' },
+			{ img : 'pt', cntcd : 'EUR', curr : '포르투갈 유로', flag : '', cntp : '포르투갈' },
+			{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '', cntp : '스페인' }]
+		
+			$.each(deal_cntp, (i, j)=>{
+				if(i.cntCd == j.cntcd && i.cntp == j.cnpt){
+					i.img = j.img
+					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${i.img}.svg`)
+					alert('j는? ' + JSON.stringify(j))
+					alert('i는? ' + JSON.stringify(i))
+				}
+			})
+//		
+//		$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${img}.svg`)
+		
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		let exrate_arr = []
 			$.getJSON( '/web/exrate/search/cntcd/' + 'USD', d=>{	
@@ -215,9 +240,11 @@ mypage =(()=>{
 			.addClass('index-send-btn moin-body')
 			.appendTo('#remit_box')
 			.click(()=>{
-				deal.cntp =$('.form-calculator .amount-row .receive p').text() 
+				deal.cntp = $('.form-calculator .amount-row .receive p').text() 
 				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 				deal.trdrcv = common.comma_remove(send_amount.val())
+				deal.passName = deal.passLnm + deal.passFnm
+				deal.trdTypeCd = '송금' //환전
 				sessionStorage.setItem('deal',JSON.stringify(deal))
 				foreignRemit.onCreate()
 				$('html').scrollTop(top);
@@ -226,7 +253,8 @@ mypage =(()=>{
 	
 	let remit_list =(x)=>{
 		deal = $.deal()
-		$.getJSON( `${_}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
+		alert('$.ctx() : ' + $.ctx())
+		$.getJSON( `${$.ctx()}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
 
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본'},
@@ -244,6 +272,8 @@ mypage =(()=>{
 				{ img : 'pt', cntcd : 'EUR', curr : '포르투갈'},
 				{ img : 'es', cntcd : 'EUR', curr : '스페인'}]
 			
+			
+			
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
 				
@@ -251,6 +281,12 @@ mypage =(()=>{
 					$.each(receive_data, (i, k)=>{
 						if(j.cntCd == k.cntcd && j.cntp == k.curr){
 							j.img = k.img
+							$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
+							j.passName = j.passLnm + j.passFnm
+							alert('j는? ' + JSON.stringify(j))
+							alert('i는? ' + JSON.stringify(i))
+							alert('k는? ' + JSON.stringify(k))
+							
 						}
 					})
 
@@ -261,7 +297,7 @@ mypage =(()=>{
 								</div>
 								<div class="simple-nametime">
 									<h3 class="username">
-									<span class="fs-block" lang="en" title="a aaa a">${j.passLnm} ${j.passFnm}</span>
+									<span class="fs-block" lang="en" title="a aaa a">${j.passName}</span>
 									</h3>
 									<p class="create-time">${j.bsdate}</p>
 								</div>
@@ -276,18 +312,18 @@ mypage =(()=>{
 											class="user-sendlist-ic">
 										<h3 class="user-sendlist-receive">
 											<span class="user-sendlist-receive">${common.comma_create(j.trdRcv)}</span> <span
-												class="user-sendlist-receiveunit">USD</span>
+												class="user-sendlist-receiveunit">${j.cntcd}</span>
 										</h3>
 									</div>
 									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
 									<div class="send-due">
-										<p>송금이 정상적으로 완료되었습니다.</p>
+										<p>${j.trdTypeCd}이 정상적으로 완료되었습니다.</p>
 									</div>
 								</div>
 								<div class="simple-spacer"></div>
 								<div class="user-sendlist-status">
 								<div class="user-sendlist-state">
-								<div class="user-sendlist-state-text moin-body">거래 완료</div>
+								<div class="user-sendlist-state-text moin-body">${j.trdTypeCd}</div>
 								</div>
 								<a id = "delete_history" class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
 								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
@@ -369,5 +405,5 @@ mypage =(()=>{
 		})
 	}
 	
-	return { onCreate,remit_list }
+	return { onCreate, remit_list }
 })()

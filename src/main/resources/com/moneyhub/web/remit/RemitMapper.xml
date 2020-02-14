@@ -16,14 +16,14 @@
 	    )
 	</insert>
 	<insert id="insertTRDHR" parameterType="TRDHR">
-	    INSERT INTO TRDHR (BSDATE, MTCN, CNO, TRD_STAT_CD, CHNG_CAUS_CD, TRD_USD,TRD_KRW,ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) 
+	    INSERT INTO TRDHR (BSDATE, MTCN, CNO, TRD_STAT_CD, TRD_TYPE_CD, CHNG_CAUS_CD, TRD_SND, TRD_RCV, ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) 
 	    VALUES ( 
-	    #{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{chngCausCd}, #{trdRcv},#{trdSnd}, #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
+	    #{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{trdTypeCd},#{chngCausCd}, #{trdRcv},#{trdSnd}, #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
 	    )
 	</insert>
 	<insert id="insertTRD" parameterType="TRD">
-	   INSERT INTO TRD (BSDATE, MTCN, CNO, TRD_STAT_CD, CHNG_CAUS_CD, TRD_USD,TRD_KRW,ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) VALUES (
-	    	#{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{chngCausCd}, #{trdRcv},#{trdSnd},  #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
+	   INSERT INTO TRD (BSDATE, MTCN, CNO, TRD_STAT_CD, TRD_TYPE_CD, CHNG_CAUS_CD, TRD_SND,TRD_RCV,ACCT_NO,CNTCD,EXRATE,CRTMEM,CRTDT ) VALUES (
+	    	#{bsdate}, #{mtcn}, #{cno},#{trdStatCd},#{trdTypeCd},#{chngCausCd}, #{trdRcv},#{trdSnd},  #{acctNo},#{cntcd},#{exrate},#{crtmem},#{crtdt}
 	    )
 	</insert>
 </mapper>

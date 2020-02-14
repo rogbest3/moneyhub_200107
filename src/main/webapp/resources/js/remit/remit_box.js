@@ -65,7 +65,6 @@ remit_box =(()=>{
 					{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '' },
 					{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '' },
 					{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '' },
-					{ img : 'vn', cntcd : 'VND', curr : '베트남 동', flag : '' },
 					{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '' },
 					{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '' },
 					{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '' },
@@ -192,7 +191,6 @@ remit_box =(()=>{
 					$('#chart2') //통화 변경할 때 그래프 지우고 새로 그래프 그리는 부분
 					.html(`<canvas id="canvas1" style="width:200px; height:50px; margin-bottom: 10px"></canvas>`)
 					$.getScript(exChart_js)
-					
 				}
 			})
 		})
