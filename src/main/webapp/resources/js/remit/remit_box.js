@@ -173,7 +173,7 @@ remit_box =(()=>{
 					.catch(()=>{
 						alert('오동작')
 					})
-					let cntcd = $('.form-calculator .amount-row .receive h3').text()
+					let cntcd = $('#exch_box .amount-row .receive h3').text()
 					$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
 						if(d.msg === 'UP'){
 							$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')

@@ -98,7 +98,7 @@ exchange =(()=>{
 						deal.trdStatCd = '2' //출금
 						deal.trdTypeCd = '환전' //환전
 						deal.fee = Math.floor(parseInt(deal.trdrcv) * 0.01 * parseInt(deal.exrate))
-						deal.passName = cus.name
+						deal.passName = cus.cname
 						deal.rcemail = cus.cemail
 						deal.cntp = $('.form-calculator .amount-row #receive_exch p').text() 
 						sessionStorage.setItem('deal',JSON.stringify(deal))

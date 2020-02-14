@@ -7,7 +7,7 @@
 	<select id="selectAll" resultType="Map"  parameterType="PageProxy">
 		SELECT C.CNO cno, T.BSDATE bsdate, T.MTCN mtcn, T.TRD_RCV trdRcv,
 				T.TRD_SND trdSnd, T.CNTCD cntCd, T.EXRATE exrate,
-				R.CNTP cntp, R.PASS_FNM passFnm, R.PASS_LNM passLnm
+				R.CNTP cntp, R.PASS_NAME passName
 		FROM ( SELECT C.CNO 
 				FROM CUSTOMER C 
 				WHERE CNO = #{cno}

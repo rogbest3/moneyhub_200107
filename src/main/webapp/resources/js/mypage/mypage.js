@@ -243,6 +243,8 @@ mypage =(()=>{
 				deal.cntp = $('.form-calculator .amount-row .receive p').text() 
 				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 				deal.trdrcv = common.comma_remove(send_amount.val())
+				deal.passLnm = $('#pass_fnm').text()
+				deal.passLnm = $('#pass_lnm').text()
 				deal.passName = deal.passLnm + deal.passFnm
 				deal.trdTypeCd = '송금' //환전
 				sessionStorage.setItem('deal',JSON.stringify(deal))

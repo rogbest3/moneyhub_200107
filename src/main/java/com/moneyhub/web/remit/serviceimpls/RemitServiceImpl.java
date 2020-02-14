@@ -122,7 +122,7 @@ public class RemitServiceImpl{
 		rcpt.setMtcn(mtcn);
 		rcpt.setCno(deal.get("cno").toString());
 		rcpt.setRcp(0); //0 미수취 1수취
-//		rcpt.setCntp(deal.get("cntp").toString()); 
+		rcpt.setCntp(deal.get("cntp").toString()); 
 		rcpt.setPassName(deal.get("passName").toString());
 //		rcpt.setPassLnm(deal.get("rcpsl").toString());
 		rcpt.setRcemail(deal.get("rcemail").toString());
