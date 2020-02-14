@@ -58,6 +58,7 @@ auth =(()=>{
 		$('#cemail').val('33')
 		$('#cpwd').val('33')
 
+
 		/*$('#cemail').val('bb@naver.com')
 		$('#cpwd').val('aa')*/
 

@@ -60,6 +60,7 @@ app =(()=>{
 	}
 	
 	let setContentView =()=>{
+		$('#intro').remove()
 		$('head')
 		.append(cmm_vue.head())
 		
