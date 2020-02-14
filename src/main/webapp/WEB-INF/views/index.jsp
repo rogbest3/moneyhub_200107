@@ -288,7 +288,7 @@
 	<div id="popup-root"></div>
 	<div id="popup-exchange"></div>
 	<script>
-		$('#project')
+		$('#project')//
 		.click(()=>{
 			app.run('<%=application.getContextPath()%>')
 		})
