@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.moneyhub.web.admin.AdminMapper">
+	
+	<select id="exchangeTotalCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+	</select>
+	
+	<select id="exchangeUSDCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='USD'
+		]]>
+	</select>
+	
+	<select id="exchangeCNYCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='CNY'
+		]]>
+	</select>
+	
+	<select id="exchangeJPYCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='JPY'
+		]]>
+	</select>
+	
+	<select id="exchangeEURCount" resultType="int">
+		SELECT COUNT(CNTCD) FROM EXCHANGE
+		<![CDATA[
+		WHERE CNTCD='EUR'
+		]]>
+	</select>
+	
+	<select id="memberNowCount" resultType="string">
+		SELECT COUNT(CNO) FROM CUSTOMER
+		<![CDATA[
+		WHERE SDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		]]>
+	</select>
+	
+	<select id="memberTotalBalance" resultType="string">
+		SELECT SUM(BALANCE) FROM ACCOUNT
+	</select>
+	
+	<select id="memberNowExchange" resultType="string">
+		SELECT IFNULL(SUM(EXCH_KRW),0) FROM EXCHANGE
+		<![CDATA[
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		]]>
+	</select>
+	
+	<select id="totalProfitExchange" resultType="int">
+		SELECT IFNULL(SUM(EX_FEE),0) FROM EXCHANGE
+		<![CDATA[
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		]]>
+	</select>
+	
+	<select id="totalProfitFee" resultType="int">
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE
+		<![CDATA[
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		]]>
+	</select>
+		
+	<select id="memberPieChartCount" parameterType="string" resultType="string">
+		SELECT COUNT(BIRTH) FROM CUSTOMER
+		WHERE 
+		<![CDATA[
+			(DATE_FORMAT(NOW(), "%Y" )-DATE_FORMAT(BIRTH, "%Y" )+1) < #{value} + 10
+			AND 
+			#{value} < (DATE_FORMAT(NOW(), "%Y" )-DATE_FORMAT(BIRTH, "%Y" )+1)
+		]]>
+	</select>
+	
+	<select id="feeDBChart" resultType="string">
+	<![CDATA[
+		SELECT DISTINCT DATE_FORMAT(BSDATE, "%d" ) AS BSDATE
+		FROM FEE
+		ORDER BY BSDATE
+	]]>	
+	</select>
+	
+	<select id="feeDBChartAMNT" parameterType="string" resultType="string">
+	<![CDATA[
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
+		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value}
+	]]>	
+	</select>
+	
+	<select id="feeChartOneAMNT" parameterType="string" resultType="string">
+	<![CDATA[
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
+		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value} AND FEE_STAT_CD = '1'
+	]]>
+	</select>
+	
+	<select id="feeChartTwoAMNT" parameterType="string" resultType="string">
+	<![CDATA[
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
+		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value} AND FEE_STAT_CD = '2'
+	]]>
+	</select>
+	
+	<select id="adminLogin" resultType="Admin">
+		SELECT *
+		FROM ADMIN 
+		WHERE AMAIL = #{amail} AND PWD = #{pwd}
+	</select>
+	
+	<select id="memberList" resultType="map">
+		<![CDATA[
+		SELECT A.BALANCE AS BALANCE, C.CNO, C.CEMAIL, C.CPWD , C.CNAME, C.ZIP, C.ADDR, C.DADDR, 
+			(DATE_FORMAT(NOW(), "%Y" )-DATE_FORMAT(C.BIRTH, "%Y" )+1) AS AGE, 
+			DATE_FORMAT(C.SDATE, "%Y/%m/%d") AS SDATE, C.CSTCD
+		FROM ACCOUNT A, CUSTOMER C
+		WHERE A.CEMAIL = C.CEMAIL
+		]]>
+	</select>
+	
+	<update id="memberUpdate" parameterType="Admin">
+		UPDATE CUSTOMER
+		SET CEMAIL = #{cemail},
+		CPWD = #{cpwd},
+		CNAME = #{cname},
+		CSTCD = #{cstcd}
+		WHERE CNO = #{cno}
+	</update>
+	
+	<select id="feeSelectOne" resultType="String">
+	<![CDATA[
+		SELECT AMNT FROM FEEDB	
+		WHERE FEETYPCD = '1'
+		ORDER BY SEQ
+		DESC LIMIT 1
+	]]>
+	</select>
+	
+	<select id="feeSelectTwo" resultType="String">
+	<![CDATA[
+		SELECT AMNT FROM FEEDB	
+		WHERE FEETYPCD = '2'
+		ORDER BY SEQ
+		DESC LIMIT 1
+	]]>
+	</select>
+	
+	<insert id="feeUpdateOne" parameterType="map">
+		INSERT INTO FEEDB (FEETYPCD, AMNT)
+		VALUES (1, #{feeOneValue})
+	</insert>
+	
+	<insert id="feeUpdateTwo" parameterType="map">
+		INSERT INTO FEEDB (FEETYPCD, AMNT)
+		VALUES (2, #{feeTwoValue})
+	</insert>
+	
+	<select id="exchangeDBSelect" resultType="string">
+	<![CDATA[
+		SELECT AMNT FROM EXCHANGEDB
+		ORDER BY SEQ
+		DESC LIMIT 1
+	]]>
+	</select>
+	
+	<insert id="exchangeDBUpdate" parameterType="map">
+		INSERT INTO EXCHANGEDB (AMNT)
+		VALUES (#{exchangeDBValue})
+	</insert>
+	
+</mapper>
+

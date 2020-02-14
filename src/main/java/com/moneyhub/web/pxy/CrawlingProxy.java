@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,7 +16,8 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.moneyhub.web.enums.Path;
+import com.moneyhub.web.exr.Exrate;
+import com.moneyhub.web.exr.ExrateMapper;
 import com.moneyhub.web.faq.FAQ;
 import com.moneyhub.web.faq.FAQMapper;
 
@@ -25,6 +28,7 @@ public class CrawlingProxy extends Proxy{
 	@Autowired Box<Object> box;
 	@Autowired FAQ faq;
 	@Autowired FAQMapper faqMapper;
+
 	
 	@Transactional
 	public void kakaoFAQ(int pageNum){
@@ -82,5 +86,11 @@ public class CrawlingProxy extends Proxy{
 		for(int i=0; i<crawlingPage; i++) {
 			 kakaoFAQ(i);
 		}
+	}
+	
+	@Transactional
+	public void getApiExrate() {
+		System.out.println("getApiExrate 진입");
+		
 	}
 }

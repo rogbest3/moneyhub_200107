@@ -7,11 +7,11 @@ $(document).ready(function(){
 			labels: [],
 			datasets: [{
 				label: '머니허브 환율',
-				backgroundColor: '#2DCCD6',		//window.chartColors.blue,
+				backgroundColor: '#9de8ec',		//window.chartColors.blue,
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true
 			}]
 		},
 		options: {
@@ -48,20 +48,20 @@ $(document).ready(function(){
 				xAxes: [{
 					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
 						display: false,
-						labelString: 'Month'
+						labelString: 'day'
 					}
 				}],
 				yAxes: [{
-					display: false,
+					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: 'Value'
 					}
 				}]
@@ -78,7 +78,7 @@ $(document).ready(function(){
 				borderColor: '#fb6400',
 				lineTension : 0,
 				data: [],
-				fill: false
+				fill: true
 			}],
 			yAxisID: 'y-axis-1'
 		},
@@ -218,7 +218,7 @@ $(document).ready(function(){
 				borderColor: '#2DCCD6',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
@@ -285,7 +285,7 @@ $(document).ready(function(){
 				borderColor: '#36a2eb',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
@@ -352,7 +352,7 @@ $(document).ready(function(){
 				borderColor: '#36a2eb',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
@@ -419,7 +419,7 @@ $(document).ready(function(){
 				borderColor: '#36a2eb',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
@@ -486,7 +486,7 @@ $(document).ready(function(){
 				borderColor: '#36a2eb',
 				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
