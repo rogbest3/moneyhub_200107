@@ -69,7 +69,7 @@ foreignRemit = (()=>{
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		
 		
-		if(deal.trdusd >= 3000)
+		if(deal.trdrcv >= 3000)
 			{$('#fee_check').text(deal.highFee)}
 			else {$('#fee_check').text(deal.lowFee)}
 		common.receive_value_calc(deal.exrate)
@@ -90,8 +90,8 @@ foreignRemit = (()=>{
 			if(send_amount.val()==''){
 				alert('송금하실 금액을 입력해 주십시오.')
 			}else{
-			deal.trdusd = common.comma_remove(send_amount.val())
-			deal.trdkrw = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
+			deal.trdrcv = common.comma_remove(send_amount.val())
+			deal.trdsnd = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			deal.fee = document.getElementById('fee_check').innerHTML
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			remit_cusInfo()
@@ -138,6 +138,9 @@ foreignRemit = (()=>{
 		.click( e => {
 			e.preventDefault()
 			deal.exrate = String(deal.exrate)
+			deal.trdStatCd = '2'
+			deal.trdTypeCd = '송금'
+			deal.crtmem = 'LEJ'
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			$.ajax({
 				url: _+'/remit/insert',
@@ -187,7 +190,9 @@ foreignRemit = (()=>{
 		
 			$('#main_user_btn').click( e => {
 				e.preventDefault()
-				deal.trdusd = null
+
+				deal.trdrcv = null
+
 				mypage.onCreate()
 				$( 'html, body' ).stop().animate( { scrollTop : '825' } )
 			})

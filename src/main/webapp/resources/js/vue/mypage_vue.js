@@ -511,10 +511,10 @@ mypage_vue = {
 					<h1 style="padding-bottom: 0px;">지금 바로 머니허브 환전을 이용해보세요</span>
 						<p class="color-deepgrey"></p>
 					</div>
-			<div id="chart2" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>
+			<div id="chart1" style="display: none;"><canvas id="canvas" style="width:200px; height:50px; margin-bottom: 10px"></canvas></div>
 				<div class="check_font" id="exchange_check" ></div>
 					<div class="moin-amount">
-						<div id="remit_box" class="form-calculator main">
+						<div id="exchange_box" class="form-calculator main">
 							<div class="amount-row">
 								<div class="">
 									<p>환전 금액</p>

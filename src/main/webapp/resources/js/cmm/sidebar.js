@@ -62,12 +62,6 @@ sidebar = (()=>{
 				case 'account':
 					account.onCreate()
 					break;
-				case 'exchange_test':
-					exchange_test.onCreate()
-					break;
-				case 'exchange':
-					exchange.onCreate()
-					break;
 				case 'withdrawal':
 					withdrawal.onCreate()
 					break;
