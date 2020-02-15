@@ -112,14 +112,15 @@ foreignRemit = (()=>{
 		$('.themoin-main')
 		.html(remit_vue.remit_rcpt())
 		$('#third_remit_btn').click(()=>{
-			let rcpsf = document.getElementById('pass_fnm').value
-			let rcpsl = document.getElementById('pass_lnm').value
+			let passFnm = document.getElementById('pass_fnm').value
+			let passLnm = document.getElementById('pass_lnm').value
 			let rcemail = document.getElementById('rcpt_email').value
-			if(rcpsf =='' ||rcpsl ==''||rcemail ==''){
+			if(passFnm =='' ||passLnm ==''||rcemail ==''){
 				alert('정보를 모두 입력해 주십시오.')
 			}else{
-			deal.rcpsf =  rcpsf  			
-			deal.rcpsl =  rcpsl
+			deal.passFnm =  passFnm  			
+			deal.passLnm =  passLnm
+			deal.passName = document.getElementById('pass_lnm').value + document.getElementById('pass_fnm').value
 			deal.rcemail =  rcemail 
 			deal.cno = cus.cno
 			sessionStorage.setItem('deal',JSON.stringify(deal))

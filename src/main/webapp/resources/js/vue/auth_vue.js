@@ -33,7 +33,6 @@ auth_vue ={
 						</div>
 					</form>
 					<p style="margin: 30px auto;">
-						<a>비밀번호를 잊어버리셨나요?</a>
 					</p>
 					<div class="divider"></div>
 					<p class="or">or</p>

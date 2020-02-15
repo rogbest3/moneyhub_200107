@@ -6,7 +6,7 @@
 <mapper namespace="com.moneyhub.web.remit.mappers.TRDHRMapper">
 	<select id="selectAll" resultType="Map"  parameterType="PageProxy">
 		SELECT C.CNO cno, T.BSDATE bsdate, T.MTCN mtcn, T.TRD_RCV trdRcv,
-				T.TRD_SND trdSnd, T.CNTCD cntCd, T.EXRATE exrate,
+				T.TRD_SND trdSnd, T.CNTCD cntCd, T.EXRATE exrate, T.TRD_TYPE_CD trdTypeCd,
 				R.CNTP cntp, R.PASS_NAME passName
 		FROM ( SELECT C.CNO 
 				FROM CUSTOMER C 

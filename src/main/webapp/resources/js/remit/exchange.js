@@ -53,7 +53,6 @@ exchange =(()=>{
 		$('#popup-exchange').empty()
 		
 		let cntcd = $('#exch_box .amount-row .receive h3').text()
-		alert('cntcd는? ' + cntcd)
 		let deal_arr = []
 		$.getJSON('/web/exrate/search/cntcd/' + cntcd, d=>{	
 			$.each(d.exlist, (i, j)=>{
@@ -70,7 +69,7 @@ exchange =(()=>{
 		$(function(){
 			$('#exchangebutton').one('click', function(){
 				$('#chart2').fadeIn()
-
+				let cntcd = $('#exch_box .amount-row .receive h3').text()
 				$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
 					if(d.msg === 'UP'){
 						$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
@@ -102,14 +101,13 @@ exchange =(()=>{
 						deal.rcemail = cus.cemail
 						deal.cntp = $('.form-calculator .amount-row #receive_exch p').text() 
 						sessionStorage.setItem('deal',JSON.stringify(deal))
-						alert('deal에 담긴 것들은?' + JSON.stringify(deal))
 						$.ajax({
 							url: _+'/remit/insert/exch',
 							type : 'POST',
 							data : JSON.stringify(deal),
 							contentType :'application/json',
 							success : () => {
-								alert("exchange에서 remit/insert 성공")
+								alert("환전 성공")
 								mypage.remit_list({ nowPage : 0, cno : cus.cno})
 								mypage.onCreate()
 								$( 'html, body' ).stop().animate( { scrollTop : '825' })

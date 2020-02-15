@@ -55,12 +55,8 @@ auth =(()=>{
 			$('html').scrollTop(0)
 		})
 
-		$('#cemail').val('33')
-		$('#cpwd').val('33')
-
-
-		/*$('#cemail').val('bb@naver.com')
-		$('#cpwd').val('aa')*/
+		$('#cemail').val('aa@gmail.com')
+		$('#cpwd').val('aa')
 
 
 		join_2_page_btn()
