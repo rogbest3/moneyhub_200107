@@ -266,14 +266,14 @@ main_vue ={
 				</div> 
 	<div class="user-remit-container" id="trade_history"> 
 				<div class="user-title"> 
-					<h3>내 입금 계좌</h3> 
+					<h3>내 허브 페이</h3> 
 				</div> 
 				<div class="user-account"> 
 					<p class="warning"> 
-						내 입금 계좌 :  <span class="fs-block" id="cus_account">국민은행 ${acc.acctNo} ${cus.cname}</span> 
+						내 허브 페이 :  <span class="fs-block" id="cus_account">국민은행 ${acc.acctNo} ${cus.cname}</span> 
 					</p>
-					<h4 id="account_go" style="cursor: pointer;"> 
-						계좌 상세 보기
+					<h4 id="account_go" style="cursor: pointer;    color: cornflowerblue;"> 
+						허브페이 상세 보기
 					</h4>
 				</div> 
 				<div class="user-title"> 

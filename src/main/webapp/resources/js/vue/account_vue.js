@@ -5,9 +5,9 @@ account_vue = {
 			acc = $.acc()
 			accHis = $.accHis()
 			return `<div><br>
-				        <h1 style="text-align : center; margin:30px 0 10px 0">허브페이</h1>
+				        <h1 style="text-align : center; margin:30px 0 10px 0">허브 페이</h1>
 				        <div class="themoin-info-preview" style="margin: 0 auto">
-				            <div class="head">발급된 가상계좌</div>
+				            <div class="head">발급된 허브페이(가상계좌)</div>
 				            <ol>
 				                <li>
 				                    <p>계좌번호</p>
@@ -24,10 +24,10 @@ account_vue = {
 				            </ol>
 				        </div>
 				        <div class="themoin-info-preview" style="margin: 0 auto">
-				            <div class="head">잔액</div>
+				            <div class="head">허브 머니</div>
 				            <ol>
 				                <li>
-				                    <p>현재잔액</p>
+				                    <p>현재 잔액</p>
 				                    <p class="fs-block" id="balance" style="color:black; font-weight:bold;">${common.comma_create(acc.balance)}</p>
 				                    <p class="fs-block">&nbsp;</p>
 				                    <p class="fs-block" style="color:black; font-weight:bold;">원</p>

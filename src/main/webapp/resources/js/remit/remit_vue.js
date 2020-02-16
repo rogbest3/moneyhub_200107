@@ -29,7 +29,7 @@ remit_vue = {
 							<div class="description"> 
 								<i class="empty"></i> 
 								<div class="spacer"></div> 
-								<p><span id="fee_check" style="font-size: initial; color:darkgray;"></span> USD (수수료)</p>
+								<p><span id="fee_check" style="font-size: initial; color:darkgray;"></span> USD (수수료 별도)</p>
 								<div class="spacer"></div> 
 							</div> 
 							<div class="description"> 
@@ -279,7 +279,7 @@ remit_vue = {
 									<p>보내는 금액</p>
 								<div>
 									<div class="amount">
-										<p >${common.comma_create(deal.trdsnd)}<span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} USD</p>
+										<p >${common.comma_create(deal.trdsnd)}<span class="unit">KRW</span></p><p>총 수수료 : ${deal.fee} USD (포함)</p>
 									</div>
 									<img src="https://img.themoin.com/public/img/ic-next-p.png" class="user-sendlist-ic">
 									<div class="amount receive">
@@ -394,15 +394,15 @@ remit_vue = {
 									<input id="clip_acc" type="text" value="" style="position:absolute;top:-9999em;"/>
 								</div>
 								<div class="remit_info">
-									<button class="user-send-btn" style="background-color: #1b4d72;color: white;border: outset;width: 100%;">허브페이로 입금 하기</button>
+									<button id="hubpay_btn" class="user-send-btn" style="background-color: #1b4d72;color: white;border: outset;width: 100%;">허브페이로 입금 하기</button>
 								</div>
-								<div class="remit_info" style="display: block;text-align-last: center;">
+								<div  id= "hubpay" class="remit_info" style="display: block;text-align-last: center;">
 									<div style="">
 									<p class="info_desc" style=" padding: 0 0px 9px 0px;">허브페이 잔액
 									<input type="text" value="${common.comma_create(acc.balance)}" readOnly="" style="margin: 0 0 0 15px;"/>
 									</p>
 										<p class="info_desc" style=" padding: 0px 0px 14px 0px;">입금할 금액
-										<input type="text" value="" style="margin: 0 0 0 30px;"/ ></p>
+										<input id="send_money" type="text" value="" style="margin: 0 0 0 30px;"/ ></p>
 									</div>
 									<button id="remit_wd"style="color:white; background-color: #00558f;  height: 36px;">입금하기</button>
 								</div>

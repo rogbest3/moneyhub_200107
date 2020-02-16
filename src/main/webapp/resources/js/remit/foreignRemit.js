@@ -81,7 +81,8 @@ foreignRemit = (()=>{
 				$('#max_amount').text('송금 가능 금액은 5,000$입니다.')
 				}
 			if(common.comma_remove($(this).val()) >= 3000){
-				$('#fee_check').text(deal.highFee)}
+				$('#fee_check').text(deal.highFee)
+			}
 			else {$('#fee_check').text(deal.lowFee)}
 			common.receive_value_calc(deal.exrate)
 		})
@@ -90,10 +91,11 @@ foreignRemit = (()=>{
 			if(send_amount.val()==''){
 				alert('송금하실 금액을 입력해 주십시오.')
 			}else{
-			deal.trdrcv = common.comma_remove(send_amount.val())
-			deal.trdsnd = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			deal.fee = document.getElementById('fee_check').innerHTML
+			deal.trdrcv =Number(common.comma_remove(send_amount.val())) + Number(deal.fee)
+			deal.trdsnd = Math.round(deal.trdrcv * deal.exrate) //수수료 계산이 이상해
 			sessionStorage.setItem('deal',JSON.stringify(deal))
+			alert(JSON.stringify(deal))
 			remit_cusInfo()
 			}
 			})
@@ -164,6 +166,18 @@ foreignRemit = (()=>{
 		.html(remit_vue.remit_complete())
 		setInterval(msg_time, 1000);
 		$('#remit_clock').text(`${clock.year}년 ${clock.month+1}월 ${clock.clockDate}일 ${clock.hours < 10 ? `0${clock.hours+1}` : clock.hours+1}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }까지`)
+		$('#hubpay').hide()
+		$('#hubpay_btn').click(()=>{
+				$('#hubpay').toggle()
+			})
+			
+		$('#send_money').keyup(function(){
+			if($(this).val() >deal.trdsnd) {
+				$(this).val(common.comma_create(deal.trdsnd))
+				alert('입금할 금액을 초과할 수 없습니다.')
+				}
+		})
+		$('#send_money').val(common.comma_create($('#send_money').val())) //입금할 금액 콤마
 		
 		$('#remit_wd').click(()=>{
 			acc = $.acc()
@@ -173,7 +187,7 @@ foreignRemit = (()=>{
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			alert(JSON.stringify(deal))
 			
-			$.ajax({ //계좌 출금
+			$.ajax({ 
 			url: _+'/account/withdrawal',
 			type : 'POST',
 			data : JSON.stringify(deal), 
@@ -186,7 +200,6 @@ foreignRemit = (()=>{
 			}
 			})
 		})
-		//토글~~~최대금액 설정하기
 		
 			$('#main_user_btn').click( e => {
 				e.preventDefault()

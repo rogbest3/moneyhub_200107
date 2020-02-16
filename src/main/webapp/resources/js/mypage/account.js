@@ -69,13 +69,11 @@ account =(()=>{
 				success : ()=>{
 					alert('입금되었습니다.')
 					let acctno = acc.acctNo
-					alert(acc.acctNo+acc.cemail)
 					$.getJSON(_ + '/account/balance/'+acctno, d=>{ 
-						alert(d.balance)
 						acc.balance = d.balance
 						sessionStorage.setItem('acc', JSON.stringify(acc))
 					})
-//					location.reload() 현재 페이지 새로고침 필요!
+					account.onCreate()
 				},
 				error : (request,status,error) => {
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -94,13 +92,13 @@ account =(()=>{
 				$.each(d.accHis, (i, j)=>{
 					if(j.atypecd == '1'){j.atypecd = '송금'}
 					else if (j.atypecd == '2'){j.atypecd = '환전'}
-					else if(j.atypecd === null){j.atypecd == '-'}
+					else if(j.atypecd === null){j.atypecd = '-'}
 					$(`<tr><td>${j.bsdate}</td>
-					<td>${j.deposit} 원</td>
-					<td>${j.withdrawal} 원</td>
+					<td>${common.comma_create(j.deposit)} 원</td>
+					<td>${common.comma_create(j.withdrawal)} 원</td>
 					<td>${j.comment}</td>
 					<td>${j.atypecd}</td>
-					<td>${j.balance} 원</td></tr>`)
+					<td>${common.comma_create(j.balance)} 원</td></tr>`)
 					.appendTo('#account_tbody')
 				})
 			}else{

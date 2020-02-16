@@ -6,7 +6,7 @@ mypage =(()=>{
 	let _, js, cmm_vue_js, nav_vue_js, main_vue_js, mypage_vue_js, 
 		auth_js, compo_js, event_js, faq_js, main_class, withdrawal_js,
 		line_graph_js,deal, remit_box_js, clock, profitsChart,cus, exch,
-		exchange_js,account_js
+		exchange_js,account_js,guide_recieve_js
 
 	let init =()=>{
 		_ = $.ctx()
@@ -26,6 +26,7 @@ mypage =(()=>{
 		remit_box_js = js + '/remit/remit_box.js'
 		exchange_js = js + '/remit/exchange.js'
 		account_js = js + '/mypage/account.js'
+		guide_recieve_js = js + '/cmm/guide_recieve.js'
 		
 		profitsChart = {}
 		sessionStorage.setItem('profitsChart', JSON.stringify(profitsChart))
@@ -43,6 +44,7 @@ mypage =(()=>{
 			$.getScript(event_js),
 			$.getScript(faq_js),
 			$.getScript(remit_box_js),
+			$.getScript(guide_recieve_js),
 			$.getScript(exchange_js)
 		)
 		.done(()=>{
@@ -103,6 +105,7 @@ mypage =(()=>{
 		
 		$('#testexch')
 		.click(()=>{
+			exchange_test.onCreate()
 			$('html').scrollTop(0);
 		})
 		
@@ -164,6 +167,11 @@ mypage =(()=>{
 		.click(()=>{
 			faq.onCreate(main_class)
 		})
+		
+		$('#guide')
+		.click(()=>{
+			guide_recieve.onCreate(main_class)
+		})
 	}
 	
 	let clock_excute =()=>{
@@ -224,8 +232,6 @@ mypage =(()=>{
 				if(i.cntCd == j.cntcd && i.cntp == j.cnpt){
 					i.img = j.img
 					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${i.img}.svg`)
-					alert('j는? ' + JSON.stringify(j))
-					alert('i는? ' + JSON.stringify(i))
 				}
 			})
 //		
@@ -270,7 +276,6 @@ mypage =(()=>{
 	
 	let remit_list =(x)=>{
 		deal = $.deal()
-		alert('$.ctx() : ' + $.ctx())
 		$.getJSON( `${$.ctx()}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
 			let pxy = d.pager
 
@@ -300,10 +305,6 @@ mypage =(()=>{
 							j.img = k.img
 							$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
 							j.passName = j.passLnm + j.passFnm
-							alert('j는? ' + JSON.stringify(j))
-							alert('i는? ' + JSON.stringify(i))
-							alert('k는? ' + JSON.stringify(k))
-							
 						}
 					})
 
@@ -314,7 +315,7 @@ mypage =(()=>{
 								</div>
 								<div class="simple-nametime">
 									<h3 class="username">
-									<span class="fs-block" lang="en" title="a aaa a">${j.passName}</span>
+									<span class="fs-block" lang="en" title="a aaa a">${j.passName}${j.passName}</span>
 									</h3>
 									<p class="create-time">${j.bsdate}</p>
 								</div>
