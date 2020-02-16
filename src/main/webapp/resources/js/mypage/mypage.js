@@ -50,7 +50,6 @@ mypage =(()=>{
 			page_move()	
 			remit_receive()
 			setInterval(clock_excute, 1000)
-			setInterval(exchange_API, 1000 * 60 * 60 * 12)
 			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0, cno : cus.cno})
 		})
@@ -103,7 +102,7 @@ mypage =(()=>{
 		
 		$('#testexch')
 		.click(()=>{
-			
+			exchange_test.onCreate()
 			$('html').scrollTop(0);
 		})
 		
@@ -156,34 +155,6 @@ mypage =(()=>{
 				` ${clock.hours < 10 ? `0${clock.hours}` : clock.hours}:${clock.minutes < 10 ? `0${clock.minutes}` : clock.minutes }:${clock.seconds < 10 ? `0${clock.seconds }` : clock.seconds }`)
 	}
 
-	let exchange_API =()=>{
-		$.getJSON('https://api.manana.kr/exchange/rate/KRW/'+
-				'KRW,USD,JPY,CNY,SGD,AUD,GBP,NPR,EUR.json', d=>{
-
-			let arr = []
-			$.each(d, (i, j)=>{
-				arr.push({bdate : j.date.substr(0, 10), 
-					cntcd : j.name.substr(0, 3),
-					exrate : j.rate.toFixed(2)})
-			})
-			
-			$.ajax({
-				url : _ + `/exrate/insert/api`,
-				type : 'POST',
-				data : JSON.stringify({ 'paramList' : arr }),
-				dataType : 'json',
-				contentType : 'application/json',
-				success : d=>{
-					alert('성공')
-				},
-				error : e=>{
-					alert('전송 실패')
-				}
-				
-			})
-		})
-	}
-	
 	let remit_receive = ()=>{
 		deal = $.deal()
 		

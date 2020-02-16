@@ -31,7 +31,7 @@ common = (function(){
 		},
 		remit_send : function(){
 			let send = $('.form-calculator .amount-row input.send-amount')
-			let send_value = common.comma_create(common.comma_remove(send.val()))	
+			let send_value = common.comma_create(common.comma_remove(send.val().replace(/[^0-9]/g,'')))	
 			send.val(send_value)
 		},
 		remit_send_focusout : function(){
@@ -49,7 +49,8 @@ common = (function(){
 			.keyup(()=>{
 				let send_cntcd = $('.form-calculator .amount-row .send h3').text()
 				let send_value
-				
+				alert('send.val() : ' + send.val())
+				send.val( send.val().replace(/[^0-9]/g,'') )
 				if( parseFloat(common.comma_remove(send.val())) > parseFloat(common.comma_remove($('#exchange_' + send_cntcd ).text()))){
 					send_value = common.comma_create(common.comma_remove($('#exchange_' + send_cntcd).text()))
 				}else if(parseFloat(common.comma_remove(send.val())) === parseFloat(common.comma_remove($('#exchange_' + send_cntcd ).text()))){
@@ -65,7 +66,7 @@ common = (function(){
 			
 		},
 		receive_value_calc : function(x){
-			let send_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val())
+			let send_value = common.comma_remove($('.form-calculator .amount-row input.send-amount').val().replace(/[^0-9]/g,''))
 			let receive_value = common.comma_remove($('.form-calculator .amount-row input.receive-amount').val())
 			let receive_cntcd = $('.form-calculator .amount-row .unit-select.receive h3').text()
 			let disabled_cntcd = $('#remit_receive_cntcd').text()
