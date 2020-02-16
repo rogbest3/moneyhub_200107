@@ -24,7 +24,7 @@ public class RootConfig {
 		//dataSource.setUrl("jdbc:mysql://localhost:3306/moneyhub?serverTimezone=UTC");
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://moneyhub.cbbtq2igl2zi.ap-northeast-2.rds.amazonaws.com:3306/moneyhub?serverTimezone=UTC");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/moneyhub?serverTimezone=UTC");
 		dataSource.setUsername("moneyhub");
 		dataSource.setPassword("moneyhub");
 		return dataSource;
