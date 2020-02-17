@@ -99,73 +99,41 @@ exchange =(()=>{
 						deal.fee = Math.floor(parseInt(deal.trdrcv) * 0.01 * parseInt(deal.exrate))
 						deal.passName = cus.cname
 						deal.rcemail = cus.cemail
+						deal.cemail = cus.cemail
 						deal.cntp = $('.form-calculator .amount-row #receive_exch p').text() 
+						acc = $.acc()
+						deal.acctNo = acc.acctNo
+						deal.type = '2'
 						sessionStorage.setItem('deal',JSON.stringify(deal))
-						$.ajax({
-							url: _+'/remit/insert/exch',
-							type : 'POST',
-							data : JSON.stringify(deal),
-							contentType :'application/json',
-							success : () => {
-								alert("환전 성공")
-								mypage.remit_list({ nowPage : 0, cno : cus.cno})
-								mypage.onCreate()
-								$( 'html, body' ).stop().animate( { scrollTop : '825' })
-							},
-							error : (request,status,error) => {
-								alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-							}
+						alert(JSON.stringify(deal))
+						
+						$.ajax({ 
+						url: _+'/account/withdrawal',
+						type : 'POST',
+						data : JSON.stringify(deal), 
+						contentType :'application/json',
+						success : () => {
+//							alert("입금 확인되었습니다.")
+							$.ajax({
+								url: _+'/remit/insert/exch',
+								type : 'POST',
+								data : JSON.stringify(deal),
+								contentType :'application/json',
+								success : () => {
+									alert("환전 성공")
+									mypage.remit_list({ nowPage : 0, cno : cus.cno})
+									mypage.onCreate()
+									$( 'html, body' ).stop().animate( { scrollTop : '825' })
+								},
+								error : (request,status,error) => {
+									alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+								}
+							})
+						},
+						error : (request,status,error) => {
+							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						}
 						})
-//						$( 'html, body' ).stop().animate( { scrollTop : '825' })
-
-//						$('#auth_mgmt').each(function(){ //거래 인설트
-//							$.ajax({
-//								url : _+'/exchange/insert',
-//								type : 'POST',
-//								data: JSON.stringify(deal),
-//								dataType : 'json',
-//								contentType : 'application/json',
-//								success : d=>{
-//									if(d.msg === 'SUCCESS'){
-//										accHis = $.accHis()
-//										let cemail = cus.cemail
-//										let cno = cus.cno
-//										$.getJSON(_+'/account/getacchis/' + cemail + '/' + cno, t=>{
-//											if(d.msg === "SUCCESS"){
-//												alert('계좌 겟제이슨' + d.msg)
-//												accHis.balance = t.accHis.balance
-//												sessionStorage.setItem('accHis', JSON.stringify(accHis))
-//												alert('accHis에 담긴 것들은? ' + JSON.stringify(accHis))
-//											}else{
-//												alert('계좌 getJSON 실패')
-//											}
-//										})
-//										alert('머니허브 계좌로 이동합니다.')
-//										$.ajax({
-//											url : _ + '/account/withdrawal',
-//											type : 'POST',
-//											data : JSON.stringify({
-//												cemail : cus.cemail,
-//												deal : JSON.stringify(deal),
-//												acc : JSON.stringify(acc)
-//											}),
-//											dataType : 'json',
-//											contentType : 'application/json',
-//											success : d=>{
-//												if(d.msg === 'SUCCESS'){
-//													alert('회원 정보가 수정되었습니다.')
-//												}else if(d.msg === 'FAIL'){
-//													alert('잔액이 부족합니다. 잔액를 확인해주세요.')
-//												}
-//											},
-//											error : e=>{
-//												alert('cus_info_chg ajax 실패')  
-//											}
-//										})
-//									}
-//								}
-//							})
-//						})
 					}
 				})
 			})

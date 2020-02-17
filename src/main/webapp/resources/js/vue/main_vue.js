@@ -271,9 +271,9 @@ main_vue ={
 					<p class="warning"> 
 						내 허브 페이 :  <span class="fs-block" id="cus_account">국민은행 ${acc.acctNo} ${cus.cname}</span> 
 					</p>
-					<h4 id="account_go" style="cursor: pointer;    color: cornflowerblue;"> 
+					<a id="account_go" style="cursor: pointer;    color: cornflowerblue;"> 
 						허브페이 상세 보기
-					</h4>
+					</a>
 				</div> 
 				<div class="user-title"> 
 					<h3>거래 내역</h3> 

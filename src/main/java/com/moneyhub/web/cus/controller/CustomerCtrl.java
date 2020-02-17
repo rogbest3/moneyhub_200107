@@ -66,6 +66,7 @@ public class CustomerCtrl extends Proxy {
           System.out.println("join 들어옴 param은? - " + param.toString());
           String encrypwd = CustomerSha256.encrypt(param.getCpwd());
           param.setCpwd(encrypwd);
+          param.setCstcd("1");
           cusMapper.join(param);
           accountService.createAcc(param);
           box.clear();

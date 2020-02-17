@@ -53,7 +53,7 @@ mypage =(()=>{
 			page_move()	
 			remit_receive()
 			setInterval(clock_excute, 1000)
-			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+//			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 			remit_list({ nowPage : 0, cno : cus.cno})
 		})
 		.fail(()=>{
@@ -133,11 +133,11 @@ mypage =(()=>{
 		
 		$('#remit_btn')
 		.click(function(){
-		$("#remit_slider").show();
-		var top = $('#remit_slider').offset().top - 75;
-		$('html').scrollTop(top);
-		$('#exchange_slider').hide()
-		remit_box.onCreate({ flag : 'mypage', cntcd : '' })
+			$("#remit_slider").show();
+			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
+			var top = $('#remit_slider').offset().top - 75;
+			$('html').scrollTop(top);
+			remit_box.onCreate({ flag : 'mypage', cntcd : '' })
 		})
 		
 		$('#exchange_test_btn')
@@ -210,30 +210,30 @@ mypage =(()=>{
 	let remit_receive = ()=>{
 		deal = $.deal()
 		
-		if(deal.cntp == '미국'){
+		if(deal.cntp === '미국'){
 			$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-us.svg`)
 		}
 		
-		let deal_cntp = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '', cntp : '일본' },
-			{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '', cntp : '중국' },
-			{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '', cntp : '미국' },
-			{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '', cntp : '싱가포르' },
-			{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '', cntp : '호주' },
-			{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '', cntp : '영국' },
-			{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '', cntp : '벨기에' },
-			{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '', cntp : '프랑스' },
-			{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '', cntp : '독일' },
-			{ img : 'it', cntcd : 'EUR', curr : '이탈리아 유로', flag : '', cntp : '이탈리아' },
-			{ img : 'nl', cntcd : 'EUR', curr : '네덜란드 유로', flag : '', cntp : '네덜란드' },
-			{ img : 'pt', cntcd : 'EUR', curr : '포르투갈 유로', flag : '', cntp : '포르투갈' },
-			{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '', cntp : '스페인' }]
+//		let deal_cntp = [ { img : 'jp', cntcd : 'JPY', curr : '일본 엔', flag : '', cntp : '일본' },
+//			{ img : 'cn', cntcd : 'CNY', curr : '중국 위안', flag : '', cntp : '중국' },
+//			{ img : 'us', cntcd : 'USD', curr : '미국 달러', flag : '', cntp : '미국' },
+//			{ img : 'sg', cntcd : 'SGD', curr : '싱가포르 달러', flag : '', cntp : '싱가포르' },
+//			{ img : 'au', cntcd : 'AUD', curr : '호주 달러', flag : '', cntp : '호주' },
+//			{ img : 'gb', cntcd : 'GBP', curr : '영국 파운드', flag : '', cntp : '영국' },
+//			{ img : 'be', cntcd : 'EUR', curr : '벨기에 유로', flag : '', cntp : '벨기에' },
+//			{ img : 'fr', cntcd : 'EUR', curr : '프랑스 유로', flag : '', cntp : '프랑스' },
+//			{ img : 'de', cntcd : 'EUR', curr : '독일 유로', flag : '', cntp : '독일' },
+//			{ img : 'it', cntcd : 'EUR', curr : '이탈리아 유로', flag : '', cntp : '이탈리아' },
+//			{ img : 'nl', cntcd : 'EUR', curr : '네덜란드 유로', flag : '', cntp : '네덜란드' },
+//			{ img : 'pt', cntcd : 'EUR', curr : '포르투갈 유로', flag : '', cntp : '포르투갈' },
+//			{ img : 'es', cntcd : 'EUR', curr : '스페인 유로', flag : '', cntp : '스페인' }]
 		
-			$.each(deal_cntp, (i, j)=>{
-				if(i.cntCd == j.cntcd && i.cntp == j.cnpt){
-					i.img = j.img
-					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${i.img}.svg`)
-				}
-			})
+//			$.each(deal_cntp, (i, j)=>{
+//				if(i.cntCd == j.cntcd && i.cntp == j.cnpt){
+//					i.img = j.img
+//					$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${i.img}.svg`)
+//				}
+//			})
 //		
 //		$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${img}.svg`)
 		
@@ -295,19 +295,23 @@ mypage =(()=>{
 				{ img : 'pt', cntcd : 'EUR', curr : '포르투갈'},
 				{ img : 'es', cntcd : 'EUR', curr : '스페인'}]
 			
-			
-			
 			$('.remits').empty()
 			if(pxy.rowCount != 0){
-				
 				$.each(d.map, (i, j)=>{
+					let btn_color
+					if(j.trdTypeCd === '환전'){
+						btn_color = '#3ea3e8'
+					}else if(j.trdTypeCd === '송금'){
+						btn_color = '#f26178'
+					}
+					
 					$.each(receive_data, (i, k)=>{
 						if(j.cntCd == k.cntcd && j.cntp == k.curr){
 							j.img = k.img
 							$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
 						}
 					})
-
+					
 					$(`<div class="themoin-main-remititem">
 							<div class="simple">
 								<div class="unit-flag">
@@ -329,8 +333,8 @@ mypage =(()=>{
 										<img src="https://img.themoin.com/public/img/ic-next-p.png"
 											class="user-sendlist-ic">
 										<h3 class="user-sendlist-receive">
-											<span class="user-sendlist-receive">${common.comma_create(j.trdRcv)}</span> <span
-												class="user-sendlist-receiveunit">KRW</span>
+											<span class="user-sendlist-receive">${common.comma_create(j.trdRcv)}</span>
+											<span class="user-sendlist-receiveunit">KRW</span>
 										</h3>
 									</div>
 									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
@@ -339,17 +343,17 @@ mypage =(()=>{
 									</div>
 								</div>
 								<div class="simple-spacer"></div>
-								<div class="user-sendlist-status">
-								<div class="user-sendlist-state">
-								<div class="user-sendlist-state-text moin-body">${j.trdTypeCd}</div>
+								<div class="user-sendlist-status" style="justify-content:center">
+								<button id="listButton" style="background-color:${btn_color}; border:none; color:#fff; padding:15px 0; text-align:center; text-decoration:none;
+									display:inline-block; font-size:16px; margin:4px; cursor:pointer; border-radius:10px">${j.trdTypeCd}</button>
 								</div>
-								<a id = "delete_history" class="user-sendlist-state-delete moin-body desktop">내역 삭제</a>
-								<img src="https://img.themoin.com/public/img/btn-open-list-blue.svg">
 								</div>
 							</div>
 						</div>`)
 				    .appendTo('.remits')
 				})
+				
+				
 				
 				
 				$(`<div class="themoin-pagination"></div>`).appendTo('.remits')
