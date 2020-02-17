@@ -38,7 +38,7 @@ adminIndexHome_vue ={
 		'                <div class="card-body">'+
 		'                  <div class="row no-gutters align-items-center">'+
 		'                    <div class="col mr-2">'+
-		'                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">오늘자 고객 총 환전 금객</div>'+
+		'                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">오늘자 고객 총 환전 금액</div>'+
 		'                      <div class="h5 mb-0 font-weight-bold text-gray-800"><table><tbody id="memberNowExchange"></tbody></table></div>'+
 		'                    </div>'+
 		'                  </div>'+
@@ -53,9 +53,6 @@ adminIndexHome_vue ={
 		'                    <div class="col mr-2">'+
 		'                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">고객 총 보유 자산</div>'+
 		'                      <div class="h5 mb-0 font-weight-bold text-gray-800"><table><tbody id="memberTotalBalance"></tbody></table></div>'+
-		'                    </div>'+
-		'                    <div class="col-auto">'+
-		'                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>'+
 		'                    </div>'+
 		'                  </div>'+
 		'                </div>'+

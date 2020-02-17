@@ -6,32 +6,32 @@
 <mapper namespace="com.moneyhub.web.admin.AdminMapper">
 	
 	<select id="exchangeTotalCount" resultType="int">
-		SELECT COUNT(CNTCD) FROM EXCHANGE
+		SELECT COUNT(CNTCD) FROM TRDHR
 	</select>
 	
 	<select id="exchangeUSDCount" resultType="int">
-		SELECT COUNT(CNTCD) FROM EXCHANGE
+		SELECT COUNT(CNTCD) FROM TRDHR
 		<![CDATA[
 		WHERE CNTCD='USD'
 		]]>
 	</select>
 	
 	<select id="exchangeCNYCount" resultType="int">
-		SELECT COUNT(CNTCD) FROM EXCHANGE
+		SELECT COUNT(CNTCD) FROM TRDHR
 		<![CDATA[
 		WHERE CNTCD='CNY'
 		]]>
 	</select>
 	
 	<select id="exchangeJPYCount" resultType="int">
-		SELECT COUNT(CNTCD) FROM EXCHANGE
+		SELECT COUNT(CNTCD) FROM TRDHR
 		<![CDATA[
 		WHERE CNTCD='JPY'
 		]]>
 	</select>
 	
 	<select id="exchangeEURCount" resultType="int">
-		SELECT COUNT(CNTCD) FROM EXCHANGE
+		SELECT COUNT(CNTCD) FROM TRDHR
 		<![CDATA[
 		WHERE CNTCD='EUR'
 		]]>
@@ -49,16 +49,16 @@
 	</select>
 	
 	<select id="memberNowExchange" resultType="string">
-		SELECT IFNULL(SUM(EXCH_KRW),0) FROM EXCHANGE
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE
 		<![CDATA[
-		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d") AND FEE_STAT_CD = '2'
 		]]>
 	</select>
 	
 	<select id="totalProfitExchange" resultType="int">
-		SELECT IFNULL(SUM(EX_FEE),0) FROM EXCHANGE
+		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE
 		<![CDATA[
-		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d")
+		WHERE BSDATE=DATE_FORMAT(NOW(), "%Y-%m-%d") AND FEE_STAT_CD = '1'
 		]]>
 	</select>
 	
@@ -90,21 +90,21 @@
 	<select id="feeDBChartAMNT" parameterType="string" resultType="string">
 	<![CDATA[
 		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
-		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value}
+		WHERE DATE_FORMAT(BSDATE, "%d" ) = #{value} AND FEE_STAT_CD = '2'
 	]]>	
 	</select>
 	
 	<select id="feeChartOneAMNT" parameterType="string" resultType="string">
 	<![CDATA[
 		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
-		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value} AND FEE_STAT_CD = '1'
+		WHERE DATE_FORMAT(BSDATE, "%d" ) = #{value} AND FEE_AMNT_CD = '1' AND FEE_STAT_CD = '1'
 	]]>
 	</select>
 	
 	<select id="feeChartTwoAMNT" parameterType="string" resultType="string">
 	<![CDATA[
 		SELECT IFNULL(SUM(FEE_AMNT),0) FROM FEE	
-		WHERE DATE_FORMAT(BSDATE, "%d" ) LIKE #{value} AND FEE_STAT_CD = '2'
+		WHERE DATE_FORMAT(BSDATE, "%d" ) = #{value} AND FEE_AMNT_CD = '2' AND FEE_STAT_CD = '1'
 	]]>
 	</select>
 	
@@ -163,7 +163,7 @@
 	
 	<select id="exchangeDBSelect" resultType="string">
 	<![CDATA[
-		SELECT AMNT FROM EXCHANGEDB
+		SELECT (AMNT*100) AS AMNT FROM EXCHANGEDB
 		ORDER BY SEQ
 		DESC LIMIT 1
 	]]>

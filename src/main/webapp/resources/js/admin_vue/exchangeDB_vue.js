@@ -40,17 +40,6 @@ exchangeDB_vue ={
 		'                  </div>'+
 		'                </div>'+
 		'              </div>'+
-		'             <!-- Bar Chart -->'+
-		'              <div class="card shadow mb-4">'+
-		'                <div class="card-header py-3">'+
-		'                  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>'+
-		'                </div>'+
-		'                <div class="card-body">'+
-		'                  <div class="chart-bar">'+
-		'                    <canvas id="myBarChart"></canvas>'+
-		'                  </div>'+
-		'                </div>'+
-		'              </div>'+
 		'           </div>'+
 		'           <!-- Donut Chart -->'+
 		'            <div class="col-xl-4 col-lg-5">'+
@@ -77,14 +66,6 @@ exchangeDB_vue ={
 		'        <!-- /.container-fluid -->'+
 		'     </div>'+
 		'      <!-- End of Main Content -->'+
-		'     <!-- Footer -->'+
-//		'      <footer class="sticky-footer bg-white">'+
-//		'        <div class="container my-auto">'+
-//		'          <div class="copyright text-center my-auto">'+
-//		'            <span>Copyright &copy; Your Website 2019</span>'+
-//		'          </div>'+
-//		'        </div>'+
-//		'      </footer>'+
 		'      <!-- End of Footer -->'+
 		'   </div>'+
 		'    <!-- End of Content Wrapper -->'+
@@ -116,8 +97,6 @@ exchangeDB_vue ={
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
 		'  <script src="/web/resources/js/adminChart/chart-area-feedb.js"></script>'+
-		'  <script src="/web/resources/js/adminChart/chart-pie-member.js"></script>'+
-		'  <script src="/web/resources/js/adminChart/chart-bar-demo.js"></script>'+
 		'</body>'
 	}
 }

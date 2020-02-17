@@ -50,7 +50,7 @@ adminIndex =(()=>{
 			$(adminIndex_vue.main_body(d)).appendTo('body')	
 			topTotalAdmin()
 			leftMenuEvent()
-		})	
+		})
 	}	
 	
 	let topTotalAdmin=()=>{
@@ -98,9 +98,7 @@ adminIndex =(()=>{
 			$('body').empty()
 			location = "http://localhost:8080/web/"
 		})
-
 	}
-	
 	
 	return { onCreate }
 })()

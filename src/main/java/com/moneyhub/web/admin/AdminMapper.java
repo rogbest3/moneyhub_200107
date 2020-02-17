@@ -36,5 +36,5 @@ public interface AdminMapper {
 	public void feeUpdateTwo(Map<String, String> param);
 	
 	public String exchangeDBSelect();
-	public void exchangeDBUpdate(Map<String, String> param);
+	public void exchangeDBUpdate(Map<String, Float> o);
 }

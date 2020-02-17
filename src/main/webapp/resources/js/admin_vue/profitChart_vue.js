@@ -116,13 +116,6 @@ profitChart_vue ={
 		'      </div>'+
 		'    </div>'+
 		'  </div>'+
-//		' <!-- Bootstrap core JavaScript-->'+
-//		'  <script src="/web/resources/vendor/jquery/jquery.min.js"></script>'+
-//		'  <script src="/web/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>'+
-//		' <!-- Core plugin JavaScript-->'+
-//		'  <script src="/web/resources/vendor/jquery-easing/jquery.easing.min.js"></script>'+
-//		' <!-- Custom scripts for all pages-->'+
-//		'  <script src="/web/resources/js/sb-admin-2.min.js"></script>'+
 		' <!-- Page level plugins -->'+
 		'  <script src="/web/resources/vendor/chart.js/Chart.min.js"></script>'+
 		' <!-- Page level custom scripts -->'+
