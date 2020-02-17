@@ -38,7 +38,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
 	
 	<!-- kakao map -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b335250e135b3c4aeca8f2b704648e5c"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey="></script>
 	
 	<!-- kakao zip -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -114,12 +114,14 @@
 	<div id="intro">
 		<link rel="stylesheet" href="http://www.kaiwa-projects.com/assets/css/qbkl-grid.css">
 		<link rel="stylesheet" href="http://www.kaiwa-projects.com/assets/css/style-ko.css">
-		<div class="top-decorations"></div>
+<!-- 		<div class="top-decorations" style="width: 100%;position: absolute; "></div> -->
 		<section id="intro" class="fx-backstretch">
 			<div class="info" style="position: relative; z-index: 0; background: none;">
-				<div class="container" style="top: 326px;">
+				<div class="container" style="top: 18%;">
 					<div class="row">
-						<div class="col-full"><h1>양현미</h1></div>
+
+						<div class="col-full"><h1>김민국</h1></div>
+
 					</div>
 					<div class="row">
 						<div class="col-1-4 centered line"></div>
@@ -128,23 +130,24 @@
 						<div class="col-full"><h4>소프트웨어 엔지니어</h4></div>
 					</div>
 				</div>
-				<div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 825px; width: 100%; z-index: -999998; position: absolute;">
-					<img src="http://www.kaiwa-projects.com/assets/img/backstretch.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 825px; max-height: none; max-width: none; z-index: -999999; left: -129.833px; top: 0px;">
+				<div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 91%; width: 100%; z-index: -999998; position: absolute;">
+<!-- 					<img src="http://www.kaiwa-projects.com/assets/img/backstretch.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 100%; height: 825px; max-height: none; max-width: none; z-index: -999999; left: -129.833px; top: 0px;"> -->
+					<img src="/web/resources/img/main.png" style="opacity: 0.5; margin: 0px; padding: 0px; border: none; width: 100%; height: 99%; max-height: none; max-width: none; z-index: -999999; left: -129.833px; top: 0px;">
 				</div>
 			</div>
 			<div id="nav-sticky-wrapper" class="sticky-wrapper" style="height: 60px;">
-				<nav id="nav" style="z-index: 100;">
-					<ul class="clearfix">
-						<li class="current"><a href="#aboutme">인사 소개</a></li>
-						<li class=""><a href="#skills"><span></span>기술</a></li>
-						<li class=""><a href="#portfolio">프로젝트</a></li>
+				<nav id="nav" style="z-index: 100; font-size: 30px">
+					<ul class="clearfix" style="width:610px; font-weight: bold;">
+						<li class="current" style="margin-right: 60px;"><a href="#aboutme">인사 소개</a></li>
+						<li class="" style="margin-right: 60px;"><a href="#skills"><span></span>기술</a></li>
+						<li class="" style="margin-right: 60px;"><a href="#portfolio">프로젝트</a></li>
 						<li class=""><a href="#contact">연락</a></li>
 					</ul>
 				</nav>
 			</div>
 		</section>
 		<section id="aboutme" class="section">
-			<div class="container">
+			<div class="container" style="width : 70%">
 				<div class="row">
 					<div class="col-full">
 						<h2 class="section-title">인사 소개</h2>
@@ -155,9 +158,10 @@
 					<div class="col-1-2" style="text-align: center;">
 						<img src="resources/img/면접용.jpeg" style="height: 200px;" src="">
 					</div>
-					<div class="col-1-2">
-						<h4>안녕하세요? 양현미입니다!</h4>
-						<p>저는 훌륭하고 멋진 소프트웨어 개발을 즐겨하는 사람입니다. <br>진행한 프로젝트를 아래 포트폴리오로 만들었으니,<br> <a href="#portfolio" style="font-weight:bold">여기</a>를 누르시거나 페이지 아래쪽에서 구경해 보세요! <br>연락은 아래 <a href="#contact" style="font-weight:bold">이메일</a>로 연락해 주세요.</p>
+
+					<div class="col-1-3">
+						<h4>안녕하세요? 김민국입니다!</h4>
+						<p>저는 훌륭하고 멋진 소프트웨어 개발을 즐겨하는 사람입니다. 웹사이트 및 브라우저 플러그인, 기업 소프트웨어도 만들었고, 게임도 제작했습니다. 그 중  좋아했던 프로젝트 몇 개를 아래 포트폴리오로 만들었으니 <a href="#portfolio">여기를 누르시거나</a> 페이지 아래쪽에서 구경해 보세요! 도움이 필요하세요? 저하고 이야기해 보시겠어요? 소셜 미디어나 <a href="#contact">이메일</a>로 연락해 주세요.</p>
 						<ul class="social-links clearfix">
 							<li><a href="https://www.github.com/hmyanghm" target="_blank" title="Github"><i class="fa fa-github"></i></a></li>
 						</ul>
@@ -262,24 +266,26 @@
 					<div class="col-2-3 col-wrap centered text-center">
 						<div class="row">
 							<div class="col-full" style="margin-bottom: 25px;">
-								항상 최선을 다해 임할것이고</br>
-								매일 공부하며 하루하루 성장하겠습니다.  <br>hmyanghm@gmail.com으로 이메일 주세요.<br>곧 답장 드리겠습니다. 언제든지 연락주세요	
+
+								항상 초심같은 마음가짐으로 임할것이고 최신기술 트렌드에도 뒤져지지
+								않고 하루하루 성장하겠습니다  <br>rogbest@naver.com으로 이메일 주세요. 곧 답장 드리겠습니다.<br>언제든지 연락주세요	
 							</div>
 						</div>
 						<div id="form-contact-container">
 							<div class="col-full">
 								<label for="">이름
-									<h2>양현미</h2>
+									<h2>김민국</h2>
 								</label>
 							</div>
 							<div class="col-full">
 								<label for="">Email 주소
-									<h2>hmyanghm@gmail.com</h2>
+
+									<h2>rogbest@naver.com</h2>
 								</label>
 							</div>
 							<div class="col-full">
 								<label for="">휴대폰 번호
-									<h2>010-6412-3211</h2>
+									<h2>010-4223-4683</h2>
 								</label>
 							</div>
 						</div>
