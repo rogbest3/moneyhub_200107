@@ -142,15 +142,16 @@ public class CustomerCtrl extends Proxy {
 	@PostMapping("/cusInfoChg")
 	public Map<?, ?> cusInfoChg(@RequestBody Customer param) {
 		System.out.println("=============================자바 회원 정보 수정 들어옴");
-		Consumer<Customer> c = o -> cusMapper.cusInfoChg(o);
-		c.accept(param);
-		System.out.println("cus는???????????"+cus);
 		String daddr = cus.getDaddr();
 		String zip = param.getZip(); //정보번호 변경 시 입력한 우편번호
 		String addr = param.getAddr(); //정보번호 변경 시 입력한 주소
 		String daddr2 = param.getDaddr(); //정보번호 변경 시 입력한 상세주소
-		System.out.println("zip는? " + zip + " / addr는? " + addr + " / addr는? " + daddr);
-		System.out.println("param.getZip()은? " + param.getZip() + " / param.getAddr()는? " + param.getAddr() + " / param.getdaddr()는? " + param.getDaddr());
+		param.setCemail(cus.getCemail());
+		param.setZip(zip);
+		param.setAddr(addr);
+		param.setDaddr(daddr2);
+		Consumer<Customer> c = o -> cusMapper.cusInfoChg(o);
+		c.accept(param);
 		box.clear();
 		if (zip != null) {
 			box.put("msg", "true");
@@ -158,7 +159,6 @@ public class CustomerCtrl extends Proxy {
 		} else {
 			box.put("msg", "false");
 		}
-		System.out.println("param은?" + param);
 		System.out.println("박스에 담긴 메시지: " + box.get());
 		return box.get();
 	}

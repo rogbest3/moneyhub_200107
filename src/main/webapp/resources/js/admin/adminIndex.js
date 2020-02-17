@@ -4,7 +4,7 @@ adminIndex =(()=>{
 	const WHEN_ERR = 'js파일을 찾지 못했습니다.'
 	let _, js, cookie_js, adminIndex_vue_js, members_js
 		,fee_js, exchangeDB_js, profitChart_js
-		, qna_js, adminIndexHome_vue_js, app_js, index_js
+		, qna_js, adminIndexHome_vue_js, app_js
 	
 	let init =()=>{
 		_ = $.ctx()
@@ -18,7 +18,6 @@ adminIndex =(()=>{
 		qna_js = js + '/admin/qna.js'
 		adminIndexHome_vue_js = js + '/admin_vue/adminIndexHome_vue.js'
 		app_js = js + '/app.js'
-		index_js = js + '/admin_vue/index_head_vue.js'
 	}
 	
 	let onCreate =()=>{
@@ -32,8 +31,7 @@ adminIndex =(()=>{
 			$.getScript(profitChart_js),
 			$.getScript(qna_js),
 			$.getScript(adminIndexHome_vue_js),
-			$.getScript(app_js),
-			$.getScript(index_js)
+			$.getScript(app_js)
 		)
 		.done(()=>{
 			setContentView()

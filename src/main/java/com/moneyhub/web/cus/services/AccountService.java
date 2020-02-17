@@ -45,6 +45,7 @@ public class AccountService {
 		}else {
 			acc.setCemail(param.getCemail());
 			acc.setAcctNo(result);
+			acc.setBalance(balance);
 			/* acc.setBsdate(sdf.format(date)); */
 			/* acc.setBalance(balance); */
 			System.out.println("acc는????" + acc.toString());
