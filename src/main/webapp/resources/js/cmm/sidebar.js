@@ -24,6 +24,7 @@ sidebar = (()=>{
 			alert('sidebar 실패')
 		})
 	}
+	
 	let setContentView =()=>{
 		$('#root div.themoin-main')
 		.html(nav_vue.sidebar_cus())
@@ -34,13 +35,14 @@ sidebar = (()=>{
 			account.onCreate()
 			$('#account').attr('class', 'active')
 			$('#account').siblings().not('div.spacer').attr('class', '')
+
 		}else{
 			cus_info.onCreate()
 		}
 	}
 	
 	let mypage_move =x=>{
-		
+
 		let data = [{ id : 'cus_info', 		className : 'active',	tabNo : 1, title : '회원 정보'		},
 					{ id : 'pwd_chg', 		className : '', 		tabNo : 2, title : '비밀번호 변경'	},
 					{ id : 'account', 	className : '', 		tabNo : 3, title : '머니허브 계좌'	},
