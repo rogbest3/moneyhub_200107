@@ -55,7 +55,7 @@ auth =(()=>{
 			$('html').scrollTop(0)
 		})
 
-		$('#cemail').val('aa@gmail.com')
+		$('#cemail').val('abcd@naver.com')
 		$('#cpwd').val('aa')
 
 

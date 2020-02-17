@@ -47,7 +47,7 @@ public class CustomerCtrl extends Proxy {
           System.out.println("로그인 시 param.getCpwd는? - "  +param.getCpwd());
           Function<Customer, Customer> f = t -> cusMapper.login(t);
           cus = f.apply(param);
-          System.out.println("로그인 시 cus는? - "+ cus.toString());
+//          System.out.println("로그인 시 cus는? - "+ cus.toString());
           Function<String, Account> p = t -> accMapper.getAcc(t);
           acc = p.apply(cemail);
 		/*

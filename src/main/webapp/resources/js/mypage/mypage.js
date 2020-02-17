@@ -277,8 +277,9 @@ mypage =(()=>{
 	let remit_list =(x)=>{
 		deal = $.deal()
 		$.getJSON( `${$.ctx()}/remit/lists/page/${x.nowPage}/search/${x.cno}`, d=>{
+			
 			let pxy = d.pager
-
+			alert('pxy.rowCount : ' + pxy.rowCount)
 			let receive_data = [ { img : 'jp', cntcd : 'JPY', curr : '일본'},
 				{ img : 'cn', cntcd : 'CNY', curr : '중국'},
 				{ img : 'us', cntcd : 'USD', curr : '미국'},

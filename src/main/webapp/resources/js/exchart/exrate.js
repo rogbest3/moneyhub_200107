@@ -26,8 +26,7 @@ exrate =(()=>{
 			.css({ 'text-align': 'left', margin : '5px', width : '100%', height: '25px' })
 		}
 		
-//		receive_value_calc()
-		
+		receive_value_calc()
 		$('.form-calculator .amount-row input.send-amount').keyup(()=>{
 			receive_value_calc()
 		})

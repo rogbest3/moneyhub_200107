@@ -85,6 +85,7 @@ public class ExrateSevice extends Typetester{
 		map = exrateMapper.getExchangeFee();
 		inven.clear();
 		System.out.println("cntcd 수수료 계산 전 : " + exrateMapper.cntcdSearchExrate(cntcd));
+		System.out.println("수수료 : " + map.get("AMNT"));
 		for(Exrate e : exrateMapper.cntcdSearchExrate(cntcd)) {
 			e.setExrate(Math.round(Float.parseFloat(String.valueOf(e.getExrate())) 
 									* ( Float.parseFloat(String.valueOf(map.get("AMNT"))) + 1) * 100 ) / 100.0d );
