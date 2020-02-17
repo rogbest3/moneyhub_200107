@@ -80,12 +80,11 @@ public class ExrateSevice extends Typetester{
 			c.accept(exrate);
 		}
 	}	
-
 	public ArrayList<Exrate> cntcdSearchExrate(String cntcd){	
 		HashMap<String, Float> map = new HashMap<>();
 		map = exrateMapper.getExchangeFee();
 		inven.clear();
-//		System.out.println("cntcd 수수료 계산 전 : " + exrateMapper.cntcdSearchExrate(cntcd));
+		System.out.println("cntcd 수수료 계산 전 : " + exrateMapper.cntcdSearchExrate(cntcd));
 		for(Exrate e : exrateMapper.cntcdSearchExrate(cntcd)) {
 			e.setExrate(Math.round(Float.parseFloat(String.valueOf(e.getExrate())) 
 									* ( Float.parseFloat(String.valueOf(map.get("AMNT"))) + 1) * 100 ) / 100.0d );
