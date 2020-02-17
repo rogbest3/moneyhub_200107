@@ -369,7 +369,6 @@ remit_vue = {
 							<h1 id="deposit_hour" type="text">입금 기한 60:00</h1>
 							<div class="intro">머니허브 해외송금을 이용해주셔서 감사합니다.<br>
 								<p><span id="remit_clock">2019년 12월 30일 오후 3:38까지</span> 계좌로 입금해주세요.</p>
-								<p class="fs-block">반드시, <span>신한은행 110341213905 이은지 계좌</span>에서 출금해주셔야 합니다.</p>
 								진행 상황은 메인화면의 송금 내역에서 확인하실 수 있습니다.<br>
 							</div>
 							<div class="box">

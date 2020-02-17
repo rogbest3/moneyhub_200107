@@ -55,8 +55,8 @@ auth =(()=>{
 			$('html').scrollTop(0)
 		})
 
-		$('#cemail').val('bb@naver.com')
-		$('#cpwd').val('aa')
+		$('#cemail').val('mh@moneyhub.com')
+		$('#cpwd').val('moneyhub')
 
 
 		join_2_page_btn()

@@ -35,7 +35,8 @@
         FROM ACCOUNT_HISTORY
         WHERE CEMAIL = #{cemail}
         AND ACCT_NO = #{acctNo}
-        ORDER BY BSDATE DESC
+        ORDER BY BSDATE,SEQ DESC
+        
    	 </select>
    	 
    	 <update id="updateBalance" parameterType="Account"> <!--고객 잔액 업데이트  -->
