@@ -47,7 +47,7 @@ account =(()=>{
 			try { 
 				var successful = document.execCommand('copy');
 				if(successful){
-					alert('복사되었습니다.')
+					alert('복사되었습니다.')//ddd
 				}else{
 					alert('복사실패')
 				}
