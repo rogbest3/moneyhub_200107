@@ -296,8 +296,8 @@ remit_vue = {
 										<tr>
 											<td style="width: 100px;">여권 이름</td>
 											<td class="color-grey-1 name fs-block">
-												<span lang="en">${deal.rcpsl}</span>
-												<span lang="en">${deal.rcpsf}</span>
+												<span lang="en">${deal.passLnm}</span>
+												<span lang="en">${deal.passFnm}</span>
 											</td>
 										</tr>
 										<tr>

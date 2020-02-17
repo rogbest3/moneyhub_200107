@@ -13,6 +13,7 @@ mypage =(()=>{
 		js = $.js()
 		cus = $.cusInfo()
 		exch = $.exch()
+		deal = $.deal()
 		cmm_vue_js = js + '/vue/cmm_vue.js'
 		nav_vue_js = js + '/vue/nav_vue.js'
 		main_vue_js = js + '/vue/main_vue.js'
@@ -264,9 +265,9 @@ mypage =(()=>{
 				deal.cntp = $('.form-calculator .amount-row .receive p').text() 
 				deal.cntcd = $('.form-calculator .amount-row .receive h3').text()
 				deal.trdrcv = common.comma_remove(send_amount.val())
-				deal.passLnm = $('#pass_fnm').text()
+				deal.passFnm = $('#pass_fnm').text()
 				deal.passLnm = $('#pass_lnm').text()
-				deal.passName = deal.passLnm + deal.passFnm
+				deal.passName =  JSON.stringify(deal.passFnm) + JSON.stringify(deal.passLnm)
 				deal.trdTypeCd = '송금' //환전
 				sessionStorage.setItem('deal',JSON.stringify(deal))
 				foreignRemit.onCreate()
@@ -304,7 +305,6 @@ mypage =(()=>{
 						if(j.cntCd == k.cntcd && j.cntp == k.curr){
 							j.img = k.img
 							$('.form-calculator .amount-row .receive img').attr("src",`https://img.themoin.com/public/img/circle-flag-${j.img}.svg`)
-							j.passName = j.passLnm + j.passFnm
 						}
 					})
 
@@ -315,7 +315,7 @@ mypage =(()=>{
 								</div>
 								<div class="simple-nametime">
 									<h3 class="username">
-									<span class="fs-block" lang="en" title="a aaa a">${j.passName}${j.passName}</span>
+									<span class="fs-block" lang="en" title="aa">${j.passName}</span>
 									</h3>
 									<p class="create-time">${j.bsdate}</p>
 								</div>
@@ -324,13 +324,13 @@ mypage =(()=>{
 									<div class="user-sendlistdetail-amount">
 										<h3 class="user-sendlist-send">
 											<span class="user-sendlist-send">${common.comma_create(j.trdSnd)}</span> <span
-												class="user-sendlist-sendunit">KRW</span>
+												class="user-sendlist-sendunit">${j.cntCd}</span>
 										</h3>
 										<img src="https://img.themoin.com/public/img/ic-next-p.png"
 											class="user-sendlist-ic">
 										<h3 class="user-sendlist-receive">
 											<span class="user-sendlist-receive">${common.comma_create(j.trdRcv)}</span> <span
-												class="user-sendlist-receiveunit">${j.cntcd}</span>
+												class="user-sendlist-receiveunit">KRW</span>
 										</h3>
 									</div>
 									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>

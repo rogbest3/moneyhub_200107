@@ -69,7 +69,7 @@ exchange =(()=>{
 		$(function(){
 			$('#exchangebutton').one('click', function(){
 				$('#chart2').fadeIn()
-
+				let cntcd = $('#exch_box .amount-row .receive h3').text()
 				$.getJSON(_+'/exchange/extrend/cntcd/' + cntcd, d=>{
 					if(d.msg === 'UP'){
 						$('#exchange_check').text('최근 약 2주간 해당 환율은 상승세입니다.')
@@ -107,6 +107,7 @@ exchange =(()=>{
 							data : JSON.stringify(deal),
 							contentType :'application/json',
 							success : () => {
+								alert("환전 성공")
 								mypage.remit_list({ nowPage : 0, cno : cus.cno})
 								mypage.onCreate()
 								$( 'html, body' ).stop().animate( { scrollTop : '825' })

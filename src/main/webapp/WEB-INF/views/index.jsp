@@ -88,8 +88,8 @@
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/alarm.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/ref_mgmt.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/mypage/withdrawal.js"></script>
-	<script src="<%=application.getContextPath()%>/resources/js/mypage/exchange.js"></script>
-<%-- 	<script src="<%=application.getContextPath()%>/resources/js/mypage/exChart.js"></script> --%>
+	<%-- <script src="<%=application.getContextPath()%>/resources/js/mypage/exchange.js"></script> --%>
+	<%-- <script src="<%=application.getContextPath()%>/resources/js/mypage/exChart.js"></script> --%>
 	
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminLogin.js"></script>
 	<script src="<%=application.getContextPath()%>/resources/js/admin/adminIndex.js"></script>
@@ -119,7 +119,7 @@
 			<div class="info" style="position: relative; z-index: 0; background: none;">
 				<div class="container" style="top: 326px;">
 					<div class="row">
-						<div class="col-full"><h1>박근호</h1></div>
+						<div class="col-full"><h1>양현미</h1></div>
 					</div>
 					<div class="row">
 						<div class="col-1-4 centered line"></div>
@@ -152,19 +152,25 @@
 					</div>
 				</div>
 				<div class="row section-content">
-					<div class="col-1-3" style="text-align: center;">
-						<img alt="접니다!" style="height: 444px;" src="">
+					<div class="col-1-2" style="text-align: center;">
+						<img src="resources/img/면접용.jpeg" style="height: 200px;" src="">
 					</div>
-					<div class="col-1-3">
-						<h4>안녕하세요? 박근호입니다!</h4>
-						<p>저는 훌륭하고 멋진 소프트웨어 개발을 즐겨하는 사람입니다. 웹사이트 및 브라우저 플러그인, 기업 소프트웨어도 만들었고, 게임도 제작했습니다. 그 중  좋아했던 프로젝트 몇 개를 아래 포트폴리오로 만들었으니 <a href="#portfolio">여기를 누르시거나</a> 페이지 아래쪽에서 구경해 보세요! 도움이 필요하세요? 저하고 이야기해 보시겠어요? 소셜 미디어나 <a href="#contact">이메일</a>로 연락해 주세요.</p>
+					<div class="col-1-2">
+						<h4>안녕하세요? 양현미입니다!</h4>
+						<p>저는 훌륭하고 멋진 소프트웨어 개발을 즐겨하는 사람입니다. <br>진행한 프로젝트를 아래 포트폴리오로 만들었으니,<br> <a href="#portfolio" style="font-weight:bold">여기</a>를 누르시거나 페이지 아래쪽에서 구경해 보세요! <br>연락은 아래 <a href="#contact" style="font-weight:bold">이메일</a>로 연락해 주세요.</p>
 						<ul class="social-links clearfix">
-							<li><a href="https://www.github.com/ka1wa" target="_blank" title="Github"><i class="fa fa-github"></i></a></li>
+							<li><a href="https://www.github.com/hmyanghm" target="_blank" title="Github"><i class="fa fa-github"></i></a></li>
 						</ul>
 					</div>
-					<div class="col-1-3">
+					<!-- <div class="col-1-3">
 						<h4>개인 관심사</h4>
-						<p><a href="#skills">프로그래밍</a>을 하지 않을 때는 다음과 같은 것으로 소일하며 즐거운 생활을 하고 있답니다.</p><ul><li>여행을 다니는 것을 좋아합니다</li><li>좋아하는 e스포츠 경기를 봐요.</li><li>책 읽는 것을 좋아합니다</li><li>예전 영화나 최신영화를 보는것을 즐깁니다.</li></ul>					</div>
+						<p><a href="#skills">프로그래밍</a>을 하지 않을 때는 다음과 같은 것으로 소일하며 즐거운 생활을 하고 있답니다.</p>
+						<ul>
+							<li>여행을 다니는 것을 좋아합니다</li>
+							<li>책 읽는 것을 좋아합니다</li>
+							<li>예전 영화나 최신영화를 보는것을 즐깁니다.</li>
+						</ul>
+					</div> -->
 				</div>
 			</div>
 		</section>
@@ -179,10 +185,13 @@
 				<div class="row section-content" style="margin:0 auto">
 					<div class="skill-container">
 						<div class="col-full">
-							<div class="col-full text-center" style="color: #333;">저는 웹으로는  자바를 사용합니다.
-							화면은 부트스트랩과 Vue와 Vuetify를<br>
-							이용해 구성하였고 데이터베이스는 MariaDB를 사용하였습니다
+							<div class="col-full text-center" style="color: #333;">저는 웹으로는  자바를 사용합니다.<br>
+							화면은 부트스트랩과 제이쿼리를 이용해 구성하였고
+							<br>데이터베이스는 MariaDB를 사용하였습니다.
 							</div>
+						</div>
+						<div class="col-1-5 skill">
+							<h4></h4>
 						</div>
 						<div class="col-1-5 skill">
 							<h4>Java</h4>
@@ -193,12 +202,6 @@
 						<div class="col-1-5 skill">
 							<h4>JavaScript</h4>
 						</div>
-						<div class="col-1-5 skill">
-							<h4>Vue</h4>
-						</div>
-						<div class="col-1-5 skill">
-							<h4>NODE.JS</h4>
-						</div>
 					</div>
 					<div class="col-full skill-container">
 						<h3>자주 사용하는 소프트웨어</h3>
@@ -206,7 +209,7 @@
 					<div class="col-2-3 col-wrap centered skill-container" style="with:100%;justify-content: center;">
 						<div class="col-1-2" style="padding-left:100px">
 							<h4>프레임워크하고 엔진</h4>
-							<ul style="color: #333;"><li>Vue.js</li><li>Spring4</li><li>Spring Boot</li></ul>							
+							<ul style="color: #333;"><li>Spring5</li></ul>							
 						</div>
 						<div class="col-1-2" style="padding-left:100px">
 							<h4>소프트웨어</h4>
@@ -220,7 +223,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-full">
-						<h2 class="section-title">프로젝트&&Git Hub</h2>
+						<h2 class="section-title">프로젝트 & Git Hub</h2>
 						<div class="centered line"></div>
 					</div>
 				</div>
@@ -239,7 +242,7 @@
 							</a>
 						</div>
 						<div class="col-1-6 project port-game mix_all" style="display: inline-block;  opacity: 1; padding-top: 30px;">
-							<a href="https://github.com/rogbest3" title="github" >
+							<a href="https://github.com/hmyanghm" title="github" >
 								<img src="https://github.githubassets.com/images/modules/open_graph/github-mark.png" alt="Super Puzzle Platformer is a Unity game developed in 14 days.">
 							</a><
 						</div>						
@@ -251,7 +254,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-full">
-						<h2 class="section-title">연락 주세요</h2>
+						<h2 class="section-title">연락처</h2>
 						<div class="centered line"></div>
 					</div>
 				</div>
@@ -259,24 +262,24 @@
 					<div class="col-2-3 col-wrap centered text-center">
 						<div class="row">
 							<div class="col-full" style="margin-bottom: 25px;">
-								항상 초심같은 마음가짐으로 임할것이고 최신기술 트렌드에도 뒤져지지
-								않고 하루하루 성장하겠습니다  <br>rmsgh2392@daum.net으로 이메일 주세요. 곧 답장 드리겠습니다.<br>언제든지 연락주세요	
+								항상 최선을 다해 임할것이고</br>
+								매일 공부하며 하루하루 성장하겠습니다.  <br>hmyanghm@gmail.com으로 이메일 주세요.<br>곧 답장 드리겠습니다. 언제든지 연락주세요	
 							</div>
 						</div>
 						<div id="form-contact-container">
 							<div class="col-full">
 								<label for="">이름
-									<h2>박근호</h2>
+									<h2>양현미</h2>
 								</label>
 							</div>
 							<div class="col-full">
 								<label for="">Email 주소
-									<h2>rmsgh2392@daum.net</h2>
+									<h2>hmyanghm@gmail.com</h2>
 								</label>
 							</div>
 							<div class="col-full">
 								<label for="">휴대폰 번호
-									<h2>010-2470-2993</h2>
+									<h2>010-6412-3211</h2>
 								</label>
 							</div>
 						</div>
