@@ -232,10 +232,10 @@ exchange_test =(()=>{
 			.click(()=>{
 				init_Exth()
 				saveFlag = true
-				alert('저장 클릭 후 amount_history 전 exth - ' + JSON.stringify(exth))
+//				alert('저장 클릭 후 amount_history 전 exth - ' + JSON.stringify(exth))
 				amount_history()
 				common.object_sort(exth)
-				alert('저장 클릭 후 amount_history 후 exth - ' + JSON.stringify(exth))
+//				alert('저장 클릭 후 amount_history 후 exth - ' + JSON.stringify(exth))
 				sessionStorage.setItem('exchangeCount', 0)
 				$.ajax({
 					url : `${_}/exth/insert/${deposit}`,
@@ -326,7 +326,7 @@ exchange_test =(()=>{
 //		.css({ 'font-weight' : 'bold' })
 		.appendTo('#next_day_btn')
 		.click(()=>{
-			alert('>>>>')
+//			alert('>>>>')
 		})
 		
 		datepicker_kr()	
@@ -341,9 +341,9 @@ exchange_test =(()=>{
 		$('#datepicker').datepicker()
 		.change(()=>{
 			if(exrateSess.bdate !== $('#datepicker').val() ){
-				alert('날짜 변경 후 저장 전 exth - ' + JSON.stringify(exth))
+//				alert('날짜 변경 후 저장 전 exth - ' + JSON.stringify(exth))
 				amount_history()
-				alert('날짜 변경 후 저장 후 exth - ' + JSON.stringify(exth))
+//				alert('날짜 변경 후 저장 후 exth - ' + JSON.stringify(exth))
 //				alert('날짜 변경 후 exchangeCount : ' + $.exchangeCount())
 //				alert('날짜 변경 후 exth : ' + JSON.stringify(exth))
 				

@@ -175,7 +175,7 @@ $(document).ready(function(){
 		config1.data.labels = []
 		config1.data.datasets[0].data = []
 
-		alert('profitsChart - ' + JSON.stringify(getProfitsChart))
+//		alert('profitsChart - ' + JSON.stringify(getProfitsChart))
 		$.each(getProfitsChart, (i, j)=>{
 			config1.data.labels[i] = j.bdate.substr(-5).replace('-', ' / ')
 			config1.data.datasets[0].data[i] = parseFloat(j.profits)
