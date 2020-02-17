@@ -72,6 +72,9 @@ account =(()=>{
 					$.getJSON(_ + '/account/balance/'+acctno, d=>{ 
 						acc.balance = d.balance
 						sessionStorage.setItem('acc', JSON.stringify(acc))
+						alert('acc에 담긴 세션은? ' + JSON.stringify(acc))
+						alert('acc.balance는? ' + acc.balance)
+						alert('d.balance는? ' + d.balance)
 					})
 					account.onCreate()
 				},

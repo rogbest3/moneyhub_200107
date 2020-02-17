@@ -23,9 +23,10 @@ public class RootConfig {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://moneyhub.cbbtq2igl2zi.ap-northeast-2.rds.amazonaws.com:3306/moneyhub?serverTimezone=UTC");
-		dataSource.setUsername("moneyhub");
-		dataSource.setPassword("moneyhub");
+//		dataSource.setUrl("jdbc:mysql://moneyhub.cbbtq2igl2zi.ap-northeast-2.rds.amazonaws.com:3306/moneyhub?serverTimezone=UTC"); //민국
+		dataSource.setUrl("jdbc:mysql://moneyhubdb.cv3qlvmh7iic.ap-northeast-2.rds.amazonaws.com/moneyhub?serverTimezone=UTC"); //현미
+		dataSource.setUsername("moneyhubdb");
+		dataSource.setPassword("moneyhubdb");
 		return dataSource;
 	}
 	
