@@ -198,7 +198,6 @@ main_vue ={
 		deal = $.deal()
 		cus = $.cusInfo()
 		acc = $.acc()
-		accHis = $.accHis()
 		return `<div class="themoin-main"> 
 			<div class="themoin-currency-component" style="height: 230px;"> 
 		   	  	<div class="content"> 
@@ -280,7 +279,7 @@ main_vue ={
 					<h3>거래 내역</h3> 
 				</div> 
 				<div class="user-limit"> 
-					<p>계좌 잔액 :<span id="acc_bal"></span>${common.comma_create(accHis.balance)} 원</p> 
+					<p>계좌 잔액 :<span id="acc_bal"></span>${common.comma_create(acc.balance)} 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 
 					<p>올해 누적 송금액 :<span> 0</span> 원</p> 
 					<p class="divider">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</p> 

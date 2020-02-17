@@ -65,14 +65,14 @@ public class AccountService {
 	public void withDrawal(HashMap<String, Object> param) {
 		System.out.println("들어온 파람은>>>>>>>>>>>>> " + param);
 		int bal = accMapper.getBalance(param.get("acctNo").toString());
-		int drawal = Integer.valueOf(param.get("trdrcv").toString()); // 입금할 금액으로 받아야함
+		int drawal = Integer.valueOf(param.get("trdsnd").toString()); // 입금할 금액으로 받아야함
 		int subBal = bal -= drawal;
 		System.out.println("subBal>>>>>>>>>>"+bal+"발"+drawal+"빼기"+subBal);
 		if(bal > 0) {
 			accHistory.setCemail(param.get("cemail").toString());
 			accHistory.setAstatcd("2"); // 상태코드 1은 입금 2는 출금
 			accHistory.setBalance(subBal);
-			accHistory.setWithdrawal( Integer.valueOf(param.get("trdrcv").toString()));
+			accHistory.setWithdrawal( Integer.valueOf(param.get("trdsnd").toString()));
 			accHistory.setAcctNo(param.get("acctNo").toString()); 
 			accHistory.setCrtmem("LEJ");
 			accHistory.setComment("출금");

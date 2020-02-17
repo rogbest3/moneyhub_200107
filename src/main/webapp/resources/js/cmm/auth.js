@@ -92,7 +92,6 @@ auth =(()=>{
 						alert(d.cus.cname+'님 환영합니다.')
 						sessionStorage.setItem('cus', JSON.stringify(d.cus))
 						sessionStorage.setItem('acc', JSON.stringify(d.acc))
-						sessionStorage.setItem('accHis', JSON.stringify(d.accHis))
 						mypage.onCreate()
 					}
 					else{
