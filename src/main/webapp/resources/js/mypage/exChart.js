@@ -5,11 +5,11 @@ $(document).ready(function(){
 			labels: [],
 			datasets: [{
 				label: '머니허브 환율',
-				backgroundColor: '#2DCCD6',		//window.chartColors.blue,
+				backgroundColor: 'rgba(45, 204, 214, 0.2)',		//window.chartColors.blue,
 				borderColor: '#2DCCD6',
-				lineTension : 0,
+//				lineTension : 0,
 				data: [],
-				fill: false	
+				fill: true	
 			}]
 		},
 		options: {
@@ -33,7 +33,7 @@ $(document).ready(function(){
 						return `머니허브 환율`
 					},
 					label : function(tooltipItem, data){
-						return config.data.datasets[0].data[tooltipItem['index']]
+						return common.comma_create(config.data.datasets[0].data[tooltipItem['index']])
 					}
 				},
 				intersect: false
@@ -46,7 +46,7 @@ $(document).ready(function(){
 				xAxes: [{
 					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
 						display: false,
@@ -54,14 +54,22 @@ $(document).ready(function(){
 					}
 				}],
 				yAxes: [{
-					display: false,
+					display: true,
 					gridLines : {
-						display : false
+						display : true
 					},
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: 'Value'
-					}
+					},
+					ticks: {
+//						stepSize : 5,
+		                beginAtZero: false,
+		                callback: function(value, index, values) {
+		                	return common.comma_create(value)
+					        
+					    }
+		            }
 				}]
 			}
 		}
