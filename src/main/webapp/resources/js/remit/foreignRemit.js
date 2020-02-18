@@ -91,9 +91,10 @@ foreignRemit = (()=>{
 			if(send_amount.val()==''){
 				alert('송금하실 금액을 입력해 주십시오.')
 			}else{
+			
 			deal.fee = document.getElementById('fee_check').innerHTML
 			deal.trdrcv =Number(common.comma_remove(send_amount.val()))
-			deal.trdsnd = Math.round((deal.trdrcv + Number(deal.fee)) * deal.exrate) //수수료 계산이 이상해
+			deal.trdsnd = Math.round((deal.trdrcv + Number(deal.fee)) * deal.exrate)
 			sessionStorage.setItem('deal',JSON.stringify(deal))
 			alert(JSON.stringify(deal))
 			remit_cusInfo()
