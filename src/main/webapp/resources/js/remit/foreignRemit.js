@@ -64,7 +64,6 @@ foreignRemit = (()=>{
 	}
 	
 	let remit_deal = ()=>{
-		//숙제 실시간 환율 연동하기.....
 		common.remit_send_focusout()
 		let send_amount = $('.form-calculator .amount-row input.send-amount')
 		
@@ -96,7 +95,6 @@ foreignRemit = (()=>{
 			deal.trdrcv =Number(common.comma_remove(send_amount.val()))
 			deal.trdsnd = Math.round((deal.trdrcv + Number(deal.fee)) * deal.exrate)
 			sessionStorage.setItem('deal',JSON.stringify(deal))
-			alert(JSON.stringify(deal))
 			remit_cusInfo()
 			}
 			})
@@ -152,12 +150,11 @@ foreignRemit = (()=>{
 				data : JSON.stringify(deal),
 				contentType :'application/json',
 				success : () => {
-					alert("ajax성공")
 					remit_complete()
 					$('html').scrollTop(0);
 				},
 				error : (request,status,error) => {
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					alert('시스템 확인 중입니다.')
 				}
 			})
 		})
@@ -187,7 +184,6 @@ foreignRemit = (()=>{
 			deal.acctNo = acc.acctNo
 			deal.type = '1'
 			sessionStorage.setItem('deal',JSON.stringify(deal))
-			alert(JSON.stringify(deal))
 			
 			$.ajax({ 
 			url: _+'/account/withdrawal',
@@ -198,7 +194,7 @@ foreignRemit = (()=>{
 				alert("입금 확인되었습니다.")
 			},
 			error : (request,status,error) => {
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				alert('시스템 확인 중입니다.')
 			}
 			})
 		})
