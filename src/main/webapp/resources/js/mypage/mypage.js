@@ -314,7 +314,7 @@ mypage =(()=>{
 											<span class="user-sendlist-receiveunit">KRW</span>
 										</h3>
 									</div>
-									<p>적용 환율 : 1 USD = ${j.exrate} KRW</p>
+									<p>적용 환율 : 1 ${j.cntCd} = ${j.exrate} KRW</p>
 									<div class="send-due">
 										<p>${j.trdTypeCd}이 정상적으로 완료되었습니다.</p>
 									</div>
